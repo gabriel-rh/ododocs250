@@ -1,0 +1,600 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>genericclioptions - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package genericclioptions
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/genericclioptions" target="_blank">github.com/redhat-developer/odo/pkg/odo/genericclioptions</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#ApplyIgnore">func ApplyIgnore(ignores *[]string, sourcePath string) (err error)</a></dd>
+			
+				
+				<dd><a href="#CheckMachineReadableOutputCommand">func CheckMachineReadableOutputCommand(cmd *cobra.Command) error</a></dd>
+			
+				
+				<dd><a href="#GenericRun">func GenericRun(o Runnable, cmd *cobra.Command, args []string)</a></dd>
+			
+				
+				<dd><a href="#GetValidEnvInfo">func GetValidEnvInfo(cmdline cmdline.Cmdline) (*envinfo.EnvSpecificInfo, error)</a></dd>
+			
+				
+				<dd><a href="#ResolveAppFlag">func ResolveAppFlag(cmdline cmdline.Cmdline) string</a></dd>
+			
+			
+				
+				<dd><a href="#Context">type Context</a></dd>
+				
+					
+					<dd>    <a href="#New">func New(parameters CreateParameters) (*Context, error)</a></dd>
+				
+					
+					<dd>    <a href="#NewContextCompletion">func NewContextCompletion(command *cobra.Command) *Context</a></dd>
+				
+					
+					<dd>    <a href="#NewFakeContext">func NewFakeContext(project, application, component string, kclient kclient.ClientInterface) *Context</a></dd>
+				
+				
+					
+					<dd>    <a href="#Context.Component">func (o *Context) Component(optionalComponent ...string) (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#Context.ComponentAllowingEmpty">func (o *Context) ComponentAllowingEmpty(allowEmpty bool, optionalComponent ...string) (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#Context.GetApplication">func (o *Context) GetApplication() string</a></dd>
+				
+					
+					<dd>    <a href="#Context.GetComponentContext">func (o *Context) GetComponentContext() string</a></dd>
+				
+					
+					<dd>    <a href="#Context.GetDevfilePath">func (o *Context) GetDevfilePath() string</a></dd>
+				
+					
+					<dd>    <a href="#Context.GetOutputFlag">func (o *Context) GetOutputFlag() string</a></dd>
+				
+					
+					<dd>    <a href="#Context.GetProject">func (o *Context) GetProject() string</a></dd>
+				
+					
+					<dd>    <a href="#Context.IsJSON">func (o *Context) IsJSON() bool</a></dd>
+				
+			
+				
+				<dd><a href="#CreateParameters">type CreateParameters</a></dd>
+				
+					
+					<dd>    <a href="#NewCreateParameters">func NewCreateParameters(cmdline cmdline.Cmdline) CreateParameters</a></dd>
+				
+				
+					
+					<dd>    <a href="#CreateParameters.CreateAppIfNeeded">func (o CreateParameters) CreateAppIfNeeded() CreateParameters</a></dd>
+				
+					
+					<dd>    <a href="#CreateParameters.IsOffline">func (o CreateParameters) IsOffline() CreateParameters</a></dd>
+				
+					
+					<dd>    <a href="#CreateParameters.NeedDevfile">func (o CreateParameters) NeedDevfile(ctx string) CreateParameters</a></dd>
+				
+					
+					<dd>    <a href="#CreateParameters.RequireRouteAvailability">func (o CreateParameters) RequireRouteAvailability() CreateParameters</a></dd>
+				
+			
+				
+				<dd><a href="#Runnable">type Runnable</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html">context.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/fakecontext.go.html">fakecontext.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/localprovider.go.html">localprovider.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/resolve.go.html">resolve.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/runnable.go.html">runnable.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/util.go.html">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="ApplyIgnore">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/util.go.html?s=1649:1715#L22">ApplyIgnore</a>
+				<a class="permalink" href="#ApplyIgnore">¶</a>
+				
+				
+			</h2>
+			<pre>func ApplyIgnore(ignores *[]<a href="../../../../../../builtin/#string">string</a>, sourcePath <a href="../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ApplyIgnore will take the current ignores []string and append the mandatory odo-file-index.json and
+.git ignores; or find the .odoignore/.gitignore file in the directory and use that instead.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CheckMachineReadableOutputCommand">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/runnable.go.html?s=7256:7320#L182">CheckMachineReadableOutputCommand</a>
+				<a class="permalink" href="#CheckMachineReadableOutputCommand">¶</a>
+				
+				
+			</h2>
+			<pre>func CheckMachineReadableOutputCommand(cmd *<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+			<p>
+CheckMachineReadableOutputCommand performs machine-readable output functions required to
+have it work correctly
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenericRun">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/runnable.go.html?s=874:936#L31">GenericRun</a>
+				<a class="permalink" href="#GenericRun">¶</a>
+				
+				
+			</h2>
+			<pre>func GenericRun(o <a href="#Runnable">Runnable</a>, cmd *<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a>, args []<a href="../../../../../../builtin/#string">string</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetValidEnvInfo">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/localprovider.go.html?s=194:273#L1">GetValidEnvInfo</a>
+				<a class="permalink" href="#GetValidEnvInfo">¶</a>
+				
+				
+			</h2>
+			<pre>func GetValidEnvInfo(cmdline <a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>) (*<a href="../../../../../../github.com/redhat-developer/odo/pkg/envinfo/">envinfo</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/envinfo/#EnvSpecificInfo">EnvSpecificInfo</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetValidEnvInfo accesses the environment file
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ResolveAppFlag">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/resolve.go.html?s=350:401#L5">ResolveAppFlag</a>
+				<a class="permalink" href="#ResolveAppFlag">¶</a>
+				
+				
+			</h2>
+			<pre>func ResolveAppFlag(cmdline <a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>) <a href="../../../../../../builtin/#string">string</a></pre>
+			<p>
+ResolveAppFlag resolves the app from the flag
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Context">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=977:1013#L20">Context</a>
+				<a class="permalink" href="#Context">¶</a>
+				
+				
+			</h2>
+			<p>
+Context holds contextual information useful to commands such as correctly configured client, target project and application
+(based on specified flag values) and provides for a way to retrieve a given component given this context
+</p>
+
+			<pre>type Context struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=2948:3003#L81">New</a>
+					<a class="permalink" href="#New">¶</a>
+					
+					
+				</h3>
+				<pre>func New(parameters <a href="#CreateParameters">CreateParameters</a>) (*<a href="#Context">Context</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+New creates a context based on the given parameters
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewContextCompletion">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=4960:5018#L147">NewContextCompletion</a>
+					<a class="permalink" href="#NewContextCompletion">¶</a>
+					
+					
+				</h3>
+				<pre>func NewContextCompletion(command *<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a>) *<a href="#Context">Context</a></pre>
+				<p>
+NewContextCompletion disables checking for a local configuration since when we use autocompletion on the command line, we
+couldn&#39;t care less if there was a configuration. We only need to check the parameters.
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewFakeContext">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/fakecontext.go.html?s=86:187#L1">NewFakeContext</a>
+					<a class="permalink" href="#NewFakeContext">¶</a>
+					
+					
+				</h3>
+				<pre>func NewFakeContext(project, application, component <a href="../../../../../../builtin/#string">string</a>, kclient <a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>) *<a href="#Context">Context</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Context.Component">func (*Context) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=5314:5386#L158">Component</a>
+					<a class="permalink" href="#Context.Component">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Context">Context</a>) Component(optionalComponent ...<a href="../../../../../../builtin/#string">string</a>) (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Component retrieves the optionally specified component or the current one if it is set. If no component is set, returns
+an error
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Context.ComponentAllowingEmpty">func (*Context) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=5638:5740#L164">ComponentAllowingEmpty</a>
+					<a class="permalink" href="#Context.ComponentAllowingEmpty">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Context">Context</a>) ComponentAllowingEmpty(allowEmpty <a href="../../../../../../builtin/#bool">bool</a>, optionalComponent ...<a href="../../../../../../builtin/#string">string</a>) (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ComponentAllowingEmpty retrieves the optionally specified component or the current one if it is set, allowing empty
+components (instead of exiting with an error) if so specified
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Context.GetApplication">func (*Context) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=6504:6545#L187">GetApplication</a>
+					<a class="permalink" href="#Context.GetApplication">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Context">Context</a>) GetApplication() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Context.GetComponentContext">func (*Context) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=6708:6754#L199">GetComponentContext</a>
+					<a class="permalink" href="#Context.GetComponentContext">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Context">Context</a>) GetComponentContext() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Context.GetDevfilePath">func (*Context) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=6787:6828#L203">GetDevfilePath</a>
+					<a class="permalink" href="#Context.GetDevfilePath">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Context">Context</a>) GetDevfilePath() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Context.GetOutputFlag">func (*Context) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=6573:6613#L191">GetOutputFlag</a>
+					<a class="permalink" href="#Context.GetOutputFlag">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Context">Context</a>) GetOutputFlag() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Context.GetProject">func (*Context) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=6443:6480#L183">GetProject</a>
+					<a class="permalink" href="#Context.GetProject">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Context">Context</a>) GetProject() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Context.IsJSON">func (*Context) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=6640:6671#L195">IsJSON</a>
+					<a class="permalink" href="#Context.IsJSON">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Context">Context</a>) IsJSON() <a href="../../../../../../builtin/#bool">bool</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CreateParameters">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=2160:2349#L46">CreateParameters</a>
+				<a class="permalink" href="#CreateParameters">¶</a>
+				
+				
+			</h2>
+			<p>
+CreateParameters defines the options which can be provided while creating the context
+</p>
+
+			<pre>type CreateParameters struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCreateParameters">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=2351:2417#L55">NewCreateParameters</a>
+					<a class="permalink" href="#NewCreateParameters">¶</a>
+					
+					
+				</h3>
+				<pre>func NewCreateParameters(cmdline <a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>) <a href="#CreateParameters">CreateParameters</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="CreateParameters.CreateAppIfNeeded">func (CreateParameters) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=2793:2855#L75">CreateAppIfNeeded</a>
+					<a class="permalink" href="#CreateParameters.CreateAppIfNeeded">¶</a>
+					
+					
+				</h3>
+				<pre>func (o <a href="#CreateParameters">CreateParameters</a>) CreateAppIfNeeded() <a href="#CreateParameters">CreateParameters</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CreateParameters.IsOffline">func (CreateParameters) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=2705:2759#L70">IsOffline</a>
+					<a class="permalink" href="#CreateParameters.IsOffline">¶</a>
+					
+					
+				</h3>
+				<pre>func (o <a href="#CreateParameters">CreateParameters</a>) IsOffline() <a href="#CreateParameters">CreateParameters</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CreateParameters.NeedDevfile">func (CreateParameters) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=2579:2645#L64">NeedDevfile</a>
+					<a class="permalink" href="#CreateParameters.NeedDevfile">¶</a>
+					
+					
+				</h3>
+				<pre>func (o <a href="#CreateParameters">CreateParameters</a>) NeedDevfile(ctx <a href="../../../../../../builtin/#string">string</a>) <a href="#CreateParameters">CreateParameters</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CreateParameters.RequireRouteAvailability">func (CreateParameters) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/context.go.html?s=2466:2535#L59">RequireRouteAvailability</a>
+					<a class="permalink" href="#CreateParameters.RequireRouteAvailability">¶</a>
+					
+					
+				</h3>
+				<pre>func (o <a href="#CreateParameters">CreateParameters</a>) RequireRouteAvailability() <a href="#CreateParameters">CreateParameters</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Runnable">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/genericclioptions/runnable.go.html?s=758:872#L25">Runnable</a>
+				<a class="permalink" href="#Runnable">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Runnable interface {
+    Complete(cmdline <a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a>
+    Validate() <a href="../../../../../../builtin/#error">error</a>
+    Run() <a href="../../../../../../builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

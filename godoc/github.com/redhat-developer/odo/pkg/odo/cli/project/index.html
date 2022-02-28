@@ -1,0 +1,851 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>project - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package project
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/project" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/project</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#AddProjectFlag">func AddProjectFlag(cmd *cobra.Command)</a></dd>
+			
+				
+				<dd><a href="#HumanReadableOutput">func HumanReadableOutput(w io.Writer, o project.ProjectList) error</a></dd>
+			
+				
+				<dd><a href="#NewCmdProject">func NewCmdProject(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdProjectCreate">func NewCmdProjectCreate(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdProjectDelete">func NewCmdProjectDelete(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdProjectGet">func NewCmdProjectGet(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdProjectList">func NewCmdProjectList(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdProjectSet">func NewCmdProjectSet(name, fullName string) *cobra.Command</a></dd>
+			
+			
+				
+				<dd><a href="#ProjectCreateOptions">type ProjectCreateOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewProjectCreateOptions">func NewProjectCreateOptions(prjClient project.Client) *ProjectCreateOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ProjectCreateOptions.Complete">func (pco *ProjectCreateOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ProjectCreateOptions.Run">func (pco *ProjectCreateOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ProjectCreateOptions.Validate">func (pco *ProjectCreateOptions) Validate() error</a></dd>
+				
+			
+				
+				<dd><a href="#ProjectDeleteOptions">type ProjectDeleteOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewProjectDeleteOptions">func NewProjectDeleteOptions(prjClient project.Client) *ProjectDeleteOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ProjectDeleteOptions.Complete">func (pdo *ProjectDeleteOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ProjectDeleteOptions.Run">func (pdo *ProjectDeleteOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ProjectDeleteOptions.Validate">func (pdo *ProjectDeleteOptions) Validate() error</a></dd>
+				
+			
+				
+				<dd><a href="#ProjectGetOptions">type ProjectGetOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewProjectGetOptions">func NewProjectGetOptions() *ProjectGetOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ProjectGetOptions.Complete">func (pgo *ProjectGetOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ProjectGetOptions.Run">func (pgo *ProjectGetOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ProjectGetOptions.Validate">func (pgo *ProjectGetOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#ProjectListOptions">type ProjectListOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewProjectListOptions">func NewProjectListOptions(prjClient project.Client) *ProjectListOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ProjectListOptions.Complete">func (plo *ProjectListOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ProjectListOptions.Run">func (plo *ProjectListOptions) Run() error</a></dd>
+				
+					
+					<dd>    <a href="#ProjectListOptions.Validate">func (plo *ProjectListOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#ProjectSetOptions">type ProjectSetOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewProjectSetOptions">func NewProjectSetOptions(prjClient project.Client) *ProjectSetOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ProjectSetOptions.Complete">func (pso *ProjectSetOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ProjectSetOptions.Run">func (pso *ProjectSetOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ProjectSetOptions.Validate">func (pso *ProjectSetOptions) Validate() (err error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/create.go.html">create.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/delete.go.html">delete.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/get.go.html">get.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/list.go.html">list.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/project.go.html">project.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/set.go.html">set.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+RecommendedCommandName is the recommended project command name
+</p>
+
+				<pre>const <span id="RecommendedCommandName">RecommendedCommandName</span> = &#34;project&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="AddProjectFlag">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/project.go.html?s=2438:2477#L53">AddProjectFlag</a>
+				<a class="permalink" href="#AddProjectFlag">¶</a>
+				
+				
+			</h2>
+			<pre>func AddProjectFlag(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>)</pre>
+			<p>
+AddProjectFlag adds a `project` flag to the given cobra command
+Also adds a completion handler to the flag
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HumanReadableOutput">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/list.go.html?s=2555:2621#L85">HumanReadableOutput</a>
+				<a class="permalink" href="#HumanReadableOutput">¶</a>
+				
+				
+			</h2>
+			<pre>func HumanReadableOutput(w <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, o <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#ProjectList">ProjectList</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+HumanReadableOutput outputs the list of projects in a human readable format
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdProject">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/project.go.html?s=339:395#L6">NewCmdProject</a>
+				<a class="permalink" href="#NewCmdProject">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdProject(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdProject implements the project odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdProjectCreate">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/create.go.html?s=2883:2945#L103">NewCmdProjectCreate</a>
+				<a class="permalink" href="#NewCmdProjectCreate">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdProjectCreate(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdProjectCreate creates the project create command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdProjectDelete">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/delete.go.html?s=3716:3778#L116">NewCmdProjectDelete</a>
+				<a class="permalink" href="#NewCmdProjectDelete">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdProjectDelete(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdProjectDelete creates the project delete command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdProjectGet">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/get.go.html?s=1738:1797#L64">NewCmdProjectGet</a>
+				<a class="permalink" href="#NewCmdProjectGet">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdProjectGet(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdProjectGet creates the project get command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdProjectList">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/list.go.html?s=1849:1909#L66">NewCmdProjectList</a>
+				<a class="permalink" href="#NewCmdProjectList">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdProjectList(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdProjectList implements the odo project list command.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdProjectSet">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/set.go.html?s=2568:2627#L94">NewCmdProjectSet</a>
+				<a class="permalink" href="#NewCmdProjectSet">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdProjectSet(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdProjectSet creates the project set command
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ProjectCreateOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/create.go.html?s=886:1063#L25">ProjectCreateOptions</a>
+				<a class="permalink" href="#ProjectCreateOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ProjectCreateOptions encapsulates the options for the odo project create command
+</p>
+
+			<pre>type ProjectCreateOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewProjectCreateOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/create.go.html?s=1132:1208#L40">NewProjectCreateOptions</a>
+					<a class="permalink" href="#NewProjectCreateOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewProjectCreateOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>) *<a href="#ProjectCreateOptions">ProjectCreateOptions</a></pre>
+				<p>
+NewProjectCreateOptions creates a ProjectCreateOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ProjectCreateOptions.Complete">func (*ProjectCreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/create.go.html?s=1342:1435#L47">Complete</a>
+					<a class="permalink" href="#ProjectCreateOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (pco *<a href="#ProjectCreateOptions">ProjectCreateOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ProjectCreateOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectCreateOptions.Run">func (*ProjectCreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/create.go.html?s=1886:1936#L65">Run</a>
+					<a class="permalink" href="#ProjectCreateOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (pco *<a href="#ProjectCreateOptions">ProjectCreateOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run runs the project create command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectCreateOptions.Validate">func (*ProjectCreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/create.go.html?s=1780:1829#L60">Validate</a>
+					<a class="permalink" href="#ProjectCreateOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (pco *<a href="#ProjectCreateOptions">ProjectCreateOptions</a>) Validate() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates the parameters of the ProjectCreateOptions
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ProjectDeleteOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/delete.go.html?s=1028:1222#L26">ProjectDeleteOptions</a>
+				<a class="permalink" href="#ProjectDeleteOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ProjectDeleteOptions encapsulates the options for the odo project delete command
+</p>
+
+			<pre>type ProjectDeleteOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewProjectDeleteOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/delete.go.html?s=1291:1367#L42">NewProjectDeleteOptions</a>
+					<a class="permalink" href="#NewProjectDeleteOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewProjectDeleteOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>) *<a href="#ProjectDeleteOptions">ProjectDeleteOptions</a></pre>
+				<p>
+NewProjectDeleteOptions creates a ProjectDeleteOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ProjectDeleteOptions.Complete">func (*ProjectDeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/delete.go.html?s=1501:1594#L49">Complete</a>
+					<a class="permalink" href="#ProjectDeleteOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (pdo *<a href="#ProjectDeleteOptions">ProjectDeleteOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ProjectDeleteOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectDeleteOptions.Run">func (*ProjectDeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/delete.go.html?s=2233:2283#L69">Run</a>
+					<a class="permalink" href="#ProjectDeleteOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (pdo *<a href="#ProjectDeleteOptions">ProjectDeleteOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run the project delete command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectDeleteOptions.Validate">func (*ProjectDeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/delete.go.html?s=1794:1843#L56">Validate</a>
+					<a class="permalink" href="#ProjectDeleteOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (pdo *<a href="#ProjectDeleteOptions">ProjectDeleteOptions</a>) Validate() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates the parameters of the ProjectDeleteOptions
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ProjectGetOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/get.go.html?s=673:773#L20">ProjectGetOptions</a>
+				<a class="permalink" href="#ProjectGetOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ProjectGetOptions encapsulates the options for the odo project get command
+</p>
+
+			<pre>type ProjectGetOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewProjectGetOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/get.go.html?s=836:882#L29">NewProjectGetOptions</a>
+					<a class="permalink" href="#NewProjectGetOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewProjectGetOptions() *<a href="#ProjectGetOptions">ProjectGetOptions</a></pre>
+				<p>
+NewProjectGetOptions creates a ProjectGetOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ProjectGetOptions.Complete">func (*ProjectGetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/get.go.html?s=984:1074#L34">Complete</a>
+					<a class="permalink" href="#ProjectGetOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (pgo *<a href="#ProjectGetOptions">ProjectGetOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ProjectGetOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectGetOptions.Run">func (*ProjectGetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/get.go.html?s=1345:1392#L45">Run</a>
+					<a class="permalink" href="#ProjectGetOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (pgo *<a href="#ProjectGetOptions">ProjectGetOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run the project get command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectGetOptions.Validate">func (*ProjectGetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/get.go.html?s=1244:1296#L40">Validate</a>
+					<a class="permalink" href="#ProjectGetOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (pgo *<a href="#ProjectGetOptions">ProjectGetOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the parameters of the ProjectGetOptions
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ProjectListOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/list.go.html?s=713:826#L21">ProjectListOptions</a>
+				<a class="permalink" href="#ProjectListOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ProjectListOptions encapsulates the options for the odo project list command
+</p>
+
+			<pre>type ProjectListOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewProjectListOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/list.go.html?s=895:967#L30">NewProjectListOptions</a>
+					<a class="permalink" href="#NewProjectListOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewProjectListOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>) *<a href="#ProjectListOptions">ProjectListOptions</a></pre>
+				<p>
+NewProjectListOptions creates a new ProjectListOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ProjectListOptions.Complete">func (*ProjectListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/list.go.html?s=1097:1188#L37">Complete</a>
+					<a class="permalink" href="#ProjectListOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (plo *<a href="#ProjectListOptions">ProjectListOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ProjectListOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectListOptions.Run">func (*ProjectListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/list.go.html?s=1497:1539#L48">Run</a>
+					<a class="permalink" href="#ProjectListOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (plo *<a href="#ProjectListOptions">ProjectListOptions</a>) Run() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Run contains the logic for the odo project list command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectListOptions.Validate">func (*ProjectListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/list.go.html?s=1367:1420#L43">Validate</a>
+					<a class="permalink" href="#ProjectListOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (plo *<a href="#ProjectListOptions">ProjectListOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the ProjectListOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ProjectSetOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/set.go.html?s=928:1103#L26">ProjectSetOptions</a>
+				<a class="permalink" href="#ProjectSetOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ProjectSetOptions encapsulates the options for the odo project set command
+</p>
+
+			<pre>type ProjectSetOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewProjectSetOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/set.go.html?s=1166:1236#L41">NewProjectSetOptions</a>
+					<a class="permalink" href="#NewProjectSetOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewProjectSetOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>) *<a href="#ProjectSetOptions">ProjectSetOptions</a></pre>
+				<p>
+NewProjectSetOptions creates a ProjectSetOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ProjectSetOptions.Complete">func (*ProjectSetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/set.go.html?s=1364:1454#L48">Complete</a>
+					<a class="permalink" href="#ProjectSetOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (pso *<a href="#ProjectSetOptions">ProjectSetOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ProjectSetOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectSetOptions.Run">func (*ProjectSetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/set.go.html?s=2114:2161#L75">Run</a>
+					<a class="permalink" href="#ProjectSetOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (pso *<a href="#ProjectSetOptions">ProjectSetOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run runs the project set command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ProjectSetOptions.Validate">func (*ProjectSetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/set.go.html?s=1796:1848#L61">Validate</a>
+					<a class="permalink" href="#ProjectSetOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (pso *<a href="#ProjectSetOptions">ProjectSetOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the parameters of the ProjectSetOptions
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

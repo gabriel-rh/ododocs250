@@ -1,0 +1,656 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>component - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package component
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/devfile/adapters/kubernetes/component" target="_blank">github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="#Adapter">type Adapter</a></dd>
+				
+					
+					<dd>    <a href="#New">func New(adapterContext common.AdapterContext, client kclient.ClientInterface, prefClient preference.Client) Adapter</a></dd>
+				
+				
+					
+					<dd>    <a href="#Adapter.ApplyComponent">func (a Adapter) ApplyComponent(componentName string) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.CheckSupervisordCommandStatus">func (a Adapter) CheckSupervisordCommandStatus(command devfilev1.Command) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.ComponentInfo">func (a *Adapter) ComponentInfo(command devfilev1.Command) (common.ComponentInfo, error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Delete">func (a Adapter) Delete(labels map[string]string, show bool, wait bool) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Deploy">func (a Adapter) Deploy() error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.DoesComponentExist">func (a Adapter) DoesComponentExist(cmpName string, appName string) (bool, error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Exec">func (a Adapter) Exec(command []string) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.ExecCMDInContainer">func (a Adapter) ExecCMDInContainer(componentInfo common.ComponentInfo, cmd []string, stdout io.Writer, stderr io.Writer, stdin io.Reader, tty bool) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.ExecuteDevfileCommand">func (a Adapter) ExecuteDevfileCommand(command devfilev1.Command, show, unexecute bool) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.ExtractProjectToComponent">func (a Adapter) ExtractProjectToComponent(componentInfo common.ComponentInfo, targetPath string, stdin io.Reader) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.GetSupervisordCommandStatus">func (a Adapter) GetSupervisordCommandStatus(command devfilev1.Command) (bool, error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Log">func (a Adapter) Log(follow bool, command devfilev1.Command) (io.ReadCloser, error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Push">func (a Adapter) Push(parameters common.PushParameters) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.StartContainerStatusWatch">func (a Adapter) StartContainerStatusWatch()</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.StartSupervisordCtlStatusWatch">func (a Adapter) StartSupervisordCtlStatusWatch()</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.SupervisorComponentInfo">func (a *Adapter) SupervisorComponentInfo(command devfilev1.Command) (common.ComponentInfo, error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Test">func (a Adapter) Test(testCmd string, show bool) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.UnApplyComponent">func (a Adapter) UnApplyComponent(componentName string) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.UnDeploy">func (a Adapter) UnDeploy() error</a></dd>
+				
+			
+				
+				<dd><a href="#KubernetesDeploymentStatus">type KubernetesDeploymentStatus</a></dd>
+				
+				
+			
+				
+				<dd><a href="#KubernetesPodStatus">type KubernetesPodStatus</a></dd>
+				
+					
+					<dd>    <a href="#CreateKubernetesPodStatusFromPod">func CreateKubernetesPodStatusFromPod(pod corev1.Pod) KubernetesPodStatus</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html">adapter.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/component.go.html">component.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/component_image.go.html">component_image.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/component_kubernetes.go.html">component_kubernetes.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/podwatcher.go.html">podwatcher.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/status.go.html">status.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// KubernetesResourceFailureInterval is the time between attempts to acquire needed k8s resources</span>
+    <span id="KubernetesResourceFailureInterval">KubernetesResourceFailureInterval</span> = <a href="../../../../../../../../time/">time</a>.<a href="../../../../../../../../time/#Duration">Duration</a>(5) * <a href="../../../../../../../../time/">time</a>.<a href="../../../../../../../../time/#Second">Second</a>
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// SupervisordCheckInterval is the time we wait before we check the supervisord statuses each time, after the first call</span>
+    <span id="SupervisordCheckInterval">SupervisordCheckInterval</span> = <a href="../../../../../../../../time/">time</a>.<a href="../../../../../../../../time/#Duration">Duration</a>(10) * <a href="../../../../../../../../time/">time</a>.<a href="../../../../../../../../time/#Second">Second</a>
+)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="Adapter">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=3275:3554#L84">Adapter</a>
+				<a class="permalink" href="#Adapter">¶</a>
+				
+				
+			</h2>
+			<p>
+Adapter is a component adapter implementation for Kubernetes
+</p>
+
+			<pre>type Adapter struct {
+<span id="Adapter.Client"></span>    Client <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>
+
+    *<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#GenericAdapter">GenericAdapter</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=1316:1432#L32">New</a>
+					<a class="permalink" href="#New">¶</a>
+					
+					
+				</h3>
+				<pre>func New(adapterContext <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#AdapterContext">AdapterContext</a>, client <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, prefClient <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) <a href="#Adapter">Adapter</a></pre>
+				<p>
+New instantiates a component adapter
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="Adapter.ApplyComponent">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=28007:28066#L812">ApplyComponent</a>
+					<a class="permalink" href="#Adapter.ApplyComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) ApplyComponent(componentName <a href="../../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+ApplyComponent &#39;applies&#39; a devfile component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.CheckSupervisordCommandStatus">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=12698:12777#L363">CheckSupervisordCommandStatus</a>
+					<a class="permalink" href="#Adapter.CheckSupervisordCommandStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) CheckSupervisordCommandStatus(command <a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+CheckSupervisordCommandStatus checks if the command is running based on supervisord status output.
+if the command is not in a running state, we fetch the last 20 lines of the component&#39;s log and display it
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.ComponentInfo">func (*Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=2400:2488#L56">ComponentInfo</a>
+					<a class="permalink" href="#Adapter.ComponentInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="#Adapter">Adapter</a>) ComponentInfo(command <a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#ComponentInfo">ComponentInfo</a>, <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Delete">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=23215:23292#L662">Delete</a>
+					<a class="permalink" href="#Adapter.Delete">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) Delete(labels map[<a href="../../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../../builtin/#string">string</a>, show <a href="../../../../../../../../builtin/#bool">bool</a>, wait <a href="../../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Delete deletes the component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Deploy">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=27054:27085#L776">Deploy</a>
+					<a class="permalink" href="#Adapter.Deploy">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) Deploy() <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Deploy executes the &#39;deploy&#39; command defined in a devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.DoesComponentExist">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=14289:14370#L414">DoesComponentExist</a>
+					<a class="permalink" href="#Adapter.DoesComponentExist">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) DoesComponentExist(cmpName <a href="../../../../../../../../builtin/#string">string</a>, appName <a href="../../../../../../../../builtin/#string">string</a>) (<a href="../../../../../../../../builtin/#bool">bool</a>, <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+DoesComponentExist returns true if a component with the specified name exists, false otherwise
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Exec">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=25459:25504#L732">Exec</a>
+					<a class="permalink" href="#Adapter.Exec">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) Exec(command []<a href="../../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Exec executes a command in the component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.ExecCMDInContainer">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=26368:26522#L766">ExecCMDInContainer</a>
+					<a class="permalink" href="#Adapter.ExecCMDInContainer">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) ExecCMDInContainer(componentInfo <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#ComponentInfo">ComponentInfo</a>, cmd []<a href="../../../../../../../../builtin/#string">string</a>, stdout <a href="../../../../../../../../io/">io</a>.<a href="../../../../../../../../io/#Writer">Writer</a>, stderr <a href="../../../../../../../../io/">io</a>.<a href="../../../../../../../../io/#Writer">Writer</a>, stdin <a href="../../../../../../../../io/">io</a>.<a href="../../../../../../../../io/#Reader">Reader</a>, tty <a href="../../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.ExecuteDevfileCommand">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=27583:27676#L795">ExecuteDevfileCommand</a>
+					<a class="permalink" href="#Adapter.ExecuteDevfileCommand">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) ExecuteDevfileCommand(command <a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, show, unexecute <a href="../../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+ExecuteDevfileCommand executes the devfile command; if unexecute is set to true, it reverses the effect of Execute
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.ExtractProjectToComponent">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=26753:26873#L771">ExtractProjectToComponent</a>
+					<a class="permalink" href="#Adapter.ExtractProjectToComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) ExtractProjectToComponent(componentInfo <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#ComponentInfo">ComponentInfo</a>, targetPath <a href="../../../../../../../../builtin/#string">string</a>, stdin <a href="../../../../../../../../io/">io</a>.<a href="../../../../../../../../io/#Reader">Reader</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+ExtractProjectToComponent extracts the project archive(tar) to the target path from the reader stdin
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.GetSupervisordCommandStatus">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=11829:11914#L343">GetSupervisordCommandStatus</a>
+					<a class="permalink" href="#Adapter.GetSupervisordCommandStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) GetSupervisordCommandStatus(command <a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="../../../../../../../../builtin/#bool">bool</a>, <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetSupervisordCommandStatus returns true if the command is running
+based on `supervisord ctl` output and returns an error if
+the command is not known by supervisord
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Log">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=24876:24959#L715">Log</a>
+					<a class="permalink" href="#Adapter.Log">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) Log(follow <a href="../../../../../../../../builtin/#bool">bool</a>, command <a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="../../../../../../../../io/">io</a>.<a href="../../../../../../../../io/#ReadCloser">ReadCloser</a>, <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Log returns log from component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Push">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=3723:3790#L100">Push</a>
+					<a class="permalink" href="#Adapter.Push">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) Push(parameters <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#PushParameters">PushParameters</a>) (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Push updates the component if a matching component exists or creates one if it doesn&#39;t exist
+Once the component has started, it will sync the source code to it.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.StartContainerStatusWatch">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/podwatcher.go.html?s=869:913#L20">StartContainerStatusWatch</a>
+					<a class="permalink" href="#Adapter.StartContainerStatusWatch">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) StartContainerStatusWatch()</pre>
+				<p>
+StartContainerStatusWatch outputs Kubernetes pod/container status changes to the console, as used by the status command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.StartSupervisordCtlStatusWatch">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/status.go.html?s=4247:4296#L133">StartSupervisordCtlStatusWatch</a>
+					<a class="permalink" href="#Adapter.StartSupervisordCtlStatusWatch">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) StartSupervisordCtlStatusWatch()</pre>
+				<p>
+StartSupervisordCtlStatusWatch kicks off a goroutine which calls &#39;supervisord ctl status&#39; within every odo-managed container, every X seconds,
+and reports the result to the console.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.SupervisorComponentInfo">func (*Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=2686:2784#L67">SupervisorComponentInfo</a>
+					<a class="permalink" href="#Adapter.SupervisorComponentInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="#Adapter">Adapter</a>) SupervisorComponentInfo(command <a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#ComponentInfo">ComponentInfo</a>, <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Test">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=13406:13466#L391">Test</a>
+					<a class="permalink" href="#Adapter.Test">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) Test(testCmd <a href="../../../../../../../../builtin/#string">string</a>, show <a href="../../../../../../../../builtin/#bool">bool</a>) (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Test runs the devfile test command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.UnApplyComponent">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=28247:28308#L822">UnApplyComponent</a>
+					<a class="permalink" href="#Adapter.UnApplyComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) UnApplyComponent(componentName <a href="../../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+UnApplyComponent un-&#39;applies&#39; a devfile component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.UnDeploy">func (Adapter) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/adapter.go.html?s=27298:27331#L786">UnDeploy</a>
+					<a class="permalink" href="#Adapter.UnDeploy">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#Adapter">Adapter</a>) UnDeploy() <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+UnDeploy reverses the effect of the &#39;deploy&#39; command defined in a devfile
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="KubernetesDeploymentStatus">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/status.go.html?s=471:592#L13">KubernetesDeploymentStatus</a>
+				<a class="permalink" href="#KubernetesDeploymentStatus">¶</a>
+				
+				
+			</h2>
+			<p>
+KubernetesDeploymentStatus is a simplified representation of the component&#39;s cluster resources
+</p>
+
+			<pre>type KubernetesDeploymentStatus struct {
+<span id="KubernetesDeploymentStatus.DeploymentUID"></span>    DeploymentUID <a href="../../../../../../../../k8s.io/apimachinery/pkg/types/">types</a>.<a href="../../../../../../../../k8s.io/apimachinery/pkg/types/#UID">UID</a>
+<span id="KubernetesDeploymentStatus.ReplicaSetUID"></span>    ReplicaSetUID <a href="../../../../../../../../k8s.io/apimachinery/pkg/types/">types</a>.<a href="../../../../../../../../k8s.io/apimachinery/pkg/types/#UID">UID</a>
+<span id="KubernetesDeploymentStatus.Pods"></span>    Pods          []*<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#Pod">Pod</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="KubernetesPodStatus">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/status.go.html?s=736:983#L20">KubernetesPodStatus</a>
+				<a class="permalink" href="#KubernetesPodStatus">¶</a>
+				
+				
+			</h2>
+			<p>
+KubernetesPodStatus is a representation of corev1.Pod, but only containing the fields we are interested in (for later marshalling to JSON)
+</p>
+
+			<pre>type KubernetesPodStatus struct {
+<span id="KubernetesPodStatus.Name"></span>    Name           <a href="../../../../../../../../builtin/#string">string</a>
+<span id="KubernetesPodStatus.UID"></span>    UID            <a href="../../../../../../../../builtin/#string">string</a>
+<span id="KubernetesPodStatus.Phase"></span>    Phase          <a href="../../../../../../../../builtin/#string">string</a>
+<span id="KubernetesPodStatus.Labels"></span>    Labels         map[<a href="../../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../../builtin/#string">string</a>
+<span id="KubernetesPodStatus.StartTime"></span>    StartTime      *<a href="../../../../../../../../time/">time</a>.<a href="../../../../../../../../time/#Time">Time</a>
+<span id="KubernetesPodStatus.Containers"></span>    Containers     []<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#ContainerStatus">ContainerStatus</a>
+<span id="KubernetesPodStatus.InitContainers"></span>    InitContainers []<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#ContainerStatus">ContainerStatus</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="CreateKubernetesPodStatusFromPod">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/component/status.go.html?s=3295:3368#L104">CreateKubernetesPodStatusFromPod</a>
+					<a class="permalink" href="#CreateKubernetesPodStatusFromPod">¶</a>
+					
+					
+				</h3>
+				<pre>func CreateKubernetesPodStatusFromPod(pod <a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#Pod">Pod</a>) <a href="#KubernetesPodStatus">KubernetesPodStatus</a></pre>
+				<p>
+CreateKubernetesPodStatusFromPod extracts only the fields we are interested in from corev1.Pod
+</p>
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

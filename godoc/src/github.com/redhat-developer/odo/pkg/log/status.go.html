@@ -1,0 +1,527 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>log - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/log">log</a>/<span class="text-muted">status.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../github.com/redhat-developer/odo/pkg/log">github.com/redhat-developer/odo/pkg/log</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span><span class="comment">/*
+<span id="L2" class="ln">     2  </span>Copyright 2018 The Kubernetes Authors.
+<span id="L3" class="ln">     3  </span>
+<span id="L4" class="ln">     4  </span>Licensed under the Apache License, Version 2.0 (the &#34;License&#34;);
+<span id="L5" class="ln">     5  </span>you may not use this file except in compliance with the License.
+<span id="L6" class="ln">     6  </span>You may obtain a copy of the License at
+<span id="L7" class="ln">     7  </span>
+<span id="L8" class="ln">     8  </span>    http://www.apache.org/licenses/LICENSE-2.0
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>Unless required by applicable law or agreed to in writing, software
+<span id="L11" class="ln">    11  </span>distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+<span id="L12" class="ln">    12  </span>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span id="L13" class="ln">    13  </span>See the License for the specific language governing permissions and
+<span id="L14" class="ln">    14  </span>limitations under the License.
+<span id="L15" class="ln">    15  </span>*/</span>
+<span id="L16" class="ln">    16  </span>
+<span id="L17" class="ln">    17  </span><span class="comment">/*
+<span id="L18" class="ln">    18  </span>	This package is a FORK of https://github.com/kubernetes-sigs/kind/blob/master/pkg/log/status.go
+<span id="L19" class="ln">    19  </span>	See above license
+<span id="L20" class="ln">    20  </span>*/</span>
+<span id="L21" class="ln">    21  </span>
+<span id="L22" class="ln">    22  </span><span class="comment">// Package log contains logging related functionality</span>
+<span id="L23" class="ln">    23  </span>package log
+<span id="L24" class="ln">    24  </span>
+<span id="L25" class="ln">    25  </span>import (
+<span id="L26" class="ln">    26  </span>	&#34;fmt&#34;
+<span id="L27" class="ln">    27  </span>	&#34;io&#34;
+<span id="L28" class="ln">    28  </span>	&#34;os&#34;
+<span id="L29" class="ln">    29  </span>	&#34;runtime&#34;
+<span id="L30" class="ln">    30  </span>	&#34;strings&#34;
+<span id="L31" class="ln">    31  </span>	&#34;sync&#34;
+<span id="L32" class="ln">    32  </span>
+<span id="L33" class="ln">    33  </span>	&#34;github.com/fatih/color&#34;
+<span id="L34" class="ln">    34  </span>	&#34;github.com/mattn/go-colorable&#34;
+<span id="L35" class="ln">    35  </span>	&#34;github.com/redhat-developer/odo/pkg/log/fidget&#34;
+<span id="L36" class="ln">    36  </span>	&#34;github.com/spf13/pflag&#34;
+<span id="L37" class="ln">    37  </span>	&#34;golang.org/x/term&#34;
+<span id="L38" class="ln">    38  </span>)
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span><span class="comment">// Spacing for logging</span>
+<span id="L41" class="ln">    41  </span>const suffixSpacing = &#34;  &#34;
+<span id="L42" class="ln">    42  </span>const prefixSpacing = &#34; &#34;
+<span id="L43" class="ln">    43  </span>
+<span id="L44" class="ln">    44  </span>var mu sync.Mutex
+<span id="L45" class="ln">    45  </span>
+<span id="L46" class="ln">    46  </span><span class="comment">// Status is used to track ongoing status in a CLI, with a nice loading spinner</span>
+<span id="L47" class="ln">    47  </span><span class="comment">// when attached to a terminal</span>
+<span id="L48" class="ln">    48  </span>type Status struct {
+<span id="L49" class="ln">    49  </span>	spinner       *fidget.Spinner
+<span id="L50" class="ln">    50  </span>	status        string
+<span id="L51" class="ln">    51  </span>	warningStatus string
+<span id="L52" class="ln">    52  </span>	writer        io.Writer
+<span id="L53" class="ln">    53  </span>}
+<span id="L54" class="ln">    54  </span>
+<span id="L55" class="ln">    55  </span><span class="comment">// NewStatus creates a new default Status</span>
+<span id="L56" class="ln">    56  </span>func NewStatus(w io.Writer) *Status {
+<span id="L57" class="ln">    57  </span>	spin := fidget.NewSpinner(w)
+<span id="L58" class="ln">    58  </span>	s := &amp;Status{
+<span id="L59" class="ln">    59  </span>		spinner: spin,
+<span id="L60" class="ln">    60  </span>		writer:  w,
+<span id="L61" class="ln">    61  </span>	}
+<span id="L62" class="ln">    62  </span>	return s
+<span id="L63" class="ln">    63  </span>}
+<span id="L64" class="ln">    64  </span>
+<span id="L65" class="ln">    65  </span><span class="comment">// IsTerminal returns true if the writer w is a terminal</span>
+<span id="L66" class="ln">    66  </span><span class="comment">// This function is modified if we are running within Windows..</span>
+<span id="L67" class="ln">    67  </span><span class="comment">// as Golang&#39;s built-in &#34;IsTerminal&#34; command only works on UNIX-based systems:</span>
+<span id="L68" class="ln">    68  </span><span class="comment">// https://github.com/golang/crypto/blob/master/ssh/terminal/util.go#L5</span>
+<span id="L69" class="ln">    69  </span>func IsTerminal(w io.Writer) bool {
+<span id="L70" class="ln">    70  </span>	if runtime.GOOS == &#34;windows&#34; {
+<span id="L71" class="ln">    71  </span>		return true
+<span id="L72" class="ln">    72  </span>	} else if v, ok := (w).(*os.File); ok {
+<span id="L73" class="ln">    73  </span>		return term.IsTerminal(int(v.Fd()))
+<span id="L74" class="ln">    74  </span>	}
+<span id="L75" class="ln">    75  </span>	return false
+<span id="L76" class="ln">    76  </span>}
+<span id="L77" class="ln">    77  </span>
+<span id="L78" class="ln">    78  </span><span class="comment">// WarningStatus puts a warning status within the spinner and then updates the current status</span>
+<span id="L79" class="ln">    79  </span>func (s *Status) WarningStatus(status string) {
+<span id="L80" class="ln">    80  </span>	s.warningStatus = status
+<span id="L81" class="ln">    81  </span>	s.updateStatus()
+<span id="L82" class="ln">    82  </span>}
+<span id="L83" class="ln">    83  </span>
+<span id="L84" class="ln">    84  </span><span class="comment">// Updates the status and makes sure that if the previous status was longer, it</span>
+<span id="L85" class="ln">    85  </span><span class="comment">// &#34;clears&#34; the rest of the message.</span>
+<span id="L86" class="ln">    86  </span>func (s *Status) updateStatus() {
+<span id="L87" class="ln">    87  </span>	mu.Lock()
+<span id="L88" class="ln">    88  </span>	if s.warningStatus != &#34;&#34; {
+<span id="L89" class="ln">    89  </span>		yellow := color.New(color.FgYellow).SprintFunc()
+<span id="L90" class="ln">    90  </span>
+<span id="L91" class="ln">    91  </span>		<span class="comment">// Determine the warning size, so that we can calculate its length and use that length as padding parameter</span>
+<span id="L92" class="ln">    92  </span>		warningSubstring := fmt.Sprintf(&#34; [%s %s]&#34;, yellow(getWarningString()), yellow(s.warningStatus))
+<span id="L93" class="ln">    93  </span>
+<span id="L94" class="ln">    94  </span>		<span class="comment">// Combine suffix and spacing, then resize them</span>
+<span id="L95" class="ln">    95  </span>		newSuffix := fmt.Sprintf(suffixSpacing+&#34;%s&#34;, s.status)
+<span id="L96" class="ln">    96  </span>		newSuffix = truncateSuffixIfNeeded(newSuffix, s.writer, len(warningSubstring))
+<span id="L97" class="ln">    97  </span>
+<span id="L98" class="ln">    98  </span>		<span class="comment">// Combine the warning and non-warning text (since we don&#39;t want to truncate the warning text)</span>
+<span id="L99" class="ln">    99  </span>		s.spinner.SetSuffix(fmt.Sprintf(&#34;%s%s&#34;, newSuffix, warningSubstring))
+<span id="L100" class="ln">   100  </span>	} else {
+<span id="L101" class="ln">   101  </span>		newSuffix := fmt.Sprintf(suffixSpacing+&#34;%s&#34;, s.status)
+<span id="L102" class="ln">   102  </span>		s.spinner.SetSuffix(truncateSuffixIfNeeded(newSuffix, s.writer, 0))
+<span id="L103" class="ln">   103  </span>	}
+<span id="L104" class="ln">   104  </span>	mu.Unlock()
+<span id="L105" class="ln">   105  </span>}
+<span id="L106" class="ln">   106  </span>
+<span id="L107" class="ln">   107  </span><span class="comment">// Start starts a new phase of the status, if attached to a terminal</span>
+<span id="L108" class="ln">   108  </span><span class="comment">// there will be a loading spinner with this status</span>
+<span id="L109" class="ln">   109  </span>func (s *Status) Start(status string, debug bool) {
+<span id="L110" class="ln">   110  </span>	s.End(true)
+<span id="L111" class="ln">   111  </span>
+<span id="L112" class="ln">   112  </span>	<span class="comment">// set new status</span>
+<span id="L113" class="ln">   113  </span>	isTerm := IsTerminal(s.writer)
+<span id="L114" class="ln">   114  </span>	s.status = status
+<span id="L115" class="ln">   115  </span>
+<span id="L116" class="ln">   116  </span>	<span class="comment">// If we are in debug mode, don&#39;t spin!</span>
+<span id="L117" class="ln">   117  </span>	<span class="comment">// In under no circumstances do we output if we&#39;re using -o json.. to</span>
+<span id="L118" class="ln">   118  </span>	<span class="comment">// to avoid parsing errors.</span>
+<span id="L119" class="ln">   119  </span>	if !IsJSON() {
+<span id="L120" class="ln">   120  </span>		if !isTerm || debug {
+<span id="L121" class="ln">   121  </span>			fmt.Fprintf(s.writer, prefixSpacing+getSpacingString()+suffixSpacing+&#34;%s  ...\n&#34;, s.status)
+<span id="L122" class="ln">   122  </span>		} else {
+<span id="L123" class="ln">   123  </span>			s.spinner.SetPrefix(prefixSpacing)
+<span id="L124" class="ln">   124  </span>			newSuffix := fmt.Sprintf(suffixSpacing+&#34;%s&#34;, s.status)
+<span id="L125" class="ln">   125  </span>			s.spinner.SetSuffix(truncateSuffixIfNeeded(newSuffix, s.writer, 0))
+<span id="L126" class="ln">   126  </span>			s.spinner.Start()
+<span id="L127" class="ln">   127  </span>		}
+<span id="L128" class="ln">   128  </span>	}
+<span id="L129" class="ln">   129  </span>}
+<span id="L130" class="ln">   130  </span>
+<span id="L131" class="ln">   131  </span><span class="comment">// truncateSuffixIfNeeded returns a representation of the &#39;suffix&#39; parameter that fits within the terminal</span>
+<span id="L132" class="ln">   132  </span><span class="comment">// (including the extra space occupied by the padding parameter).</span>
+<span id="L133" class="ln">   133  </span>func truncateSuffixIfNeeded(suffix string, w io.Writer, padding int) string {
+<span id="L134" class="ln">   134  </span>
+<span id="L135" class="ln">   135  </span>	terminalWidth := getTerminalWidth(w)
+<span id="L136" class="ln">   136  </span>	if terminalWidth == nil {
+<span id="L137" class="ln">   137  </span>		return suffix
+<span id="L138" class="ln">   138  </span>	}
+<span id="L139" class="ln">   139  </span>
+<span id="L140" class="ln">   140  </span>	<span class="comment">// Additional padding to account for animation widget on lefthand side, and to avoid getting too close to the righthand terminal edge</span>
+<span id="L141" class="ln">   141  </span>	const additionalPadding = 10
+<span id="L142" class="ln">   142  </span>
+<span id="L143" class="ln">   143  </span>	maxWidth := *terminalWidth - padding - additionalPadding
+<span id="L144" class="ln">   144  </span>
+<span id="L145" class="ln">   145  </span>	<span class="comment">// For VERY small terminals, or very large padding, just return the suffix unmodified</span>
+<span id="L146" class="ln">   146  </span>	if maxWidth &lt;= 20 {
+<span id="L147" class="ln">   147  </span>		return suffix
+<span id="L148" class="ln">   148  </span>	}
+<span id="L149" class="ln">   149  </span>
+<span id="L150" class="ln">   150  </span>	<span class="comment">// If we are compliant, return the unmodified suffix...</span>
+<span id="L151" class="ln">   151  </span>	if len(suffix) &lt;= maxWidth {
+<span id="L152" class="ln">   152  </span>		return suffix
+<span id="L153" class="ln">   153  </span>	}
+<span id="L154" class="ln">   154  </span>
+<span id="L155" class="ln">   155  </span>	<span class="comment">// Otherwise truncate down to the desired length and append &#39;...&#39;</span>
+<span id="L156" class="ln">   156  </span>	abbrevSuffix := &#34;...&#34;
+<span id="L157" class="ln">   157  </span>	maxWidth -= len(abbrevSuffix) <span class="comment">// maxWidth is necessarily &gt;20 at this point</span>
+<span id="L158" class="ln">   158  </span>
+<span id="L159" class="ln">   159  </span>	<span class="comment">// len(suffix) is necessarily &gt;= maxWidth at this point</span>
+<span id="L160" class="ln">   160  </span>	suffix = suffix[:maxWidth] + abbrevSuffix
+<span id="L161" class="ln">   161  </span>
+<span id="L162" class="ln">   162  </span>	return suffix
+<span id="L163" class="ln">   163  </span>}
+<span id="L164" class="ln">   164  </span>
+<span id="L165" class="ln">   165  </span>func getTerminalWidth(w io.Writer) *int {
+<span id="L166" class="ln">   166  </span>
+<span id="L167" class="ln">   167  </span>	if runtime.GOOS != &#34;windows&#34; {
+<span id="L168" class="ln">   168  </span>
+<span id="L169" class="ln">   169  </span>		if v, ok := (w).(*os.File); ok {
+<span id="L170" class="ln">   170  </span>			w, _, err := term.GetSize(int(v.Fd()))
+<span id="L171" class="ln">   171  </span>			if err == nil {
+<span id="L172" class="ln">   172  </span>				return &amp;w
+<span id="L173" class="ln">   173  </span>			}
+<span id="L174" class="ln">   174  </span>		}
+<span id="L175" class="ln">   175  </span>
+<span id="L176" class="ln">   176  </span>	}
+<span id="L177" class="ln">   177  </span>
+<span id="L178" class="ln">   178  </span>	return nil
+<span id="L179" class="ln">   179  </span>}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span><span class="comment">// End completes the current status, ending any previous spinning and</span>
+<span id="L182" class="ln">   182  </span><span class="comment">// marking the status as success or failure</span>
+<span id="L183" class="ln">   183  </span>func (s *Status) End(success bool) {
+<span id="L184" class="ln">   184  </span>	if s.status == &#34;&#34; {
+<span id="L185" class="ln">   185  </span>		return
+<span id="L186" class="ln">   186  </span>	}
+<span id="L187" class="ln">   187  </span>
+<span id="L188" class="ln">   188  </span>	isTerm := IsTerminal(s.writer)
+<span id="L189" class="ln">   189  </span>	if isTerm {
+<span id="L190" class="ln">   190  </span>		s.spinner.Stop()
+<span id="L191" class="ln">   191  </span>		if !IsJSON() {
+<span id="L192" class="ln">   192  </span>			fmt.Fprint(s.writer, &#34;\r&#34;)
+<span id="L193" class="ln">   193  </span>		}
+<span id="L194" class="ln">   194  </span>	}
+<span id="L195" class="ln">   195  </span>
+<span id="L196" class="ln">   196  </span>	if !IsJSON() {
+<span id="L197" class="ln">   197  </span>		if success {
+<span id="L198" class="ln">   198  </span>			<span class="comment">// Clear the warning (unneeded now)</span>
+<span id="L199" class="ln">   199  </span>			s.WarningStatus(&#34;&#34;)
+<span id="L200" class="ln">   200  </span>			green := color.New(color.FgGreen).SprintFunc()
+<span id="L201" class="ln">   201  </span>			fmt.Fprintf(s.writer, prefixSpacing+&#34;%s&#34;+suffixSpacing+&#34;%s [%s]\n&#34;, green(getSuccessString()), s.status, s.spinner.TimeSpent())
+<span id="L202" class="ln">   202  </span>		} else {
+<span id="L203" class="ln">   203  </span>			red := color.New(color.FgRed).SprintFunc()
+<span id="L204" class="ln">   204  </span>			if s.warningStatus != &#34;&#34; {
+<span id="L205" class="ln">   205  </span>				fmt.Fprintf(s.writer, prefixSpacing+&#34;%s&#34;+suffixSpacing+&#34;%s [%s] [%s]\n&#34;, red(getErrString()), s.status, s.spinner.TimeSpent(), s.warningStatus)
+<span id="L206" class="ln">   206  </span>			} else {
+<span id="L207" class="ln">   207  </span>				fmt.Fprintf(s.writer, prefixSpacing+&#34;%s&#34;+suffixSpacing+&#34;%s [%s]\n&#34;, red(getErrString()), s.status, s.spinner.TimeSpent())
+<span id="L208" class="ln">   208  </span>			}
+<span id="L209" class="ln">   209  </span>		}
+<span id="L210" class="ln">   210  </span>	}
+<span id="L211" class="ln">   211  </span>
+<span id="L212" class="ln">   212  </span>	s.status = &#34;&#34;
+<span id="L213" class="ln">   213  </span>}
+<span id="L214" class="ln">   214  </span>
+<span id="L215" class="ln">   215  </span><span class="comment">// Namef will output the name of the component / application / project in a *bolded* manner</span>
+<span id="L216" class="ln">   216  </span>func Namef(format string, a ...interface{}) {
+<span id="L217" class="ln">   217  </span>	if !IsJSON() {
+<span id="L218" class="ln">   218  </span>		bold := color.New(color.Bold).SprintFunc()
+<span id="L219" class="ln">   219  </span>		fmt.Fprintf(GetStdout(), &#34;%s\n&#34;, bold(fmt.Sprintf(format, a...)))
+<span id="L220" class="ln">   220  </span>	}
+<span id="L221" class="ln">   221  </span>}
+<span id="L222" class="ln">   222  </span>
+<span id="L223" class="ln">   223  </span><span class="comment">// Progressf will output in an appropriate &#34;progress&#34; manner</span>
+<span id="L224" class="ln">   224  </span>func Progressf(format string, a ...interface{}) {
+<span id="L225" class="ln">   225  </span>	if !IsJSON() {
+<span id="L226" class="ln">   226  </span>		fmt.Fprintf(GetStdout(), &#34; %s%s\n&#34;, prefixSpacing, fmt.Sprintf(format, a...))
+<span id="L227" class="ln">   227  </span>	}
+<span id="L228" class="ln">   228  </span>}
+<span id="L229" class="ln">   229  </span>
+<span id="L230" class="ln">   230  </span><span class="comment">// Success will output in an appropriate &#34;success&#34; manner</span>
+<span id="L231" class="ln">   231  </span>func Success(a ...interface{}) {
+<span id="L232" class="ln">   232  </span>	if !IsJSON() {
+<span id="L233" class="ln">   233  </span>		green := color.New(color.FgGreen).SprintFunc()
+<span id="L234" class="ln">   234  </span>		fmt.Fprintf(GetStdout(), &#34;%s%s%s%s&#34;, prefixSpacing, green(getSuccessString()), suffixSpacing, fmt.Sprintln(a...))
+<span id="L235" class="ln">   235  </span>	}
+<span id="L236" class="ln">   236  </span>}
+<span id="L237" class="ln">   237  </span>
+<span id="L238" class="ln">   238  </span><span class="comment">// Successf will output in an appropriate &#34;progress&#34; manner</span>
+<span id="L239" class="ln">   239  </span>func Successf(format string, a ...interface{}) {
+<span id="L240" class="ln">   240  </span>	if !IsJSON() {
+<span id="L241" class="ln">   241  </span>		green := color.New(color.FgGreen).SprintFunc()
+<span id="L242" class="ln">   242  </span>		fmt.Fprintf(GetStdout(), &#34;%s%s%s%s\n&#34;, prefixSpacing, green(getSuccessString()), suffixSpacing, fmt.Sprintf(format, a...))
+<span id="L243" class="ln">   243  </span>	}
+<span id="L244" class="ln">   244  </span>}
+<span id="L245" class="ln">   245  </span>
+<span id="L246" class="ln">   246  </span><span class="comment">// Warningf will output in an appropriate &#34;warning&#34; manner</span>
+<span id="L247" class="ln">   247  </span>func Warningf(format string, a ...interface{}) {
+<span id="L248" class="ln">   248  </span>	if !IsJSON() {
+<span id="L249" class="ln">   249  </span>		yellow := color.New(color.FgYellow).SprintFunc()
+<span id="L250" class="ln">   250  </span>		fmt.Fprintf(GetStderr(), &#34; %s%s%s\n&#34;, yellow(getWarningString()), suffixSpacing, fmt.Sprintf(format, a...))
+<span id="L251" class="ln">   251  </span>	}
+<span id="L252" class="ln">   252  </span>}
+<span id="L253" class="ln">   253  </span>
+<span id="L254" class="ln">   254  </span><span class="comment">// Swarningf (like Sprintf) will return a string in the &#34;warning&#34; manner</span>
+<span id="L255" class="ln">   255  </span>func Swarningf(format string, a ...interface{}) string {
+<span id="L256" class="ln">   256  </span>	yellow := color.New(color.FgYellow).SprintFunc()
+<span id="L257" class="ln">   257  </span>	return fmt.Sprintf(&#34; %s%s%s&#34;, yellow(getWarningString()), suffixSpacing, fmt.Sprintf(format, a...))
+<span id="L258" class="ln">   258  </span>}
+<span id="L259" class="ln">   259  </span>
+<span id="L260" class="ln">   260  </span>func Deprecate(what, nextAction string) {
+<span id="L261" class="ln">   261  </span>	if !IsJSON() {
+<span id="L262" class="ln">   262  </span>		yellow := color.New(color.FgYellow).SprintFunc()
+<span id="L263" class="ln">   263  </span>		msg1 := fmt.Sprintf(&#34;%s%s%s%s%s&#34;, yellow(getWarningString()), suffixSpacing, yellow(fmt.Sprintf(&#34;%s Deprecated&#34;, what)), suffixSpacing, nextAction)
+<span id="L264" class="ln">   264  </span>		fmt.Fprintf(GetStderr(), &#34; %s\n&#34;, msg1)
+<span id="L265" class="ln">   265  </span>	}
+<span id="L266" class="ln">   266  </span>}
+<span id="L267" class="ln">   267  </span>
+<span id="L268" class="ln">   268  </span><span class="comment">// Warning will output in an appropriate &#34;progress&#34; manner</span>
+<span id="L269" class="ln">   269  </span>func Warning(a ...interface{}) {
+<span id="L270" class="ln">   270  </span>	if !IsJSON() {
+<span id="L271" class="ln">   271  </span>		yellow := color.New(color.FgYellow).SprintFunc()
+<span id="L272" class="ln">   272  </span>		fmt.Fprintf(GetStderr(), &#34;%s%s%s%s&#34;, prefixSpacing, yellow(getWarningString()), suffixSpacing, fmt.Sprintln(a...))
+<span id="L273" class="ln">   273  </span>	}
+<span id="L274" class="ln">   274  </span>}
+<span id="L275" class="ln">   275  </span>
+<span id="L276" class="ln">   276  </span><span class="comment">// Errorf will output in an appropriate &#34;progress&#34; manner</span>
+<span id="L277" class="ln">   277  </span>func Errorf(format string, a ...interface{}) {
+<span id="L278" class="ln">   278  </span>	if !IsJSON() {
+<span id="L279" class="ln">   279  </span>		red := color.New(color.FgRed).SprintFunc()
+<span id="L280" class="ln">   280  </span>		fmt.Fprintf(GetStderr(), &#34; %s%s%s\n&#34;, red(getErrString()), suffixSpacing, fmt.Sprintf(format, a...))
+<span id="L281" class="ln">   281  </span>	}
+<span id="L282" class="ln">   282  </span>}
+<span id="L283" class="ln">   283  </span>
+<span id="L284" class="ln">   284  </span><span class="comment">// Error will output in an appropriate &#34;progress&#34; manner</span>
+<span id="L285" class="ln">   285  </span>func Error(a ...interface{}) {
+<span id="L286" class="ln">   286  </span>	if !IsJSON() {
+<span id="L287" class="ln">   287  </span>		red := color.New(color.FgRed).SprintFunc()
+<span id="L288" class="ln">   288  </span>		fmt.Fprintf(GetStderr(), &#34;%s%s%s%s&#34;, prefixSpacing, red(getErrString()), suffixSpacing, fmt.Sprintln(a...))
+<span id="L289" class="ln">   289  </span>	}
+<span id="L290" class="ln">   290  </span>}
+<span id="L291" class="ln">   291  </span>
+<span id="L292" class="ln">   292  </span><span class="comment">// Italic will simply print out information on a new italic line</span>
+<span id="L293" class="ln">   293  </span>func Italic(a ...interface{}) {
+<span id="L294" class="ln">   294  </span>	if !IsJSON() {
+<span id="L295" class="ln">   295  </span>		italic := color.New(color.Italic).SprintFunc()
+<span id="L296" class="ln">   296  </span>		fmt.Fprintf(GetStdout(), &#34;%s&#34;, italic(fmt.Sprintln(a...)))
+<span id="L297" class="ln">   297  </span>	}
+<span id="L298" class="ln">   298  </span>}
+<span id="L299" class="ln">   299  </span>
+<span id="L300" class="ln">   300  </span><span class="comment">// Italicf will simply print out information on a new italic line</span>
+<span id="L301" class="ln">   301  </span><span class="comment">// this is **normally** used as a way to describe what&#39;s next within odo.</span>
+<span id="L302" class="ln">   302  </span>func Italicf(format string, a ...interface{}) {
+<span id="L303" class="ln">   303  </span>	if !IsJSON() {
+<span id="L304" class="ln">   304  </span>		italic := color.New(color.Italic).SprintFunc()
+<span id="L305" class="ln">   305  </span>		fmt.Fprintf(GetStdout(), &#34;%s\n&#34;, italic(fmt.Sprintf(format, a...)))
+<span id="L306" class="ln">   306  </span>	}
+<span id="L307" class="ln">   307  </span>}
+<span id="L308" class="ln">   308  </span>
+<span id="L309" class="ln">   309  </span><span class="comment">// Info will simply print out information on a new (bolded) line</span>
+<span id="L310" class="ln">   310  </span><span class="comment">// this is intended as information *after* something has been deployed</span>
+<span id="L311" class="ln">   311  </span>func Info(a ...interface{}) {
+<span id="L312" class="ln">   312  </span>	if !IsJSON() {
+<span id="L313" class="ln">   313  </span>		bold := color.New(color.Bold).SprintFunc()
+<span id="L314" class="ln">   314  </span>		fmt.Fprintf(GetStdout(), &#34;%s&#34;, bold(fmt.Sprintln(a...)))
+<span id="L315" class="ln">   315  </span>	}
+<span id="L316" class="ln">   316  </span>}
+<span id="L317" class="ln">   317  </span>
+<span id="L318" class="ln">   318  </span><span class="comment">// Infof will simply print out information on a new (bolded) line</span>
+<span id="L319" class="ln">   319  </span><span class="comment">// this is intended as information *after* something has been deployed</span>
+<span id="L320" class="ln">   320  </span>func Infof(format string, a ...interface{}) {
+<span id="L321" class="ln">   321  </span>	if !IsJSON() {
+<span id="L322" class="ln">   322  </span>		bold := color.New(color.Bold).SprintFunc()
+<span id="L323" class="ln">   323  </span>		fmt.Fprintf(GetStdout(), &#34;%s\n&#34;, bold(fmt.Sprintf(format, a...)))
+<span id="L324" class="ln">   324  </span>	}
+<span id="L325" class="ln">   325  </span>}
+<span id="L326" class="ln">   326  </span>
+<span id="L327" class="ln">   327  </span><span class="comment">// Describef will print out the first variable as BOLD and then the second not..</span>
+<span id="L328" class="ln">   328  </span><span class="comment">// this is intended to be used with `odo describe` and other outputs that list</span>
+<span id="L329" class="ln">   329  </span><span class="comment">// a lot of information</span>
+<span id="L330" class="ln">   330  </span>func Describef(title string, format string, a ...interface{}) {
+<span id="L331" class="ln">   331  </span>	if !IsJSON() {
+<span id="L332" class="ln">   332  </span>		bold := color.New(color.Bold).SprintFunc()
+<span id="L333" class="ln">   333  </span>		fmt.Fprintf(GetStdout(), &#34;%s%s\n&#34;, bold(title), fmt.Sprintf(format, a...))
+<span id="L334" class="ln">   334  </span>	}
+<span id="L335" class="ln">   335  </span>}
+<span id="L336" class="ln">   336  </span>
+<span id="L337" class="ln">   337  </span><span class="comment">// Askf will print out information, but in an &#34;Ask&#34; way (without newline)</span>
+<span id="L338" class="ln">   338  </span>func Askf(format string, a ...interface{}) {
+<span id="L339" class="ln">   339  </span>	if !IsJSON() {
+<span id="L340" class="ln">   340  </span>		bold := color.New(color.Bold).SprintFunc()
+<span id="L341" class="ln">   341  </span>		fmt.Fprintf(GetStdout(), &#34;%s&#34;, bold(fmt.Sprintf(format, a...)))
+<span id="L342" class="ln">   342  </span>	}
+<span id="L343" class="ln">   343  </span>}
+<span id="L344" class="ln">   344  </span>
+<span id="L345" class="ln">   345  </span><span class="comment">// Spinner creates a spinner, sets the prefix then returns it.</span>
+<span id="L346" class="ln">   346  </span><span class="comment">// Remember to use .End(bool) to stop the spin / when you&#39;re done.</span>
+<span id="L347" class="ln">   347  </span><span class="comment">// For example: defer s.End(false)</span>
+<span id="L348" class="ln">   348  </span>func Spinner(status string) *Status {
+<span id="L349" class="ln">   349  </span>	return ExplicitSpinner(status, false)
+<span id="L350" class="ln">   350  </span>}
+<span id="L351" class="ln">   351  </span>
+<span id="L352" class="ln">   352  </span><span class="comment">// Spinnerf creates a spinner, sets the prefix then returns it.</span>
+<span id="L353" class="ln">   353  </span><span class="comment">// Remember to use .End(bool) to stop the spin / when you&#39;re done.</span>
+<span id="L354" class="ln">   354  </span><span class="comment">// For example: defer s.End(false)</span>
+<span id="L355" class="ln">   355  </span><span class="comment">// for situations where spinning isn&#39;t viable (debug)</span>
+<span id="L356" class="ln">   356  </span>func Spinnerf(format string, a ...interface{}) *Status {
+<span id="L357" class="ln">   357  </span>	s := NewStatus(GetStdout())
+<span id="L358" class="ln">   358  </span>	s.Start(fmt.Sprintf(format, a...), IsDebug())
+<span id="L359" class="ln">   359  </span>	return s
+<span id="L360" class="ln">   360  </span>}
+<span id="L361" class="ln">   361  </span>
+<span id="L362" class="ln">   362  </span><span class="comment">// SpinnerNoSpin is the same as the &#34;Spinner&#34; function but forces no spinning</span>
+<span id="L363" class="ln">   363  </span>func SpinnerNoSpin(status string) *Status {
+<span id="L364" class="ln">   364  </span>	return ExplicitSpinner(status, true)
+<span id="L365" class="ln">   365  </span>}
+<span id="L366" class="ln">   366  </span>
+<span id="L367" class="ln">   367  </span><span class="comment">// ExplicitSpinner creates a spinner that can or not spin based on the value of the preventSpinning parameter</span>
+<span id="L368" class="ln">   368  </span>func ExplicitSpinner(status string, preventSpinning bool) *Status {
+<span id="L369" class="ln">   369  </span>	doNotSpin := true
+<span id="L370" class="ln">   370  </span>	if !preventSpinning {
+<span id="L371" class="ln">   371  </span>		doNotSpin = IsDebug()
+<span id="L372" class="ln">   372  </span>	}
+<span id="L373" class="ln">   373  </span>	s := NewStatus(GetStdout())
+<span id="L374" class="ln">   374  </span>	s.Start(status, doNotSpin)
+<span id="L375" class="ln">   375  </span>	return s
+<span id="L376" class="ln">   376  </span>}
+<span id="L377" class="ln">   377  </span>
+<span id="L378" class="ln">   378  </span><span class="comment">// IsJSON returns true if we are in machine output mode..</span>
+<span id="L379" class="ln">   379  </span><span class="comment">// under NO circumstances should we output any logging.. as we are only outputting json</span>
+<span id="L380" class="ln">   380  </span>func IsJSON() bool {
+<span id="L381" class="ln">   381  </span>
+<span id="L382" class="ln">   382  </span>	flag := pflag.Lookup(&#34;o&#34;)
+<span id="L383" class="ln">   383  </span>	if flag != nil &amp;&amp; flag.Changed {
+<span id="L384" class="ln">   384  </span>		return strings.Contains(pflag.Lookup(&#34;o&#34;).Value.String(), &#34;json&#34;)
+<span id="L385" class="ln">   385  </span>	}
+<span id="L386" class="ln">   386  </span>
+<span id="L387" class="ln">   387  </span>	return false
+<span id="L388" class="ln">   388  </span>}
+<span id="L389" class="ln">   389  </span>
+<span id="L390" class="ln">   390  </span><span class="comment">// IsDebug returns true if we are debugging (-v is set to anything but 0)</span>
+<span id="L391" class="ln">   391  </span>func IsDebug() bool {
+<span id="L392" class="ln">   392  </span>
+<span id="L393" class="ln">   393  </span>	flag := pflag.Lookup(&#34;v&#34;)
+<span id="L394" class="ln">   394  </span>
+<span id="L395" class="ln">   395  </span>	if flag != nil {
+<span id="L396" class="ln">   396  </span>		return !strings.Contains(pflag.Lookup(&#34;v&#34;).Value.String(), &#34;0&#34;)
+<span id="L397" class="ln">   397  </span>	}
+<span id="L398" class="ln">   398  </span>
+<span id="L399" class="ln">   399  </span>	return false
+<span id="L400" class="ln">   400  </span>}
+<span id="L401" class="ln">   401  </span>
+<span id="L402" class="ln">   402  </span><span class="comment">// GetStdout gets the appropriate stdout from the OS. If it&#39;s Linux, it will use</span>
+<span id="L403" class="ln">   403  </span><span class="comment">// the go-colorable library in order to fix any and all color ASCII issues.</span>
+<span id="L404" class="ln">   404  </span><span class="comment">// TODO: Test needs to be added once we get Windows testing available on TravisCI / CI platform.</span>
+<span id="L405" class="ln">   405  </span>func GetStdout() io.Writer {
+<span id="L406" class="ln">   406  </span>	if runtime.GOOS == &#34;windows&#34; {
+<span id="L407" class="ln">   407  </span>		return colorable.NewColorableStdout()
+<span id="L408" class="ln">   408  </span>	}
+<span id="L409" class="ln">   409  </span>	return os.Stdout
+<span id="L410" class="ln">   410  </span>}
+<span id="L411" class="ln">   411  </span>
+<span id="L412" class="ln">   412  </span><span class="comment">// GetStderr gets the appropriate stderrfrom the OS. If it&#39;s Linux, it will use</span>
+<span id="L413" class="ln">   413  </span><span class="comment">// the go-colorable library in order to fix any and all color ASCII issues.</span>
+<span id="L414" class="ln">   414  </span><span class="comment">// TODO: Test needs to be added once we get Windows testing available on TravisCI / CI platform.</span>
+<span id="L415" class="ln">   415  </span>func GetStderr() io.Writer {
+<span id="L416" class="ln">   416  </span>	if runtime.GOOS == &#34;windows&#34; {
+<span id="L417" class="ln">   417  </span>		return colorable.NewColorableStderr()
+<span id="L418" class="ln">   418  </span>	}
+<span id="L419" class="ln">   419  </span>	return os.Stderr
+<span id="L420" class="ln">   420  </span>}
+<span id="L421" class="ln">   421  </span>
+<span id="L422" class="ln">   422  </span><span class="comment">// getErrString returns a certain string based upon the OS.</span>
+<span id="L423" class="ln">   423  </span><span class="comment">// Some Windows terminals do not support unicode and must use ASCII.</span>
+<span id="L424" class="ln">   424  </span><span class="comment">// TODO: Test needs to be added once we get Windows testing available on TravisCI / CI platform.</span>
+<span id="L425" class="ln">   425  </span>func getErrString() string {
+<span id="L426" class="ln">   426  </span>	if runtime.GOOS == &#34;windows&#34; {
+<span id="L427" class="ln">   427  </span>		return &#34;X&#34;
+<span id="L428" class="ln">   428  </span>	}
+<span id="L429" class="ln">   429  </span>	return &#34;✗&#34;
+<span id="L430" class="ln">   430  </span>}
+<span id="L431" class="ln">   431  </span>
+<span id="L432" class="ln">   432  </span><span class="comment">// getWarningString returns a certain string based upon the OS.</span>
+<span id="L433" class="ln">   433  </span><span class="comment">// Some Windows terminals do not support unicode and must use ASCII.</span>
+<span id="L434" class="ln">   434  </span><span class="comment">// TODO: Test needs to be added once we get Windows testing available on TravisCI / CI platform.</span>
+<span id="L435" class="ln">   435  </span>func getWarningString() string {
+<span id="L436" class="ln">   436  </span>	if runtime.GOOS == &#34;windows&#34; {
+<span id="L437" class="ln">   437  </span>		return &#34;!&#34;
+<span id="L438" class="ln">   438  </span>	}
+<span id="L439" class="ln">   439  </span>	return &#34;⚠&#34;
+<span id="L440" class="ln">   440  </span>}
+<span id="L441" class="ln">   441  </span>
+<span id="L442" class="ln">   442  </span><span class="comment">// getSuccessString returns a certain string based upon the OS.</span>
+<span id="L443" class="ln">   443  </span><span class="comment">// Some Windows terminals do not support unicode and must use ASCII.</span>
+<span id="L444" class="ln">   444  </span><span class="comment">// TODO: Test needs to be added once we get Windows testing available on TravisCI / CI platform.</span>
+<span id="L445" class="ln">   445  </span>func getSuccessString() string {
+<span id="L446" class="ln">   446  </span>	if runtime.GOOS == &#34;windows&#34; {
+<span id="L447" class="ln">   447  </span>		return &#34;V&#34;
+<span id="L448" class="ln">   448  </span>	}
+<span id="L449" class="ln">   449  </span>	return &#34;✓&#34;
+<span id="L450" class="ln">   450  </span>}
+<span id="L451" class="ln">   451  </span>
+<span id="L452" class="ln">   452  </span><span class="comment">// getSpacingString returns a certain string based upon the OS.</span>
+<span id="L453" class="ln">   453  </span><span class="comment">// Some Windows terminals do not support unicode and must use ASCII.</span>
+<span id="L454" class="ln">   454  </span><span class="comment">// TODO: Test needs to be added once we get Windows testing available on TravisCI / CI platform.</span>
+<span id="L455" class="ln">   455  </span>func getSpacingString() string {
+<span id="L456" class="ln">   456  </span>	if runtime.GOOS == &#34;windows&#34; {
+<span id="L457" class="ln">   457  </span>		return &#34;-&#34;
+<span id="L458" class="ln">   458  </span>	}
+<span id="L459" class="ln">   459  </span>	return &#34;•&#34;
+<span id="L460" class="ln">   460  </span>}
+<span id="L461" class="ln">   461  </span>
+</pre><p><a href="../../../../../../src/github.com/redhat-developer/odo/pkg/log/status.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

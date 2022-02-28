@@ -1,0 +1,558 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>config - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package config
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/config" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/config</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#NewCmdConfiguration">func NewCmdConfiguration(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdSet">func NewCmdSet(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdUnset">func NewCmdUnset(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdView">func NewCmdView(name, fullName string) *cobra.Command</a></dd>
+			
+			
+				
+				<dd><a href="#SetOptions">type SetOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewSetOptions">func NewSetOptions(prjClient project.Client, prefClient preference.Client) *SetOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#SetOptions.Complete">func (o *SetOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#SetOptions.Run">func (o *SetOptions) Run() error</a></dd>
+				
+					
+					<dd>    <a href="#SetOptions.Validate">func (o *SetOptions) Validate() error</a></dd>
+				
+			
+				
+				<dd><a href="#UnsetOptions">type UnsetOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewUnsetOptions">func NewUnsetOptions(prjClient project.Client, prefClient preference.Client) *UnsetOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#UnsetOptions.Complete">func (o *UnsetOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#UnsetOptions.Run">func (o *UnsetOptions) Run() error</a></dd>
+				
+					
+					<dd>    <a href="#UnsetOptions.Validate">func (o *UnsetOptions) Validate() error</a></dd>
+				
+			
+				
+				<dd><a href="#ViewOptions">type ViewOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewViewOptions">func NewViewOptions() *ViewOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ViewOptions.Complete">func (o *ViewOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ViewOptions.Run">func (o *ViewOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ViewOptions.Validate">func (o *ViewOptions) Validate() error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/config.go.html">config.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/set.go.html">set.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/unset.go.html">unset.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/view.go.html">view.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+RecommendedCommandName is the recommended config command name
+</p>
+
+				<pre>const <span id="RecommendedCommandName">RecommendedCommandName</span> = &#34;config&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="NewCmdConfiguration">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/config.go.html?s=507:569#L12">NewCmdConfiguration</a>
+				<a class="permalink" href="#NewCmdConfiguration">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdConfiguration(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdConfiguration implements the utils config odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdSet">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/set.go.html?s=4774:4826#L171">NewCmdSet</a>
+				<a class="permalink" href="#NewCmdSet">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdSet(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdSet implements the config set odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdUnset">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/unset.go.html?s=3699:3753#L122">NewCmdUnset</a>
+				<a class="permalink" href="#NewCmdUnset">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdUnset(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdUnset implements the config unset odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdView">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/view.go.html?s=1884:1937#L63">NewCmdView</a>
+				<a class="permalink" href="#NewCmdView">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdView(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdView implements the config view odo command
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="SetOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/set.go.html?s=1230:1426#L35">SetOptions</a>
+				<a class="permalink" href="#SetOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+SetOptions encapsulates the options for the command
+</p>
+
+			<pre>type SetOptions struct {
+    <span class="comment">// Push context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component/">clicomponent</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component/#PushOptions">PushOptions</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewSetOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/set.go.html?s=1479:1565#L50">NewSetOptions</a>
+					<a class="permalink" href="#NewSetOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewSetOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>, prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#SetOptions">SetOptions</a></pre>
+				<p>
+NewSetOptions creates a new SetOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="SetOptions.Complete">func (*SetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/set.go.html?s=1722:1803#L57">Complete</a>
+					<a class="permalink" href="#SetOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#SetOptions">SetOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes SetOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SetOptions.Run">func (*SetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/set.go.html?s=2837:2869#L99">Run</a>
+					<a class="permalink" href="#SetOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#SetOptions">SetOptions</a>) Run() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Run contains the logic for the command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SetOptions.Validate">func (*SetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/set.go.html?s=2586:2623#L91">Validate</a>
+					<a class="permalink" href="#SetOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#SetOptions">SetOptions</a>) Validate() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates the SetOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UnsetOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/unset.go.html?s=1120:1298#L31">UnsetOptions</a>
+				<a class="permalink" href="#UnsetOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+UnsetOptions encapsulates the options for the command
+</p>
+
+			<pre>type UnsetOptions struct {
+    <span class="comment">// Push context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component/">clicomponent</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component/#PushOptions">PushOptions</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewUnsetOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/unset.go.html?s=1355:1445#L45">NewUnsetOptions</a>
+					<a class="permalink" href="#NewUnsetOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewUnsetOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>, prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#UnsetOptions">UnsetOptions</a></pre>
+				<p>
+NewUnsetOptions creates a new UnsetOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="UnsetOptions.Complete">func (*UnsetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/unset.go.html?s=1606:1689#L52">Complete</a>
+					<a class="permalink" href="#UnsetOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#UnsetOptions">UnsetOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes UnsetOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UnsetOptions.Run">func (*UnsetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/unset.go.html?s=2702:2736#L93">Run</a>
+					<a class="permalink" href="#UnsetOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#UnsetOptions">UnsetOptions</a>) Run() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Run contains the logic for the command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UnsetOptions.Validate">func (*UnsetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/unset.go.html?s=2449:2488#L85">Validate</a>
+					<a class="permalink" href="#UnsetOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#UnsetOptions">UnsetOptions</a>) Validate() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates the UnsetOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ViewOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/view.go.html?s=687:785#L17">ViewOptions</a>
+				<a class="permalink" href="#ViewOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ViewOptions encapsulates the options for the command
+</p>
+
+			<pre>type ViewOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewViewOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/view.go.html?s=840:874#L26">NewViewOptions</a>
+					<a class="permalink" href="#NewViewOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewViewOptions() *<a href="#ViewOptions">ViewOptions</a></pre>
+				<p>
+NewViewOptions creates a new ViewOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ViewOptions.Complete">func (*ViewOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/view.go.html?s=964:1046#L31">Complete</a>
+					<a class="permalink" href="#ViewOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ViewOptions">ViewOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ViewOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ViewOptions.Run">func (*ViewOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/view.go.html?s=1359:1398#L43">Run</a>
+					<a class="permalink" href="#ViewOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ViewOptions">ViewOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ViewOptions.Validate">func (*ViewOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/config/view.go.html?s=1261:1299#L38">Validate</a>
+					<a class="permalink" href="#ViewOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ViewOptions">ViewOptions</a>) Validate() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates the ViewOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

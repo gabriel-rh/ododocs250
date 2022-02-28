@@ -1,0 +1,1161 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>component - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package component
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/component" target="_blank">github.com/redhat-developer/odo/pkg/component</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#ApplyConfig">func ApplyConfig(client kclient.ClientInterface, envSpecificInfo envinfo.EnvSpecificInfo) (err error)</a></dd>
+			
+				
+				<dd><a href="#DownloadStarterProject">func DownloadStarterProject(starterProject *devfilev1.StarterProject, decryptedToken string, contextDir string) error</a></dd>
+			
+				
+				<dd><a href="#Exists">func Exists(client kclient.ClientInterface, componentName, applicationName string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="#GetComponentDir">func GetComponentDir(path string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#GetComponentNames">func GetComponentNames(client kclient.ClientInterface, applicationName string) ([]string, error)</a></dd>
+			
+				
+				<dd><a href="#GetComponentTypeFromDevfileMetadata">func GetComponentTypeFromDevfileMetadata(metadata devfile.DevfileMetadata) string</a></dd>
+			
+				
+				<dd><a href="#GetDefaultComponentName">func GetDefaultComponentName(cfg preference.Client, componentPath string, componentType string, existingComponentList ComponentList) (string, error)</a></dd>
+			
+				
+				<dd><a href="#GetLanguageFromDevfileMetadata">func GetLanguageFromDevfileMetadata(metadata devfile.DevfileMetadata) string</a></dd>
+			
+				
+				<dd><a href="#GetProjectTypeFromDevfileMetadata">func GetProjectTypeFromDevfileMetadata(metadata devfile.DevfileMetadata) string</a></dd>
+			
+				
+				<dd><a href="#GetPushedComponents">func GetPushedComponents(c kclient.ClientInterface, applicationName string) (map[string]PushedComponent, error)</a></dd>
+			
+				
+				<dd><a href="#GetStarterProject">func GetStarterProject(projects []devfilev1.StarterProject, projectPassed string) (project *devfilev1.StarterProject, err error)</a></dd>
+			
+			
+				
+				<dd><a href="#CombinedComponentList">type CombinedComponentList</a></dd>
+				
+					
+					<dd>    <a href="#NewCombinedComponentList">func NewCombinedComponentList(devfileComps []Component, otherComps []Component) CombinedComponentList</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Component">type Component</a></dd>
+				
+					
+					<dd>    <a href="#GetComponent">func GetComponent(client kclient.ClientInterface, componentName string, applicationName string, projectName string) (component Component, err error)</a></dd>
+				
+					
+					<dd>    <a href="#GetComponentFromDevfile">func GetComponentFromDevfile(info *envinfo.EnvSpecificInfo) (Component, parser.DevfileObj, error)</a></dd>
+				
+					
+					<dd>    <a href="#ListDevfileComponentsInPath">func ListDevfileComponentsInPath(client kclient.ClientInterface, paths []string) ([]Component, error)</a></dd>
+				
+					
+					<dd>    <a href="#NewComponent">func NewComponent(componentName string) Component</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ComponentFullDescription">type ComponentFullDescription</a></dd>
+				
+					
+					<dd>    <a href="#NewComponentFullDescriptionFromClientAndLocalConfigProvider">func NewComponentFullDescriptionFromClientAndLocalConfigProvider(client kclient.ClientInterface, envInfo *envinfo.EnvSpecificInfo, componentName string, applicationName string, projectName string, context string) (*ComponentFullDescription, error)</a></dd>
+				
+				
+					
+					<dd>    <a href="#ComponentFullDescription.GetComponent">func (cfd *ComponentFullDescription) GetComponent() Component</a></dd>
+				
+					
+					<dd>    <a href="#ComponentFullDescription.Print">func (cfd *ComponentFullDescription) Print(client kclient.ClientInterface) error</a></dd>
+				
+			
+				
+				<dd><a href="#ComponentFullDescriptionSpec">type ComponentFullDescriptionSpec</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ComponentList">type ComponentList</a></dd>
+				
+					
+					<dd>    <a href="#List">func List(client kclient.ClientInterface, applicationSelector string) (ComponentList, error)</a></dd>
+				
+					
+					<dd>    <a href="#ListDevfileComponents">func ListDevfileComponents(client kclient.ClientInterface, selector string) (ComponentList, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ComponentSpec">type ComponentSpec</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ComponentStatus">type ComponentStatus</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ConfigurableRepr">type ConfigurableRepr</a></dd>
+				
+					
+					<dd>    <a href="#ToDevfileRepresentation">func ToDevfileRepresentation(d parser.DevfileObj) (ConfigurableRepr, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ContainerRepr">type ContainerRepr</a></dd>
+				
+				
+			
+				
+				<dd><a href="#JSONConfigRepr">type JSONConfigRepr</a></dd>
+				
+					
+					<dd>    <a href="#WrapFromJSONOutput">func WrapFromJSONOutput(confRepr ConfigurableRepr) JSONConfigRepr</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PortRepr">type PortRepr</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PushedComponent">type PushedComponent</a></dd>
+				
+					
+					<dd>    <a href="#GetPushedComponent">func GetPushedComponent(c kclient.ClientInterface, componentName, applicationName string) (PushedComponent, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#SecretMount">type SecretMount</a></dd>
+				
+				
+			
+				
+				<dd><a href="#State">type State</a></dd>
+				
+					
+					<dd>    <a href="#GetComponentState">func GetComponentState(client kclient.ClientInterface, componentName, applicationName string) State</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html">component.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component_full_description.go.html">component_full_description.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/devfile_repr.go.html">devfile_repr.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/pushed_component.go.html">pushed_component.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/starter_project.go.html">starter_project.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const <span id="ComponentKind">ComponentKind</span> = &#34;Component&#34;</pre>
+			
+				
+				<pre>const <span id="NotAvailable">NotAvailable</span> = &#34;Not available&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="ApplyConfig">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=3492:3593#L96">ApplyConfig</a>
+				<a class="permalink" href="#ApplyConfig">¶</a>
+				
+				
+			</h2>
+			<pre>func ApplyConfig(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, envSpecificInfo <a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/">envinfo</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/#EnvSpecificInfo">EnvSpecificInfo</a>) (err <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ApplyConfig applies the component config onto component deployment
+Parameters:
+</p>
+<pre>client: kclient instance
+componentConfig: Component configuration
+envSpecificInfo: Component environment specific information, available if uses devfile
+</pre>
+<p>
+Returns:
+</p>
+<pre>err: Errors if any else nil
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DownloadStarterProject">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/starter_project.go.html?s=2368:2485#L67">DownloadStarterProject</a>
+				<a class="permalink" href="#DownloadStarterProject">¶</a>
+				
+				
+			</h2>
+			<pre>func DownloadStarterProject(starterProject *<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#StarterProject">StarterProject</a>, decryptedToken <a href="../../../../../builtin/#string">string</a>, contextDir <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DownloadStarterProject Downloads first starter project from list of starter projects in devfile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Exists">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=10862:10958#L321">Exists</a>
+				<a class="permalink" href="#Exists">¶</a>
+				
+				
+			</h2>
+			<pre>func Exists(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, componentName, applicationName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+Exists checks whether a component with the given name exists in the current application or not
+componentName is the component name to perform check for
+The first returned parameter is a bool indicating if a component with the given name already exists or not
+The second returned parameter is the error that might occurs while execution
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetComponentDir">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=1283:1332#L35">GetComponentDir</a>
+				<a class="permalink" href="#GetComponentDir">¶</a>
+				
+				
+			</h2>
+			<pre>func GetComponentDir(path <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetComponentDir returns source repo name
+Parameters:
+</p>
+<pre>path: source path
+</pre>
+<p>
+Returns: directory name
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetComponentNames">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=4147:4243#L117">GetComponentNames</a>
+				<a class="permalink" href="#GetComponentNames">¶</a>
+				
+				
+			</h2>
+			<pre>func GetComponentNames(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, applicationName <a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetComponentNames retrieves the names of the components in the specified application
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetComponentTypeFromDevfileMetadata">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=7191:7272#L200">GetComponentTypeFromDevfileMetadata</a>
+				<a class="permalink" href="#GetComponentTypeFromDevfileMetadata">¶</a>
+				
+				
+			</h2>
+			<pre>func GetComponentTypeFromDevfileMetadata(metadata <a href="../../../../../github.com/devfile/api/v2/pkg/devfile/">devfile</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/devfile/#DevfileMetadata">DevfileMetadata</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetComponentTypeFromDevfileMetadata returns component type from the devfile metadata;
+it could either be projectType or language, if neither of them are set, return &#39;Not available&#39;
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetDefaultComponentName">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=1904:2052#L53">GetDefaultComponentName</a>
+				<a class="permalink" href="#GetDefaultComponentName">¶</a>
+				
+				
+			</h2>
+			<pre>func GetDefaultComponentName(cfg <a href="../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>, componentPath <a href="../../../../../builtin/#string">string</a>, componentType <a href="../../../../../builtin/#string">string</a>, existingComponentList <a href="#ComponentList">ComponentList</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetDefaultComponentName generates a unique component name
+Parameters: desired default component name(w/o prefix) and slice of existing component names
+Returns: Unique component name and error if any
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetLanguageFromDevfileMetadata">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=7925:8001#L224">GetLanguageFromDevfileMetadata</a>
+				<a class="permalink" href="#GetLanguageFromDevfileMetadata">¶</a>
+				
+				
+			</h2>
+			<pre>func GetLanguageFromDevfileMetadata(metadata <a href="../../../../../github.com/devfile/api/v2/pkg/devfile/">devfile</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/devfile/#DevfileMetadata">DevfileMetadata</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetLanguageFromDevfileMetadata returns component type from the devfile metadata
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetProjectTypeFromDevfileMetadata">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=7601:7680#L213">GetProjectTypeFromDevfileMetadata</a>
+				<a class="permalink" href="#GetProjectTypeFromDevfileMetadata">¶</a>
+				
+				
+			</h2>
+			<pre>func GetProjectTypeFromDevfileMetadata(metadata <a href="../../../../../github.com/devfile/api/v2/pkg/devfile/">devfile</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/devfile/#DevfileMetadata">DevfileMetadata</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetProjectTypeFromDevfileMetadata returns component type from the devfile metadata
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetPushedComponents">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/pushed_component.go.html?s=4557:4668#L161">GetPushedComponents</a>
+				<a class="permalink" href="#GetPushedComponents">¶</a>
+				
+				
+			</h2>
+			<pre>func GetPushedComponents(c <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, applicationName <a href="../../../../../builtin/#string">string</a>) (map[<a href="../../../../../builtin/#string">string</a>]<a href="#PushedComponent">PushedComponent</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetPushedComponents retrieves a map of PushedComponents from the cluster, keyed by their name
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetStarterProject">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/starter_project.go.html?s=1024:1152#L30">GetStarterProject</a>
+				<a class="permalink" href="#GetStarterProject">¶</a>
+				
+				
+			</h2>
+			<pre>func GetStarterProject(projects []<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#StarterProject">StarterProject</a>, projectPassed <a href="../../../../../builtin/#string">string</a>) (project *<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#StarterProject">StarterProject</a>, err <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetStarterProject gets starter project value from flag --starter.
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CombinedComponentList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html?s=1777:2011#L47">CombinedComponentList</a>
+				<a class="permalink" href="#CombinedComponentList">¶</a>
+				
+				
+			</h2>
+			<p>
+CombinedComponentList is list of s2i and devfile components
+</p>
+
+			<pre>type CombinedComponentList struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ListMeta">ListMeta</a>   `json:&#34;metadata,omitempty&#34;`
+<span id="CombinedComponentList.DevfileComponents"></span>    DevfileComponents []<a href="#Component">Component</a> `json:&#34;devfileComponents&#34;`
+<span id="CombinedComponentList.OtherComponents"></span>    OtherComponents   []<a href="#Component">Component</a> `json:&#34;otherComponents&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCombinedComponentList">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html?s=3464:3565#L103">NewCombinedComponentList</a>
+					<a class="permalink" href="#NewCombinedComponentList">¶</a>
+					
+					
+				</h3>
+				<pre>func NewCombinedComponentList(devfileComps []<a href="#Component">Component</a>, otherComps []<a href="#Component">Component</a>) <a href="#CombinedComponentList">CombinedComponentList</a></pre>
+				<p>
+NewCombinedComponentList returns list of devfile, s2i components and other components(not managed by odo) in machine readable format
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Component">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html?s=298:526#L4">Component</a>
+				<a class="permalink" href="#Component">¶</a>
+				
+				
+			</h2>
+			<p>
+Component
+</p>
+
+			<pre>type Component struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="Component.Spec"></span>    Spec              <a href="#ComponentSpec">ComponentSpec</a>   `json:&#34;spec,omitempty&#34;`
+<span id="Component.Status"></span>    Status            <a href="#ComponentStatus">ComponentStatus</a> `json:&#34;status,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetComponent">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=11642:11790#L346">GetComponent</a>
+					<a class="permalink" href="#GetComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func GetComponent(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, componentName <a href="../../../../../builtin/#string">string</a>, applicationName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>) (component <a href="#Component">Component</a>, err <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetComponent provides component definition
+</p>
+
+				
+				
+			
+				
+				<h3 id="GetComponentFromDevfile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=6122:6219#L171">GetComponentFromDevfile</a>
+					<a class="permalink" href="#GetComponentFromDevfile">¶</a>
+					
+					
+				</h3>
+				<pre>func GetComponentFromDevfile(info *<a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/">envinfo</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/#EnvSpecificInfo">EnvSpecificInfo</a>) (<a href="#Component">Component</a>, <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetComponentFromDevfile extracts component&#39;s metadata from the specified env info if it exists
+</p>
+
+				
+				
+			
+				
+				<h3 id="ListDevfileComponentsInPath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=8804:8905#L261">ListDevfileComponentsInPath</a>
+					<a class="permalink" href="#ListDevfileComponentsInPath">¶</a>
+					
+					
+				</h3>
+				<pre>func ListDevfileComponentsInPath(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, paths []<a href="../../../../../builtin/#string">string</a>) ([]<a href="#Component">Component</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="NewComponent">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html?s=2665:2714#L73">NewComponent</a>
+					<a class="permalink" href="#NewComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func NewComponent(componentName <a href="../../../../../builtin/#string">string</a>) <a href="#Component">Component</a></pre>
+				<p>
+NewComponent provides a constructor to component struct with some metadata prefilled
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ComponentFullDescription">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component_full_description.go.html?s=1116:1385#L23">ComponentFullDescription</a>
+				<a class="permalink" href="#ComponentFullDescription">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentFullDescription describes a component fully
+</p>
+
+			<pre>type ComponentFullDescription struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="ComponentFullDescription.Spec"></span>    Spec              <a href="#ComponentFullDescriptionSpec">ComponentFullDescriptionSpec</a> `json:&#34;spec,omitempty&#34;`
+<span id="ComponentFullDescription.Status"></span>    Status            <a href="#ComponentStatus">ComponentStatus</a>              `json:&#34;status,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewComponentFullDescriptionFromClientAndLocalConfigProvider">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component_full_description.go.html?s=3527:3774#L95">NewComponentFullDescriptionFromClientAndLocalConfigProvider</a>
+					<a class="permalink" href="#NewComponentFullDescriptionFromClientAndLocalConfigProvider">¶</a>
+					
+					
+				</h3>
+				<pre>func NewComponentFullDescriptionFromClientAndLocalConfigProvider(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, envInfo *<a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/">envinfo</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/#EnvSpecificInfo">EnvSpecificInfo</a>, componentName <a href="../../../../../builtin/#string">string</a>, applicationName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>, context <a href="../../../../../builtin/#string">string</a>) (*<a href="#ComponentFullDescription">ComponentFullDescription</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+NewComponentFullDescriptionFromClientAndLocalConfigProvider gets the complete description of the component from cluster
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ComponentFullDescription.GetComponent">func (*ComponentFullDescription) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component_full_description.go.html?s=9690:9751#L312">GetComponent</a>
+					<a class="permalink" href="#ComponentFullDescription.GetComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (cfd *<a href="#ComponentFullDescription">ComponentFullDescription</a>) GetComponent() <a href="#Component">Component</a></pre>
+				<p>
+GetComponent returns a component representation
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ComponentFullDescription.Print">func (*ComponentFullDescription) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component_full_description.go.html?s=6203:6283#L187">Print</a>
+					<a class="permalink" href="#ComponentFullDescription.Print">¶</a>
+					
+					
+				</h3>
+				<pre>func (cfd *<a href="#ComponentFullDescription">ComponentFullDescription</a>) Print(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+Print prints the complete information of component onto stdout (Note: long term this function should not need to access any parameters, but just print the information in struct)
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ComponentFullDescriptionSpec">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component_full_description.go.html?s=638:1058#L12">ComponentFullDescriptionSpec</a>
+				<a class="permalink" href="#ComponentFullDescriptionSpec">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentFullDescriptionSpec represents the complete description of the component
+</p>
+
+			<pre>type ComponentFullDescriptionSpec struct {
+<span id="ComponentFullDescriptionSpec.App"></span>    App     <a href="../../../../../builtin/#string">string</a>              `json:&#34;app,omitempty&#34;`
+<span id="ComponentFullDescriptionSpec.Type"></span>    Type    <a href="../../../../../builtin/#string">string</a>              `json:&#34;type,omitempty&#34;`
+<span id="ComponentFullDescriptionSpec.Source"></span>    Source  <a href="../../../../../builtin/#string">string</a>              `json:&#34;source,omitempty&#34;`
+<span id="ComponentFullDescriptionSpec.URL"></span>    URL     <a href="../../../../../github.com/redhat-developer/odo/pkg/url/">urlpkg</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/url/#URLList">URLList</a>      `json:&#34;urls,omitempty&#34;`
+<span id="ComponentFullDescriptionSpec.Storage"></span>    Storage <a href="../../../../../github.com/redhat-developer/odo/pkg/storage/">storage</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/storage/#StorageList">StorageList</a> `json:&#34;storages,omitempty&#34;`
+<span id="ComponentFullDescriptionSpec.Env"></span>    Env     []<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#EnvVar">EnvVar</a>     `json:&#34;env,omitempty&#34;`
+<span id="ComponentFullDescriptionSpec.Ports"></span>    Ports   []<a href="../../../../../builtin/#string">string</a>            `json:&#34;ports,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ComponentList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html?s=1109:1261#L25">ComponentList</a>
+				<a class="permalink" href="#ComponentList">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentList is list of components
+</p>
+
+			<pre>type ComponentList struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a> `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ListMeta">ListMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="ComponentList.Items"></span>    Items           []<a href="#Component">Component</a> `json:&#34;items&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="List">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=5755:5847#L162">List</a>
+					<a class="permalink" href="#List">¶</a>
+					
+					
+				</h3>
+				<pre>func List(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, applicationSelector <a href="../../../../../builtin/#string">string</a>) (<a href="#ComponentList">ComponentList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+List lists all the devfile components in active application
+</p>
+
+				
+				
+			
+				
+				<h3 id="ListDevfileComponents">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=4715:4813#L133">ListDevfileComponents</a>
+					<a class="permalink" href="#ListDevfileComponents">¶</a>
+					
+					
+				</h3>
+				<pre>func ListDevfileComponents(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, selector <a href="../../../../../builtin/#string">string</a>) (<a href="#ComponentList">ComponentList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ListDevfileComponents returns the devfile component matching a selector.
+The selector could be about selecting components part of an application.
+There are helpers in &#34;applabels&#34; package for this.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ComponentSpec">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html?s=567:1068#L12">ComponentSpec</a>
+				<a class="permalink" href="#ComponentSpec">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentSpec is spec of components
+</p>
+
+			<pre>type ComponentSpec struct {
+<span id="ComponentSpec.App"></span>    App         <a href="../../../../../builtin/#string">string</a>            `json:&#34;app,omitempty&#34;`
+<span id="ComponentSpec.Type"></span>    Type        <a href="../../../../../builtin/#string">string</a>            `json:&#34;type,omitempty&#34;`
+<span id="ComponentSpec.Source"></span>    Source      <a href="../../../../../builtin/#string">string</a>            `json:&#34;source,omitempty&#34;`
+<span id="ComponentSpec.URL"></span>    URL         []<a href="../../../../../builtin/#string">string</a>          `json:&#34;url,omitempty&#34;`
+<span id="ComponentSpec.URLSpec"></span>    URLSpec     []<a href="../../../../../github.com/redhat-developer/odo/pkg/url/">url</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/url/#URL">URL</a>         `json:&#34;-&#34;`
+<span id="ComponentSpec.Storage"></span>    Storage     []<a href="../../../../../builtin/#string">string</a>          `json:&#34;storage,omitempty&#34;`
+<span id="ComponentSpec.StorageSpec"></span>    StorageSpec []<a href="../../../../../github.com/redhat-developer/odo/pkg/storage/">storage</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/storage/#Storage">Storage</a> `json:&#34;-&#34;`
+<span id="ComponentSpec.Env"></span>    Env         []<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#EnvVar">EnvVar</a>   `json:&#34;env,omitempty&#34;`
+<span id="ComponentSpec.Ports"></span>    Ports       []<a href="../../../../../builtin/#string">string</a>          `json:&#34;ports,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ComponentStatus">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html?s=1515:1712#L40">ComponentStatus</a>
+				<a class="permalink" href="#ComponentStatus">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentStatus is Status of components
+</p>
+
+			<pre>type ComponentStatus struct {
+<span id="ComponentStatus.Context"></span>    Context        <a href="../../../../../builtin/#string">string</a>        `json:&#34;context,omitempty&#34;`
+<span id="ComponentStatus.State"></span>    State          <a href="#State">State</a>         `json:&#34;state&#34;`
+<span id="ComponentStatus.LinkedServices"></span>    LinkedServices []<a href="#SecretMount">SecretMount</a> `json:&#34;linkedServices,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ConfigurableRepr">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/devfile_repr.go.html?s=1641:1914#L52">ConfigurableRepr</a>
+				<a class="permalink" href="#ConfigurableRepr">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type ConfigurableRepr struct {
+<span id="ConfigurableRepr.Name"></span>    Name    <a href="../../../../../builtin/#string">string</a>          `yaml:&#34;ComponentName,omitempty&#34; json:&#34;ComponentName,omitempty&#34;`
+<span id="ConfigurableRepr.Memory"></span>    Memory  <a href="../../../../../builtin/#string">string</a>          `yaml:&#34;Memory,omitempty&#34; json:&#34;Memory,omitempty&#34;`
+<span id="ConfigurableRepr.Configs"></span>    Configs []<a href="#ContainerRepr">ContainerRepr</a> `yaml:&#34;Configs,omitempty&#34; json:&#34;Configs,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ToDevfileRepresentation">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/devfile_repr.go.html?s=250:325#L1">ToDevfileRepresentation</a>
+					<a class="permalink" href="#ToDevfileRepresentation">¶</a>
+					
+					
+				</h3>
+				<pre>func ToDevfileRepresentation(d <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>) (<a href="#ConfigurableRepr">ConfigurableRepr</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ContainerRepr">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/devfile_repr.go.html?s=1916:2215#L58">ContainerRepr</a>
+				<a class="permalink" href="#ContainerRepr">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type ContainerRepr struct {
+<span id="ContainerRepr.ContainerName"></span>    ContainerName        <a href="../../../../../builtin/#string">string</a>            `yaml:&#34;ContainerName&#34; json:&#34;ContainerName&#34;`
+<span id="ContainerRepr.EnvironmentVariables"></span>    EnvironmentVariables <a href="../../../../../github.com/redhat-developer/odo/pkg/config/">config</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/config/#EnvVarList">EnvVarList</a> `yaml:&#34;EnvironmentVariables&#34; json:&#34;EnvironmentVariables,omitempty&#34;`
+<span id="ContainerRepr.Ports"></span>    Ports                []<a href="#PortRepr">PortRepr</a>        `yaml:&#34;Ports&#34; json:&#34;Ports,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="JSONConfigRepr">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/devfile_repr.go.html?s=1464:1639#L46">JSONConfigRepr</a>
+				<a class="permalink" href="#JSONConfigRepr">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type JSONConfigRepr struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="JSONConfigRepr.DevfileConfigSpec"></span>    DevfileConfigSpec <a href="#ConfigurableRepr">ConfigurableRepr</a> `json:&#34;spec&#34; yaml:&#34;spec&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WrapFromJSONOutput">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/devfile_repr.go.html?s=1227:1292#L36">WrapFromJSONOutput</a>
+					<a class="permalink" href="#WrapFromJSONOutput">¶</a>
+					
+					
+				</h3>
+				<pre>func WrapFromJSONOutput(confRepr <a href="#ConfigurableRepr">ConfigurableRepr</a>) <a href="#JSONConfigRepr">JSONConfigRepr</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PortRepr">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/devfile_repr.go.html?s=2217:2401#L64">PortRepr</a>
+				<a class="permalink" href="#PortRepr">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type PortRepr struct {
+<span id="PortRepr.Name"></span>    Name        <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Name&#34; json:&#34;Name&#34;`
+<span id="PortRepr.ExposedPort"></span>    ExposedPort <a href="../../../../../builtin/#int">int</a>    `yaml:&#34;ExposedPort&#34; json:&#34;ExposedPort&#34;`
+<span id="PortRepr.Protocol"></span>    Protocol    <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Protocol&#34; json:&#34;Protocol&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PushedComponent">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/pushed_component.go.html?s=714:881#L17">PushedComponent</a>
+				<a class="permalink" href="#PushedComponent">¶</a>
+				
+				
+			</h2>
+			<p>
+PushedComponent is an abstraction over the cluster representation of the component
+</p>
+
+			<pre>type PushedComponent interface {
+    GetURLs() ([]<a href="../../../../../github.com/redhat-developer/odo/pkg/url/">url</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/url/#URL">URL</a>, <a href="../../../../../builtin/#error">error</a>)
+    GetApplication() <a href="../../../../../builtin/#string">string</a>
+    GetType() (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)
+    GetStorage() ([]<a href="../../../../../github.com/redhat-developer/odo/pkg/storage/">storage</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/storage/#Storage">Storage</a>, <a href="../../../../../builtin/#error">error</a>)
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetPushedComponent">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/pushed_component.go.html?s=5822:5936#L198">GetPushedComponent</a>
+					<a class="permalink" href="#GetPushedComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func GetPushedComponent(c <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, componentName, applicationName <a href="../../../../../builtin/#string">string</a>) (<a href="#PushedComponent">PushedComponent</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetPushedComponent returns an abstraction over the cluster representation of the component
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="SecretMount">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html?s=1365:1470#L32">SecretMount</a>
+				<a class="permalink" href="#SecretMount">¶</a>
+				
+				
+			</h2>
+			<p>
+SecretMount describes a Secret mount (either as environment variables with envFrom or as a volume)
+</p>
+
+			<pre>type SecretMount struct {
+<span id="SecretMount.ServiceName"></span>    ServiceName <a href="../../../../../builtin/#string">string</a>
+<span id="SecretMount.SecretName"></span>    SecretName  <a href="../../../../../builtin/#string">string</a>
+<span id="SecretMount.MountVolume"></span>    MountVolume <a href="../../../../../builtin/#bool">bool</a>
+<span id="SecretMount.MountPath"></span>    MountPath   <a href="../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="State">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/types.go.html?s=2053:2070#L55">State</a>
+				<a class="permalink" href="#State">¶</a>
+				
+				
+			</h2>
+			<p>
+State represents the component state
+</p>
+
+			<pre>type State <a href="../../../../../builtin/#string">string</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// StateTypePushed means that Storage is present both locally and on cluster</span>
+    <span id="StateTypePushed">StateTypePushed</span> <a href="#State">State</a> = &#34;Pushed&#34;
+    <span class="comment">// StateTypeNotPushed means that Storage is only in local config, but not on the cluster</span>
+    <span id="StateTypeNotPushed">StateTypeNotPushed</span> <a href="#State">State</a> = &#34;Not Pushed&#34;
+    <span class="comment">// StateTypeUnknown means that odo cannot tell its state</span>
+    <span id="StateTypeUnknown">StateTypeUnknown</span> <a href="#State">State</a> = &#34;Unknown&#34;
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetComponentState">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/component/component.go.html?s=11266:11365#L333">GetComponentState</a>
+					<a class="permalink" href="#GetComponentState">¶</a>
+					
+					
+				</h3>
+				<pre>func GetComponentState(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, componentName, applicationName <a href="../../../../../builtin/#string">string</a>) <a href="#State">State</a></pre>
+				
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="labels/">labels</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

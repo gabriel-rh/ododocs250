@@ -1,0 +1,344 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>service - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli">cli</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service">service</a>/<span class="text-muted">list_operator_test.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/service">github.com/redhat-developer/odo/pkg/odo/cli/service</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package service
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;reflect&#34;
+<span id="L5" class="ln">     5  </span>	&#34;testing&#34;
+<span id="L6" class="ln">     6  </span>	&#34;time&#34;
+<span id="L7" class="ln">     7  </span>
+<span id="L8" class="ln">     8  </span>	&#34;github.com/ghodss/yaml&#34;
+<span id="L9" class="ln">     9  </span>	metav1 &#34;k8s.io/apimachinery/pkg/apis/meta/v1&#34;
+<span id="L10" class="ln">    10  </span>	&#34;k8s.io/apimachinery/pkg/apis/meta/v1/unstructured&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span>func TestGetOrderedServicesNames(t *testing.T) {
+<span id="L14" class="ln">    14  </span>	tests := []struct {
+<span id="L15" class="ln">    15  </span>		name     string
+<span id="L16" class="ln">    16  </span>		services map[string]*serviceItem
+<span id="L17" class="ln">    17  </span>		want     []string
+<span id="L18" class="ln">    18  </span>	}{
+<span id="L19" class="ln">    19  </span>		{
+<span id="L20" class="ln">    20  </span>			name: &#34;Unordered names&#34;,
+<span id="L21" class="ln">    21  </span>			services: map[string]*serviceItem{
+<span id="L22" class="ln">    22  </span>				&#34;name3&#34;: nil,
+<span id="L23" class="ln">    23  </span>				&#34;name1&#34;: nil,
+<span id="L24" class="ln">    24  </span>				&#34;name2&#34;: nil,
+<span id="L25" class="ln">    25  </span>			},
+<span id="L26" class="ln">    26  </span>			want: []string{&#34;name1&#34;, &#34;name2&#34;, &#34;name3&#34;},
+<span id="L27" class="ln">    27  </span>		},
+<span id="L28" class="ln">    28  </span>	}
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span>	for _, tt := range tests {
+<span id="L31" class="ln">    31  </span>		t.Run(tt.name, func(t *testing.T) {
+<span id="L32" class="ln">    32  </span>			result := getOrderedServicesNames(tt.services)
+<span id="L33" class="ln">    33  </span>			if !reflect.DeepEqual(result, tt.want) {
+<span id="L34" class="ln">    34  </span>				t.Errorf(&#34;Failed %s: got: %q, want: %q&#34;, t.Name(), result, tt.want)
+<span id="L35" class="ln">    35  </span>			}
+<span id="L36" class="ln">    36  </span>		})
+<span id="L37" class="ln">    37  </span>	}
+<span id="L38" class="ln">    38  </span>}
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span>type getTabularInfoResult struct {
+<span id="L41" class="ln">    41  </span>	managedByOdo    string
+<span id="L42" class="ln">    42  </span>	state           string
+<span id="L43" class="ln">    43  </span>	durationContent bool
+<span id="L44" class="ln">    44  </span>}
+<span id="L45" class="ln">    45  </span>
+<span id="L46" class="ln">    46  </span>func TestGetTabularInfo(t *testing.T) {
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span>	tests := []struct {
+<span id="L49" class="ln">    49  </span>		name             string
+<span id="L50" class="ln">    50  </span>		service          *serviceItem
+<span id="L51" class="ln">    51  </span>		devfileComponent string
+<span id="L52" class="ln">    52  </span>		want             getTabularInfoResult
+<span id="L53" class="ln">    53  </span>	}{
+<span id="L54" class="ln">    54  </span>		{
+<span id="L55" class="ln">    55  </span>			name: &#34;case 1: service in cluster managed by current devfile&#34;,
+<span id="L56" class="ln">    56  </span>			service: &amp;serviceItem{
+<span id="L57" class="ln">    57  </span>				ClusterInfo: &amp;clusterInfo{
+<span id="L58" class="ln">    58  </span>					Labels: map[string]string{
+<span id="L59" class="ln">    59  </span>						&#34;app.kubernetes.io/managed-by&#34;: &#34;odo&#34;,
+<span id="L60" class="ln">    60  </span>						&#34;app.kubernetes.io/instance&#34;:   &#34;component1&#34;,
+<span id="L61" class="ln">    61  </span>					},
+<span id="L62" class="ln">    62  </span>				},
+<span id="L63" class="ln">    63  </span>				InDevfile: true,
+<span id="L64" class="ln">    64  </span>			},
+<span id="L65" class="ln">    65  </span>			devfileComponent: &#34;component1&#34;,
+<span id="L66" class="ln">    66  </span>			want: getTabularInfoResult{
+<span id="L67" class="ln">    67  </span>				managedByOdo:    &#34;Yes (component1)&#34;,
+<span id="L68" class="ln">    68  </span>				state:           &#34;Pushed&#34;,
+<span id="L69" class="ln">    69  </span>				durationContent: true,
+<span id="L70" class="ln">    70  </span>			},
+<span id="L71" class="ln">    71  </span>		},
+<span id="L72" class="ln">    72  </span>		{
+<span id="L73" class="ln">    73  </span>			name: &#34;case 2: service in cluster not managed by Odo&#34;,
+<span id="L74" class="ln">    74  </span>			service: &amp;serviceItem{
+<span id="L75" class="ln">    75  </span>				ClusterInfo: &amp;clusterInfo{
+<span id="L76" class="ln">    76  </span>					Labels: map[string]string{},
+<span id="L77" class="ln">    77  </span>				},
+<span id="L78" class="ln">    78  </span>				InDevfile: false,
+<span id="L79" class="ln">    79  </span>			},
+<span id="L80" class="ln">    80  </span>			devfileComponent: &#34;component1&#34;,
+<span id="L81" class="ln">    81  </span>			want: getTabularInfoResult{
+<span id="L82" class="ln">    82  </span>				managedByOdo:    &#34;No&#34;,
+<span id="L83" class="ln">    83  </span>				state:           &#34;&#34;,
+<span id="L84" class="ln">    84  </span>				durationContent: true,
+<span id="L85" class="ln">    85  </span>			},
+<span id="L86" class="ln">    86  </span>		},
+<span id="L87" class="ln">    87  </span>		{
+<span id="L88" class="ln">    88  </span>			name: &#34;case 3: service in cluster absent from current devfile&#34;,
+<span id="L89" class="ln">    89  </span>			service: &amp;serviceItem{
+<span id="L90" class="ln">    90  </span>				ClusterInfo: &amp;clusterInfo{
+<span id="L91" class="ln">    91  </span>					Labels: map[string]string{
+<span id="L92" class="ln">    92  </span>						&#34;app.kubernetes.io/managed-by&#34;: &#34;odo&#34;,
+<span id="L93" class="ln">    93  </span>						&#34;app.kubernetes.io/instance&#34;:   &#34;component1&#34;,
+<span id="L94" class="ln">    94  </span>					},
+<span id="L95" class="ln">    95  </span>				},
+<span id="L96" class="ln">    96  </span>				InDevfile: false,
+<span id="L97" class="ln">    97  </span>			},
+<span id="L98" class="ln">    98  </span>			devfileComponent: &#34;component1&#34;,
+<span id="L99" class="ln">    99  </span>			want: getTabularInfoResult{
+<span id="L100" class="ln">   100  </span>				managedByOdo:    &#34;Yes (component1)&#34;,
+<span id="L101" class="ln">   101  </span>				state:           &#34;Deleted locally&#34;,
+<span id="L102" class="ln">   102  </span>				durationContent: true,
+<span id="L103" class="ln">   103  </span>			},
+<span id="L104" class="ln">   104  </span>		},
+<span id="L105" class="ln">   105  </span>		{
+<span id="L106" class="ln">   106  </span>			name: &#34;case 4: service in cluster maaged by another devfile&#34;,
+<span id="L107" class="ln">   107  </span>			service: &amp;serviceItem{
+<span id="L108" class="ln">   108  </span>				ClusterInfo: &amp;clusterInfo{
+<span id="L109" class="ln">   109  </span>					Labels: map[string]string{
+<span id="L110" class="ln">   110  </span>						&#34;app.kubernetes.io/managed-by&#34;: &#34;odo&#34;,
+<span id="L111" class="ln">   111  </span>						&#34;app.kubernetes.io/instance&#34;:   &#34;component2&#34;,
+<span id="L112" class="ln">   112  </span>					},
+<span id="L113" class="ln">   113  </span>				},
+<span id="L114" class="ln">   114  </span>				InDevfile: false,
+<span id="L115" class="ln">   115  </span>			},
+<span id="L116" class="ln">   116  </span>			devfileComponent: &#34;component1&#34;,
+<span id="L117" class="ln">   117  </span>			want: getTabularInfoResult{
+<span id="L118" class="ln">   118  </span>				managedByOdo:    &#34;Yes (component2)&#34;,
+<span id="L119" class="ln">   119  </span>				state:           &#34;&#34;,
+<span id="L120" class="ln">   120  </span>				durationContent: true,
+<span id="L121" class="ln">   121  </span>			},
+<span id="L122" class="ln">   122  </span>		},
+<span id="L123" class="ln">   123  </span>		{
+<span id="L124" class="ln">   124  </span>			name: &#34;case 5: service defined in devfile, not in cluster&#34;,
+<span id="L125" class="ln">   125  </span>			service: &amp;serviceItem{
+<span id="L126" class="ln">   126  </span>				ClusterInfo: nil,
+<span id="L127" class="ln">   127  </span>				InDevfile:   true,
+<span id="L128" class="ln">   128  </span>			},
+<span id="L129" class="ln">   129  </span>			devfileComponent: &#34;component1&#34;,
+<span id="L130" class="ln">   130  </span>			want: getTabularInfoResult{
+<span id="L131" class="ln">   131  </span>				managedByOdo:    &#34;Yes (component1)&#34;,
+<span id="L132" class="ln">   132  </span>				state:           &#34;Not pushed&#34;,
+<span id="L133" class="ln">   133  </span>				durationContent: false,
+<span id="L134" class="ln">   134  </span>			},
+<span id="L135" class="ln">   135  </span>		},
+<span id="L136" class="ln">   136  </span>	}
+<span id="L137" class="ln">   137  </span>	for _, tt := range tests {
+<span id="L138" class="ln">   138  </span>		t.Run(tt.name, func(t *testing.T) {
+<span id="L139" class="ln">   139  </span>			managedByOdo, state, duration := getTabularInfo(tt.service, tt.devfileComponent)
+<span id="L140" class="ln">   140  </span>			if managedByOdo != tt.want.managedByOdo {
+<span id="L141" class="ln">   141  </span>				t.Errorf(&#34;Failed %s: managedByOdo got: %q, want: %q&#34;, t.Name(), managedByOdo, tt.want.managedByOdo)
+<span id="L142" class="ln">   142  </span>			}
+<span id="L143" class="ln">   143  </span>			if state != tt.want.state {
+<span id="L144" class="ln">   144  </span>				t.Errorf(&#34;Failed %s: state got: %q, want: %q&#34;, t.Name(), state, tt.want.state)
+<span id="L145" class="ln">   145  </span>			}
+<span id="L146" class="ln">   146  </span>			if len(duration) &gt; 0 != tt.want.durationContent {
+<span id="L147" class="ln">   147  </span>				t.Errorf(&#34;Failed %s: duration content got: %v, want: %v&#34;, t.Name(), len(duration) &gt; 0, tt.want.durationContent)
+<span id="L148" class="ln">   148  </span>			}
+<span id="L149" class="ln">   149  </span>		})
+<span id="L150" class="ln">   150  </span>	}
+<span id="L151" class="ln">   151  </span>}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span>func TestMixServices(t *testing.T) {
+<span id="L154" class="ln">   154  </span>	atime, _ := time.Parse(time.RFC3339, &#34;2021-06-02T08:39:20Z00:00&#34;)
+<span id="L155" class="ln">   155  </span>	tests := []struct {
+<span id="L156" class="ln">   156  </span>		name               string
+<span id="L157" class="ln">   157  </span>		clusterListInlined []string
+<span id="L158" class="ln">   158  </span>		devfileList        []string
+<span id="L159" class="ln">   159  </span>		want               []serviceItem
+<span id="L160" class="ln">   160  </span>	}{
+<span id="L161" class="ln">   161  </span>		{
+<span id="L162" class="ln">   162  </span>			name: &#34;two in cluster and two in devfile, including one in common&#34;,
+<span id="L163" class="ln">   163  </span>			clusterListInlined: []string{`
+<span id="L164" class="ln">   164  </span>kind: kind1
+<span id="L165" class="ln">   165  </span>metadata:
+<span id="L166" class="ln">   166  </span>  name: name1
+<span id="L167" class="ln">   167  </span>  labels:
+<span id="L168" class="ln">   168  </span>    app.kubernetes.io/managed-by: odo
+<span id="L169" class="ln">   169  </span>    app.kubernetes.io/instance: component1
+<span id="L170" class="ln">   170  </span>  creationTimestamp: 2021-06-02T08:39:20Z00:00
+<span id="L171" class="ln">   171  </span>spec:
+<span id="L172" class="ln">   172  </span>  field1: value1`,
+<span id="L173" class="ln">   173  </span>				`
+<span id="L174" class="ln">   174  </span>kind: kind2
+<span id="L175" class="ln">   175  </span>metadata:
+<span id="L176" class="ln">   176  </span>  name: name2
+<span id="L177" class="ln">   177  </span>  labels:
+<span id="L178" class="ln">   178  </span>    app.kubernetes.io/managed-by: odo
+<span id="L179" class="ln">   179  </span>    app.kubernetes.io/instance: component2
+<span id="L180" class="ln">   180  </span>  creationTimestamp: 2021-06-02T08:39:20Z00:00
+<span id="L181" class="ln">   181  </span>spec:
+<span id="L182" class="ln">   182  </span>  field2: value2`},
+<span id="L183" class="ln">   183  </span>			devfileList: []string{`
+<span id="L184" class="ln">   184  </span>kind: kind1
+<span id="L185" class="ln">   185  </span>metadata:
+<span id="L186" class="ln">   186  </span>    name: name1
+<span id="L187" class="ln">   187  </span>spec:
+<span id="L188" class="ln">   188  </span>    field1: value1`, `
+<span id="L189" class="ln">   189  </span>kind: kind3
+<span id="L190" class="ln">   190  </span>metadata:
+<span id="L191" class="ln">   191  </span>    name: name3
+<span id="L192" class="ln">   192  </span>spec:
+<span id="L193" class="ln">   193  </span>    field3: value3`},
+<span id="L194" class="ln">   194  </span>			want: []serviceItem{
+<span id="L195" class="ln">   195  </span>				{
+<span id="L196" class="ln">   196  </span>					TypeMeta: metav1.TypeMeta{
+<span id="L197" class="ln">   197  </span>						Kind:       &#34;Service&#34;,
+<span id="L198" class="ln">   198  </span>						APIVersion: &#34;odo.dev/v1alpha1&#34;,
+<span id="L199" class="ln">   199  </span>					},
+<span id="L200" class="ln">   200  </span>					ObjectMeta: metav1.ObjectMeta{
+<span id="L201" class="ln">   201  </span>						Name: &#34;kind1/name1&#34;,
+<span id="L202" class="ln">   202  </span>					},
+<span id="L203" class="ln">   203  </span>					ClusterInfo: &amp;clusterInfo{
+<span id="L204" class="ln">   204  </span>						Labels: map[string]string{
+<span id="L205" class="ln">   205  </span>							&#34;app.kubernetes.io/managed-by&#34;: &#34;odo&#34;,
+<span id="L206" class="ln">   206  </span>							&#34;app.kubernetes.io/instance&#34;:   &#34;component1&#34;,
+<span id="L207" class="ln">   207  </span>						},
+<span id="L208" class="ln">   208  </span>						CreationTimestamp: atime,
+<span id="L209" class="ln">   209  </span>					},
+<span id="L210" class="ln">   210  </span>					InDevfile: true,
+<span id="L211" class="ln">   211  </span>					Deployed:  true,
+<span id="L212" class="ln">   212  </span>				},
+<span id="L213" class="ln">   213  </span>				{
+<span id="L214" class="ln">   214  </span>					TypeMeta: metav1.TypeMeta{
+<span id="L215" class="ln">   215  </span>						Kind:       &#34;Service&#34;,
+<span id="L216" class="ln">   216  </span>						APIVersion: &#34;odo.dev/v1alpha1&#34;,
+<span id="L217" class="ln">   217  </span>					},
+<span id="L218" class="ln">   218  </span>					ObjectMeta: metav1.ObjectMeta{
+<span id="L219" class="ln">   219  </span>						Name: &#34;kind2/name2&#34;,
+<span id="L220" class="ln">   220  </span>					},
+<span id="L221" class="ln">   221  </span>					ClusterInfo: &amp;clusterInfo{
+<span id="L222" class="ln">   222  </span>						Labels: map[string]string{
+<span id="L223" class="ln">   223  </span>							&#34;app.kubernetes.io/managed-by&#34;: &#34;odo&#34;,
+<span id="L224" class="ln">   224  </span>							&#34;app.kubernetes.io/instance&#34;:   &#34;component2&#34;,
+<span id="L225" class="ln">   225  </span>						},
+<span id="L226" class="ln">   226  </span>						CreationTimestamp: atime,
+<span id="L227" class="ln">   227  </span>					},
+<span id="L228" class="ln">   228  </span>					InDevfile: false,
+<span id="L229" class="ln">   229  </span>					Deployed:  true,
+<span id="L230" class="ln">   230  </span>				},
+<span id="L231" class="ln">   231  </span>				{
+<span id="L232" class="ln">   232  </span>					TypeMeta: metav1.TypeMeta{
+<span id="L233" class="ln">   233  </span>						Kind:       &#34;Service&#34;,
+<span id="L234" class="ln">   234  </span>						APIVersion: &#34;odo.dev/v1alpha1&#34;,
+<span id="L235" class="ln">   235  </span>					},
+<span id="L236" class="ln">   236  </span>					ObjectMeta: metav1.ObjectMeta{
+<span id="L237" class="ln">   237  </span>						Name: &#34;kind3/name3&#34;,
+<span id="L238" class="ln">   238  </span>					},
+<span id="L239" class="ln">   239  </span>					ClusterInfo: nil,
+<span id="L240" class="ln">   240  </span>					InDevfile:   true,
+<span id="L241" class="ln">   241  </span>					Deployed:    false,
+<span id="L242" class="ln">   242  </span>				},
+<span id="L243" class="ln">   243  </span>			},
+<span id="L244" class="ln">   244  </span>		},
+<span id="L245" class="ln">   245  </span>	}
+<span id="L246" class="ln">   246  </span>	for _, tt := range tests {
+<span id="L247" class="ln">   247  </span>		t.Run(tt.name, func(t *testing.T) {
+<span id="L248" class="ln">   248  </span>			usCluster := make([]unstructured.Unstructured, len(tt.clusterListInlined))
+<span id="L249" class="ln">   249  </span>			for i, clusterInlined := range tt.clusterListInlined {
+<span id="L250" class="ln">   250  </span>				err := yaml.Unmarshal([]byte(clusterInlined), &amp;usCluster[i])
+<span id="L251" class="ln">   251  </span>				if err != nil {
+<span id="L252" class="ln">   252  </span>					t.Errorf(&#34;Failed to unmarshal spec manifest %q: %u&#34;, clusterInlined, err)
+<span id="L253" class="ln">   253  </span>				}
+<span id="L254" class="ln">   254  </span>			}
+<span id="L255" class="ln">   255  </span>			usDevfiles := make(map[string]unstructured.Unstructured)
+<span id="L256" class="ln">   256  </span>			for _, devfile := range tt.devfileList {
+<span id="L257" class="ln">   257  </span>				usDevfile := unstructured.Unstructured{}
+<span id="L258" class="ln">   258  </span>				err := yaml.Unmarshal([]byte(devfile), &amp;usDevfile)
+<span id="L259" class="ln">   259  </span>				if err != nil {
+<span id="L260" class="ln">   260  </span>					t.Errorf(&#34;Failed to unmarshal spec manifest %q, %u&#34;, devfile, err)
+<span id="L261" class="ln">   261  </span>				}
+<span id="L262" class="ln">   262  </span>				usDevfiles[usDevfile.GetKind()+&#34;/&#34;+usDevfile.GetName()] = usDevfile
+<span id="L263" class="ln">   263  </span>			}
+<span id="L264" class="ln">   264  </span>			result := mixServices(usCluster, usDevfiles)
+<span id="L265" class="ln">   265  </span>			for i := range result.Items {
+<span id="L266" class="ln">   266  </span>				if reflect.DeepEqual(result.Items[i].Manifest, unstructured.Unstructured{}) {
+<span id="L267" class="ln">   267  </span>					t.Errorf(&#34;Manifest is empty&#34;)
+<span id="L268" class="ln">   268  </span>				}
+<span id="L269" class="ln">   269  </span>				<span class="comment">// do not check manifest content</span>
+<span id="L270" class="ln">   270  </span>				result.Items[i].Manifest = unstructured.Unstructured{}.Object
+<span id="L271" class="ln">   271  </span>			}
+<span id="L272" class="ln">   272  </span>			if !reflect.DeepEqual(result.Items, tt.want) {
+<span id="L273" class="ln">   273  </span>				t.Errorf(&#34;Failed %s\n\ngot: %+v\n\nwant: %+v\n&#34;, t.Name(), result.Items, tt.want)
+<span id="L274" class="ln">   274  </span>			}
+<span id="L275" class="ln">   275  </span>		})
+<span id="L276" class="ln">   276  </span>	}
+<span id="L277" class="ln">   277  </span>}
+<span id="L278" class="ln">   278  </span>
+</pre><p><a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list_operator_test.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

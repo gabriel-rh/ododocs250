@@ -1,0 +1,275 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>watch - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package watch
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/watch" target="_blank">github.com/redhat-developer/odo/pkg/watch</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#DevfileWatchAndPush">func DevfileWatchAndPush(out io.Writer, parameters WatchParameters) error</a></dd>
+			
+				
+				<dd><a href="#WatchAndPush">func WatchAndPush(client kclient.ClientInterface, out io.Writer, parameters WatchParameters) error</a></dd>
+			
+			
+				
+				<dd><a href="#WatchParameters">type WatchParameters</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/watch/watch.go.html">watch.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// PushErrorString is the string that is printed when an error occurs during watch&#39;s Push operation</span>
+    <span id="PushErrorString">PushErrorString</span> = &#34;Error occurred on Push&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>
+ErrUserRequestedWatchExit is returned when the user stops the watch loop
+</p>
+
+				<pre>var <span id="ErrUserRequestedWatchExit">ErrUserRequestedWatchExit</span> = <a href="../../../../../fmt/">fmt</a>.<a href="../../../../../fmt/#Errorf">Errorf</a>(&#34;safely exiting from filesystem watch based on user request&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="DevfileWatchAndPush">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/watch/watch.go.html?s=17024:17097#L412">DevfileWatchAndPush</a>
+				<a class="permalink" href="#DevfileWatchAndPush">¶</a>
+				
+				
+			</h2>
+			<pre>func DevfileWatchAndPush(out <a href="../../../../../io/">io</a>.<a href="../../../../../io/#Writer">Writer</a>, parameters <a href="#WatchParameters">WatchParameters</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DevfileWatchAndPush calls out to the WatchAndPush function.
+As an occlient instance is not needed for devfile components, it sets it to nil
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="WatchAndPush">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/watch/watch.go.html?s=6069:6167#L150">WatchAndPush</a>
+				<a class="permalink" href="#WatchAndPush">¶</a>
+				
+				
+			</h2>
+			<pre>func WatchAndPush(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, out <a href="../../../../../io/">io</a>.<a href="../../../../../io/#Writer">Writer</a>, parameters <a href="#WatchParameters">WatchParameters</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+WatchAndPush watches path, if something changes in  that path it calls PushLocal
+ignores .git/* by default
+inspired by <a href="https://github.com/openshift/origin/blob/e785f76194c57bd0e1674c2f2776333e1e0e4e78/pkg/oc/cli/cmd/rsync/rsync.go#L257">https://github.com/openshift/origin/blob/e785f76194c57bd0e1674c2f2776333e1e0e4e78/pkg/oc/cli/cmd/rsync/rsync.go#L257</a>
+Parameters:
+</p>
+<pre>client: occlient instance
+out: io Writer instance
+parameters: WatchParameters
+</pre>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="WatchParameters">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/watch/watch.go.html?s=615:2538#L17">WatchParameters</a>
+				<a class="permalink" href="#WatchParameters">¶</a>
+				
+				
+			</h2>
+			<p>
+WatchParameters is designed to hold the controllables and attributes that the watch function works on
+</p>
+
+			<pre>type WatchParameters struct {
+    <span class="comment">// Name of component that is to be watched</span>
+<span id="WatchParameters.ComponentName"></span>    ComponentName <a href="../../../../../builtin/#string">string</a>
+    <span class="comment">// Name of application, the component is part of</span>
+<span id="WatchParameters.ApplicationName"></span>    ApplicationName <a href="../../../../../builtin/#string">string</a>
+    <span class="comment">// The path to the source of component(local or binary)</span>
+<span id="WatchParameters.Path"></span>    Path <a href="../../../../../builtin/#string">string</a>
+    <span class="comment">// List/Slice of files/folders in component source, the updates to which need not be pushed to component deployed pod</span>
+<span id="WatchParameters.FileIgnores"></span>    FileIgnores []<a href="../../../../../builtin/#string">string</a>
+    <span class="comment">// Custom function that can be used to push detected changes to remote pod. For more info about what each of the parameters to this function, please refer, pkg/component/component.go#PushLocal</span>
+<span id="WatchParameters.WatchHandler"></span>    WatchHandler func(<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, <a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>, <a href="../../../../../io/">io</a>.<a href="../../../../../io/#Writer">Writer</a>, []<a href="../../../../../builtin/#string">string</a>, []<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#bool">bool</a>, []<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a>
+    <span class="comment">// Custom function that can be used to push detected changes to remote devfile pod. For more info about what each of the parameters to this function, please refer, pkg/devfile/adapters/interface.go#PlatformAdapter</span>
+<span id="WatchParameters.DevfileWatchHandler"></span>    DevfileWatchHandler func(<a href="../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#PushParameters">PushParameters</a>, <a href="#WatchParameters">WatchParameters</a>) <a href="../../../../../builtin/#error">error</a>
+    <span class="comment">// This is a channel added to signal readiness of the watch command to the external channel listeners</span>
+<span id="WatchParameters.StartChan"></span>    StartChan chan <a href="../../../../../builtin/#bool">bool</a>
+    <span class="comment">// This is a channel added to terminate the watch command gracefully without passing SIGINT. &#34;Stop&#34; message on this channel terminates WatchAndPush function</span>
+<span id="WatchParameters.ExtChan"></span>    ExtChan chan <a href="../../../../../builtin/#bool">bool</a>
+    <span class="comment">// Interval of time before pushing changes to remote(component) pod</span>
+<span id="WatchParameters.PushDiffDelay"></span>    PushDiffDelay <a href="../../../../../builtin/#int">int</a>
+    <span class="comment">// Parameter whether or not to show build logs</span>
+<span id="WatchParameters.Show"></span>    Show <a href="../../../../../builtin/#bool">bool</a>
+<span id="WatchParameters.EnvSpecificInfo"></span>    <span class="comment">// EnvSpecificInfo contains infomation of env.yaml file</span>
+    EnvSpecificInfo *<a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/">envinfo</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/#EnvSpecificInfo">EnvSpecificInfo</a>
+<span id="WatchParameters.DevfileBuildCmd"></span>    <span class="comment">// DevfileBuildCmd takes the build command through the command line and overwrites devfile build command</span>
+    DevfileBuildCmd <a href="../../../../../builtin/#string">string</a>
+<span id="WatchParameters.DevfileRunCmd"></span>    <span class="comment">// DevfileRunCmd takes the run command through the command line and overwrites devfile run command</span>
+    DevfileRunCmd <a href="../../../../../builtin/#string">string</a>
+<span id="WatchParameters.DevfileDebugCmd"></span>    <span class="comment">// DevfileDebugCmd takes the debug command through the command line and overwrites the devfile debug command</span>
+    DevfileDebugCmd <a href="../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

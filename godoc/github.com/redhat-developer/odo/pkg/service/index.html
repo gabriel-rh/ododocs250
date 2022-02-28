@@ -1,0 +1,898 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>service - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package service
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/service" target="_blank">github.com/redhat-developer/odo/pkg/service</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#BindingDefinitions">func BindingDefinitions(ctx pipeline.Context)</a></dd>
+			
+				
+				<dd><a href="#BuildCRDFromParams">func BuildCRDFromParams(paramMap map[string]string, crd *spec.Schema, group, version, kind string) (map[string]interface{}, error)</a></dd>
+			
+				
+				<dd><a href="#DeleteOperatorService">func DeleteOperatorService(client kclient.ClientInterface, serviceName string) error</a></dd>
+			
+				
+				<dd><a href="#FindDevfileServiceBinding">func FindDevfileServiceBinding(devfileObj parser.DevfileObj, kind string, name, context string) (string, bool, error)</a></dd>
+			
+				
+				<dd><a href="#GetAlmExample">func GetAlmExample(csv olm.ClusterServiceVersion, cr, serviceType string) (almExample map[string]interface{}, err error)</a></dd>
+			
+				
+				<dd><a href="#GetCRInstances">func GetCRInstances(client kclient.ClientInterface, customResource *olm.CRDDescription) (*unstructured.UnstructuredList, error)</a></dd>
+			
+				
+				<dd><a href="#GetGVKFromCR">func GetGVKFromCR(cr *olm.CRDDescription) (group, version, kind string, err error)</a></dd>
+			
+				
+				<dd><a href="#GetGVRFromOperator">func GetGVRFromOperator(csv olm.ClusterServiceVersion, cr string) (string, string, string, error)</a></dd>
+			
+				
+				<dd><a href="#GetK8sComponentAsUnstructured">func GetK8sComponentAsUnstructured(component *devfile.KubernetesComponent, context string, fs devfilefs.Filesystem) (unstructured.Unstructured, error)</a></dd>
+			
+				
+				<dd><a href="#IsOperatorServiceNameValid">func IsOperatorServiceNameValid(name string) (string, string, error)</a></dd>
+			
+				
+				<dd><a href="#ListDeployedServices">func ListDeployedServices(client kclient.ClientInterface, labels map[string]string) (map[string]DeployedInfo, error)</a></dd>
+			
+				
+				<dd><a href="#ListDevfileLinks">func ListDevfileLinks(devfileObj parser.DevfileObj, context string) ([]string, error)</a></dd>
+			
+				
+				<dd><a href="#ListDevfileServices">func ListDevfileServices(client kclient.ClientInterface, devfileObj parser.DevfileObj, componentContext string) (map[string]unstructured.Unstructured, error)</a></dd>
+			
+				
+				<dd><a href="#ListOperatorServices">func ListOperatorServices(client kclient.ClientInterface) ([]unstructured.Unstructured, []string, error)</a></dd>
+			
+				
+				<dd><a href="#OperatorSvcExists">func OperatorSvcExists(client kclient.ClientInterface, serviceName string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="#ProvisionedService">func ProvisionedService(ctx pipeline.Context)</a></dd>
+			
+				
+				<dd><a href="#PushKubernetesResource">func PushKubernetesResource(client kclient.ClientInterface, u unstructured.Unstructured, labels map[string]string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="#PushKubernetesResources">func PushKubernetesResources(client kclient.ClientInterface, k8sComponents []devfile.Component, labels map[string]string, context string) error</a></dd>
+			
+				
+				<dd><a href="#PushLinks">func PushLinks(client kclient.ClientInterface, k8sComponents []devfile.Component, labels map[string]string, deployment *v1.Deployment, context string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="#SplitServiceKindName">func SplitServiceKindName(serviceName string) (string, string, error)</a></dd>
+			
+				
+				<dd><a href="#UpdateServicesWithOwnerReferences">func UpdateServicesWithOwnerReferences(client kclient.ClientInterface, k8sComponents []devfile.Component, ownerReference metav1.OwnerReference, context string) error</a></dd>
+			
+				
+				<dd><a href="#ValidateResourceExist">func ValidateResourceExist(client kclient.ClientInterface, k8sComponent devfile.Component, context string) (kindErr string, err error)</a></dd>
+			
+				
+				<dd><a href="#ValidateResourcesExist">func ValidateResourcesExist(client kclient.ClientInterface, k8sComponents []devfile.Component, context string) error</a></dd>
+			
+			
+				
+				<dd><a href="#DeployedInfo">type DeployedInfo</a></dd>
+				
+				
+			
+				
+				<dd><a href="#OperatorBackedService">type OperatorBackedService</a></dd>
+				
+					
+					<dd>    <a href="#NewOperatorBackedService">func NewOperatorBackedService(name string, kind string, version string, description string, displayName string, spec *spec.Schema) OperatorBackedService</a></dd>
+				
+				
+			
+				
+				<dd><a href="#OperatorBackedServiceCRList">type OperatorBackedServiceCRList</a></dd>
+				
+					
+					<dd>    <a href="#NewOperatorBackedCRList">func NewOperatorBackedCRList(name string, displayName string, description string) *OperatorBackedServiceCRList</a></dd>
+				
+				
+			
+				
+				<dd><a href="#OperatorBackedServiceSpec">type OperatorBackedServiceSpec</a></dd>
+				
+				
+			
+				
+				<dd><a href="#OperatorExample">type OperatorExample</a></dd>
+				
+					
+					<dd>    <a href="#NewOperatorExample">func NewOperatorExample(almExample map[string]interface{}) OperatorExample</a></dd>
+				
+				
+			
+				
+				<dd><a href="#OperatorServiceCRItem">type OperatorServiceCRItem</a></dd>
+				
+				
+			
+				
+				<dd><a href="#OperatorServiceCRListSpec">type OperatorServiceCRListSpec</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/crd_builder.go.html">crd_builder.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/link.go.html">link.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html">service.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service_binding_builder.go.html">service_binding_builder.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+LinkLabel is the name of the name of the link in the devfile
+</p>
+
+				<pre>const <span id="LinkLabel">LinkLabel</span> = &#34;app.kubernetes.io/link-name&#34;</pre>
+			
+				
+				<pre>const <span id="OperatorBackedServiceCRListKind">OperatorBackedServiceCRListKind</span> = &#34;ServiceList&#34;</pre>
+			
+				
+				<pre>const <span id="OperatorBackedServiceKind">OperatorBackedServiceKind</span> = &#34;Service&#34;</pre>
+			
+				<p>
+ServiceKind is the kind of the service in the service binding object
+</p>
+
+				<pre>const <span id="ServiceKind">ServiceKind</span> = &#34;app.kubernetes.io/service-kind&#34;</pre>
+			
+				<p>
+ServiceLabel is the name of the service in the service binding object
+</p>
+
+				<pre>const <span id="ServiceLabel">ServiceLabel</span> = &#34;app.kubernetes.io/service-name&#34;</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var <span id="OdoDefaultBuilder">OdoDefaultBuilder</span> = <a href="../../../../../github.com/redhat-developer/service-binding-operator/pkg/reconcile/pipeline/builder/">builder</a>.<a href="../../../../../github.com/redhat-developer/service-binding-operator/pkg/reconcile/pipeline/builder/#Builder">Builder</a>().<a href="#WithHandlers">WithHandlers</a>(defaultFlow...)</pre>
+			
+		
+		
+			
+			
+			<h2 id="BindingDefinitions">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service_binding_builder.go.html?s=3994:4039#L85">BindingDefinitions</a>
+				<a class="permalink" href="#BindingDefinitions">¶</a>
+				
+				
+			</h2>
+			<pre>func BindingDefinitions(ctx <a href="../../../../../github.com/redhat-developer/service-binding-operator/pkg/reconcile/pipeline/">pipeline</a>.<a href="../../../../../github.com/redhat-developer/service-binding-operator/pkg/reconcile/pipeline/#Context">Context</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="BuildCRDFromParams">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/crd_builder.go.html?s=202:332#L2">BuildCRDFromParams</a>
+				<a class="permalink" href="#BuildCRDFromParams">¶</a>
+				
+				
+			</h2>
+			<pre>func BuildCRDFromParams(paramMap map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>, crd *<a href="../../../../../github.com/go-openapi/spec/">spec</a>.<a href="../../../../../github.com/go-openapi/spec/#Schema">Schema</a>, group, version, kind <a href="../../../../../builtin/#string">string</a>) (map[<a href="../../../../../builtin/#string">string</a>]interface{}, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+BuildCRDFromParams iterates over the parameter maps provided by the user and builds the CRD
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteOperatorService">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=1598:1682#L35">DeleteOperatorService</a>
+				<a class="permalink" href="#DeleteOperatorService">¶</a>
+				
+				
+			</h2>
+			<pre>func DeleteOperatorService(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, serviceName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DeleteOperatorService deletes an Operator backed service
+TODO: make it unlink the service from component as a part of
+<a href="https://github.com/redhat-developer/odo/issues/3563">https://github.com/redhat-developer/odo/issues/3563</a>
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FindDevfileServiceBinding">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=13044:13161#L381">FindDevfileServiceBinding</a>
+				<a class="permalink" href="#FindDevfileServiceBinding">¶</a>
+				
+				
+			</h2>
+			<pre>func FindDevfileServiceBinding(devfileObj <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, kind <a href="../../../../../builtin/#string">string</a>, name, context <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+FindDevfileServiceBinding returns the name of the ServiceBinding defined in a Devfile matching kind and name
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetAlmExample">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=5228:5348#L151">GetAlmExample</a>
+				<a class="permalink" href="#GetAlmExample">¶</a>
+				
+				
+			</h2>
+			<pre>func GetAlmExample(csv <a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/">olm</a>.<a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/#ClusterServiceVersion">ClusterServiceVersion</a>, cr, serviceType <a href="../../../../../builtin/#string">string</a>) (almExample map[<a href="../../../../../builtin/#string">string</a>]interface{}, err <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetAlmExample fetches the ALM example from an Operator&#39;s definition. This
+example contains the example yaml to be used to spin up a service for a
+given CR in an Operator
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetCRInstances">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=6589:6716#L190">GetCRInstances</a>
+				<a class="permalink" href="#GetCRInstances">¶</a>
+				
+				
+			</h2>
+			<pre>func GetCRInstances(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, customResource *<a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/">olm</a>.<a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/#CRDDescription">CRDDescription</a>) (*<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/">unstructured</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/#UnstructuredList">UnstructuredList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetCRInstances fetches and returns instances of the CR provided in the
+&#34;customResource&#34; field. It also returns error (if any)
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetGVKFromCR">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=4518:4600#L128">GetGVKFromCR</a>
+				<a class="permalink" href="#GetGVKFromCR">¶</a>
+				
+				
+			</h2>
+			<pre>func GetGVKFromCR(cr *<a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/">olm</a>.<a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/#CRDDescription">CRDDescription</a>) (group, version, kind <a href="../../../../../builtin/#string">string</a>, err <a href="../../../../../builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetGVRFromOperator">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=4039:4136#L115">GetGVRFromOperator</a>
+				<a class="permalink" href="#GetGVRFromOperator">¶</a>
+				
+				
+			</h2>
+			<pre>func GetGVRFromOperator(csv <a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/">olm</a>.<a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/#ClusterServiceVersion">ClusterServiceVersion</a>, cr <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetK8sComponentAsUnstructured">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=17588:17738#L540">GetK8sComponentAsUnstructured</a>
+				<a class="permalink" href="#GetK8sComponentAsUnstructured">¶</a>
+				
+				
+			</h2>
+			<pre>func GetK8sComponentAsUnstructured(component *<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfile</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#KubernetesComponent">KubernetesComponent</a>, context <a href="../../../../../builtin/#string">string</a>, fs <a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/">devfilefs</a>.<a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/#Filesystem">Filesystem</a>) (<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/">unstructured</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/#Unstructured">Unstructured</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetK8sComponentAsUnstructured parses the Inlined/URI K8s of the devfile K8s component
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsOperatorServiceNameValid">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=7214:7282#L206">IsOperatorServiceNameValid</a>
+				<a class="permalink" href="#IsOperatorServiceNameValid">¶</a>
+				
+				
+			</h2>
+			<pre>func IsOperatorServiceNameValid(name <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+IsOperatorServiceNameValid checks if the provided name follows
+&lt;service-type&gt;/&lt;service-name&gt; format. For example: &#34;EtcdCluster/example&#34; is
+a valid service name but &#34;EtcdCluster/&#34;, &#34;EtcdCluster&#34;, &#34;example&#34; aren&#39;t.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ListDeployedServices">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=18591:18707#L577">ListDeployedServices</a>
+				<a class="permalink" href="#ListDeployedServices">¶</a>
+				
+				
+			</h2>
+			<pre>func ListDeployedServices(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, labels map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>) (map[<a href="../../../../../builtin/#string">string</a>]<a href="#DeployedInfo">DeployedInfo</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ListDevfileLinks">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=9377:9462#L274">ListDevfileLinks</a>
+				<a class="permalink" href="#ListDevfileLinks">¶</a>
+				
+				
+			</h2>
+			<pre>func ListDevfileLinks(devfileObj <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, context <a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ListDevfileLinks returns the names of the links defined in a Devfile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ListDevfileServices">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=10745:10902#L321">ListDevfileServices</a>
+				<a class="permalink" href="#ListDevfileServices">¶</a>
+				
+				
+			</h2>
+			<pre>func ListDevfileServices(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, devfileObj <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, componentContext <a href="../../../../../builtin/#string">string</a>) (map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/">unstructured</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/#Unstructured">Unstructured</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ListDevfileServices returns the names of the services defined in a Devfile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ListOperatorServices">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=2507:2611#L68">ListOperatorServices</a>
+				<a class="permalink" href="#ListOperatorServices">¶</a>
+				
+				
+			</h2>
+			<pre>func ListOperatorServices(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>) ([]<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/">unstructured</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/#Unstructured">Unstructured</a>, []<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ListOperatorServices lists all operator backed services.
+It returns list of services, slice of services that it failed (if any) to list and error (if any)
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="OperatorSvcExists">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=7962:8050#L220">OperatorSvcExists</a>
+				<a class="permalink" href="#OperatorSvcExists">¶</a>
+				
+				
+			</h2>
+			<pre>func OperatorSvcExists(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, serviceName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+OperatorSvcExists checks whether an Operator backed service with given name
+exists or not. It takes &#39;serviceName&#39; of the format
+&#39;&lt;service-kind&gt;/&lt;service-name&gt;&#39;. For example: EtcdCluster/example.
+It doesn&#39;t bother about application since
+<a href="https://github.com/redhat-developer/odo/issues/2801">https://github.com/redhat-developer/odo/issues/2801</a> is blocked
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ProvisionedService">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service_binding_builder.go.html?s=2641:2686#L43">ProvisionedService</a>
+				<a class="permalink" href="#ProvisionedService">¶</a>
+				
+				
+			</h2>
+			<pre>func ProvisionedService(ctx <a href="../../../../../github.com/redhat-developer/service-binding-operator/pkg/reconcile/pipeline/">pipeline</a>.<a href="../../../../../github.com/redhat-developer/service-binding-operator/pkg/reconcile/pipeline/#Context">Context</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="PushKubernetesResource">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=16172:16300#L494">PushKubernetesResource</a>
+				<a class="permalink" href="#PushKubernetesResource">¶</a>
+				
+				
+			</h2>
+			<pre>func PushKubernetesResource(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, u <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/">unstructured</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/#Unstructured">Unstructured</a>, labels map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+PushKubernetesResource pushes a Kubernetes resource (u) to the cluster using client
+adding labels to the resource
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PushKubernetesResources">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=14431:14574#L425">PushKubernetesResources</a>
+				<a class="permalink" href="#PushKubernetesResources">¶</a>
+				
+				
+			</h2>
+			<pre>func PushKubernetesResources(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, k8sComponents []<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfile</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Component">Component</a>, labels map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>, context <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+PushKubernetesResources updates service(s) from Kubernetes Inlined component in a devfile by creating new ones or removing old ones
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PushLinks">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/link.go.html?s=1344:1508#L22">PushLinks</a>
+				<a class="permalink" href="#PushLinks">¶</a>
+				
+				
+			</h2>
+			<pre>func PushLinks(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, k8sComponents []<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfile</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Component">Component</a>, labels map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>, deployment *<a href="../../../../../k8s.io/api/apps/v1/">v1</a>.<a href="../../../../../k8s.io/api/apps/v1/#Deployment">Deployment</a>, context <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+PushLinks updates Link(s) from Kubernetes Inlined component in a devfile by creating new ones or removing old ones
+returns true if the component needs to be restarted (when a link has been created or deleted)
+if service binding operator is not present, it will call pushLinksWithoutOperator to create the links without it.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SplitServiceKindName">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=9000:9069#L261">SplitServiceKindName</a>
+				<a class="permalink" href="#SplitServiceKindName">¶</a>
+				
+				
+			</h2>
+			<pre>func SplitServiceKindName(serviceName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+SplitServiceKindName splits the service name provided for deletion by the
+user. It has to be of the format &lt;service-kind&gt;/&lt;service-name&gt;. Example: EtcdCluster/myetcd
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="UpdateServicesWithOwnerReferences">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=19567:19732#L603">UpdateServicesWithOwnerReferences</a>
+				<a class="permalink" href="#UpdateServicesWithOwnerReferences">¶</a>
+				
+				
+			</h2>
+			<pre>func UpdateServicesWithOwnerReferences(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, k8sComponents []<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfile</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Component">Component</a>, ownerReference <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#OwnerReference">OwnerReference</a>, context <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+UpdateServicesWithOwnerReferences adds an owner reference to an inlined Kubernetes resource (except service binding objects)
+if not already present in the list of owner references
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateResourceExist">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=22852:22986#L717">ValidateResourceExist</a>
+				<a class="permalink" href="#ValidateResourceExist">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateResourceExist(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, k8sComponent <a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfile</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Component">Component</a>, context <a href="../../../../../builtin/#string">string</a>) (kindErr <a href="../../../../../builtin/#string">string</a>, err <a href="../../../../../builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateResourcesExist">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=22079:22195#L693">ValidateResourcesExist</a>
+				<a class="permalink" href="#ValidateResourcesExist">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateResourcesExist(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, k8sComponents []<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfile</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Component">Component</a>, context <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+ValidateResourcesExist validates if the Kubernetes inlined components are installed on the cluster
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="DeployedInfo">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/service.go.html?s=18494:18589#L571">DeployedInfo</a>
+				<a class="permalink" href="#DeployedInfo">¶</a>
+				
+				
+			</h2>
+			<p>
+DeployedInfo holds information about the services present on the cluster
+</p>
+
+			<pre>type DeployedInfo struct {
+<span id="DeployedInfo.Kind"></span>    Kind <a href="../../../../../builtin/#string">string</a>
+<span id="DeployedInfo.Name"></span>    Name <a href="../../../../../builtin/#string">string</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="OperatorBackedService">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html?s=933:1112#L26">OperatorBackedService</a>
+				<a class="permalink" href="#OperatorBackedService">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type OperatorBackedService struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="OperatorBackedService.Spec"></span>    Spec              <a href="#OperatorBackedServiceSpec">OperatorBackedServiceSpec</a> `json:&#34;spec&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewOperatorBackedService">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html?s=1114:1266#L32">NewOperatorBackedService</a>
+					<a class="permalink" href="#NewOperatorBackedService">¶</a>
+					
+					
+				</h3>
+				<pre>func NewOperatorBackedService(name <a href="../../../../../builtin/#string">string</a>, kind <a href="../../../../../builtin/#string">string</a>, version <a href="../../../../../builtin/#string">string</a>, description <a href="../../../../../builtin/#string">string</a>, displayName <a href="../../../../../builtin/#string">string</a>, spec *<a href="../../../../../github.com/go-openapi/spec/">spec</a>.<a href="../../../../../github.com/go-openapi/spec/#Schema">Schema</a>) <a href="#OperatorBackedService">OperatorBackedService</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="OperatorBackedServiceCRList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html?s=1967:2152#L62">OperatorBackedServiceCRList</a>
+				<a class="permalink" href="#OperatorBackedServiceCRList">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type OperatorBackedServiceCRList struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="OperatorBackedServiceCRList.Spec"></span>    Spec              <a href="#OperatorServiceCRListSpec">OperatorServiceCRListSpec</a> `json:&#34;spec&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewOperatorBackedCRList">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html?s=2154:2264#L68">NewOperatorBackedCRList</a>
+					<a class="permalink" href="#NewOperatorBackedCRList">¶</a>
+					
+					
+				</h3>
+				<pre>func NewOperatorBackedCRList(name <a href="../../../../../builtin/#string">string</a>, displayName <a href="../../../../../builtin/#string">string</a>, description <a href="../../../../../builtin/#string">string</a>) *<a href="#OperatorBackedServiceCRList">OperatorBackedServiceCRList</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="OperatorBackedServiceSpec">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html?s=671:931#L18">OperatorBackedServiceSpec</a>
+				<a class="permalink" href="#OperatorBackedServiceSpec">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type OperatorBackedServiceSpec struct {
+<span id="OperatorBackedServiceSpec.Kind"></span>    Kind        <a href="../../../../../builtin/#string">string</a>       `json:&#34;kind&#34;`
+<span id="OperatorBackedServiceSpec.Version"></span>    Version     <a href="../../../../../builtin/#string">string</a>       `json:&#34;version&#34;`
+<span id="OperatorBackedServiceSpec.Description"></span>    Description <a href="../../../../../builtin/#string">string</a>       `json:&#34;description&#34;`
+<span id="OperatorBackedServiceSpec.DisplayName"></span>    DisplayName <a href="../../../../../builtin/#string">string</a>       `json:&#34;displayName&#34;`
+<span id="OperatorBackedServiceSpec.Schema"></span>    Schema      *<a href="../../../../../github.com/go-openapi/spec/">spec</a>.<a href="../../../../../github.com/go-openapi/spec/#Schema">Schema</a> `json:&#34;schema&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="OperatorExample">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html?s=159:339#L1">OperatorExample</a>
+				<a class="permalink" href="#OperatorExample">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type OperatorExample struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="OperatorExample.Spec"></span>    Spec              map[<a href="../../../../../builtin/#string">string</a>]interface{} `json:&#34;spec,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewOperatorExample">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html?s=341:415#L5">NewOperatorExample</a>
+					<a class="permalink" href="#NewOperatorExample">¶</a>
+					
+					
+				</h3>
+				<pre>func NewOperatorExample(almExample map[<a href="../../../../../builtin/#string">string</a>]interface{}) <a href="#OperatorExample">OperatorExample</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="OperatorServiceCRItem">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html?s=1643:1755#L51">OperatorServiceCRItem</a>
+				<a class="permalink" href="#OperatorServiceCRItem">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type OperatorServiceCRItem struct {
+<span id="OperatorServiceCRItem.Kind"></span>    Kind        <a href="../../../../../builtin/#string">string</a> `json:&#34;kind&#34;`
+<span id="OperatorServiceCRItem.Description"></span>    Description <a href="../../../../../builtin/#string">string</a> `json:&#34;description&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="OperatorServiceCRListSpec">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/service/types.go.html?s=1757:1965#L56">OperatorServiceCRListSpec</a>
+				<a class="permalink" href="#OperatorServiceCRListSpec">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type OperatorServiceCRListSpec struct {
+<span id="OperatorServiceCRListSpec.DisplayName"></span>    DisplayName <a href="../../../../../builtin/#string">string</a>                  `json:&#34;displayName&#34;`
+<span id="OperatorServiceCRListSpec.Description"></span>    Description <a href="../../../../../builtin/#string">string</a>                  `json:&#34;description&#34;`
+<span id="OperatorServiceCRListSpec.CRDS"></span>    CRDS        []<a href="#OperatorServiceCRItem">OperatorServiceCRItem</a> `json:&#34;crds&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

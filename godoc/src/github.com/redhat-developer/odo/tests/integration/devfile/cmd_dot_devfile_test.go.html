@@ -1,0 +1,236 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>devfile - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../src/github.com/redhat-developer/odo/tests">tests</a>/<a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration">integration</a>/<a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile">devfile</a>/<span class="text-muted">cmd_dot_devfile_test.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../github.com/redhat-developer/odo/tests/integration/devfile">github.com/redhat-developer/odo/tests/integration/devfile</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package devfile
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;fmt&#34;
+<span id="L5" class="ln">     5  </span>	&#34;path/filepath&#34;
+<span id="L6" class="ln">     6  </span>	&#34;regexp&#34;
+<span id="L7" class="ln">     7  </span>	&#34;strings&#34;
+<span id="L8" class="ln">     8  </span>
+<span id="L9" class="ln">     9  </span>	. &#34;github.com/onsi/ginkgo&#34;
+<span id="L10" class="ln">    10  </span>	. &#34;github.com/onsi/gomega&#34;
+<span id="L11" class="ln">    11  </span>
+<span id="L12" class="ln">    12  </span>	<span class="comment">//We continued iterating on bracket pair guides. Horizontal lines now outline the scope of a bracket pair. Also, vertical lines now depend on the indentation of the code that is surrounded by the bracket pair.. &#34;github.com/onsi/gomega&#34;</span>
+<span id="L13" class="ln">    13  </span>	&#34;github.com/redhat-developer/odo/tests/helper&#34;
+<span id="L14" class="ln">    14  </span>)
+<span id="L15" class="ln">    15  </span>
+<span id="L16" class="ln">    16  </span>var _ = Describe(&#34;Test suits to check .devfile.yaml compatibility&#34;, func() {
+<span id="L17" class="ln">    17  </span>	var cmpName string
+<span id="L18" class="ln">    18  </span>	var commonVar helper.CommonVar
+<span id="L19" class="ln">    19  </span>
+<span id="L20" class="ln">    20  </span>	BeforeEach(func() {
+<span id="L21" class="ln">    21  </span>		commonVar = helper.CommonBeforeEach()
+<span id="L22" class="ln">    22  </span>		cmpName = helper.RandString(6)
+<span id="L23" class="ln">    23  </span>		helper.Chdir(commonVar.Context)
+<span id="L24" class="ln">    24  </span>	})
+<span id="L25" class="ln">    25  </span>
+<span id="L26" class="ln">    26  </span>	AfterEach(func() {
+<span id="L27" class="ln">    27  </span>		helper.CommonAfterEach(commonVar)
+<span id="L28" class="ln">    28  </span>	})
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span>	When(&#34;Creating a nodejs component and replace devfile.yaml to .devfile.yaml&#34;, func() {
+<span id="L31" class="ln">    31  </span>		var _ = BeforeEach(func() {
+<span id="L32" class="ln">    32  </span>			helper.Cmd(&#34;odo&#34;, &#34;create&#34;, &#34;--project&#34;, commonVar.Project, cmpName, &#34;--devfile&#34;, helper.GetExamplePath(&#34;source&#34;, &#34;devfiles&#34;, &#34;nodejs&#34;, &#34;devfile.yaml&#34;)).ShouldPass()
+<span id="L33" class="ln">    33  </span>			helper.CopyExample(filepath.Join(&#34;source&#34;, &#34;devfiles&#34;, &#34;nodejs&#34;, &#34;project&#34;), commonVar.Context)
+<span id="L34" class="ln">    34  </span>			helper.Cmd(&#34;mv&#34;, &#34;devfile.yaml&#34;, &#34;.devfile.yaml&#34;).ShouldPass()
+<span id="L35" class="ln">    35  </span>		})
+<span id="L36" class="ln">    36  </span>
+<span id="L37" class="ln">    37  </span>		When(&#34;Creating url and doing odo push&#34;, func() {
+<span id="L38" class="ln">    38  </span>			var stdout, url1, host string
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span>			BeforeEach(func() {
+<span id="L41" class="ln">    41  </span>				url1 = helper.RandString(6)
+<span id="L42" class="ln">    42  </span>				host = helper.RandString(6)
+<span id="L43" class="ln">    43  </span>				helper.Cmd(&#34;odo&#34;, &#34;url&#34;, &#34;create&#34;, url1, &#34;--port&#34;, &#34;9090&#34;, &#34;--host&#34;, host, &#34;--secure&#34;, &#34;--ingress&#34;).ShouldPass()
+<span id="L44" class="ln">    44  </span>				helper.Cmd(&#34;odo&#34;, &#34;push&#34;).ShouldPass()
+<span id="L45" class="ln">    45  </span>			})
+<span id="L46" class="ln">    46  </span>
+<span id="L47" class="ln">    47  </span>			It(&#34;should verify if url is created and pushed&#34;, func() {
+<span id="L48" class="ln">    48  </span>				stdout = helper.Cmd(&#34;odo&#34;, &#34;url&#34;, &#34;list&#34;).ShouldPass().Out()
+<span id="L49" class="ln">    49  </span>				helper.MatchAllInOutput(stdout, []string{url1, &#34;Pushed&#34;, &#34;true&#34;, &#34;ingress&#34;})
+<span id="L50" class="ln">    50  </span>			})
+<span id="L51" class="ln">    51  </span>			When(&#34;Deleting url doing odo push&#34;, func() {
+<span id="L52" class="ln">    52  </span>
+<span id="L53" class="ln">    53  </span>				BeforeEach(func() {
+<span id="L54" class="ln">    54  </span>					helper.Cmd(&#34;odo&#34;, &#34;url&#34;, &#34;delete&#34;, url1, &#34;-f&#34;).ShouldPass()
+<span id="L55" class="ln">    55  </span>				})
+<span id="L56" class="ln">    56  </span>
+<span id="L57" class="ln">    57  </span>				It(&#34;should verify if url is created and pushed&#34;, func() {
+<span id="L58" class="ln">    58  </span>					stdout = helper.Cmd(&#34;odo&#34;, &#34;url&#34;, &#34;list&#34;).ShouldPass().Out()
+<span id="L59" class="ln">    59  </span>					helper.MatchAllInOutput(stdout, []string{url1, &#34;Locally Deleted&#34;, &#34;true&#34;, &#34;ingress&#34;})
+<span id="L60" class="ln">    60  </span>				})
+<span id="L61" class="ln">    61  </span>			})
+<span id="L62" class="ln">    62  </span>		})
+<span id="L63" class="ln">    63  </span>
+<span id="L64" class="ln">    64  </span>		When(&#34;creating a storage&#34;, func() {
+<span id="L65" class="ln">    65  </span>			var storageName, pathName, size, stdOut string
+<span id="L66" class="ln">    66  </span>			BeforeEach(func() {
+<span id="L67" class="ln">    67  </span>				storageName = helper.RandString(5)
+<span id="L68" class="ln">    68  </span>				pathName = &#34;/data&#34;
+<span id="L69" class="ln">    69  </span>				size = &#34;5Gi&#34;
+<span id="L70" class="ln">    70  </span>				helper.Cmd(&#34;odo&#34;, &#34;storage&#34;, &#34;create&#34;, storageName, &#34;--path&#34;, pathName, &#34;--size&#34;, size, &#34;--context&#34;, commonVar.Context).ShouldPass()
+<span id="L71" class="ln">    71  </span>			})
+<span id="L72" class="ln">    72  </span>			It(&#34;should list the storage with the proper states and container names&#34;, func() {
+<span id="L73" class="ln">    73  </span>				stdOut = helper.Cmd(&#34;odo&#34;, &#34;storage&#34;, &#34;list&#34;, &#34;--context&#34;, commonVar.Context).ShouldPass().Out()
+<span id="L74" class="ln">    74  </span>				helper.MatchAllInOutput(stdOut, []string{storageName, pathName, size, &#34;Not Pushed&#34;, cmpName})
+<span id="L75" class="ln">    75  </span>			})
+<span id="L76" class="ln">    76  </span>			When(&#34;doing odo push with storage&#34;, func() {
+<span id="L77" class="ln">    77  </span>
+<span id="L78" class="ln">    78  </span>				BeforeEach(func() {
+<span id="L79" class="ln">    79  </span>					helper.Cmd(&#34;odo&#34;, &#34;push&#34;, &#34;--context&#34;, commonVar.Context).ShouldPass()
+<span id="L80" class="ln">    80  </span>				})
+<span id="L81" class="ln">    81  </span>				It(&#34;should list the storage with the proper states and container names&#34;, func() {
+<span id="L82" class="ln">    82  </span>					stdOut = helper.Cmd(&#34;odo&#34;, &#34;storage&#34;, &#34;list&#34;, &#34;--context&#34;, commonVar.Context).ShouldPass().Out()
+<span id="L83" class="ln">    83  </span>					helper.MatchAllInOutput(stdOut, []string{storageName, pathName, &#34;Pushed&#34;, cmpName})
+<span id="L84" class="ln">    84  </span>				})
+<span id="L85" class="ln">    85  </span>			})
+<span id="L86" class="ln">    86  </span>		})
+<span id="L87" class="ln">    87  </span>	})
+<span id="L88" class="ln">    88  </span>
+<span id="L89" class="ln">    89  </span>	When(&#34;creating and pushing with --debug a nodejs component with debhug run&#34;, func() {
+<span id="L90" class="ln">    90  </span>		var projectDir string
+<span id="L91" class="ln">    91  </span>		BeforeEach(func() {
+<span id="L92" class="ln">    92  </span>			projectDir = filepath.Join(commonVar.Context, &#34;projectDir&#34;)
+<span id="L93" class="ln">    93  </span>			helper.CopyExample(filepath.Join(&#34;source&#34;, &#34;web-nodejs-sample&#34;), projectDir)
+<span id="L94" class="ln">    94  </span>			helper.Cmd(&#34;odo&#34;, &#34;create&#34;, &#34;--project&#34;, commonVar.Project, cmpName, &#34;--context&#34;, projectDir, &#34;--devfile&#34;, helper.GetExamplePath(&#34;source&#34;, &#34;devfiles&#34;, &#34;nodejs&#34;, &#34;devfile-with-debugrun.yaml&#34;)).ShouldPass()
+<span id="L95" class="ln">    95  </span>			helper.Cmd(&#34;pwd&#34;).ShouldPass()
+<span id="L96" class="ln">    96  </span>			helper.Cmd(&#34;mv&#34;, fmt.Sprint(projectDir, &#34;/devfile.yaml&#34;), fmt.Sprint(projectDir, &#34;/.devfile.yaml&#34;)).ShouldPass()
+<span id="L97" class="ln">    97  </span>			helper.Cmd(&#34;odo&#34;, &#34;push&#34;, &#34;--debug&#34;, &#34;--context&#34;, projectDir).ShouldPass()
+<span id="L98" class="ln">    98  </span>		})
+<span id="L99" class="ln">    99  </span>		It(&#34;should log debug command output&#34;, func() {
+<span id="L100" class="ln">   100  </span>			output := helper.Cmd(&#34;odo&#34;, &#34;log&#34;, &#34;--debug&#34;, &#34;--context&#34;, projectDir).ShouldPass().Out()
+<span id="L101" class="ln">   101  </span>			Expect(output).To(ContainSubstring(&#34;ODO_COMMAND_DEBUG&#34;))
+<span id="L102" class="ln">   102  </span>		})
+<span id="L103" class="ln">   103  </span>	})
+<span id="L104" class="ln">   104  </span>
+<span id="L105" class="ln">   105  </span>	When(&#34;Creating a nodejs component and replace devfile.yaml with .devfile.yaml&#34;, func() {
+<span id="L106" class="ln">   106  </span>		var _ = BeforeEach(func() {
+<span id="L107" class="ln">   107  </span>			helper.Cmd(&#34;odo&#34;, &#34;create&#34;, &#34;--project&#34;, commonVar.Project, cmpName, &#34;--devfile&#34;, helper.GetExamplePath(&#34;source&#34;, &#34;devfiles&#34;, &#34;nodejs&#34;, &#34;devfile-registry.yaml&#34;)).ShouldPass()
+<span id="L108" class="ln">   108  </span>			helper.CopyExample(filepath.Join(&#34;source&#34;, &#34;devfiles&#34;, &#34;nodejs&#34;, &#34;project&#34;), commonVar.Context)
+<span id="L109" class="ln">   109  </span>			helper.Cmd(&#34;mv&#34;, &#34;devfile.yaml&#34;, &#34;.devfile.yaml&#34;).ShouldPass()
+<span id="L110" class="ln">   110  </span>		})
+<span id="L111" class="ln">   111  </span>		When(&#34;creating a service&#34;, func() {
+<span id="L112" class="ln">   112  </span>			var redisOperator string
+<span id="L113" class="ln">   113  </span>			var operandName string
+<span id="L114" class="ln">   114  </span>			var odoArgs []string
+<span id="L115" class="ln">   115  </span>			var operators []string
+<span id="L116" class="ln">   116  </span>			BeforeEach(func() {
+<span id="L117" class="ln">   117  </span>				odoArgs = []string{&#34;catalog&#34;, &#34;list&#34;, &#34;services&#34;}
+<span id="L118" class="ln">   118  </span>				operators = []string{&#34;redis-operator&#34;}
+<span id="L119" class="ln">   119  </span>				for _, operator := range operators {
+<span id="L120" class="ln">   120  </span>					helper.WaitForCmdOut(&#34;odo&#34;, odoArgs, 5, true, func(output string) bool {
+<span id="L121" class="ln">   121  </span>						return strings.Contains(output, operator)
+<span id="L122" class="ln">   122  </span>					})
+<span id="L123" class="ln">   123  </span>				}
+<span id="L124" class="ln">   124  </span>				commonVar.CliRunner.CreateSecret(&#34;redis-secret&#34;, &#34;password&#34;, commonVar.Project)
+<span id="L125" class="ln">   125  </span>				operators := helper.Cmd(&#34;odo&#34;, &#34;catalog&#34;, &#34;list&#34;, &#34;services&#34;).ShouldPass().Out()
+<span id="L126" class="ln">   126  </span>				redisOperator = regexp.MustCompile(`redis-operator\.*[a-z][0-9]\.[0-9]\.[0-9]`).FindString(operators)
+<span id="L127" class="ln">   127  </span>				operandName = helper.RandString(10)
+<span id="L128" class="ln">   128  </span>				helper.Cmd(&#34;odo&#34;, &#34;service&#34;, &#34;create&#34;, fmt.Sprintf(&#34;%s/Redis&#34;, redisOperator), operandName, &#34;--context&#34;, commonVar.Context).ShouldPass()
+<span id="L129" class="ln">   129  </span>			})
+<span id="L130" class="ln">   130  </span>
+<span id="L131" class="ln">   131  </span>			AfterEach(func() {
+<span id="L132" class="ln">   132  </span>				helper.Cmd(&#34;odo&#34;, &#34;service&#34;, &#34;delete&#34;, fmt.Sprintf(&#34;Redis/%s&#34;, operandName), &#34;-f&#34;, &#34;--context&#34;, commonVar.Context).ShouldPass().Out()
+<span id="L133" class="ln">   133  </span>				helper.Cmd(&#34;odo&#34;, &#34;push&#34;, &#34;--context&#34;, commonVar.Context).ShouldPass().Out()
+<span id="L134" class="ln">   134  </span>			})
+<span id="L135" class="ln">   135  </span>
+<span id="L136" class="ln">   136  </span>			When(&#34;odo push is executed&#34;, func() {
+<span id="L137" class="ln">   137  </span>				BeforeEach(func() {
+<span id="L138" class="ln">   138  </span>					helper.Cmd(&#34;odo&#34;, &#34;push&#34;, &#34;--context&#34;, commonVar.Context).ShouldPass().Out()
+<span id="L139" class="ln">   139  </span>					name := commonVar.CliRunner.GetRunningPodNameByComponent(cmpName, commonVar.Project)
+<span id="L140" class="ln">   140  </span>					Expect(name).To(Not(BeEmpty()))
+<span id="L141" class="ln">   141  </span>				})
+<span id="L142" class="ln">   142  </span>
+<span id="L143" class="ln">   143  </span>				It(&#34;should find files in component container&#34;, func() {
+<span id="L144" class="ln">   144  </span>					helper.Cmd(&#34;odo&#34;, &#34;exec&#34;, &#34;--context&#34;, commonVar.Context, &#34;--&#34;, &#34;ls&#34;, &#34;/project/server.js&#34;).ShouldPass()
+<span id="L145" class="ln">   145  </span>				})
+<span id="L146" class="ln">   146  </span>
+<span id="L147" class="ln">   147  </span>				It(&#34;should create pods in running state&#34;, func() {
+<span id="L148" class="ln">   148  </span>					commonVar.CliRunner.PodsShouldBeRunning(commonVar.Project, fmt.Sprintf(`%s-0`, operandName))
+<span id="L149" class="ln">   149  </span>				})
+<span id="L150" class="ln">   150  </span>
+<span id="L151" class="ln">   151  </span>				It(&#34;should list the service&#34;, func() {
+<span id="L152" class="ln">   152  </span>					stdOut := helper.Cmd(&#34;odo&#34;, &#34;service&#34;, &#34;list&#34;, &#34;--context&#34;, commonVar.Context).ShouldPass().Out()
+<span id="L153" class="ln">   153  </span>					Expect(stdOut).To(ContainSubstring(fmt.Sprintf(&#34;Redis/%s&#34;, operandName)))
+<span id="L154" class="ln">   154  </span>				})
+<span id="L155" class="ln">   155  </span>
+<span id="L156" class="ln">   156  </span>				When(&#34;a link between the component and the service is created&#34;, func() {
+<span id="L157" class="ln">   157  </span>
+<span id="L158" class="ln">   158  </span>					BeforeEach(func() {
+<span id="L159" class="ln">   159  </span>						helper.Cmd(&#34;odo&#34;, &#34;link&#34;, fmt.Sprintf(&#34;Redis/%s&#34;, operandName), &#34;--context&#34;, commonVar.Context).ShouldPass()
+<span id="L160" class="ln">   160  </span>					})
+<span id="L161" class="ln">   161  </span>
+<span id="L162" class="ln">   162  </span>					It(&#34;should run odo push successfully&#34;, func() {
+<span id="L163" class="ln">   163  </span>						helper.Cmd(&#34;odo&#34;, &#34;push&#34;, &#34;--context&#34;, commonVar.Context).ShouldPass()
+<span id="L164" class="ln">   164  </span>					})
+<span id="L165" class="ln">   165  </span>				})
+<span id="L166" class="ln">   166  </span>			})
+<span id="L167" class="ln">   167  </span>		})
+<span id="L168" class="ln">   168  </span>	})
+<span id="L169" class="ln">   169  </span>})
+<span id="L170" class="ln">   170  </span>
+</pre><p><a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/cmd_dot_devfile_test.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

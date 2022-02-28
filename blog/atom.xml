@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://odo.dev/blog</id>
+    <title>odo Blog</title>
+    <updated>2021-12-14T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://odo.dev/blog"/>
+    <subtitle>odo Blog</subtitle>
+    <icon>https://odo.dev/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[odo 2.4.3 Released]]></title>
+        <id>odo-243-release</id>
+        <link href="https://odo.dev/blog/odo-243-release"/>
+        <updated>2021-12-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[2.4.3 of odo has been released!]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Breaking changes in odo 2.2]]></title>
+        <id>breaking-changes-in-odo-2.2</id>
+        <link href="https://odo.dev/blog/breaking-changes-in-odo-2.2"/>
+        <updated>2021-05-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Breaking changes in odo 2.2]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[odo 2.0.1 Release]]></title>
+        <id>odo-201-release</id>
+        <link href="https://odo.dev/blog/odo-201-release"/>
+        <updated>2020-10-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[2.0.1 of odo has been released!]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[odo 2.0.0 GA Release]]></title>
+        <id>odo-200-release</id>
+        <link href="https://odo.dev/blog/odo-200-release"/>
+        <updated>2020-09-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[2.0.0 of odo has been released!]]></summary>
+    </entry>
+</feed>

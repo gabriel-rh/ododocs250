@@ -1,0 +1,1363 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>preference - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package preference
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/preference" target="_blank">github.com/redhat-developer/odo/pkg/preference</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+Package preference is a generated GoMock package.
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#FormatSupportedParameters">func FormatSupportedParameters() (result string)</a></dd>
+			
+				
+				<dd><a href="#GetSupportedParameters">func GetSupportedParameters() []string</a></dd>
+			
+			
+				
+				<dd><a href="#Client">type Client</a></dd>
+				
+					
+					<dd>    <a href="#NewClient">func NewClient() (Client, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MockClient">type MockClient</a></dd>
+				
+					
+					<dd>    <a href="#NewMockClient">func NewMockClient(ctrl *gomock.Controller) *MockClient</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockClient.BuildTimeout">func (m *MockClient) BuildTimeout() *int</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.ConsentTelemetry">func (m *MockClient) ConsentTelemetry() *bool</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.DeleteConfiguration">func (m *MockClient) DeleteConfiguration(parameter string) error</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.EXPECT">func (m *MockClient) EXPECT() *MockClientMockRecorder</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.EphemeralSourceVolume">func (m *MockClient) EphemeralSourceVolume() *bool</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.GetBuildTimeout">func (m *MockClient) GetBuildTimeout() int</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.GetConsentTelemetry">func (m *MockClient) GetConsentTelemetry() bool</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.GetEphemeralSourceVolume">func (m *MockClient) GetEphemeralSourceVolume() bool</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.GetNamePrefix">func (m *MockClient) GetNamePrefix() string</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.GetPushTimeout">func (m *MockClient) GetPushTimeout() int</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.GetRegistryCacheTime">func (m *MockClient) GetRegistryCacheTime() int</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.GetTimeout">func (m *MockClient) GetTimeout() int</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.GetUpdateNotification">func (m *MockClient) GetUpdateNotification() bool</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.IsSet">func (m *MockClient) IsSet(parameter string) bool</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.NamePrefix">func (m *MockClient) NamePrefix() *string</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.NewPreferenceList">func (m *MockClient) NewPreferenceList() PreferenceList</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.PushTimeout">func (m *MockClient) PushTimeout() *int</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.RegistryHandler">func (m *MockClient) RegistryHandler(operation, registryName, registryURL string, forceFlag, isSecure bool) error</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.RegistryList">func (m *MockClient) RegistryList() *[]Registry</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.SetConfiguration">func (m *MockClient) SetConfiguration(parameter, value string) error</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.Timeout">func (m *MockClient) Timeout() *int</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.UpdateNotification">func (m *MockClient) UpdateNotification() *bool</a></dd>
+				
+			
+				
+				<dd><a href="#MockClientMockRecorder">type MockClientMockRecorder</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.BuildTimeout">func (mr *MockClientMockRecorder) BuildTimeout() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.ConsentTelemetry">func (mr *MockClientMockRecorder) ConsentTelemetry() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.DeleteConfiguration">func (mr *MockClientMockRecorder) DeleteConfiguration(parameter interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.EphemeralSourceVolume">func (mr *MockClientMockRecorder) EphemeralSourceVolume() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.GetBuildTimeout">func (mr *MockClientMockRecorder) GetBuildTimeout() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.GetConsentTelemetry">func (mr *MockClientMockRecorder) GetConsentTelemetry() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.GetEphemeralSourceVolume">func (mr *MockClientMockRecorder) GetEphemeralSourceVolume() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.GetNamePrefix">func (mr *MockClientMockRecorder) GetNamePrefix() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.GetPushTimeout">func (mr *MockClientMockRecorder) GetPushTimeout() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.GetRegistryCacheTime">func (mr *MockClientMockRecorder) GetRegistryCacheTime() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.GetTimeout">func (mr *MockClientMockRecorder) GetTimeout() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.GetUpdateNotification">func (mr *MockClientMockRecorder) GetUpdateNotification() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.IsSet">func (mr *MockClientMockRecorder) IsSet(parameter interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.NamePrefix">func (mr *MockClientMockRecorder) NamePrefix() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.NewPreferenceList">func (mr *MockClientMockRecorder) NewPreferenceList() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.PushTimeout">func (mr *MockClientMockRecorder) PushTimeout() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.RegistryHandler">func (mr *MockClientMockRecorder) RegistryHandler(operation, registryName, registryURL, forceFlag, isSecure interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.RegistryList">func (mr *MockClientMockRecorder) RegistryList() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.SetConfiguration">func (mr *MockClientMockRecorder) SetConfiguration(parameter, value interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.Timeout">func (mr *MockClientMockRecorder) Timeout() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.UpdateNotification">func (mr *MockClientMockRecorder) UpdateNotification() *gomock.Call</a></dd>
+				
+			
+				
+				<dd><a href="#Preference">type Preference</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PreferenceItem">type PreferenceItem</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PreferenceList">type PreferenceList</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Registry">type Registry</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/implem.go.html">implem.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/machine_output.go.html">machine_output.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html">mock.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/preference.go.html">preference.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/variables.go.html">variables.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="GlobalConfigEnvName">GlobalConfigEnvName</span> = &#34;GLOBALODOCONFIG&#34;
+
+    <span class="comment">//DefaultTimeout for openshift server connection check (in seconds)</span>
+    <span id="DefaultTimeout">DefaultTimeout</span> = 1
+
+    <span class="comment">// DefaultPushTimeout is the default timeout for pods (in seconds)</span>
+    <span id="DefaultPushTimeout">DefaultPushTimeout</span> = 240
+
+    <span class="comment">// DefaultBuildTimeout is the default build timeout for pods (in seconds)</span>
+    <span id="DefaultBuildTimeout">DefaultBuildTimeout</span> = 300
+
+    <span class="comment">// UpdateNotificationSetting is the name of the setting controlling update notification</span>
+    <span id="UpdateNotificationSetting">UpdateNotificationSetting</span> = &#34;UpdateNotification&#34;
+
+    <span class="comment">// UpdateNotificationSettingDescription is human-readable description for the update notification setting</span>
+    <span id="UpdateNotificationSettingDescription">UpdateNotificationSettingDescription</span> = &#34;Flag to control if an update notification is shown or not (Default: true)&#34;
+
+    <span class="comment">// NamePrefixSetting is the name of the setting controlling name prefix</span>
+    <span id="NamePrefixSetting">NamePrefixSetting</span> = &#34;NamePrefix&#34;
+
+    <span class="comment">// NamePrefixSettingDescription is human-readable description for the name prefix setting</span>
+    <span id="NamePrefixSettingDescription">NamePrefixSettingDescription</span> = &#34;Use this value to set a default name prefix (Default: current directory name)&#34;
+
+    <span class="comment">// TimeoutSetting is the name of the setting controlling timeout for connection check</span>
+    <span id="TimeoutSetting">TimeoutSetting</span> = &#34;Timeout&#34;
+
+    <span class="comment">// BuildTimeoutSetting is the name of the setting controlling BuildTimeout</span>
+    <span id="BuildTimeoutSetting">BuildTimeoutSetting</span> = &#34;BuildTimeout&#34;
+
+    <span class="comment">// PushTimeoutSetting is the name of the setting controlling PushTimeout</span>
+    <span id="PushTimeoutSetting">PushTimeoutSetting</span> = &#34;PushTimeout&#34;
+
+    <span class="comment">// RegistryCacheTimeSetting is human-readable description for the registrycachetime setting</span>
+    <span id="RegistryCacheTimeSetting">RegistryCacheTimeSetting</span> = &#34;RegistryCacheTime&#34;
+
+    <span class="comment">// DefaultDevfileRegistryName is the name of default devfile registry</span>
+    <span id="DefaultDevfileRegistryName">DefaultDevfileRegistryName</span> = &#34;DefaultDevfileRegistry&#34;
+
+    <span class="comment">// DefaultDevfileRegistryURL is the URL of default devfile registry</span>
+    <span id="DefaultDevfileRegistryURL">DefaultDevfileRegistryURL</span> = &#34;https://registry.devfile.io&#34;
+
+    <span class="comment">// OldDefaultDevfileRegistryURL is the URL of old default devfile registry for registry migration purpose</span>
+    <span id="OldDefaultDevfileRegistryURL">OldDefaultDevfileRegistryURL</span> = &#34;https://github.com/odo-devfiles/registry&#34;
+
+    <span class="comment">// DefaultRegistryCacheTime is time (in minutes) for how long odo will cache information from Devfile registry</span>
+    <span id="DefaultRegistryCacheTime">DefaultRegistryCacheTime</span> = 15
+
+    <span class="comment">// EphemeralSetting specifies if ephemeral volumes needs to be used as source volume.</span>
+    <span id="EphemeralSetting">EphemeralSetting</span> = &#34;Ephemeral&#34;
+
+    <span class="comment">// DefaultEphemeralSettings is a default value for Ephemeral preference</span>
+    <span id="DefaultEphemeralSettings">DefaultEphemeralSettings</span> = <a href="../../../../../builtin/#true">true</a>
+
+    <span class="comment">// ConsentTelemetrySettings specifies if the user consents to telemetry</span>
+    <span id="ConsentTelemetrySetting">ConsentTelemetrySetting</span> = &#34;ConsentTelemetry&#34;
+
+    <span class="comment">// DefaultConsentTelemetry is a default value for ConsentTelemetry preference</span>
+    <span id="DefaultConsentTelemetrySetting">DefaultConsentTelemetrySetting</span> = <a href="../../../../../builtin/#false">false</a>
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>
+BuildTimeoutSettingDescription adds a description for BuildTimeout
+</p>
+
+				<pre>var <span id="BuildTimeoutSettingDescription">BuildTimeoutSettingDescription</span> = <a href="../../../../../fmt/">fmt</a>.<a href="../../../../../fmt/#Sprintf">Sprintf</a>(&#34;BuildTimeout (in seconds) for waiting for a build of the git component to complete (Default: %d)&#34;, <a href="#DefaultBuildTimeout">DefaultBuildTimeout</a>)</pre>
+			
+				<p>
+TelemetryConsentDescription adds a description for TelemetryConsentSetting
+</p>
+
+				<pre>var <span id="ConsentTelemetryDescription">ConsentTelemetryDescription</span> = <a href="../../../../../fmt/">fmt</a>.<a href="../../../../../fmt/#Sprintf">Sprintf</a>(&#34;If true, odo will collect telemetry for the user&#39;s odo usage (Default: %t)\n\t\t    For more information: https://developers.redhat.com/article/tool-data-collection&#34;, <a href="#DefaultConsentTelemetrySetting">DefaultConsentTelemetrySetting</a>)</pre>
+			
+				<p>
+EphemeralDescription adds a description for EphemeralSourceVolume
+</p>
+
+				<pre>var <span id="EphemeralDescription">EphemeralDescription</span> = <a href="../../../../../fmt/">fmt</a>.<a href="../../../../../fmt/#Sprintf">Sprintf</a>(&#34;If true, odo will create an emptyDir volume to store source code (Default: %t)&#34;, <a href="#DefaultEphemeralSettings">DefaultEphemeralSettings</a>)</pre>
+			
+				<p>
+PushTimeoutSettingDescription adds a description for PushTimeout
+</p>
+
+				<pre>var <span id="PushTimeoutSettingDescription">PushTimeoutSettingDescription</span> = <a href="../../../../../fmt/">fmt</a>.<a href="../../../../../fmt/#Sprintf">Sprintf</a>(&#34;PushTimeout (in seconds) for waiting for a Pod to come up (Default: %d)&#34;, <a href="#DefaultPushTimeout">DefaultPushTimeout</a>)</pre>
+			
+				<p>
+RegistryCacheTimeDescription adds a description for RegistryCacheTime
+</p>
+
+				<pre>var <span id="RegistryCacheTimeDescription">RegistryCacheTimeDescription</span> = <a href="../../../../../fmt/">fmt</a>.<a href="../../../../../fmt/#Sprintf">Sprintf</a>(&#34;For how long (in minutes) odo will cache information from Devfile registry (Default: %d)&#34;, <a href="#DefaultRegistryCacheTime">DefaultRegistryCacheTime</a>)</pre>
+			
+				<p>
+TimeoutSettingDescription is human-readable description for the timeout setting
+</p>
+
+				<pre>var <span id="TimeoutSettingDescription">TimeoutSettingDescription</span> = <a href="../../../../../fmt/">fmt</a>.<a href="../../../../../fmt/#Sprintf">Sprintf</a>(&#34;Timeout (in seconds) for OpenShift server connection check (Default: %d)&#34;, <a href="#DefaultTimeout">DefaultTimeout</a>)</pre>
+			
+		
+		
+			
+			
+			<h2 id="FormatSupportedParameters">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/implem.go.html?s=13583:13631#L431">FormatSupportedParameters</a>
+				<a class="permalink" href="#FormatSupportedParameters">¶</a>
+				
+				
+			</h2>
+			<pre>func FormatSupportedParameters() (result <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+FormatSupportedParameters outputs supported parameters and their description
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetSupportedParameters">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/implem.go.html?s=14140:14178#L445">GetSupportedParameters</a>
+				<a class="permalink" href="#GetSupportedParameters">¶</a>
+				
+				
+			</h2>
+			<pre>func GetSupportedParameters() []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetSupportedParameters returns the name of the supported parameters
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/preference.go.html?s=20:726#L1">Client</a>
+				<a class="permalink" href="#Client">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Client interface {
+    IsSet(parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a>
+    SetConfiguration(parameter <a href="../../../../../builtin/#string">string</a>, value <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a>
+    DeleteConfiguration(parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a>
+
+    GetUpdateNotification() <a href="../../../../../builtin/#bool">bool</a>
+    GetNamePrefix() <a href="../../../../../builtin/#string">string</a>
+    GetTimeout() <a href="../../../../../builtin/#int">int</a>
+    GetBuildTimeout() <a href="../../../../../builtin/#int">int</a>
+    GetPushTimeout() <a href="../../../../../builtin/#int">int</a>
+    GetEphemeralSourceVolume() <a href="../../../../../builtin/#bool">bool</a>
+    GetConsentTelemetry() <a href="../../../../../builtin/#bool">bool</a>
+    GetRegistryCacheTime() <a href="../../../../../builtin/#int">int</a>
+    RegistryHandler(operation <a href="../../../../../builtin/#string">string</a>, registryName <a href="../../../../../builtin/#string">string</a>, registryURL <a href="../../../../../builtin/#string">string</a>, forceFlag <a href="../../../../../builtin/#bool">bool</a>, isSecure <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a>
+
+    UpdateNotification() *<a href="../../../../../builtin/#bool">bool</a>
+    NamePrefix() *<a href="../../../../../builtin/#string">string</a>
+    Timeout() *<a href="../../../../../builtin/#int">int</a>
+    BuildTimeout() *<a href="../../../../../builtin/#int">int</a>
+    PushTimeout() *<a href="../../../../../builtin/#int">int</a>
+    EphemeralSourceVolume() *<a href="../../../../../builtin/#bool">bool</a>
+    ConsentTelemetry() *<a href="../../../../../builtin/#bool">bool</a>
+    RegistryList() *[]<a href="#Registry">Registry</a>
+
+    NewPreferenceList() <a href="#PreferenceList">PreferenceList</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/implem.go.html?s=2458:2490#L79">NewClient</a>
+					<a class="permalink" href="#NewClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewClient() (<a href="#Client">Client</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MockClient">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=274:363#L4">MockClient</a>
+				<a class="permalink" href="#MockClient">¶</a>
+				
+				
+			</h2>
+			<p>
+MockClient is a mock of Client interface.
+</p>
+
+			<pre>type MockClient struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMockClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=532:587#L15">NewMockClient</a>
+					<a class="permalink" href="#NewMockClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewMockClient(ctrl *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Controller">Controller</a>) *<a href="#MockClient">MockClient</a></pre>
+				<p>
+NewMockClient creates a new mock instance.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MockClient.BuildTimeout">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=876:916#L27">BuildTimeout</a>
+					<a class="permalink" href="#MockClient.BuildTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) BuildTimeout() *<a href="../../../../../builtin/#int">int</a></pre>
+				<p>
+BuildTimeout mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.ConsentTelemetry">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=1330:1375#L41">ConsentTelemetry</a>
+					<a class="permalink" href="#MockClient.ConsentTelemetry">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) ConsentTelemetry() *<a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+ConsentTelemetry mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.DeleteConfiguration">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=1817:1881#L55">DeleteConfiguration</a>
+					<a class="permalink" href="#MockClient.DeleteConfiguration">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) DeleteConfiguration(parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+DeleteConfiguration mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.EXPECT">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=763:816#L22">EXPECT</a>
+					<a class="permalink" href="#MockClient.EXPECT">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) EXPECT() *<a href="#MockClientMockRecorder">MockClientMockRecorder</a></pre>
+				<p>
+EXPECT returns an object that allows the caller to indicate expected use.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.EphemeralSourceVolume">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=2386:2436#L69">EphemeralSourceVolume</a>
+					<a class="permalink" href="#MockClient.EphemeralSourceVolume">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) EphemeralSourceVolume() *<a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+EphemeralSourceVolume mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.GetBuildTimeout">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=2904:2946#L83">GetBuildTimeout</a>
+					<a class="permalink" href="#MockClient.GetBuildTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) GetBuildTimeout() <a href="../../../../../builtin/#int">int</a></pre>
+				<p>
+GetBuildTimeout mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.GetConsentTelemetry">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=3380:3427#L97">GetConsentTelemetry</a>
+					<a class="permalink" href="#MockClient.GetConsentTelemetry">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) GetConsentTelemetry() <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+GetConsentTelemetry mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.GetEphemeralSourceVolume">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=3891:3943#L111">GetEphemeralSourceVolume</a>
+					<a class="permalink" href="#MockClient.GetEphemeralSourceVolume">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) GetEphemeralSourceVolume() <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+GetEphemeralSourceVolume mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.GetNamePrefix">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=4426:4469#L125">GetNamePrefix</a>
+					<a class="permalink" href="#MockClient.GetNamePrefix">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) GetNamePrefix() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetNamePrefix mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.GetPushTimeout">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=4889:4930#L139">GetPushTimeout</a>
+					<a class="permalink" href="#MockClient.GetPushTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) GetPushTimeout() <a href="../../../../../builtin/#int">int</a></pre>
+				<p>
+GetPushTimeout mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.GetRegistryCacheTime">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=5359:5406#L153">GetRegistryCacheTime</a>
+					<a class="permalink" href="#MockClient.GetRegistryCacheTime">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) GetRegistryCacheTime() <a href="../../../../../builtin/#int">int</a></pre>
+				<p>
+GetRegistryCacheTime mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.GetTimeout">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=5861:5898#L167">GetTimeout</a>
+					<a class="permalink" href="#MockClient.GetTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) GetTimeout() <a href="../../../../../builtin/#int">int</a></pre>
+				<p>
+GetTimeout mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.GetUpdateNotification">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=6304:6353#L181">GetUpdateNotification</a>
+					<a class="permalink" href="#MockClient.GetUpdateNotification">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) GetUpdateNotification() <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+GetUpdateNotification mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.IsSet">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=6810:6859#L195">IsSet</a>
+					<a class="permalink" href="#MockClient.IsSet">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) IsSet(parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+IsSet mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.NamePrefix">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=7268:7309#L209">NamePrefix</a>
+					<a class="permalink" href="#MockClient.NamePrefix">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) NamePrefix() *<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+NamePrefix mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.NewPreferenceList">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=7715:7770#L223">NewPreferenceList</a>
+					<a class="permalink" href="#MockClient.NewPreferenceList">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) NewPreferenceList() <a href="#PreferenceList">PreferenceList</a></pre>
+				<p>
+NewPreferenceList mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.PushTimeout">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=8219:8258#L237">PushTimeout</a>
+					<a class="permalink" href="#MockClient.PushTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) PushTimeout() *<a href="../../../../../builtin/#int">int</a></pre>
+				<p>
+PushTimeout mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.RegistryHandler">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=8665:8778#L251">RegistryHandler</a>
+					<a class="permalink" href="#MockClient.RegistryHandler">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) RegistryHandler(operation, registryName, registryURL <a href="../../../../../builtin/#string">string</a>, forceFlag, isSecure <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+RegistryHandler mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.RegistryList">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=9394:9441#L265">RegistryList</a>
+					<a class="permalink" href="#MockClient.RegistryList">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) RegistryList() *[]<a href="#Registry">Registry</a></pre>
+				<p>
+RegistryList mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.SetConfiguration">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=9862:9930#L279">SetConfiguration</a>
+					<a class="permalink" href="#MockClient.SetConfiguration">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) SetConfiguration(parameter, value <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+SetConfiguration mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.Timeout">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=10424:10459#L293">Timeout</a>
+					<a class="permalink" href="#MockClient.Timeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) Timeout() *<a href="../../../../../builtin/#int">int</a></pre>
+				<p>
+Timeout mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.UpdateNotification">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=10845:10892#L307">UpdateNotification</a>
+					<a class="permalink" href="#MockClient.UpdateNotification">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) UpdateNotification() *<a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+UpdateNotification mocks base method.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockClientMockRecorder">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=428:484#L10">MockClientMockRecorder</a>
+				<a class="permalink" href="#MockClientMockRecorder">¶</a>
+				
+				
+			</h2>
+			<p>
+MockClientMockRecorder is the mock recorder for MockClient.
+</p>
+
+			<pre>type MockClientMockRecorder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockClientMockRecorder.BuildTimeout">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=1079:1140#L35">BuildTimeout</a>
+					<a class="permalink" href="#MockClientMockRecorder.BuildTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) BuildTimeout() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+BuildTimeout indicates an expected call of BuildTimeout.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.ConsentTelemetry">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=1551:1616#L49">ConsentTelemetry</a>
+					<a class="permalink" href="#MockClientMockRecorder.ConsentTelemetry">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) ConsentTelemetry() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+ConsentTelemetry indicates an expected call of ConsentTelemetry.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.DeleteConfiguration">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=2077:2166#L63">DeleteConfiguration</a>
+					<a class="permalink" href="#MockClientMockRecorder.DeleteConfiguration">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) DeleteConfiguration(parameter interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+DeleteConfiguration indicates an expected call of DeleteConfiguration.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.EphemeralSourceVolume">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=2627:2697#L77">EphemeralSourceVolume</a>
+					<a class="permalink" href="#MockClientMockRecorder.EphemeralSourceVolume">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) EphemeralSourceVolume() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+EphemeralSourceVolume indicates an expected call of EphemeralSourceVolume.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.GetBuildTimeout">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=3117:3181#L91">GetBuildTimeout</a>
+					<a class="permalink" href="#MockClientMockRecorder.GetBuildTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) GetBuildTimeout() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetBuildTimeout indicates an expected call of GetBuildTimeout.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.GetConsentTelemetry">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=3611:3679#L105">GetConsentTelemetry</a>
+					<a class="permalink" href="#MockClientMockRecorder.GetConsentTelemetry">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) GetConsentTelemetry() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetConsentTelemetry indicates an expected call of GetConsentTelemetry.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.GetEphemeralSourceVolume">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=4142:4215#L119">GetEphemeralSourceVolume</a>
+					<a class="permalink" href="#MockClientMockRecorder.GetEphemeralSourceVolume">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) GetEphemeralSourceVolume() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetEphemeralSourceVolume indicates an expected call of GetEphemeralSourceVolume.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.GetNamePrefix">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=4637:4699#L133">GetNamePrefix</a>
+					<a class="permalink" href="#MockClientMockRecorder.GetNamePrefix">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) GetNamePrefix() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetNamePrefix indicates an expected call of GetNamePrefix.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.GetPushTimeout">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=5098:5161#L147">GetPushTimeout</a>
+					<a class="permalink" href="#MockClientMockRecorder.GetPushTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) GetPushTimeout() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetPushTimeout indicates an expected call of GetPushTimeout.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.GetRegistryCacheTime">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=5592:5661#L161">GetRegistryCacheTime</a>
+					<a class="permalink" href="#MockClientMockRecorder.GetRegistryCacheTime">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) GetRegistryCacheTime() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetRegistryCacheTime indicates an expected call of GetRegistryCacheTime.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.GetTimeout">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=6054:6113#L175">GetTimeout</a>
+					<a class="permalink" href="#MockClientMockRecorder.GetTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) GetTimeout() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetTimeout indicates an expected call of GetTimeout.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.GetUpdateNotification">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=6543:6613#L189">GetUpdateNotification</a>
+					<a class="permalink" href="#MockClientMockRecorder.GetUpdateNotification">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) GetUpdateNotification() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetUpdateNotification indicates an expected call of GetUpdateNotification.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.IsSet">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=7012:7087#L203">IsSet</a>
+					<a class="permalink" href="#MockClientMockRecorder.IsSet">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) IsSet(parameter interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+IsSet indicates an expected call of IsSet.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.NamePrefix">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=7469:7528#L217">NamePrefix</a>
+					<a class="permalink" href="#MockClientMockRecorder.NamePrefix">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) NamePrefix() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+NamePrefix indicates an expected call of NamePrefix.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.NewPreferenceList">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=7958:8024#L231">NewPreferenceList</a>
+					<a class="permalink" href="#MockClientMockRecorder.NewPreferenceList">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) NewPreferenceList() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+NewPreferenceList indicates an expected call of NewPreferenceList.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.PushTimeout">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=8418:8478#L245">PushTimeout</a>
+					<a class="permalink" href="#MockClientMockRecorder.PushTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) PushTimeout() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+PushTimeout indicates an expected call of PushTimeout.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.RegistryHandler">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=9010:9143#L259">RegistryHandler</a>
+					<a class="permalink" href="#MockClientMockRecorder.RegistryHandler">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) RegistryHandler(operation, registryName, registryURL, forceFlag, isSecure interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+RegistryHandler indicates an expected call of RegistryHandler.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.RegistryList">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=9611:9672#L273">RegistryList</a>
+					<a class="permalink" href="#MockClientMockRecorder.RegistryList">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) RegistryList() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+RegistryList indicates an expected call of RegistryList.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.SetConfiguration">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=10124:10217#L287">SetConfiguration</a>
+					<a class="permalink" href="#MockClientMockRecorder.SetConfiguration">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) SetConfiguration(parameter, value interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+SetConfiguration indicates an expected call of SetConfiguration.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.Timeout">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=10607:10663#L301">Timeout</a>
+					<a class="permalink" href="#MockClientMockRecorder.Timeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) Timeout() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Timeout indicates an expected call of Timeout.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.UpdateNotification">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/mock.go.html?s=11074:11141#L315">UpdateNotification</a>
+					<a class="permalink" href="#MockClientMockRecorder.UpdateNotification">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) UpdateNotification() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+UpdateNotification indicates an expected call of UpdateNotification.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Preference">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/implem.go.html?s=1723:1896#L49">Preference</a>
+				<a class="permalink" href="#Preference">¶</a>
+				
+				
+			</h2>
+			<p>
+Preference stores all the preferences related to odo
+</p>
+
+			<pre>type Preference struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a> `yaml:&#34;,inline&#34;`
+
+    <span class="comment">// Odo settings holds the odo specific global settings</span>
+<span id="Preference.OdoSettings"></span>    OdoSettings odoSettings `yaml:&#34;OdoSettings,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PreferenceItem">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/machine_output.go.html?s=299:692#L9">PreferenceItem</a>
+				<a class="permalink" href="#PreferenceItem">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type PreferenceItem struct {
+<span id="PreferenceItem.Name"></span>    Name        <a href="../../../../../builtin/#string">string</a>
+<span id="PreferenceItem.Value"></span>    Value       interface{} <span class="comment">// The value set by the user, this will be nil if the user hasn&#39;t set it</span>
+<span id="PreferenceItem.Default"></span>    Default     interface{} <span class="comment">// default value of the preference if the user hasn&#39;t set the value</span>
+<span id="PreferenceItem.Type"></span>    Type        <a href="../../../../../builtin/#string">string</a>      <span class="comment">// the type of the preference, possible values int, string, bool</span>
+<span id="PreferenceItem.Description"></span>    Description <a href="../../../../../builtin/#string">string</a>      <span class="comment">// The description of the preference</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PreferenceList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/machine_output.go.html?s=174:297#L4">PreferenceList</a>
+				<a class="permalink" href="#PreferenceList">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type PreferenceList struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a> `json:&#34;,inline&#34;`
+<span id="PreferenceList.Items"></span>    Items           []<a href="#PreferenceItem">PreferenceItem</a> `json:&#34;items,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Registry">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/preference/implem.go.html?s=1551:1665#L42">Registry</a>
+				<a class="permalink" href="#Registry">¶</a>
+				
+				
+			</h2>
+			<p>
+Registry includes the registry metadata
+</p>
+
+			<pre>type Registry struct {
+<span id="Registry.Name"></span>    Name   <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Name,omitempty&#34;`
+<span id="Registry.URL"></span>    URL    <a href="../../../../../builtin/#string">string</a> `yaml:&#34;URL,omitempty&#34;`
+<span id="Registry.Secure"></span>    Secure <a href="../../../../../builtin/#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

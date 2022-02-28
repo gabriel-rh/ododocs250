@@ -1,0 +1,247 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>testing - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package testing
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/devfile/testing" target="_blank">github.com/redhat-developer/odo/pkg/devfile/testing</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#GetDevfileData">func GetDevfileData(t *testing.T, inlined []InlinedComponent, uriComp []URIComponent) data.DevfileData</a></dd>
+			
+				
+				<dd><a href="#SetupTestFolder">func SetupTestFolder(testFolderName string, fs devfileFileSystem.Filesystem) (devfileFileSystem.File, error)</a></dd>
+			
+			
+				
+				<dd><a href="#InlinedComponent">type InlinedComponent</a></dd>
+				
+				
+			
+				
+				<dd><a href="#URIComponent">type URIComponent</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/testing/testing.go.html">testing.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="GetDevfileData">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/testing/testing.go.html?s=1018:1120#L32">GetDevfileData</a>
+				<a class="permalink" href="#GetDevfileData">¶</a>
+				
+				
+			</h2>
+			<pre>func GetDevfileData(t *<a href="../../../../../../testing/">testing</a>.<a href="../../../../../../testing/#T">T</a>, inlined []<a href="#InlinedComponent">InlinedComponent</a>, uriComp []<a href="#URIComponent">URIComponent</a>) <a href="../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a></pre>
+			<p>
+GetDevfileData can be used to build a devfile structure for tests
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetupTestFolder">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/testing/testing.go.html?s=468:576#L15">SetupTestFolder</a>
+				<a class="permalink" href="#SetupTestFolder">¶</a>
+				
+				
+			</h2>
+			<pre>func SetupTestFolder(testFolderName <a href="../../../../../../builtin/#string">string</a>, fs <a href="../../../../../../github.com/devfile/library/pkg/testingutil/filesystem/">devfileFileSystem</a>.<a href="../../../../../../github.com/devfile/library/pkg/testingutil/filesystem/#Filesystem">Filesystem</a>) (<a href="../../../../../../github.com/devfile/library/pkg/testingutil/filesystem/">devfileFileSystem</a>.<a href="../../../../../../github.com/devfile/library/pkg/testingutil/filesystem/#File">File</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+SetupTestFolder for testing
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="InlinedComponent">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/testing/testing.go.html?s=315:379#L4">InlinedComponent</a>
+				<a class="permalink" href="#InlinedComponent">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type InlinedComponent struct {
+<span id="InlinedComponent.Name"></span>    Name    <a href="../../../../../../builtin/#string">string</a>
+<span id="InlinedComponent.Inlined"></span>    Inlined <a href="../../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="URIComponent">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/testing/testing.go.html?s=381:435#L9">URIComponent</a>
+				<a class="permalink" href="#URIComponent">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type URIComponent struct {
+<span id="URIComponent.Name"></span>    Name <a href="../../../../../../builtin/#string">string</a>
+<span id="URIComponent.URI"></span>    URI  <a href="../../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

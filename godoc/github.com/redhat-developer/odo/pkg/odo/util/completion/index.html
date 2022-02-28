@@ -1,0 +1,418 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>completion - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package completion
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/util/completion" target="_blank">github.com/redhat-developer/odo/pkg/odo/util/completion</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#GetCommandFlagHandler">func GetCommandFlagHandler(command *cobra.Command, flag string) (predictor complete.Predictor, ok bool)</a></dd>
+			
+				
+				<dd><a href="#GetCommandHandler">func GetCommandHandler(command *cobra.Command) (predictor complete.Predictor, ok bool)</a></dd>
+			
+				
+				<dd><a href="#NewParsedArgs">func NewParsedArgs(args complete.Args, cmd *cobra.Command) parsedArgs</a></dd>
+			
+				
+				<dd><a href="#RegisterCommandFlagHandler">func RegisterCommandFlagHandler(command *cobra.Command, flag string, predictor ContextualizedPredictor)</a></dd>
+			
+				
+				<dd><a href="#RegisterCommandHandler">func RegisterCommandHandler(command *cobra.Command, predictor ContextualizedPredictor)</a></dd>
+			
+			
+				
+				<dd><a href="#ContextualizedPredictor">type ContextualizedPredictor</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/completion/completion.go.html">completion.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/completion/completionhandlers.go.html">completionhandlers.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>
+AppCompletionHandler provides completion for the app commands
+</p>
+
+				<pre>var <span id="AppCompletionHandler">AppCompletionHandler</span> = func(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, args parsedArgs, context *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>) (completions []<a href="../../../../../../../builtin/#string">string</a>) {
+    completions = <a href="../../../../../../../builtin/#make">make</a>([]<a href="../../../../../../../builtin/#string">string</a>, 0)
+
+    appClient := <a href="../../../../../../../github.com/redhat-developer/odo/pkg/application/">application</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/application/#NewClient">NewClient</a>(context.<a href="#KClient">KClient</a>)
+    applications, err := appClient.<a href="#List">List</a>()
+    if err != <a href="../../../../../../../builtin/#nil">nil</a> {
+        return completions
+    }
+
+    for _, app := range applications {
+        if args.commands[app] {
+            return <a href="../../../../../../../builtin/#nil">nil</a>
+        }
+        completions = <a href="../../../../../../../builtin/#append">append</a>(completions, app)
+    }
+    return
+}</pre>
+			
+				<p>
+ComponentNameCompletionHandler provides component name completion
+</p>
+
+				<pre>var <span id="ComponentNameCompletionHandler">ComponentNameCompletionHandler</span> = func(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, args parsedArgs, context *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>) (completions []<a href="../../../../../../../builtin/#string">string</a>) {
+    completions = <a href="../../../../../../../builtin/#make">make</a>([]<a href="../../../../../../../builtin/#string">string</a>, 0)
+    var <span id="selector">selector</span> <a href="../../../../../../../builtin/#string">string</a>
+    if context.<a href="#GetApplication">GetApplication</a>() != &#34;&#34; {
+        selector = <a href="../../../../../../../github.com/redhat-developer/odo/pkg/application/labels/">applabels</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/application/labels/#GetSelector">GetSelector</a>(context.<a href="#GetApplication">GetApplication</a>())
+    }
+    components, err := <a href="../../../../../../../github.com/redhat-developer/odo/pkg/component/">component</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/component/#List">List</a>(context.<a href="#KClient">KClient</a>, selector)
+
+    if err != <a href="../../../../../../../builtin/#nil">nil</a> {
+        return completions
+    }
+
+    for _, component := range components.<a href="#Items">Items</a> {
+
+        if args.commands[component.<a href="#Name">Name</a>] {
+            return <a href="../../../../../../../builtin/#nil">nil</a>
+        }
+        completions = <a href="../../../../../../../builtin/#append">append</a>(completions, component.<a href="#Name">Name</a>)
+    }
+    return completions
+}</pre>
+			
+				<p>
+CreateCompletionHandler provides component type completion in odo create command
+</p>
+
+				<pre>var <span id="CreateCompletionHandler">CreateCompletionHandler</span> = func(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, args parsedArgs, context *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>) (completions []<a href="../../../../../../../builtin/#string">string</a>) {
+    completions = <a href="../../../../../../../builtin/#make">make</a>([]<a href="../../../../../../../builtin/#string">string</a>, 0)
+    comps := &amp;completions
+
+    components, _ := <a href="../../../../../../../github.com/redhat-developer/odo/pkg/catalog/">catalog</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/catalog/#ListDevfileComponents">ListDevfileComponents</a>(&#34;&#34;)
+    for _, devfile := range components.<a href="#Items">Items</a> {
+        if args.commands[devfile.<a href="#Name">Name</a>] {
+            return <a href="../../../../../../../builtin/#nil">nil</a>
+        }
+        *comps = <a href="../../../../../../../builtin/#append">append</a>(*comps, devfile.<a href="#Name">Name</a>)
+    }
+
+    return completions
+}</pre>
+			
+				<p>
+FileCompletionHandler provides suggestions for files and directories
+</p>
+
+				<pre>var <span id="FileCompletionHandler">FileCompletionHandler</span> = func(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, args parsedArgs, context *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>) (completions []<a href="../../../../../../../builtin/#string">string</a>) {
+    completions = <a href="../../../../../../../builtin/#append">append</a>(completions, <a href="../../../../../../../github.com/posener/complete/">complete</a>.<a href="../../../../../../../github.com/posener/complete/#PredictFiles">PredictFiles</a>(&#34;*&#34;).<a href="#Predict">Predict</a>(args.original)...)
+    return
+}</pre>
+			
+				<p>
+ProjectNameCompletionHandler provides project name completion
+</p>
+
+				<pre>var <span id="ProjectNameCompletionHandler">ProjectNameCompletionHandler</span> = func(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, args parsedArgs, context *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>) (completions []<a href="../../../../../../../builtin/#string">string</a>) {
+    completions = <a href="../../../../../../../builtin/#make">make</a>([]<a href="../../../../../../../builtin/#string">string</a>, 0)
+    projects, err := context.<a href="#KClient">KClient</a>.<a href="#ListProjectNames">ListProjectNames</a>()
+    if err != <a href="../../../../../../../builtin/#nil">nil</a> {
+        return completions
+    }
+
+    for _, project := range projects {
+
+        if args.commands[project] {
+            return <a href="../../../../../../../builtin/#nil">nil</a>
+        }
+        completions = <a href="../../../../../../../builtin/#append">append</a>(completions, project)
+    }
+    return completions
+}</pre>
+			
+				<p>
+StorageDeleteCompletionHandler provides storage name completion for storage delete
+</p>
+
+				<pre>var <span id="StorageDeleteCompletionHandler">StorageDeleteCompletionHandler</span> = func(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, args parsedArgs, context *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>) (completions []<a href="../../../../../../../builtin/#string">string</a>) {
+    completions = <a href="../../../../../../../builtin/#make">make</a>([]<a href="../../../../../../../builtin/#string">string</a>, 0)
+
+    envInfo, err := <a href="../../../../../../../github.com/redhat-developer/odo/pkg/envinfo/">envinfo</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/envinfo/#New">New</a>()
+    if err != <a href="../../../../../../../builtin/#nil">nil</a> {
+        return completions
+    }
+    devObj, err := <a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/">devfile</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/#ParseAndValidateFromFile">ParseAndValidateFromFile</a>(envInfo.<a href="#GetDevfilePath">GetDevfilePath</a>())
+    if err != <a href="../../../../../../../builtin/#nil">nil</a> {
+        return completions
+    }
+    envInfo.<a href="#SetDevfileObj">SetDevfileObj</a>(devObj)
+
+    storageList, err := envInfo.<a href="#ListStorage">ListStorage</a>()
+    if err != <a href="../../../../../../../builtin/#nil">nil</a> {
+        return completions
+    }
+
+    for _, storage := range storageList {
+
+        if args.commands[storage.<a href="#Name">Name</a>] {
+            return <a href="../../../../../../../builtin/#nil">nil</a>
+        }
+        completions = <a href="../../../../../../../builtin/#append">append</a>(completions, storage.<a href="#Name">Name</a>)
+    }
+    return completions
+}</pre>
+			
+				<p>
+URLCompletionHandler provides completion for the url commands
+</p>
+
+				<pre>var <span id="URLCompletionHandler">URLCompletionHandler</span> = func(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, args parsedArgs, context *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>) (completions []<a href="../../../../../../../builtin/#string">string</a>) {
+    return
+}</pre>
+			
+		
+		
+			
+			
+			<h2 id="GetCommandFlagHandler">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/completion/completion.go.html?s=5642:5745#L124">GetCommandFlagHandler</a>
+				<a class="permalink" href="#GetCommandFlagHandler">¶</a>
+				
+				
+			</h2>
+			<pre>func GetCommandFlagHandler(command *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, flag <a href="../../../../../../../builtin/#string">string</a>) (predictor <a href="../../../../../../../github.com/posener/complete/">complete</a>.<a href="../../../../../../../github.com/posener/complete/#Predictor">Predictor</a>, ok <a href="../../../../../../../builtin/#bool">bool</a>)</pre>
+			<p>
+GetCommandFlagHandler retrieves the command handler associated with the specified flag of the specified command or nil otherwise
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetCommandHandler">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/completion/completion.go.html?s=5333:5419#L118">GetCommandHandler</a>
+				<a class="permalink" href="#GetCommandHandler">¶</a>
+				
+				
+			</h2>
+			<pre>func GetCommandHandler(command *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>) (predictor <a href="../../../../../../../github.com/posener/complete/">complete</a>.<a href="../../../../../../../github.com/posener/complete/#Predictor">Predictor</a>, ok <a href="../../../../../../../builtin/#bool">bool</a>)</pre>
+			<p>
+GetCommandHandler retrieves the command handler associated with the specified command or nil otherwise
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewParsedArgs">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/completion/completion.go.html?s=1889:1958#L37">NewParsedArgs</a>
+				<a class="permalink" href="#NewParsedArgs">¶</a>
+				
+				
+			</h2>
+			<pre>func NewParsedArgs(args <a href="../../../../../../../github.com/posener/complete/">complete</a>.<a href="../../../../../../../github.com/posener/complete/#Args">Args</a>, cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>) parsedArgs</pre>
+			<p>
+NewParsedArgs creates a parsed representation of the provided arguments for the specified command. Mostly exposed for tests.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterCommandFlagHandler">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/completion/completion.go.html?s=5014:5117#L113">RegisterCommandFlagHandler</a>
+				<a class="permalink" href="#RegisterCommandFlagHandler">¶</a>
+				
+				
+			</h2>
+			<pre>func RegisterCommandFlagHandler(command *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, flag <a href="../../../../../../../builtin/#string">string</a>, predictor <a href="#ContextualizedPredictor">ContextualizedPredictor</a>)</pre>
+			<p>
+RegisterCommandFlagHandler registers the provided ContextualizedPredictor as a completion handler for the specified flag
+of the specified command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RegisterCommandHandler">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/completion/completion.go.html?s=4676:4762#L107">RegisterCommandHandler</a>
+				<a class="permalink" href="#RegisterCommandHandler">¶</a>
+				
+				
+			</h2>
+			<pre>func RegisterCommandHandler(command *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, predictor <a href="#ContextualizedPredictor">ContextualizedPredictor</a>)</pre>
+			<p>
+RegisterCommandHandler registers the provided ContextualizedPredictor as a completion handler for the specified command
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ContextualizedPredictor">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/completion/completion.go.html?s=1389:1504#L29">ContextualizedPredictor</a>
+				<a class="permalink" href="#ContextualizedPredictor">¶</a>
+				
+				
+			</h2>
+			<p>
+ContextualizedPredictor predicts completion based on specified arguments, potentially using the context provided by the
+specified client to resolve the entities to be completed
+</p>
+
+			<pre>type ContextualizedPredictor func(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>, args parsedArgs, context *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>) []<a href="../../../../../../../builtin/#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

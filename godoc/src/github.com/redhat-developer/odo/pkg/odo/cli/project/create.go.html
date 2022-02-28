@@ -1,0 +1,199 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>project - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli">cli</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project">project</a>/<span class="text-muted">create.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/project">github.com/redhat-developer/odo/pkg/odo/cli/project</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package project
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;fmt&#34;
+<span id="L5" class="ln">     5  </span>
+<span id="L6" class="ln">     6  </span>	&#34;github.com/redhat-developer/odo/pkg/kclient&#34;
+<span id="L7" class="ln">     7  </span>	&#34;github.com/redhat-developer/odo/pkg/log&#34;
+<span id="L8" class="ln">     8  </span>	&#34;github.com/redhat-developer/odo/pkg/machineoutput&#34;
+<span id="L9" class="ln">     9  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/cmdline&#34;
+<span id="L10" class="ln">    10  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/genericclioptions&#34;
+<span id="L11" class="ln">    11  </span>	&#34;github.com/redhat-developer/odo/pkg/project&#34;
+<span id="L12" class="ln">    12  </span>	&#34;github.com/redhat-developer/odo/pkg/segment/context&#34;
+<span id="L13" class="ln">    13  </span>
+<span id="L14" class="ln">    14  </span>	&#34;github.com/spf13/cobra&#34;
+<span id="L15" class="ln">    15  </span>
+<span id="L16" class="ln">    16  </span>	ktemplates &#34;k8s.io/kubectl/pkg/util/templates&#34;
+<span id="L17" class="ln">    17  </span>)
+<span id="L18" class="ln">    18  </span>
+<span id="L19" class="ln">    19  </span>const createRecommendedCommandName = &#34;create&#34;
+<span id="L20" class="ln">    20  </span>
+<span id="L21" class="ln">    21  </span>var (
+<span id="L22" class="ln">    22  </span>	createExample = ktemplates.Examples(`
+<span id="L23" class="ln">    23  </span>	# Create a new project
+<span id="L24" class="ln">    24  </span>	%[1]s myproject
+<span id="L25" class="ln">    25  </span>	`)
+<span id="L26" class="ln">    26  </span>
+<span id="L27" class="ln">    27  </span>	createLongDesc = ktemplates.LongDesc(`Create a new project.
+<span id="L28" class="ln">    28  </span>	This command directly performs actions on the cluster and doesn&#39;t require a push.
+<span id="L29" class="ln">    29  </span>	`)
+<span id="L30" class="ln">    30  </span>
+<span id="L31" class="ln">    31  </span>	createShortDesc = `Create a new project`
+<span id="L32" class="ln">    32  </span>)
+<span id="L33" class="ln">    33  </span>
+<span id="L34" class="ln">    34  </span><span class="comment">// ProjectCreateOptions encapsulates the options for the odo project create command</span>
+<span id="L35" class="ln">    35  </span>type ProjectCreateOptions struct {
+<span id="L36" class="ln">    36  </span>	<span class="comment">// Context</span>
+<span id="L37" class="ln">    37  </span>	*genericclioptions.Context
+<span id="L38" class="ln">    38  </span>
+<span id="L39" class="ln">    39  </span>	<span class="comment">// Clients</span>
+<span id="L40" class="ln">    40  </span>	prjClient project.Client
+<span id="L41" class="ln">    41  </span>
+<span id="L42" class="ln">    42  </span>	<span class="comment">// Parameters</span>
+<span id="L43" class="ln">    43  </span>	projectName string
+<span id="L44" class="ln">    44  </span>
+<span id="L45" class="ln">    45  </span>	<span class="comment">// Flags</span>
+<span id="L46" class="ln">    46  </span>	waitFlag bool
+<span id="L47" class="ln">    47  </span>}
+<span id="L48" class="ln">    48  </span>
+<span id="L49" class="ln">    49  </span><span class="comment">// NewProjectCreateOptions creates a ProjectCreateOptions instance</span>
+<span id="L50" class="ln">    50  </span>func NewProjectCreateOptions(prjClient project.Client) *ProjectCreateOptions {
+<span id="L51" class="ln">    51  </span>	return &amp;ProjectCreateOptions{
+<span id="L52" class="ln">    52  </span>		prjClient: prjClient,
+<span id="L53" class="ln">    53  </span>	}
+<span id="L54" class="ln">    54  </span>}
+<span id="L55" class="ln">    55  </span>
+<span id="L56" class="ln">    56  </span><span class="comment">// Complete completes ProjectCreateOptions after they&#39;ve been created</span>
+<span id="L57" class="ln">    57  </span>func (pco *ProjectCreateOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error) {
+<span id="L58" class="ln">    58  </span>	pco.projectName = args[0]
+<span id="L59" class="ln">    59  </span>	pco.Context, err = genericclioptions.New(genericclioptions.NewCreateParameters(cmdline))
+<span id="L60" class="ln">    60  </span>	if err != nil {
+<span id="L61" class="ln">    61  </span>		return err
+<span id="L62" class="ln">    62  </span>	}
+<span id="L63" class="ln">    63  </span>	if context.GetTelemetryStatus(cmdline.Context()) {
+<span id="L64" class="ln">    64  </span>		context.SetClusterType(cmdline.Context(), pco.KClient)
+<span id="L65" class="ln">    65  </span>	}
+<span id="L66" class="ln">    66  </span>	return nil
+<span id="L67" class="ln">    67  </span>}
+<span id="L68" class="ln">    68  </span>
+<span id="L69" class="ln">    69  </span><span class="comment">// Validate validates the parameters of the ProjectCreateOptions</span>
+<span id="L70" class="ln">    70  </span>func (pco *ProjectCreateOptions) Validate() error {
+<span id="L71" class="ln">    71  </span>	return nil
+<span id="L72" class="ln">    72  </span>}
+<span id="L73" class="ln">    73  </span>
+<span id="L74" class="ln">    74  </span><span class="comment">// Run runs the project create command</span>
+<span id="L75" class="ln">    75  </span>func (pco *ProjectCreateOptions) Run() (err error) {
+<span id="L76" class="ln">    76  </span>	<span class="comment">// Create the &#34;spinner&#34;</span>
+<span id="L77" class="ln">    77  </span>	s := &amp;log.Status{}
+<span id="L78" class="ln">    78  </span>
+<span id="L79" class="ln">    79  </span>	<span class="comment">// If the --wait parameter has been passed, we add a spinner..</span>
+<span id="L80" class="ln">    80  </span>	if pco.waitFlag {
+<span id="L81" class="ln">    81  </span>		s = log.Spinner(&#34;Waiting for project to come up&#34;)
+<span id="L82" class="ln">    82  </span>		defer s.End(false)
+<span id="L83" class="ln">    83  </span>	}
+<span id="L84" class="ln">    84  </span>
+<span id="L85" class="ln">    85  </span>	<span class="comment">// Create the project &amp; end the spinner (if there is any..)</span>
+<span id="L86" class="ln">    86  </span>	err = pco.prjClient.Create(pco.projectName, pco.waitFlag)
+<span id="L87" class="ln">    87  </span>	if err != nil {
+<span id="L88" class="ln">    88  </span>		return err
+<span id="L89" class="ln">    89  </span>	}
+<span id="L90" class="ln">    90  </span>	s.End(true)
+<span id="L91" class="ln">    91  </span>
+<span id="L92" class="ln">    92  </span>	successMessage := fmt.Sprintf(`Project %q is ready for use`, pco.projectName)
+<span id="L93" class="ln">    93  </span>	log.Successf(successMessage)
+<span id="L94" class="ln">    94  </span>
+<span id="L95" class="ln">    95  </span>	<span class="comment">// Set the current project when created</span>
+<span id="L96" class="ln">    96  </span>	err = pco.prjClient.SetCurrent(pco.projectName)
+<span id="L97" class="ln">    97  </span>	if err != nil {
+<span id="L98" class="ln">    98  </span>		return err
+<span id="L99" class="ln">    99  </span>	}
+<span id="L100" class="ln">   100  </span>
+<span id="L101" class="ln">   101  </span>	log.Successf(&#34;New project created and now using project: %v&#34;, pco.projectName)
+<span id="L102" class="ln">   102  </span>
+<span id="L103" class="ln">   103  </span>	<span class="comment">// If -o json has been passed, let&#39;s output the appropriate json output.</span>
+<span id="L104" class="ln">   104  </span>	if log.IsJSON() {
+<span id="L105" class="ln">   105  </span>		prj := project.NewProject(pco.projectName, true)
+<span id="L106" class="ln">   106  </span>		machineoutput.OutputSuccess(prj)
+<span id="L107" class="ln">   107  </span>	}
+<span id="L108" class="ln">   108  </span>
+<span id="L109" class="ln">   109  </span>	return nil
+<span id="L110" class="ln">   110  </span>}
+<span id="L111" class="ln">   111  </span>
+<span id="L112" class="ln">   112  </span><span class="comment">// NewCmdProjectCreate creates the project create command</span>
+<span id="L113" class="ln">   113  </span>func NewCmdProjectCreate(name, fullName string) *cobra.Command {
+<span id="L114" class="ln">   114  </span>	<span class="comment">// The error is not handled at this point, it will be handled during Context creation</span>
+<span id="L115" class="ln">   115  </span>	kubclient, _ := kclient.New()
+<span id="L116" class="ln">   116  </span>	o := NewProjectCreateOptions(project.NewClient(kubclient))
+<span id="L117" class="ln">   117  </span>
+<span id="L118" class="ln">   118  </span>	projectCreateCmd := &amp;cobra.Command{
+<span id="L119" class="ln">   119  </span>		Use:         name,
+<span id="L120" class="ln">   120  </span>		Short:       createShortDesc,
+<span id="L121" class="ln">   121  </span>		Long:        createLongDesc,
+<span id="L122" class="ln">   122  </span>		Example:     fmt.Sprintf(createExample, fullName),
+<span id="L123" class="ln">   123  </span>		Args:        cobra.ExactArgs(1),
+<span id="L124" class="ln">   124  </span>		Annotations: map[string]string{&#34;machineoutput&#34;: &#34;json&#34;},
+<span id="L125" class="ln">   125  </span>		Run: func(cmd *cobra.Command, args []string) {
+<span id="L126" class="ln">   126  </span>			genericclioptions.GenericRun(o, cmd, args)
+<span id="L127" class="ln">   127  </span>		},
+<span id="L128" class="ln">   128  </span>	}
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span>	projectCreateCmd.Flags().BoolVarP(&amp;o.waitFlag, &#34;wait&#34;, &#34;w&#34;, false, &#34;Wait until the project is ready&#34;)
+<span id="L131" class="ln">   131  </span>	return projectCreateCmd
+<span id="L132" class="ln">   132  </span>}
+<span id="L133" class="ln">   133  </span>
+</pre><p><a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/project/create.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

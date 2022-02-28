@@ -1,0 +1,664 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>project - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package project
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/project" target="_blank">github.com/redhat-developer/odo/pkg/project</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+Package project provides functions to create, delete, list, check existence of and get machine readable description of projects,
+and to get and set the current project.
+A project is represented either by a `project.project.openshift.io` resource (in OpenShift) or by a `namespace` in Kubernetes.
+</p>
+<p>
+Package project is a generated GoMock package.
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#GetNonOdoSelector">func GetNonOdoSelector() string</a></dd>
+			
+				
+				<dd><a href="#GetSelector">func GetSelector() string</a></dd>
+			
+			
+				
+				<dd><a href="#Client">type Client</a></dd>
+				
+					
+					<dd>    <a href="#NewClient">func NewClient(client kclient.ClientInterface) Client</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MockClient">type MockClient</a></dd>
+				
+					
+					<dd>    <a href="#NewMockClient">func NewMockClient(ctrl *gomock.Controller) *MockClient</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockClient.Create">func (m *MockClient) Create(projectName string, wait bool) error</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.Delete">func (m *MockClient) Delete(projectName string, wait bool) error</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.EXPECT">func (m *MockClient) EXPECT() *MockClientMockRecorder</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.Exists">func (m *MockClient) Exists(projectName string) (bool, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.List">func (m *MockClient) List() (ProjectList, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.SetCurrent">func (m *MockClient) SetCurrent(projectName string) error</a></dd>
+				
+			
+				
+				<dd><a href="#MockClientMockRecorder">type MockClientMockRecorder</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.Create">func (mr *MockClientMockRecorder) Create(projectName, wait interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.Delete">func (mr *MockClientMockRecorder) Delete(projectName, wait interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.Exists">func (mr *MockClientMockRecorder) Exists(projectName interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.List">func (mr *MockClientMockRecorder) List() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.SetCurrent">func (mr *MockClientMockRecorder) SetCurrent(projectName interface{}) *gomock.Call</a></dd>
+				
+			
+				
+				<dd><a href="#Project">type Project</a></dd>
+				
+					
+					<dd>    <a href="#NewProject">func NewProject(projectName string, isActive bool) Project</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ProjectList">type ProjectList</a></dd>
+				
+					
+					<dd>    <a href="#NewProjectList">func NewProjectList(items []Project) ProjectList</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Status">type Status</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/doc.go.html">doc.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/kubernetes.go.html">kubernetes.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/labels.go.html">labels.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html">mock.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/project.go.html">project.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/types.go.html">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const <span id="ProjectKind">ProjectKind</span> = &#34;Project&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="GetNonOdoSelector">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/labels.go.html?s=375:406#L7">GetNonOdoSelector</a>
+				<a class="permalink" href="#GetNonOdoSelector">¶</a>
+				
+				
+			</h2>
+			<pre>func GetNonOdoSelector() <a href="../../../../../builtin/#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetSelector">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/labels.go.html?s=235:260#L1">GetSelector</a>
+				<a class="permalink" href="#GetSelector">¶</a>
+				
+				
+			</h2>
+			<pre>func GetSelector() <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetSelector returns a selector to filter resource under the current project created by odo
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/project.go.html?s=17:241#L1">Client</a>
+				<a class="permalink" href="#Client">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Client interface {
+    SetCurrent(projectName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a>
+    Create(projectName <a href="../../../../../builtin/#string">string</a>, wait <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a>
+    Delete(projectName <a href="../../../../../builtin/#string">string</a>, wait <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a>
+    List() (<a href="#ProjectList">ProjectList</a>, <a href="../../../../../builtin/#error">error</a>)
+    Exists(projectName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/kubernetes.go.html?s=168:221#L3">NewClient</a>
+					<a class="permalink" href="#NewClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewClient(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>) <a href="#Client">Client</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MockClient">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=262:351#L4">MockClient</a>
+				<a class="permalink" href="#MockClient">¶</a>
+				
+				
+			</h2>
+			<p>
+MockClient is a mock of Client interface.
+</p>
+
+			<pre>type MockClient struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMockClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=520:575#L15">NewMockClient</a>
+					<a class="permalink" href="#NewMockClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewMockClient(ctrl *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Controller">Controller</a>) *<a href="#MockClient">MockClient</a></pre>
+				<p>
+NewMockClient creates a new mock instance.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MockClient.Create">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=858:922#L27">Create</a>
+					<a class="permalink" href="#MockClient.Create">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) Create(projectName <a href="../../../../../builtin/#string">string</a>, wait <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+Create mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.Delete">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=1358:1422#L41">Delete</a>
+					<a class="permalink" href="#MockClient.Delete">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) Delete(projectName <a href="../../../../../builtin/#string">string</a>, wait <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+Delete mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.EXPECT">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=751:804#L22">EXPECT</a>
+					<a class="permalink" href="#MockClient.EXPECT">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) EXPECT() *<a href="#MockClientMockRecorder">MockClientMockRecorder</a></pre>
+				<p>
+EXPECT returns an object that allows the caller to indicate expected use.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.Exists">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=1858:1919#L55">Exists</a>
+					<a class="permalink" href="#MockClient.Exists">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) Exists(projectName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Exists mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.List">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=2367:2415#L70">List</a>
+					<a class="permalink" href="#MockClient.List">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) List() (<a href="#ProjectList">ProjectList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+List mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.SetCurrent">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=2815:2872#L85">SetCurrent</a>
+					<a class="permalink" href="#MockClient.SetCurrent">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) SetCurrent(projectName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+SetCurrent mocks base method.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockClientMockRecorder">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=416:472#L10">MockClientMockRecorder</a>
+				<a class="permalink" href="#MockClientMockRecorder">¶</a>
+				
+				
+			</h2>
+			<p>
+MockClientMockRecorder is the mock recorder for MockClient.
+</p>
+
+			<pre>type MockClientMockRecorder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockClientMockRecorder.Create">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=1087:1171#L35">Create</a>
+					<a class="permalink" href="#MockClientMockRecorder.Create">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) Create(projectName, wait interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Create indicates an expected call of Create.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.Delete">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=1587:1671#L49">Delete</a>
+					<a class="permalink" href="#MockClientMockRecorder.Delete">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) Delete(projectName, wait interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Delete indicates an expected call of Delete.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.Exists">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=2110:2188#L64">Exists</a>
+					<a class="permalink" href="#MockClientMockRecorder.Exists">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) Exists(projectName interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Exists indicates an expected call of Exists.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.List">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=2594:2647#L79">List</a>
+					<a class="permalink" href="#MockClientMockRecorder.List">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) List() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+List indicates an expected call of List.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.SetCurrent">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/mock.go.html?s=3043:3125#L93">SetCurrent</a>
+					<a class="permalink" href="#MockClientMockRecorder.SetCurrent">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) SetCurrent(projectName interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+SetCurrent indicates an expected call of SetCurrent.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Project">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/types.go.html?s=160:318#L1">Project</a>
+				<a class="permalink" href="#Project">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Project struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="Project.Status"></span>    Status            <a href="#Status">Status</a> `json:&#34;status,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewProject">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/types.go.html?s=430:488#L11">NewProject</a>
+					<a class="permalink" href="#NewProject">¶</a>
+					
+					
+				</h3>
+				<pre>func NewProject(projectName <a href="../../../../../builtin/#string">string</a>, isActive <a href="../../../../../builtin/#bool">bool</a>) <a href="#Project">Project</a></pre>
+				<p>
+NewProject creates and returns a new project instance
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ProjectList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/types.go.html?s=721:869#L26">ProjectList</a>
+				<a class="permalink" href="#ProjectList">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type ProjectList struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a> `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ListMeta">ListMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="ProjectList.Items"></span>    Items           []<a href="#Project">Project</a> `json:&#34;items&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewProjectList">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/types.go.html?s=951:999#L33">NewProjectList</a>
+					<a class="permalink" href="#NewProjectList">¶</a>
+					
+					
+				</h3>
+				<pre>func NewProjectList(items []<a href="#Project">Project</a>) <a href="#ProjectList">ProjectList</a></pre>
+				<p>
+NewProjectList returns an instance of a list containing the `items` projects
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Status">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/project/types.go.html?s=320:371#L6">Status</a>
+				<a class="permalink" href="#Status">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Status struct {
+<span id="Status.Active"></span>    Active <a href="../../../../../builtin/#bool">bool</a> `json:&#34;active&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

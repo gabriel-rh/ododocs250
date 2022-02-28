@@ -1,0 +1,412 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>describe - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo">odo</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli">cli</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog">catalog</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe">describe</a>/<span class="text-muted">operator_backend.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe">github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package describe
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;encoding/json&#34;
+<span id="L5" class="ln">     5  </span>	&#34;fmt&#34;
+<span id="L6" class="ln">     6  </span>	&#34;io&#34;
+<span id="L7" class="ln">     7  </span>	&#34;os&#34;
+<span id="L8" class="ln">     8  </span>	&#34;regexp&#34;
+<span id="L9" class="ln">     9  </span>	&#34;sort&#34;
+<span id="L10" class="ln">    10  </span>	&#34;strings&#34;
+<span id="L11" class="ln">    11  </span>	&#34;text/tabwriter&#34;
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span>	&#34;github.com/go-openapi/spec&#34;
+<span id="L14" class="ln">    14  </span>	olm &#34;github.com/operator-framework/api/pkg/operators/v1alpha1&#34;
+<span id="L15" class="ln">    15  </span>	&#34;github.com/pkg/errors&#34;
+<span id="L16" class="ln">    16  </span>	&#34;github.com/redhat-developer/odo/pkg/log&#34;
+<span id="L17" class="ln">    17  </span>	&#34;github.com/redhat-developer/odo/pkg/machineoutput&#34;
+<span id="L18" class="ln">    18  </span>	&#34;github.com/redhat-developer/odo/pkg/service&#34;
+<span id="L19" class="ln">    19  </span>	&#34;gopkg.in/yaml.v2&#34;
+<span id="L20" class="ln">    20  </span>	&#34;k8s.io/klog&#34;
+<span id="L21" class="ln">    21  </span>)
+<span id="L22" class="ln">    22  </span>
+<span id="L23" class="ln">    23  </span>type operatorBackend struct {
+<span id="L24" class="ln">    24  </span>	Name           string
+<span id="L25" class="ln">    25  </span>	OperatorType   string
+<span id="L26" class="ln">    26  </span>	CustomResource string
+<span id="L27" class="ln">    27  </span>	CSV            olm.ClusterServiceVersion
+<span id="L28" class="ln">    28  </span>	CR             *olm.CRDDescription
+<span id="L29" class="ln">    29  </span>	CRDSpec        *spec.Schema
+<span id="L30" class="ln">    30  </span>	CRDList        *service.OperatorBackedServiceCRList
+<span id="L31" class="ln">    31  </span>}
+<span id="L32" class="ln">    32  </span>
+<span id="L33" class="ln">    33  </span>func NewOperatorBackend() *operatorBackend {
+<span id="L34" class="ln">    34  </span>	return &amp;operatorBackend{}
+<span id="L35" class="ln">    35  </span>}
+<span id="L36" class="ln">    36  </span>
+<span id="L37" class="ln">    37  </span>func (ohb *operatorBackend) CompleteDescribeService(dso *DescribeServiceOptions, args []string) error {
+<span id="L38" class="ln">    38  </span>	ohb.Name = args[0]
+<span id="L39" class="ln">    39  </span>	oprType, CR, err := service.SplitServiceKindName(ohb.Name)
+<span id="L40" class="ln">    40  </span>	if err != nil {
+<span id="L41" class="ln">    41  </span>		klog.V(2).Infof(&#34;could not determine csv, falling back to describing all of them&#34;)
+<span id="L42" class="ln">    42  </span>		oprType = args[0]
+<span id="L43" class="ln">    43  </span>		CR = &#34;&#34;
+<span id="L44" class="ln">    44  </span>	}
+<span id="L45" class="ln">    45  </span>	<span class="comment">// we check if the cluster supports ClusterServiceVersion or not.</span>
+<span id="L46" class="ln">    46  </span>	isCSVSupported, err := dso.KClient.IsCSVSupported()
+<span id="L47" class="ln">    47  </span>	if err != nil {
+<span id="L48" class="ln">    48  </span>		<span class="comment">// if there is an error checking it, we return the error.</span>
+<span id="L49" class="ln">    49  </span>		return err
+<span id="L50" class="ln">    50  </span>	}
+<span id="L51" class="ln">    51  </span>	<span class="comment">// if its not supported then we return an error</span>
+<span id="L52" class="ln">    52  </span>	if !isCSVSupported {
+<span id="L53" class="ln">    53  </span>		return errors.New(&#34;it seems the cluster doesn&#39;t support Operators. Please install OLM and try again&#34;)
+<span id="L54" class="ln">    54  </span>	}
+<span id="L55" class="ln">    55  </span>	ohb.OperatorType = oprType
+<span id="L56" class="ln">    56  </span>	ohb.CustomResource = CR
+<span id="L57" class="ln">    57  </span>	return nil
+<span id="L58" class="ln">    58  </span>}
+<span id="L59" class="ln">    59  </span>
+<span id="L60" class="ln">    60  </span>func (ohb *operatorBackend) ValidateDescribeService(dso *DescribeServiceOptions) error {
+<span id="L61" class="ln">    61  </span>	var err error
+<span id="L62" class="ln">    62  </span>	if ohb.OperatorType == &#34;&#34; {
+<span id="L63" class="ln">    63  </span>		return errors.New(&#34;invalid service name provided. should either be &lt;operator-type&gt; or &lt;operator-type&gt;/&lt;crd-name&gt;&#34;)
+<span id="L64" class="ln">    64  </span>	}
+<span id="L65" class="ln">    65  </span>	<span class="comment">// make sure that CSV of the specified OperatorType exists</span>
+<span id="L66" class="ln">    66  </span>	ohb.CSV, err = dso.KClient.GetClusterServiceVersion(ohb.OperatorType)
+<span id="L67" class="ln">    67  </span>	if err != nil {
+<span id="L68" class="ln">    68  </span>		<span class="comment">// error only occurs when OperatorHub is not installed.</span>
+<span id="L69" class="ln">    69  </span>		<span class="comment">// k8s does&#39;t have it installed by default but OCP does</span>
+<span id="L70" class="ln">    70  </span>		return err
+<span id="L71" class="ln">    71  </span>	}
+<span id="L72" class="ln">    72  </span>
+<span id="L73" class="ln">    73  </span>	<span class="comment">//if both operator type and cr are known, validate that it exists</span>
+<span id="L74" class="ln">    74  </span>	if ohb.OperatorType != &#34;&#34; &amp;&amp; ohb.CustomResource != &#34;&#34; {
+<span id="L75" class="ln">    75  </span>		var hasCR bool
+<span id="L76" class="ln">    76  </span>		hasCR, ohb.CR = dso.KClient.CheckCustomResourceInCSV(ohb.CustomResource, &amp;ohb.CSV)
+<span id="L77" class="ln">    77  </span>		if !hasCR {
+<span id="L78" class="ln">    78  </span>			return fmt.Errorf(&#34;the %q resource doesn&#39;t exist in specified %q operator&#34;, ohb.CustomResource, ohb.OperatorType)
+<span id="L79" class="ln">    79  </span>		}
+<span id="L80" class="ln">    80  </span>
+<span id="L81" class="ln">    81  </span>		ohb.CRDSpec, err = dso.KClient.GetCRDSpec(ohb.CR, ohb.OperatorType, ohb.CustomResource)
+<span id="L82" class="ln">    82  </span>		if err != nil {
+<span id="L83" class="ln">    83  </span>			return err
+<span id="L84" class="ln">    84  </span>		}
+<span id="L85" class="ln">    85  </span>	}
+<span id="L86" class="ln">    86  </span>	return nil
+<span id="L87" class="ln">    87  </span>
+<span id="L88" class="ln">    88  </span>}
+<span id="L89" class="ln">    89  </span>
+<span id="L90" class="ln">    90  </span>func (ohb *operatorBackend) RunDescribeService(dso *DescribeServiceOptions) error {
+<span id="L91" class="ln">    91  </span>	if ohb.OperatorType != &#34;&#34; &amp;&amp; ohb.CustomResource == &#34;&#34; {
+<span id="L92" class="ln">    92  </span>		<span class="comment">//we don&#39;t have cr so list all possible crds</span>
+<span id="L93" class="ln">    93  </span>		ohb.CRDList = service.NewOperatorBackedCRList(ohb.OperatorType, ohb.CSV.Spec.DisplayName, ohb.CSV.Spec.Description)
+<span id="L94" class="ln">    94  </span>		crds := *dso.KClient.GetCustomResourcesFromCSV(&amp;ohb.CSV)
+<span id="L95" class="ln">    95  </span>		for _, custRes := range crds {
+<span id="L96" class="ln">    96  </span>			ohb.CRDList.Spec.CRDS = append(ohb.CRDList.Spec.CRDS, service.OperatorServiceCRItem{
+<span id="L97" class="ln">    97  </span>				Kind:        custRes.Kind,
+<span id="L98" class="ln">    98  </span>				Description: custRes.Description,
+<span id="L99" class="ln">    99  </span>			})
+<span id="L100" class="ln">   100  </span>		}
+<span id="L101" class="ln">   101  </span>		if log.IsJSON() {
+<span id="L102" class="ln">   102  </span>			machineoutput.OutputSuccess(ohb.CRDList)
+<span id="L103" class="ln">   103  </span>		} else {
+<span id="L104" class="ln">   104  </span>			HumanReadableCRListOutput(os.Stdout, ohb.CRDList)
+<span id="L105" class="ln">   105  </span>		}
+<span id="L106" class="ln">   106  </span>		return nil
+<span id="L107" class="ln">   107  </span>	}
+<span id="L108" class="ln">   108  </span>	if dso.exampleFlag {
+<span id="L109" class="ln">   109  </span>		almExample, err := service.GetAlmExample(ohb.CSV, ohb.CustomResource, ohb.OperatorType)
+<span id="L110" class="ln">   110  </span>		if err != nil {
+<span id="L111" class="ln">   111  </span>			return err
+<span id="L112" class="ln">   112  </span>		}
+<span id="L113" class="ln">   113  </span>		if log.IsJSON() {
+<span id="L114" class="ln">   114  </span>			jsonExample := service.NewOperatorExample(almExample)
+<span id="L115" class="ln">   115  </span>			jsonCR, err := json.MarshalIndent(jsonExample, &#34;&#34;, &#34;  &#34;)
+<span id="L116" class="ln">   116  </span>			if err != nil {
+<span id="L117" class="ln">   117  </span>				return err
+<span id="L118" class="ln">   118  </span>			}
+<span id="L119" class="ln">   119  </span>
+<span id="L120" class="ln">   120  </span>			fmt.Println(string(jsonCR))
+<span id="L121" class="ln">   121  </span>
+<span id="L122" class="ln">   122  </span>		} else {
+<span id="L123" class="ln">   123  </span>			yamlCR, err := yaml.Marshal(almExample)
+<span id="L124" class="ln">   124  </span>			if err != nil {
+<span id="L125" class="ln">   125  </span>				return err
+<span id="L126" class="ln">   126  </span>			}
+<span id="L127" class="ln">   127  </span>
+<span id="L128" class="ln">   128  </span>			log.Info(string(yamlCR))
+<span id="L129" class="ln">   129  </span>		}
+<span id="L130" class="ln">   130  </span>	}
+<span id="L131" class="ln">   131  </span>	svc := service.NewOperatorBackedService(ohb.Name, ohb.CR.Kind, ohb.CR.Version, ohb.CR.Description, ohb.CR.DisplayName, ohb.CRDSpec)
+<span id="L132" class="ln">   132  </span>	if log.IsJSON() {
+<span id="L133" class="ln">   133  </span>		machineoutput.OutputSuccess(svc)
+<span id="L134" class="ln">   134  </span>	} else {
+<span id="L135" class="ln">   135  </span>
+<span id="L136" class="ln">   136  </span>		HumanReadableOutput(os.Stdout, svc)
+<span id="L137" class="ln">   137  </span>	}
+<span id="L138" class="ln">   138  </span>	return nil
+<span id="L139" class="ln">   139  </span>}
+<span id="L140" class="ln">   140  </span>
+<span id="L141" class="ln">   141  </span>func HumanReadableOutput(w io.Writer, service service.OperatorBackedService) {
+<span id="L142" class="ln">   142  </span>	fmt.Fprintf(w, &#34;KIND:    %s\n&#34;, service.Spec.Kind)
+<span id="L143" class="ln">   143  </span>	fmt.Fprintf(w, &#34;VERSION: %s\n&#34;, service.Spec.Version)
+<span id="L144" class="ln">   144  </span>	fmt.Fprintf(w, &#34;\nDESCRIPTION:\n%s&#34;, indentText(service.Spec.Description, 5))
+<span id="L145" class="ln">   145  </span>
+<span id="L146" class="ln">   146  </span>	if service.Spec.Schema == nil {
+<span id="L147" class="ln">   147  </span>		log.Warningf(&#34;Unable to get parameters from CRD or CSV; Operator %q doesn&#39;t have the required information&#34;, service.Name)
+<span id="L148" class="ln">   148  </span>		return
+<span id="L149" class="ln">   149  </span>	}
+<span id="L150" class="ln">   150  </span>	fmt.Fprintln(w, &#34;\nFIELDS:&#34;)
+<span id="L151" class="ln">   151  </span>	displayProperties(w, service.Spec.Schema, &#34;&#34;)
+<span id="L152" class="ln">   152  </span>}
+<span id="L153" class="ln">   153  </span>
+<span id="L154" class="ln">   154  </span>func HumanReadableCRListOutput(w io.Writer, crsList *service.OperatorBackedServiceCRList) {
+<span id="L155" class="ln">   155  </span>	fmt.Fprintf(w, &#34;NAME:\t%s\n&#34;, crsList.Name)
+<span id="L156" class="ln">   156  </span>	descriptionLines := strings.ReplaceAll(crsList.Spec.Description, &#34;\n&#34;, &#34;\n\t&#34;)
+<span id="L157" class="ln">   157  </span>	fmt.Fprintf(w, &#34;DESCRIPTION:\n\n\t%s\n\n&#34;, descriptionLines)
+<span id="L158" class="ln">   158  </span>	fmt.Fprintf(w, &#34;CRDs:\n&#34;)
+<span id="L159" class="ln">   159  </span>	tw := tabwriter.NewWriter(w, 4, 4, 3, &#39; &#39;, tabwriter.TabIndent)
+<span id="L160" class="ln">   160  </span>	defer tw.Flush()
+<span id="L161" class="ln">   161  </span>	fmt.Fprintf(tw, &#34;\tNAME\tDESCRIPTION\n&#34;)
+<span id="L162" class="ln">   162  </span>	for _, it := range crsList.Spec.CRDS {
+<span id="L163" class="ln">   163  </span>		fmt.Fprintf(tw, &#34;\t%s\t%s\n&#34;, it.Kind, it.Description)
+<span id="L164" class="ln">   164  </span>	}
+<span id="L165" class="ln">   165  </span>}
+<span id="L166" class="ln">   166  </span>
+<span id="L167" class="ln">   167  </span><span class="comment">// displayProperties displays the properties of an OpenAPI schema in a human readable form</span>
+<span id="L168" class="ln">   168  </span><span class="comment">// required fields are displayed first</span>
+<span id="L169" class="ln">   169  </span>func displayProperties(w io.Writer, schema *spec.Schema, prefix string) {
+<span id="L170" class="ln">   170  </span>	required := schema.Required
+<span id="L171" class="ln">   171  </span>	requiredMap := map[string]bool{}
+<span id="L172" class="ln">   172  </span>	for _, req := range required {
+<span id="L173" class="ln">   173  </span>		requiredMap[req] = true
+<span id="L174" class="ln">   174  </span>	}
+<span id="L175" class="ln">   175  </span>
+<span id="L176" class="ln">   176  </span>	reqKeys := []string{}
+<span id="L177" class="ln">   177  </span>	for key := range schema.Properties {
+<span id="L178" class="ln">   178  </span>		if requiredMap[key] {
+<span id="L179" class="ln">   179  </span>			reqKeys = append(reqKeys, key)
+<span id="L180" class="ln">   180  </span>		}
+<span id="L181" class="ln">   181  </span>	}
+<span id="L182" class="ln">   182  </span>	sort.Strings(reqKeys)
+<span id="L183" class="ln">   183  </span>
+<span id="L184" class="ln">   184  </span>	nonReqKeys := []string{}
+<span id="L185" class="ln">   185  </span>	for key := range schema.Properties {
+<span id="L186" class="ln">   186  </span>		if !requiredMap[key] {
+<span id="L187" class="ln">   187  </span>			nonReqKeys = append(nonReqKeys, key)
+<span id="L188" class="ln">   188  </span>		}
+<span id="L189" class="ln">   189  </span>	}
+<span id="L190" class="ln">   190  </span>	sort.Strings(nonReqKeys)
+<span id="L191" class="ln">   191  </span>	keys := append(reqKeys, nonReqKeys...)
+<span id="L192" class="ln">   192  </span>
+<span id="L193" class="ln">   193  </span>	for _, key := range keys {
+<span id="L194" class="ln">   194  </span>		property := schema.Properties[key]
+<span id="L195" class="ln">   195  </span>		requiredInfo := &#34;&#34;
+<span id="L196" class="ln">   196  </span>		if requiredMap[key] {
+<span id="L197" class="ln">   197  </span>			requiredInfo = &#34;-required-&#34;
+<span id="L198" class="ln">   198  </span>		}
+<span id="L199" class="ln">   199  </span>		fmt.Fprintf(w, &#34;%s%s (%s)   %s\n&#34;, strings.Repeat(&#34; &#34;, 3+2*strings.Count(prefix, &#34;.&#34;)), prefix+key, getTypeString(property), requiredInfo)
+<span id="L200" class="ln">   200  </span>		nl := false
+<span id="L201" class="ln">   201  </span>		if len(property.Title) &gt; 0 {
+<span id="L202" class="ln">   202  </span>			fmt.Fprintf(w, &#34;%s\n&#34;, indentText(property.Title, 5+2*strings.Count(prefix, &#34;.&#34;)))
+<span id="L203" class="ln">   203  </span>			nl = true
+<span id="L204" class="ln">   204  </span>		}
+<span id="L205" class="ln">   205  </span>		if len(property.Description) &gt; 0 {
+<span id="L206" class="ln">   206  </span>			fmt.Fprintf(w, &#34;%s\n&#34;, indentText(property.Description, 5+2*strings.Count(prefix, &#34;.&#34;)))
+<span id="L207" class="ln">   207  </span>			nl = true
+<span id="L208" class="ln">   208  </span>		}
+<span id="L209" class="ln">   209  </span>		if !nl {
+<span id="L210" class="ln">   210  </span>			fmt.Fprintln(w)
+<span id="L211" class="ln">   211  </span>		}
+<span id="L212" class="ln">   212  </span>		if property.Type.Contains(&#34;object&#34;) {
+<span id="L213" class="ln">   213  </span>			displayProperties(w, &amp;property, prefix+key+&#34;.&#34;)
+<span id="L214" class="ln">   214  </span>		} else if property.Type.Contains(&#34;array&#34;) &amp;&amp; property.Items.Schema.Type.Contains(&#34;object&#34;) {
+<span id="L215" class="ln">   215  </span>			displayProperties(w, property.Items.Schema, prefix+key+&#34;.*.&#34;)
+<span id="L216" class="ln">   216  </span>		}
+<span id="L217" class="ln">   217  </span>	}
+<span id="L218" class="ln">   218  </span>}
+<span id="L219" class="ln">   219  </span>
+<span id="L220" class="ln">   220  </span>func getTypeString(property spec.Schema) string {
+<span id="L221" class="ln">   221  </span>	if len(property.Type) != 1 {
+<span id="L222" class="ln">   222  </span>		<span class="comment">// should not happen</span>
+<span id="L223" class="ln">   223  </span>		return strings.Join(property.Type, &#34;, &#34;)
+<span id="L224" class="ln">   224  </span>	}
+<span id="L225" class="ln">   225  </span>	tpe := property.Type[0]
+<span id="L226" class="ln">   226  </span>	if tpe == &#34;array&#34; {
+<span id="L227" class="ln">   227  </span>		tpe = &#34;[]&#34; + getTypeString(*property.Items.Schema)
+<span id="L228" class="ln">   228  </span>	}
+<span id="L229" class="ln">   229  </span>	return tpe
+<span id="L230" class="ln">   230  </span>}
+<span id="L231" class="ln">   231  </span>
+<span id="L232" class="ln">   232  </span>func indentText(t string, indent int) string {
+<span id="L233" class="ln">   233  </span>	lines := wrapString(t, 80-indent)
+<span id="L234" class="ln">   234  </span>	res := &#34;&#34;
+<span id="L235" class="ln">   235  </span>	for _, line := range lines {
+<span id="L236" class="ln">   236  </span>		res += strings.Repeat(&#34; &#34;, indent) + line + &#34;\n&#34;
+<span id="L237" class="ln">   237  </span>	}
+<span id="L238" class="ln">   238  </span>	return res
+<span id="L239" class="ln">   239  </span>}
+<span id="L240" class="ln">   240  </span>
+<span id="L241" class="ln">   241  </span><span class="comment">// Following code from https://github.com/kubernetes/kubectl/blob/159a770147fb28337c6807abb1b2b9db843d0aff/pkg/explain/formatter.go</span>
+<span id="L242" class="ln">   242  </span>
+<span id="L243" class="ln">   243  </span>type line struct {
+<span id="L244" class="ln">   244  </span>	wrap  int
+<span id="L245" class="ln">   245  </span>	words []string
+<span id="L246" class="ln">   246  </span>}
+<span id="L247" class="ln">   247  </span>
+<span id="L248" class="ln">   248  </span>func (l *line) String() string {
+<span id="L249" class="ln">   249  </span>	return strings.Join(l.words, &#34; &#34;)
+<span id="L250" class="ln">   250  </span>}
+<span id="L251" class="ln">   251  </span>
+<span id="L252" class="ln">   252  </span>func (l *line) Empty() bool {
+<span id="L253" class="ln">   253  </span>	return len(l.words) == 0
+<span id="L254" class="ln">   254  </span>}
+<span id="L255" class="ln">   255  </span>
+<span id="L256" class="ln">   256  </span>func (l *line) Len() int {
+<span id="L257" class="ln">   257  </span>	return len(l.String())
+<span id="L258" class="ln">   258  </span>}
+<span id="L259" class="ln">   259  </span>
+<span id="L260" class="ln">   260  </span><span class="comment">// Add adds the word to the line, returns true if we could, false if we</span>
+<span id="L261" class="ln">   261  </span><span class="comment">// didn&#39;t have enough room. It&#39;s always possible to add to an empty line.</span>
+<span id="L262" class="ln">   262  </span>func (l *line) Add(word string) bool {
+<span id="L263" class="ln">   263  </span>	newLine := line{
+<span id="L264" class="ln">   264  </span>		wrap:  l.wrap,
+<span id="L265" class="ln">   265  </span>		words: append(l.words, word),
+<span id="L266" class="ln">   266  </span>	}
+<span id="L267" class="ln">   267  </span>	if newLine.Len() &lt;= l.wrap || len(l.words) == 0 {
+<span id="L268" class="ln">   268  </span>		l.words = newLine.words
+<span id="L269" class="ln">   269  </span>		return true
+<span id="L270" class="ln">   270  </span>	}
+<span id="L271" class="ln">   271  </span>	return false
+<span id="L272" class="ln">   272  </span>}
+<span id="L273" class="ln">   273  </span>
+<span id="L274" class="ln">   274  </span>func wrapString(str string, wrap int) []string {
+<span id="L275" class="ln">   275  </span>	wrapped := []string{}
+<span id="L276" class="ln">   276  </span>	l := line{wrap: wrap}
+<span id="L277" class="ln">   277  </span>	<span class="comment">// track the last word added to the current line</span>
+<span id="L278" class="ln">   278  </span>	lastWord := &#34;&#34;
+<span id="L279" class="ln">   279  </span>	flush := func() {
+<span id="L280" class="ln">   280  </span>		if !l.Empty() {
+<span id="L281" class="ln">   281  </span>			lastWord = &#34;&#34;
+<span id="L282" class="ln">   282  </span>			wrapped = append(wrapped, l.String())
+<span id="L283" class="ln">   283  </span>			l = line{wrap: wrap}
+<span id="L284" class="ln">   284  </span>		}
+<span id="L285" class="ln">   285  </span>	}
+<span id="L286" class="ln">   286  </span>
+<span id="L287" class="ln">   287  </span>	<span class="comment">// iterate over the lines in the original description</span>
+<span id="L288" class="ln">   288  </span>	for _, str := range strings.Split(str, &#34;\n&#34;) {
+<span id="L289" class="ln">   289  </span>		<span class="comment">// preserve code blocks and blockquotes as-is</span>
+<span id="L290" class="ln">   290  </span>		if strings.HasPrefix(str, &#34;    &#34;) {
+<span id="L291" class="ln">   291  </span>			flush()
+<span id="L292" class="ln">   292  </span>			wrapped = append(wrapped, str)
+<span id="L293" class="ln">   293  </span>			continue
+<span id="L294" class="ln">   294  </span>		}
+<span id="L295" class="ln">   295  </span>
+<span id="L296" class="ln">   296  </span>		<span class="comment">// preserve empty lines after the first line, since they can separate logical sections</span>
+<span id="L297" class="ln">   297  </span>		if len(wrapped) &gt; 0 &amp;&amp; len(strings.TrimSpace(str)) == 0 {
+<span id="L298" class="ln">   298  </span>			flush()
+<span id="L299" class="ln">   299  </span>			wrapped = append(wrapped, &#34;&#34;)
+<span id="L300" class="ln">   300  </span>			continue
+<span id="L301" class="ln">   301  </span>		}
+<span id="L302" class="ln">   302  </span>
+<span id="L303" class="ln">   303  </span>		<span class="comment">// flush if we should start a new line</span>
+<span id="L304" class="ln">   304  </span>		if shouldStartNewLine(lastWord, str) {
+<span id="L305" class="ln">   305  </span>			flush()
+<span id="L306" class="ln">   306  </span>		}
+<span id="L307" class="ln">   307  </span>		words := strings.Fields(str)
+<span id="L308" class="ln">   308  </span>		for _, word := range words {
+<span id="L309" class="ln">   309  </span>			lastWord = word
+<span id="L310" class="ln">   310  </span>			if !l.Add(word) {
+<span id="L311" class="ln">   311  </span>				flush()
+<span id="L312" class="ln">   312  </span>				if !l.Add(word) {
+<span id="L313" class="ln">   313  </span>					panic(&#34;Couldn&#39;t add to empty line.&#34;)
+<span id="L314" class="ln">   314  </span>				}
+<span id="L315" class="ln">   315  </span>			}
+<span id="L316" class="ln">   316  </span>		}
+<span id="L317" class="ln">   317  </span>	}
+<span id="L318" class="ln">   318  </span>	flush()
+<span id="L319" class="ln">   319  </span>	return wrapped
+<span id="L320" class="ln">   320  </span>}
+<span id="L321" class="ln">   321  </span>
+<span id="L322" class="ln">   322  </span>var bullet = regexp.MustCompile(`^(\d+\.?|-|\*)\s`)
+<span id="L323" class="ln">   323  </span>
+<span id="L324" class="ln">   324  </span>func shouldStartNewLine(lastWord, str string) bool {
+<span id="L325" class="ln">   325  </span>	<span class="comment">// preserve line breaks ending in :</span>
+<span id="L326" class="ln">   326  </span>	if strings.HasSuffix(lastWord, &#34;:&#34;) {
+<span id="L327" class="ln">   327  </span>		return true
+<span id="L328" class="ln">   328  </span>	}
+<span id="L329" class="ln">   329  </span>
+<span id="L330" class="ln">   330  </span>	<span class="comment">// preserve code blocks</span>
+<span id="L331" class="ln">   331  </span>	if strings.HasPrefix(str, &#34;    &#34;) {
+<span id="L332" class="ln">   332  </span>		return true
+<span id="L333" class="ln">   333  </span>	}
+<span id="L334" class="ln">   334  </span>	str = strings.TrimSpace(str)
+<span id="L335" class="ln">   335  </span>	<span class="comment">// preserve empty lines</span>
+<span id="L336" class="ln">   336  </span>	if len(str) == 0 {
+<span id="L337" class="ln">   337  </span>		return true
+<span id="L338" class="ln">   338  </span>	}
+<span id="L339" class="ln">   339  </span>	<span class="comment">// preserve lines that look like they&#39;re starting lists</span>
+<span id="L340" class="ln">   340  </span>	if bullet.MatchString(str) {
+<span id="L341" class="ln">   341  </span>		return true
+<span id="L342" class="ln">   342  </span>	}
+<span id="L343" class="ln">   343  </span>	<span class="comment">// otherwise combine</span>
+<span id="L344" class="ln">   344  </span>	return false
+<span id="L345" class="ln">   345  </span>}
+<span id="L346" class="ln">   346  </span>
+</pre><p><a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/operator_backend.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

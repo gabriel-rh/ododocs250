@@ -1,0 +1,377 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>utils - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package utils
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/tests/integration/devfile/utils" target="_blank">github.com/redhat-developer/odo/tests/integration/devfile/utils</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#AnalyzePushConsoleOutput">func AnalyzePushConsoleOutput(pushConsoleOutput string)</a></dd>
+			
+				
+				<dd><a href="#DeleteLocalConfig">func DeleteLocalConfig(args ...string)</a></dd>
+			
+				
+				<dd><a href="#GetMostRecentEventOfType">func GetMostRecentEventOfType(entryType machineoutput.MachineEventLogEntryType, entries []machineoutput.MachineEventLogEntry, required bool) machineoutput.MachineEventLogEntry</a></dd>
+			
+				
+				<dd><a href="#OdoWatch">func OdoWatch(odoV2Watch OdoV2Watch, project, context, flag string, runner interface{}, platform string)</a></dd>
+			
+				
+				<dd><a href="#OdoWatchWithDebug">func OdoWatchWithDebug(odoV2Watch OdoV2Watch, context, flag string)</a></dd>
+			
+				
+				<dd><a href="#OdoWatchWithIgnore">func OdoWatchWithIgnore(odoV2Watch OdoV2Watch, context, flag string)</a></dd>
+			
+				
+				<dd><a href="#ParseMachineEventJSONLines">func ParseMachineEventJSONLines(consoleOutput string) ([]machineoutput.MachineEventLogEntry, error)</a></dd>
+			
+				
+				<dd><a href="#TerminateSession">func TerminateSession(session *gexec.Session)</a></dd>
+			
+				
+				<dd><a href="#VerifyCatalogListComponent">func VerifyCatalogListComponent(output string, cmpName []string) error</a></dd>
+			
+				
+				<dd><a href="#VerifyContainerSyncEnv">func VerifyContainerSyncEnv(podName, containerName, namespace, projectSourceValue, projectsRootValue string, cliRunner helper.CliRunner)</a></dd>
+			
+			
+				
+				<dd><a href="#OdoV2Watch">type OdoV2Watch</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/cmd_devfile_event_test_utils.go.html">cmd_devfile_event_test_utils.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/utils.go.html">utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="AnalyzePushConsoleOutput">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/cmd_devfile_event_test_utils.go.html?s=334:389#L7">AnalyzePushConsoleOutput</a>
+				<a class="permalink" href="#AnalyzePushConsoleOutput">¶</a>
+				
+				
+			</h2>
+			<pre>func AnalyzePushConsoleOutput(pushConsoleOutput <a href="../../../../../../../builtin/#string">string</a>)</pre>
+			<p>
+AnalyzePushConsoleOutput analyzes the output of &#39;odo push -o json&#39; for the machine readable event push test above.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteLocalConfig">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/utils.go.html?s=7374:7412#L229">DeleteLocalConfig</a>
+				<a class="permalink" href="#DeleteLocalConfig">¶</a>
+				
+				
+			</h2>
+			<pre>func DeleteLocalConfig(args ...<a href="../../../../../../../builtin/#string">string</a>)</pre>
+			<p>
+ DeleteLocalConfig helps user to delete local config files with flags
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetMostRecentEventOfType">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/cmd_devfile_event_test_utils.go.html?s=4056:4231#L145">GetMostRecentEventOfType</a>
+				<a class="permalink" href="#GetMostRecentEventOfType">¶</a>
+				
+				
+			</h2>
+			<pre>func GetMostRecentEventOfType(entryType <a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/">machineoutput</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/#MachineEventLogEntryType">MachineEventLogEntryType</a>, entries []<a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/">machineoutput</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/#MachineEventLogEntry">MachineEventLogEntry</a>, required <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/">machineoutput</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/#MachineEventLogEntry">MachineEventLogEntry</a></pre>
+			<p>
+Given a list of entries, find the most recent one of the given type
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="OdoWatch">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/utils.go.html?s=614:718#L22">OdoWatch</a>
+				<a class="permalink" href="#OdoWatch">¶</a>
+				
+				
+			</h2>
+			<pre>func OdoWatch(odoV2Watch <a href="#OdoV2Watch">OdoV2Watch</a>, project, context, flag <a href="../../../../../../../builtin/#string">string</a>, runner interface{}, platform <a href="../../../../../../../builtin/#string">string</a>)</pre>
+			<p>
+OdoWatch creates files, dir in the context and watches for the changes to be pushed
+Specify OdoV2Watch for odo version 2(devfile)
+platform is kube
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="OdoWatchWithDebug">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/utils.go.html?s=3502:3569#L103">OdoWatchWithDebug</a>
+				<a class="permalink" href="#OdoWatchWithDebug">¶</a>
+				
+				
+			</h2>
+			<pre>func OdoWatchWithDebug(odoV2Watch <a href="#OdoV2Watch">OdoV2Watch</a>, context, flag <a href="../../../../../../../builtin/#string">string</a>)</pre>
+			<p>
+OdoWatchWithDebug changes files in the context and watches for the changes to be pushed
+It checks if the push is in debug mode or not
+After a successful push with watch, it tries to start a debug session
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="OdoWatchWithIgnore">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/utils.go.html?s=5256:5324#L157">OdoWatchWithIgnore</a>
+				<a class="permalink" href="#OdoWatchWithIgnore">¶</a>
+				
+				
+			</h2>
+			<pre>func OdoWatchWithIgnore(odoV2Watch <a href="#OdoV2Watch">OdoV2Watch</a>, context, flag <a href="../../../../../../../builtin/#string">string</a>)</pre>
+			<p>
+OdoWatchWithIgnore checks if odo watch ignores the specified files and
+it also checks if odo-file-index.json and .git are ignored
+when --ignores is used
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ParseMachineEventJSONLines">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/cmd_devfile_event_test_utils.go.html?s=2679:2778#L87">ParseMachineEventJSONLines</a>
+				<a class="permalink" href="#ParseMachineEventJSONLines">¶</a>
+				
+				
+			</h2>
+			<pre>func ParseMachineEventJSONLines(consoleOutput <a href="../../../../../../../builtin/#string">string</a>) ([]<a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/">machineoutput</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/#MachineEventLogEntry">MachineEventLogEntry</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ParseMachineEventJSONLines parses console output into machine event log entries
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="TerminateSession">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/cmd_devfile_event_test_utils.go.html?s=3850:3895#L136">TerminateSession</a>
+				<a class="permalink" href="#TerminateSession">¶</a>
+				
+				
+			</h2>
+			<pre>func TerminateSession(session *<a href="../../../../../../../github.com/onsi/gomega/gexec/">gexec</a>.<a href="../../../../../../../github.com/onsi/gomega/gexec/#Session">Session</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyCatalogListComponent">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/utils.go.html?s=7802:7872#L241">VerifyCatalogListComponent</a>
+				<a class="permalink" href="#VerifyCatalogListComponent">¶</a>
+				
+				
+			</h2>
+			<pre>func VerifyCatalogListComponent(output <a href="../../../../../../../builtin/#string">string</a>, cmpName []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+VerifyCatalogListComponent verifies components inside wantOutput exists or not
+in Devfile Component list
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyContainerSyncEnv">func <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/utils.go.html?s=8297:8433#L261">VerifyContainerSyncEnv</a>
+				<a class="permalink" href="#VerifyContainerSyncEnv">¶</a>
+				
+				
+			</h2>
+			<pre>func VerifyContainerSyncEnv(podName, containerName, namespace, projectSourceValue, projectsRootValue <a href="../../../../../../../builtin/#string">string</a>, cliRunner <a href="../../../../../../../github.com/redhat-developer/odo/tests/helper/">helper</a>.<a href="../../../../../../../github.com/redhat-developer/odo/tests/helper/#CliRunner">CliRunner</a>)</pre>
+			<p>
+VerifyContainerSyncEnv verifies the sync env in the container
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="OdoV2Watch">type <a href="../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/utils.go.html?s=276:456#L11">OdoV2Watch</a>
+				<a class="permalink" href="#OdoV2Watch">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type OdoV2Watch struct {
+<span id="OdoV2Watch.CmpName"></span>    CmpName               <a href="../../../../../../../builtin/#string">string</a>
+<span id="OdoV2Watch.StringsToBeMatched"></span>    StringsToBeMatched    []<a href="../../../../../../../builtin/#string">string</a>
+<span id="OdoV2Watch.StringsNotToBeMatched"></span>    StringsNotToBeMatched []<a href="../../../../../../../builtin/#string">string</a>
+<span id="OdoV2Watch.FolderToCheck"></span>    FolderToCheck         <a href="../../../../../../../builtin/#string">string</a>
+<span id="OdoV2Watch.SrcType"></span>    SrcType               <a href="../../../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

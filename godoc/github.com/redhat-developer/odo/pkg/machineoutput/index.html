@@ -1,0 +1,1629 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>machineoutput - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package machineoutput
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/machineoutput" target="_blank">github.com/redhat-developer/odo/pkg/machineoutput</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#FormatTime">func FormatTime(time time.Time) string</a></dd>
+			
+				
+				<dd><a href="#GetCommandName">func GetCommandName(entry MachineEventLogEntry) string</a></dd>
+			
+				
+				<dd><a href="#OutputError">func OutputError(machineOutput interface{})</a></dd>
+			
+				
+				<dd><a href="#OutputSuccess">func OutputSuccess(machineOutput interface{})</a></dd>
+			
+				
+				<dd><a href="#OutputSuccessUnindented">func OutputSuccessUnindented(machineOutput interface{})</a></dd>
+			
+				
+				<dd><a href="#SuccessStatus">func SuccessStatus(kind string, name string, msg string)</a></dd>
+			
+				
+				<dd><a href="#TimestampNow">func TimestampNow() string</a></dd>
+			
+			
+				
+				<dd><a href="#AbstractLogEvent">type AbstractLogEvent</a></dd>
+				
+				
+					
+					<dd>    <a href="#AbstractLogEvent.GetTimestamp">func (c AbstractLogEvent) GetTimestamp() string</a></dd>
+				
+			
+				
+				<dd><a href="#ConsoleMachineEventLoggingClient">type ConsoleMachineEventLoggingClient</a></dd>
+				
+					
+					<dd>    <a href="#NewConsoleMachineEventLoggingClient">func NewConsoleMachineEventLoggingClient() *ConsoleMachineEventLoggingClient</a></dd>
+				
+					
+					<dd>    <a href="#NewConsoleMachineEventLoggingClientWithFunction">func NewConsoleMachineEventLoggingClientWithFunction(logFunc func(machineOutput MachineEventWrapper)) *ConsoleMachineEventLoggingClient</a></dd>
+				
+				
+					
+					<dd>    <a href="#ConsoleMachineEventLoggingClient.ContainerStatus">func (c *ConsoleMachineEventLoggingClient) ContainerStatus(statuses []ContainerStatusEntry, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#ConsoleMachineEventLoggingClient.CreateContainerOutputWriter">func (c *ConsoleMachineEventLoggingClient) CreateContainerOutputWriter() (*io.PipeWriter, chan interface{}, *io.PipeWriter, chan interface{})</a></dd>
+				
+					
+					<dd>    <a href="#ConsoleMachineEventLoggingClient.DevFileCommandExecutionBegin">func (c *ConsoleMachineEventLoggingClient) DevFileCommandExecutionBegin(commandID string, componentName string, commandLine string, groupKind string, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#ConsoleMachineEventLoggingClient.DevFileCommandExecutionComplete">func (c *ConsoleMachineEventLoggingClient) DevFileCommandExecutionComplete(commandID string, componentName string, commandLine string, groupKind string, timestamp string, errorVal error)</a></dd>
+				
+					
+					<dd>    <a href="#ConsoleMachineEventLoggingClient.KubernetesPodStatus">func (c *ConsoleMachineEventLoggingClient) KubernetesPodStatus(pods []KubernetesPodStatusEntry, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#ConsoleMachineEventLoggingClient.ReportError">func (c *ConsoleMachineEventLoggingClient) ReportError(errorVal error, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#ConsoleMachineEventLoggingClient.SupervisordStatus">func (c *ConsoleMachineEventLoggingClient) SupervisordStatus(statuses []SupervisordStatusEntry, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#ConsoleMachineEventLoggingClient.URLReachable">func (c *ConsoleMachineEventLoggingClient) URLReachable(name string, url string, port int, secure bool, kind string, reachable bool, timestamp string)</a></dd>
+				
+			
+				
+				<dd><a href="#ContainerStatus">type ContainerStatus</a></dd>
+				
+				
+					
+					<dd>    <a href="#ContainerStatus.GetType">func (c ContainerStatus) GetType() MachineEventLogEntryType</a></dd>
+				
+			
+				
+				<dd><a href="#ContainerStatusEntry">type ContainerStatusEntry</a></dd>
+				
+				
+			
+				
+				<dd><a href="#DevFileCommandExecutionBegin">type DevFileCommandExecutionBegin</a></dd>
+				
+				
+					
+					<dd>    <a href="#DevFileCommandExecutionBegin.GetType">func (c DevFileCommandExecutionBegin) GetType() MachineEventLogEntryType</a></dd>
+				
+			
+				
+				<dd><a href="#DevFileCommandExecutionComplete">type DevFileCommandExecutionComplete</a></dd>
+				
+				
+					
+					<dd>    <a href="#DevFileCommandExecutionComplete.GetType">func (c DevFileCommandExecutionComplete) GetType() MachineEventLogEntryType</a></dd>
+				
+			
+				
+				<dd><a href="#GenericError">type GenericError</a></dd>
+				
+				
+			
+				
+				<dd><a href="#GenericSuccess">type GenericSuccess</a></dd>
+				
+				
+			
+				
+				<dd><a href="#KubernetesPodStatus">type KubernetesPodStatus</a></dd>
+				
+				
+					
+					<dd>    <a href="#KubernetesPodStatus.GetType">func (c KubernetesPodStatus) GetType() MachineEventLogEntryType</a></dd>
+				
+			
+				
+				<dd><a href="#KubernetesPodStatusEntry">type KubernetesPodStatusEntry</a></dd>
+				
+				
+			
+				
+				<dd><a href="#LogText">type LogText</a></dd>
+				
+				
+					
+					<dd>    <a href="#LogText.GetType">func (c LogText) GetType() MachineEventLogEntryType</a></dd>
+				
+			
+				
+				<dd><a href="#MachineEventLogEntry">type MachineEventLogEntry</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MachineEventLogEntryType">type MachineEventLogEntryType</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MachineEventLoggingClient">type MachineEventLoggingClient</a></dd>
+				
+					
+					<dd>    <a href="#NewMachineEventLoggingClient">func NewMachineEventLoggingClient() MachineEventLoggingClient</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MachineEventWrapper">type MachineEventWrapper</a></dd>
+				
+				
+					
+					<dd>    <a href="#MachineEventWrapper.GetEntry">func (w MachineEventWrapper) GetEntry() (MachineEventLogEntry, error)</a></dd>
+				
+			
+				
+				<dd><a href="#NoOpMachineEventLoggingClient">type NoOpMachineEventLoggingClient</a></dd>
+				
+					
+					<dd>    <a href="#NewNoOpMachineEventLoggingClient">func NewNoOpMachineEventLoggingClient() *NoOpMachineEventLoggingClient</a></dd>
+				
+				
+					
+					<dd>    <a href="#NoOpMachineEventLoggingClient.ContainerStatus">func (c *NoOpMachineEventLoggingClient) ContainerStatus(statuses []ContainerStatusEntry, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#NoOpMachineEventLoggingClient.CreateContainerOutputWriter">func (c *NoOpMachineEventLoggingClient) CreateContainerOutputWriter() (*io.PipeWriter, chan interface{}, *io.PipeWriter, chan interface{})</a></dd>
+				
+					
+					<dd>    <a href="#NoOpMachineEventLoggingClient.DevFileCommandExecutionBegin">func (c *NoOpMachineEventLoggingClient) DevFileCommandExecutionBegin(commandID string, componentName string, commandLine string, groupKind string, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#NoOpMachineEventLoggingClient.DevFileCommandExecutionComplete">func (c *NoOpMachineEventLoggingClient) DevFileCommandExecutionComplete(commandID string, componentName string, commandLine string, groupKind string, timestamp string, errorVal error)</a></dd>
+				
+					
+					<dd>    <a href="#NoOpMachineEventLoggingClient.KubernetesPodStatus">func (c *NoOpMachineEventLoggingClient) KubernetesPodStatus(pods []KubernetesPodStatusEntry, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#NoOpMachineEventLoggingClient.ReportError">func (c *NoOpMachineEventLoggingClient) ReportError(errorVal error, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#NoOpMachineEventLoggingClient.SupervisordStatus">func (c *NoOpMachineEventLoggingClient) SupervisordStatus(statuses []SupervisordStatusEntry, timestamp string)</a></dd>
+				
+					
+					<dd>    <a href="#NoOpMachineEventLoggingClient.URLReachable">func (c *NoOpMachineEventLoggingClient) URLReachable(name string, url string, port int, secure bool, kind string, reachable bool, timestamp string)</a></dd>
+				
+			
+				
+				<dd><a href="#RegistryListOutput">type RegistryListOutput</a></dd>
+				
+					
+					<dd>    <a href="#NewRegistryListOutput">func NewRegistryListOutput(registryList *[]preference.Registry) RegistryListOutput</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ReportError">type ReportError</a></dd>
+				
+				
+					
+					<dd>    <a href="#ReportError.GetType">func (c ReportError) GetType() MachineEventLogEntryType</a></dd>
+				
+			
+				
+				<dd><a href="#SupervisordStatus">type SupervisordStatus</a></dd>
+				
+				
+					
+					<dd>    <a href="#SupervisordStatus.GetType">func (c SupervisordStatus) GetType() MachineEventLogEntryType</a></dd>
+				
+			
+				
+				<dd><a href="#SupervisordStatusEntry">type SupervisordStatusEntry</a></dd>
+				
+				
+			
+				
+				<dd><a href="#URLReachable">type URLReachable</a></dd>
+				
+				
+					
+					<dd>    <a href="#URLReachable.GetType">func (c URLReachable) GetType() MachineEventLogEntryType</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html">event_logging.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/registry.go.html">registry.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types.go.html">types.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html">types_event_logging.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+APIVersion is the current API version used in the machine readable output
+</p>
+
+				<pre>const <span id="APIVersion">APIVersion</span> = &#34;odo.dev/v1alpha1&#34;</pre>
+			
+				<p>
+ErrorKind is the kind used for errors in the machine readable output
+</p>
+
+				<pre>const <span id="ErrorKind">ErrorKind</span> = &#34;Error&#34;</pre>
+			
+				<p>
+ListKind is the kind used for all lists in the machine readable output
+</p>
+
+				<pre>const <span id="ListKind">ListKind</span> = &#34;List&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="FormatTime">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=235:273#L6">FormatTime</a>
+				<a class="permalink" href="#FormatTime">¶</a>
+				
+				
+			</h2>
+			<pre>func FormatTime(time <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Time">Time</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+FormatTime returns time in UTC Unix Epoch Seconds and then the microsecond portion of that time.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetCommandName">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=11496:11550#L319">GetCommandName</a>
+				<a class="permalink" href="#GetCommandName">¶</a>
+				
+				
+			</h2>
+			<pre>func GetCommandName(entry <a href="#MachineEventLogEntry">MachineEventLogEntry</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetCommandName returns a command if the MLE supports that field (otherwise empty string is returned).
+Currently used for test purposes only.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="OutputError">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types.go.html?s=2874:2917#L81">OutputError</a>
+				<a class="permalink" href="#OutputError">¶</a>
+				
+				
+			</h2>
+			<pre>func OutputError(machineOutput interface{})</pre>
+			<p>
+OutputError outputs a &#34;successful&#34; machine-readable output format in json
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="OutputSuccess">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types.go.html?s=2416:2461#L69">OutputSuccess</a>
+				<a class="permalink" href="#OutputSuccess">¶</a>
+				
+				
+			</h2>
+			<pre>func OutputSuccess(machineOutput interface{})</pre>
+			<p>
+OutputSuccess outputs a &#34;successful&#34; machine-readable output format in json
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="OutputSuccessUnindented">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types.go.html?s=1896:1951#L54">OutputSuccessUnindented</a>
+				<a class="permalink" href="#OutputSuccessUnindented">¶</a>
+				
+				
+			</h2>
+			<pre>func OutputSuccessUnindented(machineOutput interface{})</pre>
+			<p>
+OutputSuccessUnindented outputs a &#34;successful&#34; machine-readable output format in unindented json
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SuccessStatus">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types.go.html?s=238:294#L3">SuccessStatus</a>
+				<a class="permalink" href="#SuccessStatus">¶</a>
+				
+				
+			</h2>
+			<pre>func SuccessStatus(kind <a href="../../../../../builtin/#string">string</a>, name <a href="../../../../../builtin/#string">string</a>, msg <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+SuccessStatus outputs a metav1.Status with the Status field set to &#34;Success&#34;
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="TimestampNow">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=474:500#L13">TimestampNow</a>
+				<a class="permalink" href="#TimestampNow">¶</a>
+				
+				
+			</h2>
+			<pre>func TimestampNow() <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+TimestampNow returns timestamp in format of (seconds since UTC Unix epoch).(microseconds time component)
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AbstractLogEvent">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=5649:5718#L118">AbstractLogEvent</a>
+				<a class="permalink" href="#AbstractLogEvent">¶</a>
+				
+				
+			</h2>
+			<p>
+AbstractLogEvent is the base struct for all events; all events must at a minimum contain a timestamp.
+</p>
+
+			<pre>type AbstractLogEvent struct {
+<span id="AbstractLogEvent.Timestamp"></span>    Timestamp <a href="../../../../../builtin/#string">string</a> `json:&#34;timestamp&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="AbstractLogEvent.GetTimestamp">func (AbstractLogEvent) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=9057:9104#L265">GetTimestamp</a>
+					<a class="permalink" href="#AbstractLogEvent.GetTimestamp">¶</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="#AbstractLogEvent">AbstractLogEvent</a>) GetTimestamp() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetTimestamp returns the timestamp element for this event.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ConsoleMachineEventLoggingClient">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=6642:6847#L144">ConsoleMachineEventLoggingClient</a>
+				<a class="permalink" href="#ConsoleMachineEventLoggingClient">¶</a>
+				
+				
+			</h2>
+			<p>
+ConsoleMachineEventLoggingClient will output all events to the console as JSON
+</p>
+
+			<pre>type ConsoleMachineEventLoggingClient struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewConsoleMachineEventLoggingClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=3165:3241#L84">NewConsoleMachineEventLoggingClient</a>
+					<a class="permalink" href="#NewConsoleMachineEventLoggingClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewConsoleMachineEventLoggingClient() *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a></pre>
+				<p>
+NewConsoleMachineEventLoggingClient creates a new instance of ConsoleMachineEventLoggingClient,
+which will output events as JSON to the console.
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewConsoleMachineEventLoggingClientWithFunction">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=3443:3578#L90">NewConsoleMachineEventLoggingClientWithFunction</a>
+					<a class="permalink" href="#NewConsoleMachineEventLoggingClientWithFunction">¶</a>
+					
+					
+				</h3>
+				<pre>func NewConsoleMachineEventLoggingClientWithFunction(logFunc func(machineOutput <a href="#MachineEventWrapper">MachineEventWrapper</a>)) *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a></pre>
+				<p>
+NewConsoleMachineEventLoggingClientWithFunction creates a new instance with a custom logging functional,
+suitable for, for example, unit testing.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ConsoleMachineEventLoggingClient.ContainerStatus">func (*ConsoleMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=6665:6774#L179">ContainerStatus</a>
+					<a class="permalink" href="#ConsoleMachineEventLoggingClient.ContainerStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a>) ContainerStatus(statuses []<a href="#ContainerStatusEntry">ContainerStatusEntry</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+ContainerStatus outputs the provided event as JSON to the console.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ConsoleMachineEventLoggingClient.CreateContainerOutputWriter">func (*ConsoleMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=5526:5667#L145">CreateContainerOutputWriter</a>
+					<a class="permalink" href="#ConsoleMachineEventLoggingClient.CreateContainerOutputWriter">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a>) CreateContainerOutputWriter() (*<a href="../../../../../io/">io</a>.<a href="../../../../../io/#PipeWriter">PipeWriter</a>, chan interface{}, *<a href="../../../../../io/">io</a>.<a href="../../../../../io/#PipeWriter">PipeWriter</a>, chan interface{})</pre>
+				<p>
+CreateContainerOutputWriter returns an io.PipeWriter for which the devfile command/action process output should be
+written (for example by passing the io.PipeWriter to exec.ExecuteCommand), and a channel for communicating when the last data
+has been received on the reader.
+</p>
+<p>
+All text written to the returned object will be output as a log text event.
+Returned channels will each contain a single nil entry once the underlying reader has closed.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ConsoleMachineEventLoggingClient.DevFileCommandExecutionBegin">func (*ConsoleMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=3804:3971#L99">DevFileCommandExecutionBegin</a>
+					<a class="permalink" href="#ConsoleMachineEventLoggingClient.DevFileCommandExecutionBegin">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a>) DevFileCommandExecutionBegin(commandID <a href="../../../../../builtin/#string">string</a>, componentName <a href="../../../../../builtin/#string">string</a>, commandLine <a href="../../../../../builtin/#string">string</a>, groupKind <a href="../../../../../builtin/#string">string</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+DevFileCommandExecutionBegin outputs the provided event as JSON to the console.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ConsoleMachineEventLoggingClient.DevFileCommandExecutionComplete">func (*ConsoleMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=4381:4567#L115">DevFileCommandExecutionComplete</a>
+					<a class="permalink" href="#ConsoleMachineEventLoggingClient.DevFileCommandExecutionComplete">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a>) DevFileCommandExecutionComplete(commandID <a href="../../../../../builtin/#string">string</a>, componentName <a href="../../../../../builtin/#string">string</a>, commandLine <a href="../../../../../builtin/#string">string</a>, groupKind <a href="../../../../../builtin/#string">string</a>, timestamp <a href="../../../../../builtin/#string">string</a>, errorVal <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+DevFileCommandExecutionComplete outputs the provided event as JSON to the console.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ConsoleMachineEventLoggingClient.KubernetesPodStatus">func (*ConsoleMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=7582:7695#L208">KubernetesPodStatus</a>
+					<a class="permalink" href="#ConsoleMachineEventLoggingClient.KubernetesPodStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a>) KubernetesPodStatus(pods []<a href="#KubernetesPodStatusEntry">KubernetesPodStatusEntry</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+KubernetesPodStatus outputs the provided event as JSON to the console.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ConsoleMachineEventLoggingClient.ReportError">func (*ConsoleMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=5930:6018#L155">ReportError</a>
+					<a class="permalink" href="#ConsoleMachineEventLoggingClient.ReportError">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a>) ReportError(errorVal <a href="../../../../../builtin/#error">error</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+ReportError outputs the provided event as JSON to the console.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ConsoleMachineEventLoggingClient.SupervisordStatus">func (*ConsoleMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=6284:6397#L167">SupervisordStatus</a>
+					<a class="permalink" href="#ConsoleMachineEventLoggingClient.SupervisordStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a>) SupervisordStatus(statuses []<a href="#SupervisordStatusEntry">SupervisordStatusEntry</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+SupervisordStatus outputs the provided event as JSON to the console.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ConsoleMachineEventLoggingClient.URLReachable">func (*ConsoleMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=7034:7184#L192">URLReachable</a>
+					<a class="permalink" href="#ConsoleMachineEventLoggingClient.URLReachable">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#ConsoleMachineEventLoggingClient">ConsoleMachineEventLoggingClient</a>) URLReachable(name <a href="../../../../../builtin/#string">string</a>, url <a href="../../../../../builtin/#string">string</a>, port <a href="../../../../../builtin/#int">int</a>, secure <a href="../../../../../builtin/#bool">bool</a>, kind <a href="../../../../../builtin/#string">string</a>, reachable <a href="../../../../../builtin/#bool">bool</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+URLReachable outputs the provided event as JSON to the console.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ContainerStatus">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=3429:3525#L62">ContainerStatus</a>
+				<a class="permalink" href="#ContainerStatus">¶</a>
+				
+				
+			</h2>
+			<p>
+ContainerStatus is the JSON event that is emitted to indicate odo-managed Docker container status
+</p>
+
+			<pre>type ContainerStatus struct {
+<span id="ContainerStatus.Status"></span>    Status []<a href="#ContainerStatusEntry">ContainerStatusEntry</a> `json:&#34;status&#34;`
+    <a href="#AbstractLogEvent">AbstractLogEvent</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ContainerStatus.GetType">func (ContainerStatus) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=9929:9988#L287">GetType</a>
+					<a class="permalink" href="#ContainerStatus.GetType">¶</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="#ContainerStatus">ContainerStatus</a>) GetType() <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a></pre>
+				<p>
+GetType returns the event type for this event.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ContainerStatusEntry">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=3587:3681#L68">ContainerStatusEntry</a>
+				<a class="permalink" href="#ContainerStatusEntry">¶</a>
+				
+				
+			</h2>
+			<p>
+ContainerStatusEntry is an individual container&#39;s status
+</p>
+
+			<pre>type ContainerStatusEntry struct {
+<span id="ContainerStatusEntry.ID"></span>    ID     <a href="../../../../../builtin/#string">string</a> `json:&#34;id&#34;`
+<span id="ContainerStatusEntry.Status"></span>    Status <a href="../../../../../builtin/#string">string</a> `json:&#34;status&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DevFileCommandExecutionBegin">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=2496:2728#L34">DevFileCommandExecutionBegin</a>
+				<a class="permalink" href="#DevFileCommandExecutionBegin">¶</a>
+				
+				
+			</h2>
+			<p>
+DevFileCommandExecutionBegin is the JSON event that is emitted when a dev file command begins execution.
+</p>
+
+			<pre>type DevFileCommandExecutionBegin struct {
+<span id="DevFileCommandExecutionBegin.CommandID"></span>    CommandID     <a href="../../../../../builtin/#string">string</a> `json:&#34;commandId&#34;`
+<span id="DevFileCommandExecutionBegin.ComponentName"></span>    ComponentName <a href="../../../../../builtin/#string">string</a> `json:&#34;componentName&#34;`
+<span id="DevFileCommandExecutionBegin.CommandLine"></span>    CommandLine   <a href="../../../../../builtin/#string">string</a> `json:&#34;commandLine&#34;`
+<span id="DevFileCommandExecutionBegin.GroupKind"></span>    GroupKind     <a href="../../../../../builtin/#string">string</a> `json:&#34;groupKind&#34;`
+    <a href="#AbstractLogEvent">AbstractLogEvent</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DevFileCommandExecutionBegin.GetType">func (DevFileCommandExecutionBegin) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=9179:9251#L268">GetType</a>
+					<a class="permalink" href="#DevFileCommandExecutionBegin.GetType">¶</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="#DevFileCommandExecutionBegin">DevFileCommandExecutionBegin</a>) GetType() <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a></pre>
+				<p>
+GetType returns the event type for this event.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DevFileCommandExecutionComplete">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=2844:2960#L43">DevFileCommandExecutionComplete</a>
+				<a class="permalink" href="#DevFileCommandExecutionComplete">¶</a>
+				
+				
+			</h2>
+			<p>
+DevFileCommandExecutionComplete is the JSON event that is emitted when a dev file command completes execution.
+</p>
+
+			<pre>type DevFileCommandExecutionComplete struct {
+    <a href="#DevFileCommandExecutionBegin">DevFileCommandExecutionBegin</a>
+<span id="DevFileCommandExecutionComplete.Error"></span>    Error <a href="../../../../../builtin/#string">string</a> `json:&#34;error,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DevFileCommandExecutionComplete.GetType">func (DevFileCommandExecutionComplete) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=9348:9423#L273">GetType</a>
+					<a class="permalink" href="#DevFileCommandExecutionComplete.GetType">¶</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="#DevFileCommandExecutionComplete">DevFileCommandExecutionComplete</a>) GetType() <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a></pre>
+				<p>
+GetType returns the event type for this event.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GenericError">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types.go.html?s=1074:1228#L34">GenericError</a>
+				<a class="permalink" href="#GenericError">¶</a>
+				
+				
+			</h2>
+			<p>
+GenericError for machine readable output error messages
+</p>
+
+			<pre>type GenericError struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="GenericError.Message"></span>    Message           <a href="../../../../../builtin/#string">string</a> `json:&#34;message&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="GenericSuccess">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types.go.html?s=1334:1490#L42">GenericSuccess</a>
+				<a class="permalink" href="#GenericSuccess">¶</a>
+				
+				
+			</h2>
+			<p>
+GenericSuccess same as above, but copy-and-pasted just in case
+we change the output in the future
+</p>
+
+			<pre>type GenericSuccess struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="GenericSuccess.Message"></span>    Message           <a href="../../../../../builtin/#string">string</a> `json:&#34;message&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="KubernetesPodStatus">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=4559:4659#L97">KubernetesPodStatus</a>
+				<a class="permalink" href="#KubernetesPodStatus">¶</a>
+				
+				
+			</h2>
+			<p>
+KubernetesPodStatus is the JSON event that emitted to indicate the status of pods in an odo-managed deployment
+</p>
+
+			<pre>type KubernetesPodStatus struct {
+<span id="KubernetesPodStatus.Pods"></span>    Pods []<a href="#KubernetesPodStatusEntry">KubernetesPodStatusEntry</a> `json:&#34;pods&#34;`
+    <a href="#AbstractLogEvent">AbstractLogEvent</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="KubernetesPodStatus.GetType">func (KubernetesPodStatus) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=10207:10270#L293">GetType</a>
+					<a class="permalink" href="#KubernetesPodStatus.GetType">¶</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="#KubernetesPodStatus">KubernetesPodStatus</a>) GetType() <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a></pre>
+				<p>
+GetType returns the event type for this event.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="KubernetesPodStatusEntry">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=4724:5542#L103">KubernetesPodStatusEntry</a>
+				<a class="permalink" href="#KubernetesPodStatusEntry">¶</a>
+				
+				
+			</h2>
+			<p>
+KubernetesPodStatusEntry is an individual pod&#39;s information
+</p>
+
+			<pre>type KubernetesPodStatusEntry struct {
+<span id="KubernetesPodStatusEntry.Name"></span>    Name           <a href="../../../../../builtin/#string">string</a>                   `json:&#34;name&#34;`
+<span id="KubernetesPodStatusEntry.UID"></span>    UID            <a href="../../../../../builtin/#string">string</a>                   `json:&#34;uid&#34;`
+<span id="KubernetesPodStatusEntry.Phase"></span>    Phase          <a href="../../../../../builtin/#string">string</a>                   `json:&#34;phase&#34;`
+<span id="KubernetesPodStatusEntry.Labels"></span>    Labels         map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>        `json:&#34;labels,omitempty&#34;`
+<span id="KubernetesPodStatusEntry.StartTime"></span>    StartTime      <a href="../../../../../builtin/#string">string</a>                   `json:&#34;startTime,omitempty&#34;`
+<span id="KubernetesPodStatusEntry.Containers"></span>    Containers     []<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#ContainerStatus">ContainerStatus</a> `json:&#34;containers&#34;`
+<span id="KubernetesPodStatusEntry.InitContainers"></span>    InitContainers []<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#ContainerStatus">ContainerStatus</a> `json:&#34;initContainers&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LogText">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=3225:3326#L55">LogText</a>
+				<a class="permalink" href="#LogText">¶</a>
+				
+				
+			</h2>
+			<p>
+LogText is the JSON event that is emitted when a dev file action outputs text to the console.
+</p>
+
+			<pre>type LogText struct {
+<span id="LogText.Text"></span>    Text   <a href="../../../../../builtin/#string">string</a> `json:&#34;text&#34;`
+<span id="LogText.Stream"></span>    Stream <a href="../../../../../builtin/#string">string</a> `json:&#34;stream&#34;`
+    <a href="#AbstractLogEvent">AbstractLogEvent</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="LogText.GetType">func (LogText) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=9523:9574#L278">GetType</a>
+					<a class="permalink" href="#LogText.GetType">¶</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="#LogText">LogText</a>) GetType() <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a></pre>
+				<p>
+GetType returns the event type for this event.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MachineEventLogEntry">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=6328:6426#L134">MachineEventLogEntry</a>
+				<a class="permalink" href="#MachineEventLogEntry">¶</a>
+				
+				
+			</h2>
+			<p>
+MachineEventLogEntry contains the expected methods for every event that is emitted.
+(This is mainly used for test purposes.)
+</p>
+
+			<pre>type MachineEventLogEntry interface {
+    GetTimestamp() <a href="../../../../../builtin/#string">string</a>
+    GetType() <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MachineEventLogEntryType">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=10399:10432#L296">MachineEventLogEntryType</a>
+				<a class="permalink" href="#MachineEventLogEntryType">¶</a>
+				
+				
+			</h2>
+			<p>
+MachineEventLogEntryType indicates the machine-readable event type from an ODO operation
+</p>
+
+			<pre>type MachineEventLogEntryType <a href="../../../../../builtin/#int">int</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// TypeDevFileCommandExecutionBegin is the entry type for that event.</span>
+    <span id="TypeDevFileCommandExecutionBegin">TypeDevFileCommandExecutionBegin</span> <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a> = 0
+    <span class="comment">// TypeDevFileCommandExecutionComplete is the entry type for that event.</span>
+    <span id="TypeDevFileCommandExecutionComplete">TypeDevFileCommandExecutionComplete</span> <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a> = 1
+    <span class="comment">// TypeLogText is the entry type for that event.</span>
+    <span id="TypeLogText">TypeLogText</span> <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a> = 2
+    <span class="comment">// TypeReportError is the entry type for that event.</span>
+    <span id="TypeReportError">TypeReportError</span> <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a> = 3
+    <span class="comment">// TypeSupervisordStatus is the entry type for that event.</span>
+    <span id="TypeSupervisordStatus">TypeSupervisordStatus</span> <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a> = 4
+    <span class="comment">// TypeContainerStatus is the entry type for that event.</span>
+    <span id="TypeContainerStatus">TypeContainerStatus</span> <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a> = 5
+    <span class="comment">// TypeURLReachable is the entry type for that event.</span>
+    <span id="TypeURLReachable">TypeURLReachable</span> <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a> = 6
+    <span class="comment">// TypeKubernetesPodStatus is the entry type for that event.</span>
+    <span id="TypeKubernetesPodStatus">TypeKubernetesPodStatus</span> <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a> = 7
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MachineEventLoggingClient">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=271:1319#L1">MachineEventLoggingClient</a>
+				<a class="permalink" href="#MachineEventLoggingClient">¶</a>
+				
+				
+			</h2>
+			<p>
+MachineEventLoggingClient is an interface which is used by consuming code to output machine-readable
+event JSON to the console. Both no-op and non-no-op implementations of this interface exist.
+</p>
+
+			<pre>type MachineEventLoggingClient interface {
+    DevFileCommandExecutionBegin(commandID <a href="../../../../../builtin/#string">string</a>, componentName <a href="../../../../../builtin/#string">string</a>, commandLine <a href="../../../../../builtin/#string">string</a>, groupKind <a href="../../../../../builtin/#string">string</a>, timestamp <a href="../../../../../builtin/#string">string</a>)
+    DevFileCommandExecutionComplete(commandID <a href="../../../../../builtin/#string">string</a>, componentName <a href="../../../../../builtin/#string">string</a>, commandLine <a href="../../../../../builtin/#string">string</a>, groupKind <a href="../../../../../builtin/#string">string</a>, timestamp <a href="../../../../../builtin/#string">string</a>, errorVal <a href="../../../../../builtin/#error">error</a>)
+    ReportError(errorVal <a href="../../../../../builtin/#error">error</a>, timestamp <a href="../../../../../builtin/#string">string</a>)
+
+    SupervisordStatus(statuses []<a href="#SupervisordStatusEntry">SupervisordStatusEntry</a>, timestamp <a href="../../../../../builtin/#string">string</a>)
+    ContainerStatus(statuses []<a href="#ContainerStatusEntry">ContainerStatusEntry</a>, timestamp <a href="../../../../../builtin/#string">string</a>)
+
+    URLReachable(name <a href="../../../../../builtin/#string">string</a>, url <a href="../../../../../builtin/#string">string</a>, port <a href="../../../../../builtin/#int">int</a>, secure <a href="../../../../../builtin/#bool">bool</a>, kind <a href="../../../../../builtin/#string">string</a>, reachable <a href="../../../../../builtin/#bool">bool</a>, timestamp <a href="../../../../../builtin/#string">string</a>)
+
+    KubernetesPodStatus(pods []<a href="#KubernetesPodStatusEntry">KubernetesPodStatusEntry</a>, timestamp <a href="../../../../../builtin/#string">string</a>)
+
+    <span class="comment">// CreateContainerOutputWriter is used to capture output from container processes, and synchronously write it to the screen as LogText. See implementation comments for details.</span>
+    CreateContainerOutputWriter() (*<a href="../../../../../io/">io</a>.<a href="../../../../../io/#PipeWriter">PipeWriter</a>, chan interface{}, *<a href="../../../../../io/">io</a>.<a href="../../../../../io/#PipeWriter">PipeWriter</a>, chan interface{})
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMachineEventLoggingClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=655:716#L18">NewMachineEventLoggingClient</a>
+					<a class="permalink" href="#NewMachineEventLoggingClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewMachineEventLoggingClient() <a href="#MachineEventLoggingClient">MachineEventLoggingClient</a></pre>
+				<p>
+NewMachineEventLoggingClient creates the appropriate client based on whether we are in machine logging mode or not
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MachineEventWrapper">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=1523:2386#L22">MachineEventWrapper</a>
+				<a class="permalink" href="#MachineEventWrapper">¶</a>
+				
+				
+			</h2>
+			<p>
+MachineEventWrapper - a single line of machine-readable event console output must contain only one
+of these commands; the MachineEventWrapper is used to create (and parse, for tests) these lines.
+</p>
+
+			<pre>type MachineEventWrapper struct {
+<span id="MachineEventWrapper.DevFileCommandExecutionBegin"></span>    DevFileCommandExecutionBegin    *<a href="#DevFileCommandExecutionBegin">DevFileCommandExecutionBegin</a>    `json:&#34;devFileCommandExecutionBegin,omitempty&#34;`
+<span id="MachineEventWrapper.DevFileCommandExecutionComplete"></span>    DevFileCommandExecutionComplete *<a href="#DevFileCommandExecutionComplete">DevFileCommandExecutionComplete</a> `json:&#34;devFileCommandExecutionComplete,omitempty&#34;`
+<span id="MachineEventWrapper.LogText"></span>    LogText                         *<a href="#LogText">LogText</a>                         `json:&#34;logText,omitempty&#34;`
+<span id="MachineEventWrapper.ReportError"></span>    ReportError                     *<a href="#ReportError">ReportError</a>                     `json:&#34;reportError,omitempty&#34;`
+<span id="MachineEventWrapper.SupervisordStatus"></span>    SupervisordStatus               *<a href="#SupervisordStatus">SupervisordStatus</a>               `json:&#34;supervisordStatus,omitempty&#34;`
+<span id="MachineEventWrapper.ContainerStatus"></span>    ContainerStatus                 *<a href="#ContainerStatus">ContainerStatus</a>                 `json:&#34;containerStatus,omitempty&#34;`
+<span id="MachineEventWrapper.URLReachable"></span>    URLReachable                    *<a href="#URLReachable">URLReachable</a>                    `json:&#34;urlReachable,omitempty&#34;`
+<span id="MachineEventWrapper.KubernetesPodStatus"></span>    KubernetesPodStatus             *<a href="#KubernetesPodStatus">KubernetesPodStatus</a>             `json:&#34;kubernetesPodStatus,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MachineEventWrapper.GetEntry">func (MachineEventWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=8241:8310#L232">GetEntry</a>
+					<a class="permalink" href="#MachineEventWrapper.GetEntry">¶</a>
+					
+					
+				</h3>
+				<pre>func (w <a href="#MachineEventWrapper">MachineEventWrapper</a>) GetEntry() (<a href="#MachineEventLogEntry">MachineEventLogEntry</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetEntry will return the JSON event parsed from a single line of &#39;-o json&#39; machine readable console output.
+Currently used for test purposes only.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NoOpMachineEventLoggingClient">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=6513:6558#L140">NoOpMachineEventLoggingClient</a>
+				<a class="permalink" href="#NoOpMachineEventLoggingClient">¶</a>
+				
+				
+			</h2>
+			<p>
+NoOpMachineEventLoggingClient will ignore (eg not output) all events passed to it
+</p>
+
+			<pre>type NoOpMachineEventLoggingClient struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNoOpMachineEventLoggingClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=970:1040#L28">NewNoOpMachineEventLoggingClient</a>
+					<a class="permalink" href="#NewNoOpMachineEventLoggingClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewNoOpMachineEventLoggingClient() *<a href="#NoOpMachineEventLoggingClient">NoOpMachineEventLoggingClient</a></pre>
+				<p>
+NewNoOpMachineEventLoggingClient creates a new instance of NoOpMachineEventLoggingClient,
+which will ignore any provided events.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="NoOpMachineEventLoggingClient.ContainerStatus">func (*NoOpMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=2536:2642#L69">ContainerStatus</a>
+					<a class="permalink" href="#NoOpMachineEventLoggingClient.ContainerStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#NoOpMachineEventLoggingClient">NoOpMachineEventLoggingClient</a>) ContainerStatus(statuses []<a href="#ContainerStatusEntry">ContainerStatusEntry</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+ContainerStatus ignores the provided event.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NoOpMachineEventLoggingClient.CreateContainerOutputWriter">func (*NoOpMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=1696:1834#L43">CreateContainerOutputWriter</a>
+					<a class="permalink" href="#NoOpMachineEventLoggingClient.CreateContainerOutputWriter">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#NoOpMachineEventLoggingClient">NoOpMachineEventLoggingClient</a>) CreateContainerOutputWriter() (*<a href="../../../../../io/">io</a>.<a href="../../../../../io/#PipeWriter">PipeWriter</a>, chan interface{}, *<a href="../../../../../io/">io</a>.<a href="../../../../../io/#PipeWriter">PipeWriter</a>, chan interface{})</pre>
+				<p>
+CreateContainerOutputWriter ignores the provided event.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NoOpMachineEventLoggingClient.DevFileCommandExecutionBegin">func (*NoOpMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=1215:1379#L35">DevFileCommandExecutionBegin</a>
+					<a class="permalink" href="#NoOpMachineEventLoggingClient.DevFileCommandExecutionBegin">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#NoOpMachineEventLoggingClient">NoOpMachineEventLoggingClient</a>) DevFileCommandExecutionBegin(commandID <a href="../../../../../builtin/#string">string</a>, componentName <a href="../../../../../builtin/#string">string</a>, commandLine <a href="../../../../../builtin/#string">string</a>, groupKind <a href="../../../../../builtin/#string">string</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+DevFileCommandExecutionBegin ignores the provided event.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NoOpMachineEventLoggingClient.DevFileCommandExecutionComplete">func (*NoOpMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=1448:1631#L39">DevFileCommandExecutionComplete</a>
+					<a class="permalink" href="#NoOpMachineEventLoggingClient.DevFileCommandExecutionComplete">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#NoOpMachineEventLoggingClient">NoOpMachineEventLoggingClient</a>) DevFileCommandExecutionComplete(commandID <a href="../../../../../builtin/#string">string</a>, componentName <a href="../../../../../builtin/#string">string</a>, commandLine <a href="../../../../../builtin/#string">string</a>, groupKind <a href="../../../../../builtin/#string">string</a>, timestamp <a href="../../../../../builtin/#string">string</a>, errorVal <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+DevFileCommandExecutionComplete ignores the provided event.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NoOpMachineEventLoggingClient.KubernetesPodStatus">func (*NoOpMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=2897:3007#L78">KubernetesPodStatus</a>
+					<a class="permalink" href="#NoOpMachineEventLoggingClient.KubernetesPodStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#NoOpMachineEventLoggingClient">NoOpMachineEventLoggingClient</a>) KubernetesPodStatus(pods []<a href="#KubernetesPodStatusEntry">KubernetesPodStatusEntry</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+KubernetesPodStatus ignores the provided event.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NoOpMachineEventLoggingClient.ReportError">func (*NoOpMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=2234:2319#L62">ReportError</a>
+					<a class="permalink" href="#NoOpMachineEventLoggingClient.ReportError">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#NoOpMachineEventLoggingClient">NoOpMachineEventLoggingClient</a>) ReportError(errorVal <a href="../../../../../builtin/#error">error</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+ReportError ignores the provided event.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NoOpMachineEventLoggingClient.SupervisordStatus">func (*NoOpMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=2373:2483#L65">SupervisordStatus</a>
+					<a class="permalink" href="#NoOpMachineEventLoggingClient.SupervisordStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#NoOpMachineEventLoggingClient">NoOpMachineEventLoggingClient</a>) SupervisordStatus(statuses []<a href="#SupervisordStatusEntry">SupervisordStatusEntry</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+SupervisordStatus ignores the provided event.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NoOpMachineEventLoggingClient.URLReachable">func (*NoOpMachineEventLoggingClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=2692:2839#L73">URLReachable</a>
+					<a class="permalink" href="#NoOpMachineEventLoggingClient.URLReachable">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#NoOpMachineEventLoggingClient">NoOpMachineEventLoggingClient</a>) URLReachable(name <a href="../../../../../builtin/#string">string</a>, url <a href="../../../../../builtin/#string">string</a>, port <a href="../../../../../builtin/#int">int</a>, secure <a href="../../../../../builtin/#bool">bool</a>, kind <a href="../../../../../builtin/#string">string</a>, reachable <a href="../../../../../builtin/#bool">bool</a>, timestamp <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+URLReachable ignores the provided event.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RegistryListOutput">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/registry.go.html?s=132:321#L1">RegistryListOutput</a>
+				<a class="permalink" href="#RegistryListOutput">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type RegistryListOutput struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="RegistryListOutput.RegistryList"></span>    RegistryList      *[]<a href="../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/preference/#Registry">Registry</a> `json:&#34;registries,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewRegistryListOutput">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/registry.go.html?s=323:405#L4">NewRegistryListOutput</a>
+					<a class="permalink" href="#NewRegistryListOutput">¶</a>
+					
+					
+				</h3>
+				<pre>func NewRegistryListOutput(registryList *[]<a href="../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/preference/#Registry">Registry</a>) <a href="#RegistryListOutput">RegistryListOutput</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ReportError">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=3052:3126#L49">ReportError</a>
+				<a class="permalink" href="#ReportError">¶</a>
+				
+				
+			</h2>
+			<p>
+ReportError is the JSON event that is emitted when an error occurs during push command
+</p>
+
+			<pre>type ReportError struct {
+<span id="ReportError.Error"></span>    Error <a href="../../../../../builtin/#string">string</a> `json:&#34;error&#34;`
+    <a href="#AbstractLogEvent">AbstractLogEvent</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ReportError.GetType">func (ReportError) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=9649:9704#L281">GetType</a>
+					<a class="permalink" href="#ReportError.GetType">¶</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="#ReportError">ReportError</a>) GetType() <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a></pre>
+				<p>
+GetType returns the event type for this event.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SupervisordStatus">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=3801:3915#L74">SupervisordStatus</a>
+				<a class="permalink" href="#SupervisordStatus">¶</a>
+				
+				
+			</h2>
+			<p>
+SupervisordStatus is the JSON event that is emitted to indicate odo-managed component&#39;s supervisord program status
+</p>
+
+			<pre>type SupervisordStatus struct {
+<span id="SupervisordStatus.ProgramStatus"></span>    ProgramStatus []<a href="#SupervisordStatusEntry">SupervisordStatusEntry</a> `json:&#34;programStatus&#34;`
+    <a href="#AbstractLogEvent">AbstractLogEvent</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="SupervisordStatus.GetType">func (SupervisordStatus) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=9783:9844#L284">GetType</a>
+					<a class="permalink" href="#SupervisordStatus.GetType">¶</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="#SupervisordStatus">SupervisordStatus</a>) GetType() <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a></pre>
+				<p>
+GetType returns the event type for this event.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SupervisordStatusEntry">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=3977:4080#L80">SupervisordStatusEntry</a>
+				<a class="permalink" href="#SupervisordStatusEntry">¶</a>
+				
+				
+			</h2>
+			<p>
+SupervisordStatusEntry is an individual program&#39;s status
+</p>
+
+			<pre>type SupervisordStatusEntry struct {
+<span id="SupervisordStatusEntry.Program"></span>    Program <a href="../../../../../builtin/#string">string</a> `json:&#34;program&#34;`
+<span id="SupervisordStatusEntry.Status"></span>    Status  <a href="../../../../../builtin/#string">string</a> `json:&#34;status&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="URLReachable">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?s=4199:4443#L86">URLReachable</a>
+				<a class="permalink" href="#URLReachable">¶</a>
+				
+				
+			</h2>
+			<p>
+URLReachable is the JSON event that is emitted to indicate whether one of the component&#39;s URL&#39;s could be reached.
+</p>
+
+			<pre>type URLReachable struct {
+<span id="URLReachable.Name"></span>    Name      <a href="../../../../../builtin/#string">string</a> `json:&#34;name&#34;`
+<span id="URLReachable.URL"></span>    URL       <a href="../../../../../builtin/#string">string</a> `json:&#34;url&#34;`
+<span id="URLReachable.Port"></span>    Port      <a href="../../../../../builtin/#int">int</a>    `json:&#34;port&#34;`
+<span id="URLReachable.Secure"></span>    Secure    <a href="../../../../../builtin/#bool">bool</a>   `json:&#34;secure&#34;`
+<span id="URLReachable.Kind"></span>    Kind      <a href="../../../../../builtin/#string">string</a> `json:&#34;kind&#34;`
+<span id="URLReachable.Reachable"></span>    Reachable <a href="../../../../../builtin/#bool">bool</a>   `json:&#34;reachable&#34;`
+    <a href="#AbstractLogEvent">AbstractLogEvent</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="URLReachable.GetType">func (URLReachable) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/event_logging.go.html?s=10071:10127#L290">GetType</a>
+					<a class="permalink" href="#URLReachable.GetType">¶</a>
+					
+					
+				</h3>
+				<pre>func (c <a href="#URLReachable">URLReachable</a>) GetType() <a href="#MachineEventLogEntryType">MachineEventLogEntryType</a></pre>
+				<p>
+GetType returns the event type for this event.
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>machineoutput - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput">machineoutput</a>/<span class="text-muted">types_event_logging.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../github.com/redhat-developer/odo/pkg/machineoutput">github.com/redhat-developer/odo/pkg/machineoutput</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package machineoutput
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;io&#34;
+<span id="L5" class="ln">     5  </span>
+<span id="L6" class="ln">     6  </span>	corev1 &#34;k8s.io/api/core/v1&#34;
+<span id="L7" class="ln">     7  </span>)
+<span id="L8" class="ln">     8  </span>
+<span id="L9" class="ln">     9  </span><span class="comment">// MachineEventLoggingClient is an interface which is used by consuming code to output machine-readable</span>
+<span id="L10" class="ln">    10  </span><span class="comment">// event JSON to the console. Both no-op and non-no-op implementations of this interface exist.</span>
+<span id="L11" class="ln">    11  </span>type MachineEventLoggingClient interface {
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span>	<span class="comment">// These functions output the corresponding eponymous JSON event to the console</span>
+<span id="L14" class="ln">    14  </span>
+<span id="L15" class="ln">    15  </span>	DevFileCommandExecutionBegin(commandID string, componentName string, commandLine string, groupKind string, timestamp string)
+<span id="L16" class="ln">    16  </span>	DevFileCommandExecutionComplete(commandID string, componentName string, commandLine string, groupKind string, timestamp string, errorVal error)
+<span id="L17" class="ln">    17  </span>	ReportError(errorVal error, timestamp string)
+<span id="L18" class="ln">    18  </span>
+<span id="L19" class="ln">    19  </span>	SupervisordStatus(statuses []SupervisordStatusEntry, timestamp string)
+<span id="L20" class="ln">    20  </span>	ContainerStatus(statuses []ContainerStatusEntry, timestamp string)
+<span id="L21" class="ln">    21  </span>
+<span id="L22" class="ln">    22  </span>	URLReachable(name string, url string, port int, secure bool, kind string, reachable bool, timestamp string)
+<span id="L23" class="ln">    23  </span>
+<span id="L24" class="ln">    24  </span>	KubernetesPodStatus(pods []KubernetesPodStatusEntry, timestamp string)
+<span id="L25" class="ln">    25  </span>
+<span id="L26" class="ln">    26  </span>	<span class="comment">// CreateContainerOutputWriter is used to capture output from container processes, and synchronously write it to the screen as LogText. See implementation comments for details.</span>
+<span id="L27" class="ln">    27  </span>	CreateContainerOutputWriter() (*io.PipeWriter, chan interface{}, *io.PipeWriter, chan interface{})
+<span id="L28" class="ln">    28  </span>}
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span><span class="comment">// MachineEventWrapper - a single line of machine-readable event console output must contain only one</span>
+<span id="L31" class="ln">    31  </span><span class="comment">// of these commands; the MachineEventWrapper is used to create (and parse, for tests) these lines.</span>
+<span id="L32" class="ln">    32  </span>type MachineEventWrapper struct {
+<span id="L33" class="ln">    33  </span>	DevFileCommandExecutionBegin    *DevFileCommandExecutionBegin    `json:&#34;devFileCommandExecutionBegin,omitempty&#34;`
+<span id="L34" class="ln">    34  </span>	DevFileCommandExecutionComplete *DevFileCommandExecutionComplete `json:&#34;devFileCommandExecutionComplete,omitempty&#34;`
+<span id="L35" class="ln">    35  </span>	LogText                         *LogText                         `json:&#34;logText,omitempty&#34;`
+<span id="L36" class="ln">    36  </span>	ReportError                     *ReportError                     `json:&#34;reportError,omitempty&#34;`
+<span id="L37" class="ln">    37  </span>	SupervisordStatus               *SupervisordStatus               `json:&#34;supervisordStatus,omitempty&#34;`
+<span id="L38" class="ln">    38  </span>	ContainerStatus                 *ContainerStatus                 `json:&#34;containerStatus,omitempty&#34;`
+<span id="L39" class="ln">    39  </span>	URLReachable                    *URLReachable                    `json:&#34;urlReachable,omitempty&#34;`
+<span id="L40" class="ln">    40  </span>	KubernetesPodStatus             *KubernetesPodStatus             `json:&#34;kubernetesPodStatus,omitempty&#34;`
+<span id="L41" class="ln">    41  </span>}
+<span id="L42" class="ln">    42  </span>
+<span id="L43" class="ln">    43  </span><span class="comment">// DevFileCommandExecutionBegin is the JSON event that is emitted when a dev file command begins execution.</span>
+<span id="L44" class="ln">    44  </span>type DevFileCommandExecutionBegin struct {
+<span id="L45" class="ln">    45  </span>	CommandID     string `json:&#34;commandId&#34;`
+<span id="L46" class="ln">    46  </span>	ComponentName string `json:&#34;componentName&#34;`
+<span id="L47" class="ln">    47  </span>	CommandLine   string `json:&#34;commandLine&#34;`
+<span id="L48" class="ln">    48  </span>	GroupKind     string `json:&#34;groupKind&#34;`
+<span id="L49" class="ln">    49  </span>	AbstractLogEvent
+<span id="L50" class="ln">    50  </span>}
+<span id="L51" class="ln">    51  </span>
+<span id="L52" class="ln">    52  </span><span class="comment">// DevFileCommandExecutionComplete is the JSON event that is emitted when a dev file command completes execution.</span>
+<span id="L53" class="ln">    53  </span>type DevFileCommandExecutionComplete struct {
+<span id="L54" class="ln">    54  </span>	DevFileCommandExecutionBegin
+<span id="L55" class="ln">    55  </span>	Error string `json:&#34;error,omitempty&#34;`
+<span id="L56" class="ln">    56  </span>}
+<span id="L57" class="ln">    57  </span>
+<span id="L58" class="ln">    58  </span><span class="comment">// ReportError is the JSON event that is emitted when an error occurs during push command</span>
+<span id="L59" class="ln">    59  </span>type ReportError struct {
+<span id="L60" class="ln">    60  </span>	Error string `json:&#34;error&#34;`
+<span id="L61" class="ln">    61  </span>	AbstractLogEvent
+<span id="L62" class="ln">    62  </span>}
+<span id="L63" class="ln">    63  </span>
+<span id="L64" class="ln">    64  </span><span class="comment">// LogText is the JSON event that is emitted when a dev file action outputs text to the console.</span>
+<span id="L65" class="ln">    65  </span>type LogText struct {
+<span id="L66" class="ln">    66  </span>	Text   string `json:&#34;text&#34;`
+<span id="L67" class="ln">    67  </span>	Stream string `json:&#34;stream&#34;`
+<span id="L68" class="ln">    68  </span>	AbstractLogEvent
+<span id="L69" class="ln">    69  </span>}
+<span id="L70" class="ln">    70  </span>
+<span id="L71" class="ln">    71  </span><span class="comment">// ContainerStatus is the JSON event that is emitted to indicate odo-managed Docker container status</span>
+<span id="L72" class="ln">    72  </span>type ContainerStatus struct {
+<span id="L73" class="ln">    73  </span>	Status []ContainerStatusEntry `json:&#34;status&#34;`
+<span id="L74" class="ln">    74  </span>	AbstractLogEvent
+<span id="L75" class="ln">    75  </span>}
+<span id="L76" class="ln">    76  </span>
+<span id="L77" class="ln">    77  </span><span class="comment">// ContainerStatusEntry is an individual container&#39;s status</span>
+<span id="L78" class="ln">    78  </span>type ContainerStatusEntry struct {
+<span id="L79" class="ln">    79  </span>	ID     string `json:&#34;id&#34;`
+<span id="L80" class="ln">    80  </span>	Status string `json:&#34;status&#34;`
+<span id="L81" class="ln">    81  </span>}
+<span id="L82" class="ln">    82  </span>
+<span id="L83" class="ln">    83  </span><span class="comment">// SupervisordStatus is the JSON event that is emitted to indicate odo-managed component&#39;s supervisord program status</span>
+<span id="L84" class="ln">    84  </span>type SupervisordStatus struct {
+<span id="L85" class="ln">    85  </span>	ProgramStatus []SupervisordStatusEntry `json:&#34;programStatus&#34;`
+<span id="L86" class="ln">    86  </span>	AbstractLogEvent
+<span id="L87" class="ln">    87  </span>}
+<span id="L88" class="ln">    88  </span>
+<span id="L89" class="ln">    89  </span><span class="comment">// SupervisordStatusEntry is an individual program&#39;s status</span>
+<span id="L90" class="ln">    90  </span>type SupervisordStatusEntry struct {
+<span id="L91" class="ln">    91  </span>	Program string `json:&#34;program&#34;`
+<span id="L92" class="ln">    92  </span>	Status  string `json:&#34;status&#34;`
+<span id="L93" class="ln">    93  </span>}
+<span id="L94" class="ln">    94  </span>
+<span id="L95" class="ln">    95  </span><span class="comment">// URLReachable is the JSON event that is emitted to indicate whether one of the component&#39;s URL&#39;s could be reached.</span>
+<span id="L96" class="ln">    96  </span>type URLReachable struct {
+<span id="L97" class="ln">    97  </span>	Name      string `json:&#34;name&#34;`
+<span id="L98" class="ln">    98  </span>	URL       string `json:&#34;url&#34;`
+<span id="L99" class="ln">    99  </span>	Port      int    `json:&#34;port&#34;`
+<span id="L100" class="ln">   100  </span>	Secure    bool   `json:&#34;secure&#34;`
+<span id="L101" class="ln">   101  </span>	Kind      string `json:&#34;kind&#34;`
+<span id="L102" class="ln">   102  </span>	Reachable bool   `json:&#34;reachable&#34;`
+<span id="L103" class="ln">   103  </span>	AbstractLogEvent
+<span id="L104" class="ln">   104  </span>}
+<span id="L105" class="ln">   105  </span>
+<span id="L106" class="ln">   106  </span><span class="comment">// KubernetesPodStatus is the JSON event that emitted to indicate the status of pods in an odo-managed deployment</span>
+<span id="L107" class="ln">   107  </span>type KubernetesPodStatus struct {
+<span id="L108" class="ln">   108  </span>	Pods []KubernetesPodStatusEntry `json:&#34;pods&#34;`
+<span id="L109" class="ln">   109  </span>	AbstractLogEvent
+<span id="L110" class="ln">   110  </span>}
+<span id="L111" class="ln">   111  </span>
+<span id="L112" class="ln">   112  </span><span class="comment">// KubernetesPodStatusEntry is an individual pod&#39;s information</span>
+<span id="L113" class="ln">   113  </span>type KubernetesPodStatusEntry struct {
+<span id="L114" class="ln">   114  </span>	Name           string                   `json:&#34;name&#34;`
+<span id="L115" class="ln">   115  </span>	UID            string                   `json:&#34;uid&#34;`
+<span id="L116" class="ln">   116  </span>	Phase          string                   `json:&#34;phase&#34;`
+<span id="L117" class="ln">   117  </span>	Labels         map[string]string        `json:&#34;labels,omitempty&#34;`
+<span id="L118" class="ln">   118  </span>	StartTime      string                   `json:&#34;startTime,omitempty&#34;`
+<span id="L119" class="ln">   119  </span>	Containers     []corev1.ContainerStatus `json:&#34;containers&#34;`
+<span id="L120" class="ln">   120  </span>	InitContainers []corev1.ContainerStatus `json:&#34;initContainers&#34;`
+<span id="L121" class="ln">   121  </span>	<span class="comment">// This embeds the K8s ContainerStatus API into the log output; further experimentation is required by</span>
+<span id="L122" class="ln">   122  </span>	<span class="comment">// consuming tools to determine which fields from this struct are useful/reliable, at which point this should</span>
+<span id="L123" class="ln">   123  </span>	<span class="comment">// be replaceable with a pared-down version containing only those fields. My early analysis is that the</span>
+<span id="L124" class="ln">   124  </span>	<span class="comment">// vast majority are useful.</span>
+<span id="L125" class="ln">   125  </span>}
+<span id="L126" class="ln">   126  </span>
+<span id="L127" class="ln">   127  </span><span class="comment">// AbstractLogEvent is the base struct for all events; all events must at a minimum contain a timestamp.</span>
+<span id="L128" class="ln">   128  </span>type AbstractLogEvent struct {
+<span id="L129" class="ln">   129  </span>	Timestamp string `json:&#34;timestamp&#34;`
+<span id="L130" class="ln">   130  </span>}
+<span id="L131" class="ln">   131  </span>
+<span id="L132" class="ln">   132  </span><span class="comment">// Ensure the various events correctly implement the desired interface.</span>
+<span id="L133" class="ln">   133  </span>var _ MachineEventLogEntry = &amp;DevFileCommandExecutionBegin{}
+<span id="L134" class="ln">   134  </span>var _ MachineEventLogEntry = &amp;DevFileCommandExecutionComplete{}
+<span id="L135" class="ln">   135  </span>var _ MachineEventLogEntry = &amp;LogText{}
+<span id="L136" class="ln">   136  </span>var _ MachineEventLogEntry = &amp;ReportError{}
+<span id="L137" class="ln">   137  </span>var _ MachineEventLogEntry = &amp;SupervisordStatus{}
+<span id="L138" class="ln">   138  </span>var _ MachineEventLogEntry = &amp;ContainerStatus{}
+<span id="L139" class="ln">   139  </span>var _ MachineEventLogEntry = &amp;URLReachable{}
+<span id="L140" class="ln">   140  </span>var _ MachineEventLogEntry = &amp;KubernetesPodStatus{}
+<span id="L141" class="ln">   141  </span>
+<span id="L142" class="ln">   142  </span><span class="comment">// MachineEventLogEntry contains the expected methods for every event that is emitted.</span>
+<span id="L143" class="ln">   143  </span><span class="comment">// (This is mainly used for test purposes.)</span>
+<span id="L144" class="ln">   144  </span>type MachineEventLogEntry interface {
+<span id="L145" class="ln">   145  </span>	GetTimestamp() string
+<span id="L146" class="ln">   146  </span>	GetType() MachineEventLogEntryType
+<span id="L147" class="ln">   147  </span>}
+<span id="L148" class="ln">   148  </span>
+<span id="L149" class="ln">   149  </span><span class="comment">// NoOpMachineEventLoggingClient will ignore (eg not output) all events passed to it</span>
+<span id="L150" class="ln">   150  </span>type NoOpMachineEventLoggingClient struct {
+<span id="L151" class="ln">   151  </span>}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span><span class="comment">// ConsoleMachineEventLoggingClient will output all events to the console as JSON</span>
+<span id="L154" class="ln">   154  </span>type ConsoleMachineEventLoggingClient struct {
+<span id="L155" class="ln">   155  </span>
+<span id="L156" class="ln">   156  </span>	<span class="comment">// logFunc is an optional function that can be used instead of writing via the standard machine out logic</span>
+<span id="L157" class="ln">   157  </span>	logFunc func(machineOutput MachineEventWrapper)
+<span id="L158" class="ln">   158  </span>}
+<span id="L159" class="ln">   159  </span>
+</pre><p><a href="../../../../../../src/github.com/redhat-developer/odo/pkg/machineoutput/types_event_logging.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

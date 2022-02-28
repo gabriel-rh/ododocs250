@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>common - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile">devfile</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters">adapters</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common">common</a>/<span class="text-muted">command_supervisor.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common">github.com/redhat-developer/odo/pkg/devfile/adapters/common</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package common
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;fmt&#34;
+<span id="L5" class="ln">     5  </span>
+<span id="L6" class="ln">     6  </span>	devfilev1 &#34;github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2&#34;
+<span id="L7" class="ln">     7  </span>	&#34;github.com/redhat-developer/odo/pkg/machineoutput&#34;
+<span id="L8" class="ln">     8  </span>)
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span><span class="comment">// supervisorCommand encapsulates a supervisor-specific command</span>
+<span id="L11" class="ln">    11  </span>type supervisorCommand struct {
+<span id="L12" class="ln">    12  </span>	adapter commandExecutor
+<span id="L13" class="ln">    13  </span>	cmd     []string
+<span id="L14" class="ln">    14  </span>	info    ComponentInfo
+<span id="L15" class="ln">    15  </span>}
+<span id="L16" class="ln">    16  </span>
+<span id="L17" class="ln">    17  </span><span class="comment">// newSupervisorInitCommand creates a command that initializes the supervisor for the specified devfile if needed</span>
+<span id="L18" class="ln">    18  </span><span class="comment">// nil is returned if no devfile-specified container needing supervisor initialization is found</span>
+<span id="L19" class="ln">    19  </span>func newSupervisorInitCommand(command devfilev1.Command, adapter commandExecutor) (command, error) {
+<span id="L20" class="ln">    20  </span>	cmd := []string{SupervisordBinaryPath, &#34;-c&#34;, SupervisordConfFile, &#34;-d&#34;}
+<span id="L21" class="ln">    21  </span>	info, err := adapter.SupervisorComponentInfo(command)
+<span id="L22" class="ln">    22  </span>	if err != nil {
+<span id="L23" class="ln">    23  </span>		adapter.Logger().ReportError(err, machineoutput.TimestampNow())
+<span id="L24" class="ln">    24  </span>		return nil, err
+<span id="L25" class="ln">    25  </span>	}
+<span id="L26" class="ln">    26  </span>	if !info.IsEmpty() {
+<span id="L27" class="ln">    27  </span>		return supervisorCommand{
+<span id="L28" class="ln">    28  </span>			adapter: adapter,
+<span id="L29" class="ln">    29  </span>			cmd:     cmd,
+<span id="L30" class="ln">    30  </span>			info:    info,
+<span id="L31" class="ln">    31  </span>		}, nil
+<span id="L32" class="ln">    32  </span>	}
+<span id="L33" class="ln">    33  </span>	return nil, nil
+<span id="L34" class="ln">    34  </span>}
+<span id="L35" class="ln">    35  </span>
+<span id="L36" class="ln">    36  </span><span class="comment">// newSupervisorStopCommand creates a command implementation that stops the specified command via the supervisor</span>
+<span id="L37" class="ln">    37  </span>func newSupervisorStopCommand(command devfilev1.Command, executor commandExecutor) (command, error) {
+<span id="L38" class="ln">    38  </span>	cmd := []string{SupervisordBinaryPath, SupervisordCtlSubCommand, &#34;stop&#34;, &#34;all&#34;}
+<span id="L39" class="ln">    39  </span>	if stop, err := newOverriddenExecCommand(command, executor, cmd); err == nil {
+<span id="L40" class="ln">    40  </span>		<span class="comment">// use empty spinner message to avoid showing it altogether</span>
+<span id="L41" class="ln">    41  </span>		stop.msg = &#34;&#34;
+<span id="L42" class="ln">    42  </span>		return stop, err
+<span id="L43" class="ln">    43  </span>	} else {
+<span id="L44" class="ln">    44  </span>		return nil, err
+<span id="L45" class="ln">    45  </span>	}
+<span id="L46" class="ln">    46  </span>}
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span><span class="comment">// newSupervisorStartCommand creates a command implementation that starts the specified command via the supervisor</span>
+<span id="L49" class="ln">    49  </span>func newSupervisorStartCommand(command devfilev1.Command, cmd string, adapter commandExecutor, restart bool) (command, error) {
+<span id="L50" class="ln">    50  </span>	cmdLine := []string{SupervisordBinaryPath, SupervisordCtlSubCommand, &#34;start&#34;, cmd}
+<span id="L51" class="ln">    51  </span>	start, err := newOverriddenExecCommand(command, adapter, cmdLine)
+<span id="L52" class="ln">    52  </span>	if err != nil {
+<span id="L53" class="ln">    53  </span>		return nil, err
+<span id="L54" class="ln">    54  </span>	}
+<span id="L55" class="ln">    55  </span>	if !restart {
+<span id="L56" class="ln">    56  </span>		start.msg = fmt.Sprintf(&#34;%s, %s&#34;, start.msg, &#34;if not running&#34;)
+<span id="L57" class="ln">    57  </span>	}
+<span id="L58" class="ln">    58  </span>
+<span id="L59" class="ln">    59  </span>	return start, nil
+<span id="L60" class="ln">    60  </span>}
+<span id="L61" class="ln">    61  </span>
+<span id="L62" class="ln">    62  </span>func (s supervisorCommand) Execute(show bool) error {
+<span id="L63" class="ln">    63  </span>	err := ExecuteCommand(s.adapter, s.info, s.cmd, true, nil, nil)
+<span id="L64" class="ln">    64  </span>	if err != nil {
+<span id="L65" class="ln">    65  </span>		s.adapter.Logger().ReportError(err, machineoutput.TimestampNow())
+<span id="L66" class="ln">    66  </span>		return err
+<span id="L67" class="ln">    67  </span>	}
+<span id="L68" class="ln">    68  </span>	return nil
+<span id="L69" class="ln">    69  </span>}
+<span id="L70" class="ln">    70  </span>
+<span id="L71" class="ln">    71  </span>func (s supervisorCommand) UnExecute() error {
+<span id="L72" class="ln">    72  </span>	return nil
+<span id="L73" class="ln">    73  </span>}
+<span id="L74" class="ln">    74  </span>
+</pre><p><a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command_supervisor.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

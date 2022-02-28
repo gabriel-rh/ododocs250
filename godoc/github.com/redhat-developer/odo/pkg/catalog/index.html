@@ -1,0 +1,436 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>catalog - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package catalog
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/catalog" target="_blank">github.com/redhat-developer/odo/pkg/catalog</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#ListOperatorServices">func ListOperatorServices(client kclient.ClientInterface) (*olm.ClusterServiceVersionList, error)</a></dd>
+			
+				
+				<dd><a href="#SearchComponent">func SearchComponent(client kclient.ClientInterface, name string) ([]string, error)</a></dd>
+			
+			
+				
+				<dd><a href="#DevfileComponentType">type DevfileComponentType</a></dd>
+				
+				
+			
+				
+				<dd><a href="#DevfileComponentTypeList">type DevfileComponentTypeList</a></dd>
+				
+					
+					<dd>    <a href="#ListDevfileComponents">func ListDevfileComponents(registryName string) (DevfileComponentTypeList, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Registry">type Registry</a></dd>
+				
+					
+					<dd>    <a href="#GetDevfileRegistries">func GetDevfileRegistries(registryName string) ([]Registry, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ServiceSpec">type ServiceSpec</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ServiceType">type ServiceType</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ServiceTypeList">type ServiceTypeList</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/catalog.go.html">catalog.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/types.go.html">types.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="ListOperatorServices">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/catalog.go.html?s=8741:8838#L243">ListOperatorServices</a>
+				<a class="permalink" href="#ListOperatorServices">¶</a>
+				
+				
+			</h2>
+			<pre>func ListOperatorServices(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>) (*<a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/">olm</a>.<a href="../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/#ClusterServiceVersionList">ClusterServiceVersionList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ListOperatorServices fetches a list of Operators from the cluster and
+returns only those Operators which are successfully installed on the cluster
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SearchComponent">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/catalog.go.html?s=7841:7924#L222">SearchComponent</a>
+				<a class="permalink" href="#SearchComponent">¶</a>
+				
+				
+			</h2>
+			<pre>func SearchComponent(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, name <a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+SearchComponent searches for the component
+TODO: Fix this to return devfile components
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="DevfileComponentType">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/types.go.html?s=270:450#L5">DevfileComponentType</a>
+				<a class="permalink" href="#DevfileComponentType">¶</a>
+				
+				
+			</h2>
+			<p>
+DevfileComponentType is the main struct for devfile catalog components
+</p>
+
+			<pre>type DevfileComponentType struct {
+<span id="DevfileComponentType.Name"></span>    Name        <a href="../../../../../builtin/#string">string</a>
+<span id="DevfileComponentType.DisplayName"></span>    DisplayName <a href="../../../../../builtin/#string">string</a>
+<span id="DevfileComponentType.Description"></span>    Description <a href="../../../../../builtin/#string">string</a>
+<span id="DevfileComponentType.Link"></span>    Link        <a href="../../../../../builtin/#string">string</a>
+<span id="DevfileComponentType.Registry"></span>    Registry    <a href="#Registry">Registry</a>
+<span id="DevfileComponentType.Language"></span>    Language    <a href="../../../../../builtin/#string">string</a>
+<span id="DevfileComponentType.Tags"></span>    Tags        []<a href="../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DevfileComponentTypeList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/types.go.html?s=517:629#L16">DevfileComponentTypeList</a>
+				<a class="permalink" href="#DevfileComponentTypeList">¶</a>
+				
+				
+			</h2>
+			<p>
+DevfileComponentTypeList lists all the DevfileComponentType&#39;s
+</p>
+
+			<pre>type DevfileComponentTypeList struct {
+<span id="DevfileComponentTypeList.DevfileRegistries"></span>    DevfileRegistries []<a href="#Registry">Registry</a>
+<span id="DevfileComponentTypeList.Items"></span>    Items             []<a href="#DevfileComponentType">DevfileComponentType</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ListDevfileComponents">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/catalog.go.html?s=5743:5824#L172">ListDevfileComponents</a>
+					<a class="permalink" href="#ListDevfileComponents">¶</a>
+					
+					
+				</h3>
+				<pre>func ListDevfileComponents(registryName <a href="../../../../../builtin/#string">string</a>) (<a href="#DevfileComponentTypeList">DevfileComponentTypeList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ListDevfileComponents lists all the available devfile components
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Registry">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/types.go.html?s=127:194#L1">Registry</a>
+				<a class="permalink" href="#Registry">¶</a>
+				
+				
+			</h2>
+			<p>
+Registry is the main struct of devfile registry
+</p>
+
+			<pre>type Registry struct {
+<span id="Registry.Name"></span>    Name   <a href="../../../../../builtin/#string">string</a>
+<span id="Registry.URL"></span>    URL    <a href="../../../../../builtin/#string">string</a>
+<span id="Registry.Secure"></span>    Secure <a href="../../../../../builtin/#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetDevfileRegistries">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/catalog.go.html?s=833:899#L18">GetDevfileRegistries</a>
+					<a class="permalink" href="#GetDevfileRegistries">¶</a>
+					
+					
+				</h3>
+				<pre>func GetDevfileRegistries(registryName <a href="../../../../../builtin/#string">string</a>) ([]<a href="#Registry">Registry</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetDevfileRegistries gets devfile registries from preference file,
+if registry name is specified return the specific registry, otherwise return all registries
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ServiceSpec">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/types.go.html?s=896:995#L29">ServiceSpec</a>
+				<a class="permalink" href="#ServiceSpec">¶</a>
+				
+				
+			</h2>
+			<p>
+ServiceSpec is the spec for ServiceType
+</p>
+
+			<pre>type ServiceSpec struct {
+<span id="ServiceSpec.Hidden"></span>    Hidden   <a href="../../../../../builtin/#bool">bool</a>     `json:&#34;hidden&#34;`
+<span id="ServiceSpec.PlanList"></span>    PlanList []<a href="../../../../../builtin/#string">string</a> `json:&#34;planList&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServiceType">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/types.go.html?s=686:851#L22">ServiceType</a>
+				<a class="permalink" href="#ServiceType">¶</a>
+				
+				
+			</h2>
+			<p>
+ServiceType is the main struct for catalog services
+</p>
+
+			<pre>type ServiceType struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="ServiceType.Spec"></span>    Spec              <a href="#ServiceSpec">ServiceSpec</a> `json:&#34;spec,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServiceTypeList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/catalog/types.go.html?s=1044:1200#L35">ServiceTypeList</a>
+				<a class="permalink" href="#ServiceTypeList">¶</a>
+				
+				
+			</h2>
+			<p>
+ServiceTypeList lists all the ServiceType&#39;s
+</p>
+
+			<pre>type ServiceTypeList struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a> `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ListMeta">ListMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="ServiceTypeList.Items"></span>    Items           []<a href="#ServiceType">ServiceType</a> `json:&#34;items&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

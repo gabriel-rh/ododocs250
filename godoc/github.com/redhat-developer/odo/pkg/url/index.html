@@ -1,0 +1,1004 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>url - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package url
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/url" target="_blank">github.com/redhat-developer/odo/pkg/url</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+Package url is a generated GoMock package.
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#ConvertExtensionV1IngressURLToIngress">func ConvertExtensionV1IngressURLToIngress(ingressURL URL, serviceName string) iextensionsv1.Ingress</a></dd>
+			
+				
+				<dd><a href="#GetProtocol">func GetProtocol(route routev1.Route, ingress iextensionsv1.Ingress) string</a></dd>
+			
+				
+				<dd><a href="#GetURLString">func GetURLString(protocol, URL, ingressDomain string) string</a></dd>
+			
+				
+				<dd><a href="#Push">func Push(parameters PushParameters) error</a></dd>
+			
+				
+				<dd><a href="#StartURLHttpRequestStatusWatchForK8S">func StartURLHttpRequestStatusWatchForK8S(client kclient.ClientInterface, localConfigProvider *localConfigProvider.LocalConfigProvider, loggingClient machineoutput.MachineEventLoggingClient)</a></dd>
+			
+			
+				
+				<dd><a href="#Client">type Client</a></dd>
+				
+					
+					<dd>    <a href="#NewClient">func NewClient(options ClientOptions) Client</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ClientOptions">type ClientOptions</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MockClient">type MockClient</a></dd>
+				
+					
+					<dd>    <a href="#NewMockClient">func NewMockClient(ctrl *gomock.Controller) *MockClient</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockClient.Create">func (m *MockClient) Create(url URL) (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.Delete">func (m *MockClient) Delete(arg0 string, arg1 localConfigProvider.URLKind) error</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.EXPECT">func (m *MockClient) EXPECT() *MockClientMockRecorder</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.List">func (m *MockClient) List() (URLList, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.ListFromCluster">func (m *MockClient) ListFromCluster() (URLList, error)</a></dd>
+				
+			
+				
+				<dd><a href="#MockClientMockRecorder">type MockClientMockRecorder</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.Create">func (mr *MockClientMockRecorder) Create(url interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.Delete">func (mr *MockClientMockRecorder) Delete(arg0, arg1 interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.List">func (mr *MockClientMockRecorder) List() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.ListFromCluster">func (mr *MockClientMockRecorder) ListFromCluster() *gomock.Call</a></dd>
+				
+			
+				
+				<dd><a href="#PushParameters">type PushParameters</a></dd>
+				
+				
+			
+				
+				<dd><a href="#StateType">type StateType</a></dd>
+				
+				
+			
+				
+				<dd><a href="#URL">type URL</a></dd>
+				
+					
+					<dd>    <a href="#ConvertEnvInfoURL">func ConvertEnvInfoURL(envInfoURL localConfigProvider.LocalURL, serviceName string) URL</a></dd>
+				
+					
+					<dd>    <a href="#NewURL">func NewURL(r routev1.Route) URL</a></dd>
+				
+					
+					<dd>    <a href="#NewURLFromConfigURL">func NewURLFromConfigURL(configURL localConfigProvider.LocalURL) URL</a></dd>
+				
+					
+					<dd>    <a href="#NewURLFromEnvinfoURL">func NewURLFromEnvinfoURL(envinfoURL localConfigProvider.LocalURL, serviceName string) URL</a></dd>
+				
+					
+					<dd>    <a href="#NewURLFromKubernetesIngress">func NewURLFromKubernetesIngress(ki *unions.KubernetesIngress, skipIfGenerated bool) URL</a></dd>
+				
+					
+					<dd>    <a href="#NewURLFromLocalURL">func NewURLFromLocalURL(localURL localConfigProvider.LocalURL) URL</a></dd>
+				
+					
+					<dd>    <a href="#NewURLsFromKubernetesIngressList">func NewURLsFromKubernetesIngressList(kil *unions.KubernetesIngressList) []URL</a></dd>
+				
+				
+			
+				
+				<dd><a href="#URLList">type URLList</a></dd>
+				
+					
+					<dd>    <a href="#NewURLList">func NewURLList(urls []URL) URLList</a></dd>
+				
+				
+					
+					<dd>    <a href="#URLList.AreOutOfSync">func (urls URLList) AreOutOfSync() bool</a></dd>
+				
+					
+					<dd>    <a href="#URLList.Get">func (urls URLList) Get(urlName string) URL</a></dd>
+				
+			
+				
+				<dd><a href="#URLSpec">type URLSpec</a></dd>
+				
+				
+			
+				
+				<dd><a href="#URLStatus">type URLStatus</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/kubernetes.go.html">kubernetes.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html">mock_Client.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/status.go.html">status.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html">types.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/url.go.html">url.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/utils.go.html">utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// StateTypePushed means that URL is present both locally and on cluster/container</span>
+    <span id="StateTypePushed">StateTypePushed</span> = &#34;Pushed&#34;
+    <span class="comment">// StateTypeNotPushed means that URL is only in local config, but not on the cluster/container</span>
+    <span id="StateTypeNotPushed">StateTypeNotPushed</span> = &#34;Not Pushed&#34;
+    <span class="comment">// StateTypeLocallyDeleted means that URL was deleted from the local config, but it is still present on the cluster/container</span>
+    <span id="StateTypeLocallyDeleted">StateTypeLocallyDeleted</span> = &#34;Locally Deleted&#34;
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// URLFailureWaitTime is how long to wait on error from URL connection</span>
+    <span id="URLFailureWaitTime">URLFailureWaitTime</span> = <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Duration">Duration</a>(5) * <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Second">Second</a>
+)</pre>
+			
+				
+				<pre>const <span id="URLKind">URLKind</span> = &#34;URL&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="ConvertExtensionV1IngressURLToIngress">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/utils.go.html?s=2553:2653#L84">ConvertExtensionV1IngressURLToIngress</a>
+				<a class="permalink" href="#ConvertExtensionV1IngressURLToIngress">¶</a>
+				
+				
+			</h2>
+			<pre>func ConvertExtensionV1IngressURLToIngress(ingressURL <a href="#URL">URL</a>, serviceName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../k8s.io/api/extensions/v1beta1/">iextensionsv1</a>.<a href="../../../../../k8s.io/api/extensions/v1beta1/#Ingress">Ingress</a></pre>
+			<p>
+ConvertExtensionV1IngressURLToIngress converts IngressURL to Ingress
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetProtocol">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/utils.go.html?s=590:665#L20">GetProtocol</a>
+				<a class="permalink" href="#GetProtocol">¶</a>
+				
+				
+			</h2>
+			<pre>func GetProtocol(route <a href="../../../../../github.com/openshift/api/route/v1/">routev1</a>.<a href="../../../../../github.com/openshift/api/route/v1/#Route">Route</a>, ingress <a href="../../../../../k8s.io/api/extensions/v1beta1/">iextensionsv1</a>.<a href="../../../../../k8s.io/api/extensions/v1beta1/#Ingress">Ingress</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetProtocol returns the protocol string
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetURLString">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/utils.go.html?s=1980:2041#L67">GetURLString</a>
+				<a class="permalink" href="#GetURLString">¶</a>
+				
+				
+			</h2>
+			<pre>func GetURLString(protocol, URL, ingressDomain <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetURLString returns a string representation of given url
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Push">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/url.go.html?s=1909:1951#L60">Push</a>
+				<a class="permalink" href="#Push">¶</a>
+				
+				
+			</h2>
+			<pre>func Push(parameters <a href="#PushParameters">PushParameters</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+Push creates and deletes the required URLs
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="StartURLHttpRequestStatusWatchForK8S">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/status.go.html?s=550:740#L14">StartURLHttpRequestStatusWatchForK8S</a>
+				<a class="permalink" href="#StartURLHttpRequestStatusWatchForK8S">¶</a>
+				
+				
+			</h2>
+			<pre>func StartURLHttpRequestStatusWatchForK8S(client <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, localConfigProvider *<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalConfigProvider">LocalConfigProvider</a>, loggingClient <a href="../../../../../github.com/redhat-developer/odo/pkg/machineoutput/">machineoutput</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/machineoutput/#MachineEventLoggingClient">MachineEventLoggingClient</a>)</pre>
+			<p>
+StartURLHttpRequestStatusWatchForK8S begins testing URLs for responses, outputting the result to console
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/url.go.html?s=603:773#L15">Client</a>
+				<a class="permalink" href="#Client">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Client interface {
+    Create(url <a href="#URL">URL</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)
+    Delete(<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#URLKind">URLKind</a>) <a href="../../../../../builtin/#error">error</a>
+    ListFromCluster() (<a href="#URLList">URLList</a>, <a href="../../../../../builtin/#error">error</a>)
+    List() (<a href="#URLList">URLList</a>, <a href="../../../../../builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/url.go.html?s=1043:1087#L30">NewClient</a>
+					<a class="permalink" href="#NewClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewClient(options <a href="#ClientOptions">ClientOptions</a>) <a href="#Client">Client</a></pre>
+				<p>
+NewClient gets the appropriate URL client based on the parameters
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ClientOptions">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/url.go.html?s=775:972#L22">ClientOptions</a>
+				<a class="permalink" href="#ClientOptions">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type ClientOptions struct {
+<span id="ClientOptions.Client"></span>    Client              <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>
+<span id="ClientOptions.IsRouteSupported"></span>    IsRouteSupported    <a href="../../../../../builtin/#bool">bool</a>
+<span id="ClientOptions.LocalConfigProvider"></span>    LocalConfigProvider <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalConfigProvider">LocalConfigProvider</a>
+<span id="ClientOptions.Deployment"></span>    Deployment          *<a href="../../../../../k8s.io/api/apps/v1/">v1</a>.<a href="../../../../../k8s.io/api/apps/v1/#Deployment">Deployment</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MockClient">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=325:414#L5">MockClient</a>
+				<a class="permalink" href="#MockClient">¶</a>
+				
+				
+			</h2>
+			<p>
+MockClient is a mock of Client interface.
+</p>
+
+			<pre>type MockClient struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMockClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=583:638#L16">NewMockClient</a>
+					<a class="permalink" href="#NewMockClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewMockClient(ctrl *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Controller">Controller</a>) *<a href="#MockClient">MockClient</a></pre>
+				<p>
+NewMockClient creates a new mock instance.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MockClient.Create">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=921:973#L28">Create</a>
+					<a class="permalink" href="#MockClient.Create">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) Create(url <a href="#URL">URL</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Create mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.Delete">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=1401:1481#L43">Delete</a>
+					<a class="permalink" href="#MockClient.Delete">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) Delete(arg0 <a href="../../../../../builtin/#string">string</a>, arg1 <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#URLKind">URLKind</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+Delete mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.EXPECT">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=814:867#L23">EXPECT</a>
+					<a class="permalink" href="#MockClient.EXPECT">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) EXPECT() *<a href="#MockClientMockRecorder">MockClientMockRecorder</a></pre>
+				<p>
+EXPECT returns an object that allows the caller to indicate expected use.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.List">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=1894:1938#L57">List</a>
+					<a class="permalink" href="#MockClient.List">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) List() (<a href="#URLList">URLList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+List mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.ListFromCluster">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=2339:2394#L72">ListFromCluster</a>
+					<a class="permalink" href="#MockClient.ListFromCluster">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) ListFromCluster() (<a href="#URLList">URLList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ListFromCluster mocks base method.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockClientMockRecorder">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=479:535#L11">MockClientMockRecorder</a>
+				<a class="permalink" href="#MockClientMockRecorder">¶</a>
+				
+				
+			</h2>
+			<p>
+MockClientMockRecorder is the mock recorder for MockClient.
+</p>
+
+			<pre>type MockClientMockRecorder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockClientMockRecorder.Create">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=1158:1228#L37">Create</a>
+					<a class="permalink" href="#MockClientMockRecorder.Create">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) Create(url interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Create indicates an expected call of Create.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.Delete">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=1639:1716#L51">Delete</a>
+					<a class="permalink" href="#MockClientMockRecorder.Delete">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) Delete(arg0, arg1 interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Delete indicates an expected call of Delete.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.List">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=2113:2166#L66">List</a>
+					<a class="permalink" href="#MockClientMockRecorder.List">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) List() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+List indicates an expected call of List.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.ListFromCluster">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/mock_Client.go.html?s=2602:2666#L81">ListFromCluster</a>
+					<a class="permalink" href="#MockClientMockRecorder.ListFromCluster">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) ListFromCluster() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+ListFromCluster indicates an expected call of ListFromCluster.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PushParameters">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/url.go.html?s=1716:1861#L53">PushParameters</a>
+				<a class="permalink" href="#PushParameters">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type PushParameters struct {
+<span id="PushParameters.LocalConfigProvider"></span>    LocalConfigProvider <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalConfigProvider">LocalConfigProvider</a>
+<span id="PushParameters.URLClient"></span>    URLClient           <a href="#Client">Client</a>
+<span id="PushParameters.IsRouteSupported"></span>    IsRouteSupported    <a href="../../../../../builtin/#bool">bool</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="StateType">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=1658:1679#L41">StateType</a>
+				<a class="permalink" href="#StateType">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type StateType <a href="../../../../../builtin/#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="URL">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=513:723#L9">URL</a>
+				<a class="permalink" href="#URL">¶</a>
+				
+				
+			</h2>
+			<p>
+URL is an abstraction giving network access to the component from outside the cluster
+</p>
+
+			<pre>type URL struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="URL.Spec"></span>    Spec              <a href="#URLSpec">URLSpec</a>   `json:&#34;spec,omitempty&#34;`
+<span id="URL.Status"></span>    Status            <a href="#URLStatus">URLStatus</a> `json:&#34;status,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ConvertEnvInfoURL">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/utils.go.html?s=938:1025#L30">ConvertEnvInfoURL</a>
+					<a class="permalink" href="#ConvertEnvInfoURL">¶</a>
+					
+					
+				</h3>
+				<pre>func ConvertEnvInfoURL(envInfoURL <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a>, serviceName <a href="../../../../../builtin/#string">string</a>) <a href="#URL">URL</a></pre>
+				<p>
+ConvertEnvInfoURL converts EnvInfoURL to URL
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewURL">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=2155:2187#L53">NewURL</a>
+					<a class="permalink" href="#NewURL">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURL(r <a href="../../../../../github.com/openshift/api/route/v1/">routev1</a>.<a href="../../../../../github.com/openshift/api/route/v1/#Route">Route</a>) <a href="#URL">URL</a></pre>
+				<p>
+NewURL gives machine readable URL definition
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewURLFromConfigURL">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=2912:2980#L86">NewURLFromConfigURL</a>
+					<a class="permalink" href="#NewURLFromConfigURL">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURLFromConfigURL(configURL <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a>) <a href="#URL">URL</a></pre>
+				<p>
+NewURLFromConfigURL creates a URL from a ConfigURL
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewURLFromEnvinfoURL">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=3352:3442#L105">NewURLFromEnvinfoURL</a>
+					<a class="permalink" href="#NewURLFromEnvinfoURL">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURLFromEnvinfoURL(envinfoURL <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a>, serviceName <a href="../../../../../builtin/#string">string</a>) <a href="#URL">URL</a></pre>
+				<p>
+NewURLFromEnvinfoURL creates a URL from a EnvinfoURL
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewURLFromKubernetesIngress">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=5202:5290#L174">NewURLFromKubernetesIngress</a>
+					<a class="permalink" href="#NewURLFromKubernetesIngress">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURLFromKubernetesIngress(ki *<a href="../../../../../github.com/redhat-developer/odo/pkg/unions/">unions</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/unions/#KubernetesIngress">KubernetesIngress</a>, skipIfGenerated <a href="../../../../../builtin/#bool">bool</a>) <a href="#URL">URL</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewURLFromLocalURL">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=4424:4490#L142">NewURLFromLocalURL</a>
+					<a class="permalink" href="#NewURLFromLocalURL">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURLFromLocalURL(localURL <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a>) <a href="#URL">URL</a></pre>
+				<p>
+NewURLFromLocalURL creates a URL from a localConfigProvider.LocalURL
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewURLsFromKubernetesIngressList">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=4909:4987#L163">NewURLsFromKubernetesIngressList</a>
+					<a class="permalink" href="#NewURLsFromKubernetesIngressList">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURLsFromKubernetesIngressList(kil *<a href="../../../../../github.com/redhat-developer/odo/pkg/unions/">unions</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/unions/#KubernetesIngressList">KubernetesIngressList</a>) []<a href="#URL">URL</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="URLList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=1364:1504#L29">URLList</a>
+				<a class="permalink" href="#URLList">¶</a>
+				
+				
+			</h2>
+			<p>
+URLList is a list of urls
+</p>
+
+			<pre>type URLList struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a> `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ListMeta">ListMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="URLList.Items"></span>    Items           []<a href="#URL">URL</a> `json:&#34;items&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewURLList">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=2634:2669#L74">NewURLList</a>
+					<a class="permalink" href="#NewURLList">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURLList(urls []<a href="#URL">URL</a>) <a href="#URLList">URLList</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="URLList.AreOutOfSync">func (URLList) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=7063:7102#L233">AreOutOfSync</a>
+					<a class="permalink" href="#URLList.AreOutOfSync">¶</a>
+					
+					
+				</h3>
+				<pre>func (urls <a href="#URLList">URLList</a>) AreOutOfSync() <a href="../../../../../builtin/#bool">bool</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="URLList.Get">func (URLList) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=6917:6960#L223">Get</a>
+					<a class="permalink" href="#URLList.Get">¶</a>
+					
+					
+				</h3>
+				<pre>func (urls <a href="#URLList">URLList</a>) Get(urlName <a href="../../../../../builtin/#string">string</a>) <a href="#URL">URL</a></pre>
+				<p>
+Get returns URL definition for given URL name
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="URLSpec">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=773:1333#L17">URLSpec</a>
+				<a class="permalink" href="#URLSpec">¶</a>
+				
+				
+			</h2>
+			<p>
+URLSpec contains the specifications of a URL
+</p>
+
+			<pre>type URLSpec struct {
+<span id="URLSpec.Host"></span>    Host         <a href="../../../../../builtin/#string">string</a>                      `json:&#34;host,omitempty&#34;`
+<span id="URLSpec.Protocol"></span>    Protocol     <a href="../../../../../builtin/#string">string</a>                      `json:&#34;protocol,omitempty&#34;`
+<span id="URLSpec.Port"></span>    Port         <a href="../../../../../builtin/#int">int</a>                         `json:&#34;port,omitempty&#34;`
+<span id="URLSpec.Secure"></span>    Secure       <a href="../../../../../builtin/#bool">bool</a>                        `json:&#34;secure&#34;`
+<span id="URLSpec.Kind"></span>    Kind         <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#URLKind">URLKind</a> `json:&#34;kind,omitempty&#34;`
+<span id="URLSpec.TLSSecret"></span>    TLSSecret    <a href="../../../../../builtin/#string">string</a>                      `json:&#34;tlssecret,omitempty&#34;`
+<span id="URLSpec.ExternalPort"></span>    ExternalPort <a href="../../../../../builtin/#int">int</a>                         `json:&#34;externalport,omitempty&#34;`
+<span id="URLSpec.Path"></span>    Path         <a href="../../../../../builtin/#string">string</a>                      `json:&#34;path,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="URLStatus">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/url/types.go.html?s=1550:1656#L36">URLStatus</a>
+				<a class="permalink" href="#URLStatus">¶</a>
+				
+				
+			</h2>
+			<p>
+URLStatus is the current status of a url
+</p>
+
+			<pre>type URLStatus struct {
+    <span class="comment">// &#34;Pushed&#34; or &#34;Not Pushed&#34; or &#34;Locally Delted&#34;</span>
+<span id="URLStatus.State"></span>    State <a href="#StateType">StateType</a> `json:&#34;state&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="labels/">labels</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

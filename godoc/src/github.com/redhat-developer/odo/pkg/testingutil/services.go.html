@@ -1,0 +1,244 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>testingutil - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil">testingutil</a>/<span class="text-muted">services.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../github.com/redhat-developer/odo/pkg/testingutil">github.com/redhat-developer/odo/pkg/testingutil</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package testingutil
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;encoding/json&#34;
+<span id="L5" class="ln">     5  </span>	&#34;fmt&#34;
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>	scv1beta1 &#34;github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1&#34;
+<span id="L8" class="ln">     8  </span>	applabels &#34;github.com/redhat-developer/odo/pkg/application/labels&#34;
+<span id="L9" class="ln">     9  </span>	componentlabels &#34;github.com/redhat-developer/odo/pkg/component/labels&#34;
+<span id="L10" class="ln">    10  </span>	corev1 &#34;k8s.io/api/core/v1&#34;
+<span id="L11" class="ln">    11  </span>	metav1 &#34;k8s.io/apimachinery/pkg/apis/meta/v1&#34;
+<span id="L12" class="ln">    12  </span>	&#34;k8s.io/apimachinery/pkg/runtime&#34;
+<span id="L13" class="ln">    13  </span>)
+<span id="L14" class="ln">    14  </span>
+<span id="L15" class="ln">    15  </span><span class="comment">// M is an alias for map[string]interface{}</span>
+<span id="L16" class="ln">    16  </span>type M map[string]interface{}
+<span id="L17" class="ln">    17  </span>
+<span id="L18" class="ln">    18  </span><span class="comment">// FakeClusterServiceClass creates a fake service class with the specified name for testing purposes</span>
+<span id="L19" class="ln">    19  </span>func FakeClusterServiceClass(name string, tags ...string) scv1beta1.ClusterServiceClass {
+<span id="L20" class="ln">    20  </span>	classExternalMetaData := make(map[string]interface{})
+<span id="L21" class="ln">    21  </span>	classExternalMetaDataRaw, err := json.Marshal(classExternalMetaData)
+<span id="L22" class="ln">    22  </span>	if err != nil {
+<span id="L23" class="ln">    23  </span>		panic(err)
+<span id="L24" class="ln">    24  </span>	}
+<span id="L25" class="ln">    25  </span>
+<span id="L26" class="ln">    26  </span>	class := scv1beta1.ClusterServiceClass{
+<span id="L27" class="ln">    27  </span>		Spec: scv1beta1.ClusterServiceClassSpec{
+<span id="L28" class="ln">    28  </span>			CommonServiceClassSpec: scv1beta1.CommonServiceClassSpec{
+<span id="L29" class="ln">    29  </span>				ExternalName:     name,
+<span id="L30" class="ln">    30  </span>				ExternalMetadata: &amp;runtime.RawExtension{Raw: classExternalMetaDataRaw},
+<span id="L31" class="ln">    31  </span>			},
+<span id="L32" class="ln">    32  </span>		},
+<span id="L33" class="ln">    33  </span>	}
+<span id="L34" class="ln">    34  </span>
+<span id="L35" class="ln">    35  </span>	if len(tags) &gt; 0 {
+<span id="L36" class="ln">    36  </span>		class.Spec.Tags = tags
+<span id="L37" class="ln">    37  </span>	}
+<span id="L38" class="ln">    38  </span>
+<span id="L39" class="ln">    39  </span>	return class
+<span id="L40" class="ln">    40  </span>}
+<span id="L41" class="ln">    41  </span>
+<span id="L42" class="ln">    42  </span><span class="comment">// FakeClusterServicePlan creates a fake plan with the specified external name and using planNumber to customize description,</span>
+<span id="L43" class="ln">    43  </span><span class="comment">// metadata and parameter values</span>
+<span id="L44" class="ln">    44  </span>func FakeClusterServicePlan(name string, planNumber int) scv1beta1.ClusterServicePlan {
+<span id="L45" class="ln">    45  </span>	return scv1beta1.ClusterServicePlan{
+<span id="L46" class="ln">    46  </span>		ObjectMeta: metav1.ObjectMeta{
+<span id="L47" class="ln">    47  </span>			Name: name,
+<span id="L48" class="ln">    48  </span>		},
+<span id="L49" class="ln">    49  </span>		Spec: scv1beta1.ClusterServicePlanSpec{
+<span id="L50" class="ln">    50  </span>			ClusterServiceClassRef: scv1beta1.ClusterObjectReference{
+<span id="L51" class="ln">    51  </span>				Name: &#34;1dda1477cace09730bd8ed7a6505607e&#34;,
+<span id="L52" class="ln">    52  </span>			},
+<span id="L53" class="ln">    53  </span>			CommonServicePlanSpec: scv1beta1.CommonServicePlanSpec{
+<span id="L54" class="ln">    54  </span>				ExternalName:                  name,
+<span id="L55" class="ln">    55  </span>				Description:                   fmt.Sprintf(&#34;this is a example description %d&#34;, planNumber),
+<span id="L56" class="ln">    56  </span>				ExternalMetadata:              SingleValuedRawExtension(&#34;displayName&#34;, fmt.Sprintf(&#34;plan-name-%d&#34;, planNumber)),
+<span id="L57" class="ln">    57  </span>				InstanceCreateParameterSchema: &amp;runtime.RawExtension{Raw: FakePlanInstanceCreateParameterSchemasRaw()[(planNumber-1)%2]},
+<span id="L58" class="ln">    58  </span>			},
+<span id="L59" class="ln">    59  </span>		},
+<span id="L60" class="ln">    60  </span>	}
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span><span class="comment">// SingleValuedRawExtension creates a simple, single valued (name=value), raw extension</span>
+<span id="L64" class="ln">    64  </span>func SingleValuedRawExtension(name, value string) *runtime.RawExtension {
+<span id="L65" class="ln">    65  </span>	metadata := make(map[string]string)
+<span id="L66" class="ln">    66  </span>	metadata[name] = value
+<span id="L67" class="ln">    67  </span>	serialized, err := json.Marshal(metadata)
+<span id="L68" class="ln">    68  </span>	if err != nil {
+<span id="L69" class="ln">    69  </span>		panic(err)
+<span id="L70" class="ln">    70  </span>	}
+<span id="L71" class="ln">    71  </span>	return &amp;runtime.RawExtension{Raw: serialized}
+<span id="L72" class="ln">    72  </span>}
+<span id="L73" class="ln">    73  </span>
+<span id="L74" class="ln">    74  </span><span class="comment">// FakePlanInstanceCreateParameterSchemasRaw creates 2 create parameter schemas for testing purposes</span>
+<span id="L75" class="ln">    75  </span>func FakePlanInstanceCreateParameterSchemasRaw() [][]byte {
+<span id="L76" class="ln">    76  </span>	planInstanceCreateParameterSchema1 := make(M)
+<span id="L77" class="ln">    77  </span>	planInstanceCreateParameterSchema1[&#34;required&#34;] = []string{&#34;PLAN_DATABASE_URI&#34;, &#34;PLAN_DATABASE_USERNAME&#34;, &#34;PLAN_DATABASE_PASSWORD&#34;}
+<span id="L78" class="ln">    78  </span>	planInstanceCreateParameterSchema1[&#34;properties&#34;] = map[string]M{
+<span id="L79" class="ln">    79  </span>		&#34;PLAN_DATABASE_URI&#34;: {
+<span id="L80" class="ln">    80  </span>			&#34;default&#34;: &#34;someuri&#34;,
+<span id="L81" class="ln">    81  </span>			&#34;type&#34;:    &#34;string&#34;,
+<span id="L82" class="ln">    82  </span>		},
+<span id="L83" class="ln">    83  </span>		&#34;PLAN_DATABASE_USERNAME&#34;: {
+<span id="L84" class="ln">    84  </span>			&#34;default&#34;: &#34;name&#34;,
+<span id="L85" class="ln">    85  </span>			&#34;type&#34;:    &#34;string&#34;,
+<span id="L86" class="ln">    86  </span>		},
+<span id="L87" class="ln">    87  </span>		&#34;PLAN_DATABASE_PASSWORD&#34;: {
+<span id="L88" class="ln">    88  </span>			&#34;type&#34;: &#34;string&#34;,
+<span id="L89" class="ln">    89  </span>		},
+<span id="L90" class="ln">    90  </span>		&#34;SOME_OTHER&#34;: {
+<span id="L91" class="ln">    91  </span>			&#34;default&#34;: &#34;other&#34;,
+<span id="L92" class="ln">    92  </span>			&#34;type&#34;:    &#34;string&#34;,
+<span id="L93" class="ln">    93  </span>		},
+<span id="L94" class="ln">    94  </span>	}
+<span id="L95" class="ln">    95  </span>
+<span id="L96" class="ln">    96  </span>	planInstanceCreateParameterSchema2 := make(M)
+<span id="L97" class="ln">    97  </span>	planInstanceCreateParameterSchema2[&#34;required&#34;] = []string{&#34;PLAN_DATABASE_USERNAME_2&#34;, &#34;PLAN_DATABASE_PASSWORD&#34;}
+<span id="L98" class="ln">    98  </span>	planInstanceCreateParameterSchema2[&#34;properties&#34;] = map[string]M{
+<span id="L99" class="ln">    99  </span>		&#34;PLAN_DATABASE_USERNAME_2&#34;: {
+<span id="L100" class="ln">   100  </span>			&#34;default&#34;: &#34;user2&#34;,
+<span id="L101" class="ln">   101  </span>			&#34;type&#34;:    &#34;string&#34;,
+<span id="L102" class="ln">   102  </span>		},
+<span id="L103" class="ln">   103  </span>		&#34;PLAN_DATABASE_PASSWORD&#34;: {
+<span id="L104" class="ln">   104  </span>			&#34;type&#34;: &#34;string&#34;,
+<span id="L105" class="ln">   105  </span>		},
+<span id="L106" class="ln">   106  </span>	}
+<span id="L107" class="ln">   107  </span>
+<span id="L108" class="ln">   108  </span>	planInstanceCreateParameterSchemaRaw1, err := json.Marshal(planInstanceCreateParameterSchema1)
+<span id="L109" class="ln">   109  </span>	if err != nil {
+<span id="L110" class="ln">   110  </span>		if err != nil {
+<span id="L111" class="ln">   111  </span>			panic(err)
+<span id="L112" class="ln">   112  </span>		}
+<span id="L113" class="ln">   113  </span>	}
+<span id="L114" class="ln">   114  </span>
+<span id="L115" class="ln">   115  </span>	planInstanceCreateParameterSchemaRaw2, err := json.Marshal(planInstanceCreateParameterSchema2)
+<span id="L116" class="ln">   116  </span>	if err != nil {
+<span id="L117" class="ln">   117  </span>		if err != nil {
+<span id="L118" class="ln">   118  </span>			panic(err)
+<span id="L119" class="ln">   119  </span>		}
+<span id="L120" class="ln">   120  </span>	}
+<span id="L121" class="ln">   121  </span>
+<span id="L122" class="ln">   122  </span>	var data [][]byte
+<span id="L123" class="ln">   123  </span>	data = append(data, planInstanceCreateParameterSchemaRaw1)
+<span id="L124" class="ln">   124  </span>	data = append(data, planInstanceCreateParameterSchemaRaw2)
+<span id="L125" class="ln">   125  </span>
+<span id="L126" class="ln">   126  </span>	return data
+<span id="L127" class="ln">   127  </span>}
+<span id="L128" class="ln">   128  </span>
+<span id="L129" class="ln">   129  </span><span class="comment">// FakeServiceClassInstance creates and returns a simple service class instance for testing purpose</span>
+<span id="L130" class="ln">   130  </span><span class="comment">// serviceInstanceName is the name of the service class instance</span>
+<span id="L131" class="ln">   131  </span><span class="comment">// serviceClassName is the name of the service class</span>
+<span id="L132" class="ln">   132  </span><span class="comment">// planName is the name of the plan</span>
+<span id="L133" class="ln">   133  </span><span class="comment">// status is the status of the service instance</span>
+<span id="L134" class="ln">   134  </span>func FakeServiceClassInstance(serviceInstanceName string, serviceClassName string, planName string, status string) scv1beta1.ServiceInstance {
+<span id="L135" class="ln">   135  </span>	var service = scv1beta1.ServiceInstance{
+<span id="L136" class="ln">   136  </span>		ObjectMeta: metav1.ObjectMeta{
+<span id="L137" class="ln">   137  </span>			Name: serviceInstanceName,
+<span id="L138" class="ln">   138  </span>			Labels: map[string]string{
+<span id="L139" class="ln">   139  </span>				applabels.ApplicationLabel:         &#34;app&#34;,
+<span id="L140" class="ln">   140  </span>				componentlabels.ComponentLabel:     serviceInstanceName,
+<span id="L141" class="ln">   141  </span>				componentlabels.ComponentTypeLabel: &#34;dh-mariadb-apb&#34;,
+<span id="L142" class="ln">   142  </span>			},
+<span id="L143" class="ln">   143  </span>			Namespace: &#34;myproject&#34;,
+<span id="L144" class="ln">   144  </span>		},
+<span id="L145" class="ln">   145  </span>		Spec: scv1beta1.ServiceInstanceSpec{
+<span id="L146" class="ln">   146  </span>			PlanReference: scv1beta1.PlanReference{
+<span id="L147" class="ln">   147  </span>				ClusterServiceClassExternalName: serviceClassName,
+<span id="L148" class="ln">   148  </span>				ClusterServicePlanExternalName:  planName,
+<span id="L149" class="ln">   149  </span>			},
+<span id="L150" class="ln">   150  </span>		},
+<span id="L151" class="ln">   151  </span>		Status: scv1beta1.ServiceInstanceStatus{
+<span id="L152" class="ln">   152  </span>			Conditions: []scv1beta1.ServiceInstanceCondition{
+<span id="L153" class="ln">   153  </span>				{
+<span id="L154" class="ln">   154  </span>					Reason: status,
+<span id="L155" class="ln">   155  </span>				},
+<span id="L156" class="ln">   156  </span>			},
+<span id="L157" class="ln">   157  </span>		},
+<span id="L158" class="ln">   158  </span>	}
+<span id="L159" class="ln">   159  </span>	return service
+<span id="L160" class="ln">   160  </span>}
+<span id="L161" class="ln">   161  </span>
+<span id="L162" class="ln">   162  </span>func FakeKubeService(componentName, serviceName string) corev1.Service {
+<span id="L163" class="ln">   163  </span>	return corev1.Service{
+<span id="L164" class="ln">   164  </span>		ObjectMeta: metav1.ObjectMeta{
+<span id="L165" class="ln">   165  </span>			Name:   serviceName,
+<span id="L166" class="ln">   166  </span>			Labels: componentlabels.GetLabels(componentName, &#34;app&#34;, false),
+<span id="L167" class="ln">   167  </span>		},
+<span id="L168" class="ln">   168  </span>	}
+<span id="L169" class="ln">   169  </span>}
+<span id="L170" class="ln">   170  </span>
+<span id="L171" class="ln">   171  </span>func FakeKubeServices(componentName string) []corev1.Service {
+<span id="L172" class="ln">   172  </span>	return []corev1.Service{
+<span id="L173" class="ln">   173  </span>		FakeKubeService(componentName, &#34;service-1&#34;),
+<span id="L174" class="ln">   174  </span>		FakeKubeService(componentName, &#34;service-2&#34;),
+<span id="L175" class="ln">   175  </span>		FakeKubeService(componentName, &#34;service-3&#34;),
+<span id="L176" class="ln">   176  </span>	}
+<span id="L177" class="ln">   177  </span>}
+<span id="L178" class="ln">   178  </span>
+</pre><p><a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

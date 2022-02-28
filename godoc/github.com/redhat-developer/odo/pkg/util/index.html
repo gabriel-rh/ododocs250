@@ -1,0 +1,2249 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>util - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package util
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/util" target="_blank">github.com/redhat-developer/odo/pkg/util</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#AddFileToIgnoreFile">func AddFileToIgnoreFile(gitIgnoreFile, filename string) error</a></dd>
+			
+				
+				<dd><a href="#AddOdoFileIndex">func AddOdoFileIndex(gitIgnoreFile string) error</a></dd>
+			
+				
+				<dd><a href="#CalculateFileDataKeyFromPath">func CalculateFileDataKeyFromPath(absolutePath string, rootDirectory string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#CaseInsensitive">func CaseInsensitive(parameter string) func(word string) bool</a></dd>
+			
+				
+				<dd><a href="#CheckKubeConfigExist">func CheckKubeConfigExist() bool</a></dd>
+			
+				
+				<dd><a href="#CheckKubeConfigPath">func CheckKubeConfigPath() error</a></dd>
+			
+				
+				<dd><a href="#CheckOutputFlag">func CheckOutputFlag(outputFlag string) bool</a></dd>
+			
+				
+				<dd><a href="#CheckPathExists">func CheckPathExists(path string) bool</a></dd>
+			
+				
+				<dd><a href="#CleanDefaultHTTPCacheDir">func CleanDefaultHTTPCacheDir() error</a></dd>
+			
+				
+				<dd><a href="#CleanDir">func CleanDir(originalPath string, leaveBehindFiles map[string]bool) error</a></dd>
+			
+				
+				<dd><a href="#ConvertGitSSHRemoteToHTTPS">func ConvertGitSSHRemoteToHTTPS(remote string) string</a></dd>
+			
+				
+				<dd><a href="#ConvertKeyValueStringToMap">func ConvertKeyValueStringToMap(params []string) map[string]string</a></dd>
+			
+				
+				<dd><a href="#ConvertLabelsToSelector">func ConvertLabelsToSelector(labels map[string]string) string</a></dd>
+			
+				
+				<dd><a href="#CopyDirWithFS">func CopyDirWithFS(src string, dst string) error</a></dd>
+			
+				
+				<dd><a href="#CopyFile">func CopyFile(srcPath string, dstPath string, info os.FileInfo) error</a></dd>
+			
+				
+				<dd><a href="#CopyFileWithFs">func CopyFileWithFs(src, dst string) error</a></dd>
+			
+				
+				<dd><a href="#CreateIfNotExists">func CreateIfNotExists(configFile string) error</a></dd>
+			
+				
+				<dd><a href="#DeleteConfiguration">func DeleteConfiguration(info interface{}, parameter string) error</a></dd>
+			
+				
+				<dd><a href="#DeleteIndexFile">func DeleteIndexFile(directory string) error</a></dd>
+			
+				
+				<dd><a href="#DeletePath">func DeletePath(path string) error</a></dd>
+			
+				
+				<dd><a href="#DisplayLog">func DisplayLog(followLog bool, rd io.ReadCloser, writer io.Writer, compName string, numberOfLastLines int) (err error)</a></dd>
+			
+				
+				<dd><a href="#DownloadFile">func DownloadFile(params DownloadParams) error</a></dd>
+			
+				
+				<dd><a href="#DownloadFileInMemory">func DownloadFileInMemory(params HTTPRequestParams) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="#DownloadFileInMemoryWithCache">func DownloadFileInMemoryWithCache(params HTTPRequestParams, cacheFor int) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="#DownloadFileWithCache">func DownloadFileWithCache(params DownloadParams, cacheFor int) error</a></dd>
+			
+				
+				<dd><a href="#ExtractComponentType">func ExtractComponentType(namespacedVersionedComponentType string) string</a></dd>
+			
+				
+				<dd><a href="#FilterIgnores">func FilterIgnores(filesChanged, filesDeleted, absIgnoreRules []string) (filesChangedFiltered, filesDeletedFiltered []string)</a></dd>
+			
+				
+				<dd><a href="#GenerateRandomString">func GenerateRandomString(n int) string</a></dd>
+			
+				
+				<dd><a href="#GetAbsGlobExps">func GetAbsGlobExps(directory string, globExps []string) []string</a></dd>
+			
+				
+				<dd><a href="#GetAbsPath">func GetAbsPath(path string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#GetAdler32Value">func GetAdler32Value(s string) string</a></dd>
+			
+				
+				<dd><a href="#GetAndExtractZip">func GetAndExtractZip(zipURL string, destination string, pathToUnzip string, starterToken string) error</a></dd>
+			
+				
+				<dd><a href="#GetBoolOrDefault">func GetBoolOrDefault(ptr *bool, defaultValue bool) bool</a></dd>
+			
+				
+				<dd><a href="#GetBoolPtr">func GetBoolPtr(b bool) *bool</a></dd>
+			
+				
+				<dd><a href="#GetCommandStringFromEnvs">func GetCommandStringFromEnvs(envVars []v1alpha2.EnvVar) string</a></dd>
+			
+				
+				<dd><a href="#GetContainerPortsFromStrings">func GetContainerPortsFromStrings(ports []string) ([]corev1.ContainerPort, error)</a></dd>
+			
+				
+				<dd><a href="#GetDNS1123Name">func GetDNS1123Name(str string) string</a></dd>
+			
+				
+				<dd><a href="#GetEnvWithDefault">func GetEnvWithDefault(key string, defaultval string) string</a></dd>
+			
+				
+				<dd><a href="#GetFromFile">func GetFromFile(c interface{}, filename string) error</a></dd>
+			
+				
+				<dd><a href="#GetGitOriginPath">func GetGitOriginPath(path string) string</a></dd>
+			
+				
+				<dd><a href="#GetHostWithPort">func GetHostWithPort(inputURL string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#GetIgnoreRulesFromDirectory">func GetIgnoreRulesFromDirectory(directory string) ([]string, error)</a></dd>
+			
+				
+				<dd><a href="#GetIndexFileRelativeToContext">func GetIndexFileRelativeToContext() string</a></dd>
+			
+				
+				<dd><a href="#GetIntOrDefault">func GetIntOrDefault(ptr *int, defaultValue int) int</a></dd>
+			
+				
+				<dd><a href="#GetLowerCaseParameters">func GetLowerCaseParameters(parameters []string) map[string]bool</a></dd>
+			
+				
+				<dd><a href="#GetRandomName">func GetRandomName(prefix string, prefixMaxLen int, existList []string, retries int) (string, error)</a></dd>
+			
+				
+				<dd><a href="#GetRemoteFilesMarkedForDeletion">func GetRemoteFilesMarkedForDeletion(delSrcRelPaths []string, remoteFolder string) []string</a></dd>
+			
+				
+				<dd><a href="#GetSortedKeys">func GetSortedKeys(mapping map[string]string) []string</a></dd>
+			
+				
+				<dd><a href="#GetSplitValuesFromStr">func GetSplitValuesFromStr(inputStr string) []string</a></dd>
+			
+				
+				<dd><a href="#GetStringOrDefault">func GetStringOrDefault(ptr *string, defaultValue string) string</a></dd>
+			
+				
+				<dd><a href="#GetStringOrEmpty">func GetStringOrEmpty(ptr *string) string</a></dd>
+			
+				
+				<dd><a href="#GetURLName">func GetURLName(componentName string, componentPort int) string</a></dd>
+			
+				
+				<dd><a href="#GetValidPortNumber">func GetValidPortNumber(componentName string, portNumber int, portList []string) (int, error)</a></dd>
+			
+				
+				<dd><a href="#GitSubDir">func GitSubDir(srcPath, destinationPath, subDir string) error</a></dd>
+			
+				
+				<dd><a href="#HTTPGetFreePort">func HTTPGetFreePort() (int, error)</a></dd>
+			
+				
+				<dd><a href="#HTTPGetRequest">func HTTPGetRequest(request HTTPRequestParams, cacheFor int) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="#In">func In(arr []string, value string) bool</a></dd>
+			
+				
+				<dd><a href="#IsEmpty">func IsEmpty(name string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="#IsGlobExpMatch">func IsGlobExpMatch(strToMatch string, globExps []string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="#IsInvalidKubeConfigError">func IsInvalidKubeConfigError(err error) error</a></dd>
+			
+				
+				<dd><a href="#IsSet">func IsSet(info interface{}, parameter string) bool</a></dd>
+			
+				
+				<dd><a href="#IsValidProjectDir">func IsValidProjectDir(path string, devfilePath string) error</a></dd>
+			
+				
+				<dd><a href="#NamespaceKubernetesObject">func NamespaceKubernetesObject(componentName string, applicationName string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#NamespaceKubernetesObjectWithTrim">func NamespaceKubernetesObjectWithTrim(componentName, applicationName string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#NamespaceOpenShiftObject">func NamespaceOpenShiftObject(componentName string, applicationName string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#OpenBrowser">func OpenBrowser(url string) error</a></dd>
+			
+				
+				<dd><a href="#ParseComponentImageName">func ParseComponentImageName(imageName string) (string, string, string, string)</a></dd>
+			
+				
+				<dd><a href="#PathEqual">func PathEqual(firstPath string, secondPath string) bool</a></dd>
+			
+				
+				<dd><a href="#ReadFilePath">func ReadFilePath(u *url.URL, os string) string</a></dd>
+			
+				
+				<dd><a href="#RemoveDuplicates">func RemoveDuplicates(s []string) []string</a></dd>
+			
+				
+				<dd><a href="#RemoveRelativePathFromFiles">func RemoveRelativePathFromFiles(files []string, path string) ([]string, error)</a></dd>
+			
+				
+				<dd><a href="#ResolveIndexFilePath">func ResolveIndexFilePath(directory string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#SafeGetBool">func SafeGetBool(b *bool) bool</a></dd>
+			
+				
+				<dd><a href="#SliceDifference">func SliceDifference(s1 []string, s2 []string) []string</a></dd>
+			
+				
+				<dd><a href="#StartSignalWatcher">func StartSignalWatcher(watchSignals []os.Signal, handle func(receivedSignal os.Signal))</a></dd>
+			
+				
+				<dd><a href="#TouchGitIgnoreFile">func TouchGitIgnoreFile(directory string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#TruncateString">func TruncateString(str string, maxLen int, appendIfTrunicated ...string) string</a></dd>
+			
+				
+				<dd><a href="#Unzip">func Unzip(src, dest, pathToUnzip string) ([]string, error)</a></dd>
+			
+				
+				<dd><a href="#ValidateFile">func ValidateFile(filePath string) error</a></dd>
+			
+				
+				<dd><a href="#ValidateK8sResourceName">func ValidateK8sResourceName(key string, value string) error</a></dd>
+			
+				
+				<dd><a href="#ValidateURL">func ValidateURL(sourceURL string) error</a></dd>
+			
+				
+				<dd><a href="#WriteFile">func WriteFile(newFileMap map[string]FileData, resolvedPath string) error</a></dd>
+			
+				
+				<dd><a href="#WriteToFile">func WriteToFile(c interface{}, filename string) error</a></dd>
+			
+			
+				
+				<dd><a href="#ConcurrentTask">type ConcurrentTask</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ConcurrentTasks">type ConcurrentTasks</a></dd>
+				
+					
+					<dd>    <a href="#NewConcurrentTasks">func NewConcurrentTasks(taskNumber int) *ConcurrentTasks</a></dd>
+				
+				
+					
+					<dd>    <a href="#ConcurrentTasks.Add">func (ct *ConcurrentTasks) Add(task ConcurrentTask)</a></dd>
+				
+					
+					<dd>    <a href="#ConcurrentTasks.Run">func (ct *ConcurrentTasks) Run() error</a></dd>
+				
+			
+				
+				<dd><a href="#DownloadParams">type DownloadParams</a></dd>
+				
+				
+			
+				
+				<dd><a href="#FileData">type FileData</a></dd>
+				
+					
+					<dd>    <a href="#GenerateNewFileDataEntry">func GenerateNewFileDataEntry(absolutePath string, rootDirectory string) (string, *FileData, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#FileIndex">type FileIndex</a></dd>
+				
+					
+					<dd>    <a href="#NewFileIndex">func NewFileIndex() *FileIndex</a></dd>
+				
+					
+					<dd>    <a href="#ReadFileIndex">func ReadFileIndex(filePath string) (*FileIndex, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#HTTPRequestParams">type HTTPRequestParams</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IndexerRet">type IndexerRet</a></dd>
+				
+					
+					<dd>    <a href="#RunIndexerWithRemote">func RunIndexerWithRemote(directory string, ignoreRules []string, remoteDirectories map[string]string) (ret IndexerRet, err error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ResourceRequirementInfo">type ResourceRequirementInfo</a></dd>
+				
+					
+					<dd>    <a href="#FetchResourceQuantity">func FetchResourceQuantity(resourceType corev1.ResourceName, min string, max string, request string) (*ResourceRequirementInfo, error)</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/concurrent.go.html">concurrent.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/config_util.go.html">config_util.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/defaults.go.html">defaults.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html">file_indexer.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/httpcache.go.html">httpcache.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/url.go.html">url.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="HTTPRequestTimeout">HTTPRequestTimeout</span>    = 30 * <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Second">Second</a> <span class="comment">// HTTPRequestTimeout configures timeout of all HTTP requests</span>
+    <span id="ResponseHeaderTimeout">ResponseHeaderTimeout</span> = 30 * <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Second">Second</a> <span class="comment">// ResponseHeaderTimeout is the timeout to retrieve the server&#39;s response headers</span>
+    <span id="ModeReadWriteFile">ModeReadWriteFile</span>     = 0600             <span class="comment">// default Permission for a file</span>
+    <span id="CredentialPrefix">CredentialPrefix</span>      = &#34;odo-&#34;           <span class="comment">// CredentialPrefix is the prefix of the credential that uses to access secure registry</span>
+)</pre>
+			
+				
+				<pre>const <span id="DotOdoDirectory">DotOdoDirectory</span> = &#34;.odo&#34;</pre>
+			
+				<p>
+WIN represent the windows OS
+</p>
+
+				<pre>const <span id="WIN">WIN</span> = &#34;windows&#34;</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var <span id="InvalidKubeconfigError">InvalidKubeconfigError</span> = <a href="../../../../../fmt/">fmt</a>.<a href="../../../../../fmt/#Errorf">Errorf</a>(&#34;please provide valid file path for KUBECONFIG env or unset it to use default kubeconfig&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="AddFileToIgnoreFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=37340:37402#L1235">AddFileToIgnoreFile</a>
+				<a class="permalink" href="#AddFileToIgnoreFile">¶</a>
+				
+				
+			</h2>
+			<pre>func AddFileToIgnoreFile(gitIgnoreFile, filename <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+AddFileToIgnoreFile adds a file to the gitignore file. It only does that if the file doesn&#39;t exist
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="AddOdoFileIndex">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=2611:2659#L88">AddOdoFileIndex</a>
+				<a class="permalink" href="#AddOdoFileIndex">¶</a>
+				
+				
+			</h2>
+			<pre>func AddOdoFileIndex(gitIgnoreFile <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+AddOdoFileIndex adds odo-file-index.json to .gitignore
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CalculateFileDataKeyFromPath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=4369:4461#L144">CalculateFileDataKeyFromPath</a>
+				<a class="permalink" href="#CalculateFileDataKeyFromPath">¶</a>
+				
+				
+			</h2>
+			<pre>func CalculateFileDataKeyFromPath(absolutePath <a href="../../../../../builtin/#string">string</a>, rootDirectory <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+CalculateFileDataKeyFromPath converts an absolute path to relative (and converts to OS-specific paths) for use
+as a map key in IndexerRet and FileIndex
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CaseInsensitive">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/config_util.go.html?s=2578:2639#L95">CaseInsensitive</a>
+				<a class="permalink" href="#CaseInsensitive">¶</a>
+				
+				
+			</h2>
+			<pre>func CaseInsensitive(parameter <a href="../../../../../builtin/#string">string</a>) func(word <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+CaseInsensitive returns a function which compares two words
+caseinsensitively
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CheckKubeConfigExist">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=34621:34653#L1119">CheckKubeConfigExist</a>
+				<a class="permalink" href="#CheckKubeConfigExist">¶</a>
+				
+				
+			</h2>
+			<pre>func CheckKubeConfigExist() <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+CheckKubeConfigExist checks for existence of kubeconfig
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CheckKubeConfigPath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=46009:46041#L1550">CheckKubeConfigPath</a>
+				<a class="permalink" href="#CheckKubeConfigPath">¶</a>
+				
+				
+			</h2>
+			<pre>func CheckKubeConfigPath() <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+CheckKubeConfigPath checks if specified `KUBECONFIG` value is a valid file i.e the path should exist and be a file
+if env `KUBECONFIG` is set then that is used or default `KUBECONFIG` is checked
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CheckOutputFlag">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=21663:21707#L669">CheckOutputFlag</a>
+				<a class="permalink" href="#CheckOutputFlag">¶</a>
+				
+				
+			</h2>
+			<pre>func CheckOutputFlag(outputFlag <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+CheckOutputFlag returns true if specified output format is supported
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CheckPathExists">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=15459:15497#L474">CheckPathExists</a>
+				<a class="permalink" href="#CheckPathExists">¶</a>
+				
+				
+			</h2>
+			<pre>func CheckPathExists(path <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+CheckPathExists checks if a path exists or not
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CleanDefaultHTTPCacheDir">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/httpcache.go.html?s=222:259#L4">CleanDefaultHTTPCacheDir</a>
+				<a class="permalink" href="#CleanDefaultHTTPCacheDir">¶</a>
+				
+				
+			</h2>
+			<pre>func CleanDefaultHTTPCacheDir() <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+CleanDefaultHTTPCacheDir cleans the default directory used for HTTP caching
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CleanDir">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=42196:42270#L1422">CleanDir</a>
+				<a class="permalink" href="#CleanDir">¶</a>
+				
+				
+			</h2>
+			<pre>func CleanDir(originalPath <a href="../../../../../builtin/#string">string</a>, leaveBehindFiles map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+CleanDir cleans the original folder during events like interrupted copy etc
+it uses the default filesystem
+it leaves the given files behind for later use
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConvertGitSSHRemoteToHTTPS">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=27728:27781#L884">ConvertGitSSHRemoteToHTTPS</a>
+				<a class="permalink" href="#ConvertGitSSHRemoteToHTTPS">¶</a>
+				
+				
+			</h2>
+			<pre>func ConvertGitSSHRemoteToHTTPS(remote <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+Converts Git ssh remote to https
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConvertKeyValueStringToMap">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=8581:8647#L264">ConvertKeyValueStringToMap</a>
+				<a class="permalink" href="#ConvertKeyValueStringToMap">¶</a>
+				
+				
+			</h2>
+			<pre>func ConvertKeyValueStringToMap(params []<a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+ConvertKeyValueStringToMap converts String Slice of Parameters to a Map[String]string
+Each value of the slice is expected to be in the key=value format
+Values that do not conform to this &#34;spec&#34;, will be ignored
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConvertLabelsToSelector">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=2732:2793#L81">ConvertLabelsToSelector</a>
+				<a class="permalink" href="#ConvertLabelsToSelector">¶</a>
+				
+				
+			</h2>
+			<pre>func ConvertLabelsToSelector(labels map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+ConvertLabelsToSelector converts the given labels to selector
+To pass operands such as !=, append a ! prefix to the value.
+For E.g. map[string]string{&#34;app.kubernetes.io/managed-by&#34;: &#34;!odo&#34;}
+Using != operators also means that resource will be filtered even if it doesn&#39;t have the key.
+So a resource not labelled with key &#34;app.kubernetes.io/managed-by&#34; will also be returned.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CopyDirWithFS">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=40816:40864#L1369">CopyDirWithFS</a>
+				<a class="permalink" href="#CopyDirWithFS">¶</a>
+				
+				
+			</h2>
+			<pre>func CopyDirWithFS(src <a href="../../../../../builtin/#string">string</a>, dst <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+CopyDirWithFS copies a whole directory recursively with the default filesystem
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CopyFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=35937:36006#L1177">CopyFile</a>
+				<a class="permalink" href="#CopyFile">¶</a>
+				
+				
+			</h2>
+			<pre>func CopyFile(srcPath <a href="../../../../../builtin/#string">string</a>, dstPath <a href="../../../../../builtin/#string">string</a>, info <a href="../../../../../os/">os</a>.<a href="../../../../../os/#FileInfo">FileInfo</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+CopyFile copies file from source path to destination path
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CopyFileWithFs">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=39924:39966#L1330">CopyFileWithFs</a>
+				<a class="permalink" href="#CopyFileWithFs">¶</a>
+				
+				
+			</h2>
+			<pre>func CopyFileWithFs(src, dst <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+CopyFileWithFs copies a single file from src to dst using the default filesystem
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateIfNotExists">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/config_util.go.html?s=275:322#L7">CreateIfNotExists</a>
+				<a class="permalink" href="#CreateIfNotExists">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateIfNotExists(configFile <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+CreateIfNotExists creates the directory and the file if it doesn&#39;t exist
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteConfiguration">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/config_util.go.html?s=2802:2868#L102">DeleteConfiguration</a>
+				<a class="permalink" href="#DeleteConfiguration">¶</a>
+				
+				
+			</h2>
+			<pre>func DeleteConfiguration(info interface{}, parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DeleteConfiguration sets a parameter to null in a struct using reflection
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteIndexFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=3768:3812#L123">DeleteIndexFile</a>
+				<a class="permalink" href="#DeleteIndexFile">¶</a>
+				
+				
+			</h2>
+			<pre>func DeleteIndexFile(directory <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DeleteIndexFile deletes the index file. It doesn&#39;t throw error if it doesn&#39;t exist
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeletePath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=22866:22900#L713">DeletePath</a>
+				<a class="permalink" href="#DeletePath">¶</a>
+				
+				
+			</h2>
+			<pre>func DeletePath(path <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DeletePath deletes a file/directory if it exists and doesn&#39;t throw error if it doesn&#39;t exist
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DisplayLog">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=38399:38518#L1261">DisplayLog</a>
+				<a class="permalink" href="#DisplayLog">¶</a>
+				
+				
+			</h2>
+			<pre>func DisplayLog(followLog <a href="../../../../../builtin/#bool">bool</a>, rd <a href="../../../../../io/">io</a>.<a href="../../../../../io/#ReadCloser">ReadCloser</a>, writer <a href="../../../../../io/">io</a>.<a href="../../../../../io/#Writer">Writer</a>, compName <a href="../../../../../builtin/#string">string</a>, numberOfLastLines <a href="../../../../../builtin/#int">int</a>) (err <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+DisplayLog displays logs to user stdout with some color formatting
+numberOfLastLines limits the number of lines from the output when we are not following it
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DownloadFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=33063:33109#L1068">DownloadFile</a>
+				<a class="permalink" href="#DownloadFile">¶</a>
+				
+				
+			</h2>
+			<pre>func DownloadFile(params <a href="#DownloadParams">DownloadParams</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DownloadFile downloads the file to the filepath given URL and token (if applicable)
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DownloadFileInMemory">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=33231:33298#L1073">DownloadFileInMemory</a>
+				<a class="permalink" href="#DownloadFileInMemory">¶</a>
+				
+				
+			</h2>
+			<pre>func DownloadFileInMemory(params <a href="#HTTPRequestParams">HTTPRequestParams</a>) ([]<a href="../../../../../builtin/#byte">byte</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+DownloadFileInMemory uses the url to download the file and return bytes
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DownloadFileInMemoryWithCache">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=33486:33576#L1084">DownloadFileInMemoryWithCache</a>
+				<a class="permalink" href="#DownloadFileInMemoryWithCache">¶</a>
+				
+				
+			</h2>
+			<pre>func DownloadFileInMemoryWithCache(params <a href="#HTTPRequestParams">HTTPRequestParams</a>, cacheFor <a href="../../../../../builtin/#int">int</a>) ([]<a href="../../../../../builtin/#byte">byte</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+DownloadFileInMemoryWithCache uses the url to download the file and return bytes
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DownloadFileWithCache">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=32568:32637#L1044">DownloadFileWithCache</a>
+				<a class="permalink" href="#DownloadFileWithCache">¶</a>
+				
+				
+			</h2>
+			<pre>func DownloadFileWithCache(params <a href="#DownloadParams">DownloadParams</a>, cacheFor <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DownloadFileWithCache downloads the file to the filepath given URL and token (if applicable)
+cacheFor determines how long the response should be cached (in minutes), 0 for no caching
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExtractComponentType">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=6729:6802#L213">ExtractComponentType</a>
+				<a class="permalink" href="#ExtractComponentType">¶</a>
+				
+				
+			</h2>
+			<pre>func ExtractComponentType(namespacedVersionedComponentType <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+ExtractComponentType returns only component type part from passed component type(default unqualified, fully qualified, versioned, etc...and their combinations) for use as component name
+Possible types of parameters:
+1. &#34;myproject/python:3.5&#34; -- Return python
+2. &#34;python:3.5&#34; -- Return python
+3. nodejs -- Return nodejs
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FilterIgnores">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=26530:26655#L838">FilterIgnores</a>
+				<a class="permalink" href="#FilterIgnores">¶</a>
+				
+				
+			</h2>
+			<pre>func FilterIgnores(filesChanged, filesDeleted, absIgnoreRules []<a href="../../../../../builtin/#string">string</a>) (filesChangedFiltered, filesDeletedFiltered []<a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+FilterIgnores applies the glob rules on the filesChanged and filesDeleted and filters them
+returns the filtered results which match any of the glob rules
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GenerateRandomString">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=3707:3746#L121">GenerateRandomString</a>
+				<a class="permalink" href="#GenerateRandomString">¶</a>
+				
+				
+			</h2>
+			<pre>func GenerateRandomString(n <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GenerateRandomString generates a random string of lower case characters of
+the given size
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetAbsGlobExps">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=18180:18245#L555">GetAbsGlobExps</a>
+				<a class="permalink" href="#GetAbsGlobExps">¶</a>
+				
+				
+			</h2>
+			<pre>func GetAbsGlobExps(directory <a href="../../../../../builtin/#string">string</a>, globExps []<a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetAbsGlobExps converts the relative glob expressions into absolute glob expressions
+returns the absolute glob expressions
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetAbsPath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=9634:9678#L297">GetAbsPath</a>
+				<a class="permalink" href="#GetAbsPath">¶</a>
+				
+				
+			</h2>
+			<pre>func GetAbsPath(path <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetAbsPath returns absolute path from passed file path resolving even ~ to user home dir and any other such symbols that are only
+shell expanded can also be handled here
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetAdler32Value">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=47522:47559#L1608">GetAdler32Value</a>
+				<a class="permalink" href="#GetAdler32Value">¶</a>
+				
+				
+			</h2>
+			<pre>func GetAdler32Value(s <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetAdler32Value returns an adler32 hash of a string on 8 hexadecimal characters
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetAndExtractZip">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=28129:28232#L893">GetAndExtractZip</a>
+				<a class="permalink" href="#GetAndExtractZip">¶</a>
+				
+				
+			</h2>
+			<pre>func GetAndExtractZip(zipURL <a href="../../../../../builtin/#string">string</a>, destination <a href="../../../../../builtin/#string">string</a>, pathToUnzip <a href="../../../../../builtin/#string">string</a>, starterToken <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+GetAndExtractZip downloads a zip file from a URL with a http prefix or
+takes an absolute path prefixed with file:// and extracts it to a destination.
+pathToUnzip specifies the path within the zip folder to extract
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBoolOrDefault">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/defaults.go.html?s=335:391#L11">GetBoolOrDefault</a>
+				<a class="permalink" href="#GetBoolOrDefault">¶</a>
+				
+				
+			</h2>
+			<pre>func GetBoolOrDefault(ptr *<a href="../../../../../builtin/#bool">bool</a>, defaultValue <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetBoolPtr">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=47228:47257#L1595">GetBoolPtr</a>
+				<a class="permalink" href="#GetBoolPtr">¶</a>
+				
+				
+			</h2>
+			<pre>func GetBoolPtr(b <a href="../../../../../builtin/#bool">bool</a>) *<a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+BoolPtr returns pointer to passed boolean
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetCommandStringFromEnvs">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=44942:45005#L1520">GetCommandStringFromEnvs</a>
+				<a class="permalink" href="#GetCommandStringFromEnvs">¶</a>
+				
+				
+			</h2>
+			<pre>func GetCommandStringFromEnvs(envVars []<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1alpha2</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#EnvVar">EnvVar</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetCommandStringFromEnvs creates a string from the given environment variables
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetContainerPortsFromStrings">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=19292:19373#L595">GetContainerPortsFromStrings</a>
+				<a class="permalink" href="#GetContainerPortsFromStrings">¶</a>
+				
+				
+			</h2>
+			<pre>func GetContainerPortsFromStrings(ports []<a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#ContainerPort">ContainerPort</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetContainerPortsFromStrings generates ContainerPort values from the array of string port values
+ports is the array containing the string port values
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetDNS1123Name">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=12383:12421#L369">GetDNS1123Name</a>
+				<a class="permalink" href="#GetDNS1123Name">¶</a>
+				
+				
+			</h2>
+			<pre>func GetDNS1123Name(str <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetDNS1123Name Converts passed string into DNS-1123 string
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetEnvWithDefault">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=45332:45392#L1532">GetEnvWithDefault</a>
+				<a class="permalink" href="#GetEnvWithDefault">¶</a>
+				
+				
+			</h2>
+			<pre>func GetEnvWithDefault(key <a href="../../../../../builtin/#string">string</a>, defaultval <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetEnvWithDefault gets value of specified env if it is set, otherwise, it returns default value
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetFromFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/config_util.go.html?s=863:917#L29">GetFromFile</a>
+				<a class="permalink" href="#GetFromFile">¶</a>
+				
+				
+			</h2>
+			<pre>func GetFromFile(c interface{}, filename <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+GetFromFile unmarshals a struct from a odo config file
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetGitOriginPath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=46683:46724#L1571">GetGitOriginPath</a>
+				<a class="permalink" href="#GetGitOriginPath">¶</a>
+				
+				
+			</h2>
+			<pre>func GetGitOriginPath(path <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetGitOriginPath gets the remote fetch URL from the given git repo
+if the repo is not a git repo, the error is ignored
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetHostWithPort">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=16079:16132#L488">GetHostWithPort</a>
+				<a class="permalink" href="#GetHostWithPort">¶</a>
+				
+				
+			</h2>
+			<pre>func GetHostWithPort(inputURL <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetHostWithPort parses provided url and returns string formated as
+host:port even if port was not specifically specified in the origin url.
+If port is not specified, standart port corresponding to url schema is provided.
+example: for url <a href="https://example.com">https://example.com</a> function will return &#34;example.com:443&#34;
+</p>
+<pre>for url <a href="https://example.com:8443">https://example.com:8443</a> function will return &#34;example:8443&#34;
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetIgnoreRulesFromDirectory">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=17004:17072#L513">GetIgnoreRulesFromDirectory</a>
+				<a class="permalink" href="#GetIgnoreRulesFromDirectory">¶</a>
+				
+				
+			</h2>
+			<pre>func GetIgnoreRulesFromDirectory(directory <a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetIgnoreRulesFromDirectory reads the .odoignore file, if present, and reads the rules from it
+if the .odoignore file is not found, then .gitignore is searched for the rules
+if both are not found, return empty array
+directory is the name of the directory to look into for either of the files
+rules is the array of rules (in string form)
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetIndexFileRelativeToContext">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=2450:2493#L83">GetIndexFileRelativeToContext</a>
+				<a class="permalink" href="#GetIndexFileRelativeToContext">¶</a>
+				
+				
+			</h2>
+			<pre>func GetIndexFileRelativeToContext() <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetIndexFileRelativeToContext returns the index file relative to context i.e.; .odo/odo-file-index.json
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetIntOrDefault">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/defaults.go.html?s=222:274#L4">GetIntOrDefault</a>
+				<a class="permalink" href="#GetIntOrDefault">¶</a>
+				
+				
+			</h2>
+			<pre>func GetIntOrDefault(ptr *<a href="../../../../../builtin/#int">int</a>, defaultValue <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#int">int</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetLowerCaseParameters">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/config_util.go.html?s=3365:3429#L122">GetLowerCaseParameters</a>
+				<a class="permalink" href="#GetLowerCaseParameters">¶</a>
+				
+				
+			</h2>
+			<pre>func GetLowerCaseParameters(parameters []<a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+GetLowerCaseParameters creates a set-like map of supported parameters from the supported parameter names
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetRandomName">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=10963:11063#L335">GetRandomName</a>
+				<a class="permalink" href="#GetRandomName">¶</a>
+				
+				
+			</h2>
+			<pre>func GetRandomName(prefix <a href="../../../../../builtin/#string">string</a>, prefixMaxLen <a href="../../../../../builtin/#int">int</a>, existList []<a href="../../../../../builtin/#string">string</a>, retries <a href="../../../../../builtin/#int">int</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetRandomName returns a randomly generated name which can be used for naming odo and/or openshift entities
+prefix: Desired prefix part of the name
+prefixMaxLen: Desired maximum length of prefix part of random name; if -1 is passed, no limit on length will be enforced
+existList: List to verify that the returned name does not already exist
+retries: number of retries to try generating a unique name
+Returns:
+</p>
+<pre>		1. randomname: is prefix-suffix, where:
+				prefix: string passed as prefix or fetched current directory of length same as the passed prefixMaxLen
+				suffix: 4 char random string
+     2. error: if requested number of retries also failed to generate unique name
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetRemoteFilesMarkedForDeletion">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=24014:24105#L755">GetRemoteFilesMarkedForDeletion</a>
+				<a class="permalink" href="#GetRemoteFilesMarkedForDeletion">¶</a>
+				
+				
+			</h2>
+			<pre>func GetRemoteFilesMarkedForDeletion(delSrcRelPaths []<a href="../../../../../builtin/#string">string</a>, remoteFolder <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetRemoteFilesMarkedForDeletion returns the list of remote files marked for deletion
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetSortedKeys">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=18614:18668#L566">GetSortedKeys</a>
+				<a class="permalink" href="#GetSortedKeys">¶</a>
+				
+				
+			</h2>
+			<pre>func GetSortedKeys(mapping map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetSortedKeys retrieves the alphabetically-sorted keys of the specified map
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetSplitValuesFromStr">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=18900:18952#L581">GetSplitValuesFromStr</a>
+				<a class="permalink" href="#GetSplitValuesFromStr">¶</a>
+				
+				
+			</h2>
+			<pre>func GetSplitValuesFromStr(inputStr <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetSplitValuesFromStr returns a slice containing the split string, using &#39;,&#39; as a separator
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetStringOrDefault">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/defaults.go.html?s=97:161#L1">GetStringOrDefault</a>
+				<a class="permalink" href="#GetStringOrDefault">¶</a>
+				
+				
+			</h2>
+			<pre>func GetStringOrDefault(ptr *<a href="../../../../../builtin/#string">string</a>, defaultValue <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetStringOrEmpty">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/defaults.go.html?s=14:55#L1">GetStringOrEmpty</a>
+				<a class="permalink" href="#GetStringOrEmpty">¶</a>
+				
+				
+			</h2>
+			<pre>func GetStringOrEmpty(ptr *<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetURLName">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/url.go.html?s=1561:1624#L35">GetURLName</a>
+				<a class="permalink" href="#GetURLName">¶</a>
+				
+				
+			</h2>
+			<pre>func GetURLName(componentName <a href="../../../../../builtin/#string">string</a>, componentPort <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetURLName returns a url name from the component name and the given port number
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetValidPortNumber">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/url.go.html?s=338:431#L4">GetValidPortNumber</a>
+				<a class="permalink" href="#GetValidPortNumber">¶</a>
+				
+				
+			</h2>
+			<pre>func GetValidPortNumber(componentName <a href="../../../../../builtin/#string">string</a>, portNumber <a href="../../../../../builtin/#int">int</a>, portList []<a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#int">int</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetValidPortNumber checks if the given port number is a valid component port or not
+if port number is not provided and the component is a single port component, the component port is returned
+port number is -1 if the user does not specify any port
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GitSubDir">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=43134:43195#L1455">GitSubDir</a>
+				<a class="permalink" href="#GitSubDir">¶</a>
+				
+				
+			</h2>
+			<pre>func GitSubDir(srcPath, destinationPath, subDir <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+GitSubDir handles subDir for git components using the default filesystem
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HTTPGetFreePort">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=23127:23162#L724">HTTPGetFreePort</a>
+				<a class="permalink" href="#HTTPGetFreePort">¶</a>
+				
+				
+			</h2>
+			<pre>func HTTPGetFreePort() (<a href="../../../../../builtin/#int">int</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+HTTPGetFreePort gets a free port from the system
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HTTPGetRequest">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=24556:24632#L767">HTTPGetRequest</a>
+				<a class="permalink" href="#HTTPGetRequest">¶</a>
+				
+				
+			</h2>
+			<pre>func HTTPGetRequest(request <a href="#HTTPRequestParams">HTTPRequestParams</a>, cacheFor <a href="../../../../../builtin/#int">int</a>) ([]<a href="../../../../../builtin/#byte">byte</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+HTTPGetRequest gets resource contents given URL and token (if applicable)
+cacheFor determines how long the response should be cached (in minutes), 0 for no caching
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="In">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=4072:4112#L134">In</a>
+				<a class="permalink" href="#In">¶</a>
+				
+				
+			</h2>
+			<pre>func In(arr []<a href="../../../../../builtin/#string">string</a>, value <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+In checks if the value is in the array
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsEmpty">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=23628:23667#L740">IsEmpty</a>
+				<a class="permalink" href="#IsEmpty">¶</a>
+				
+				
+			</h2>
+			<pre>func IsEmpty(name <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+IsEmpty checks to see if a directory is empty
+shamelessly taken from: <a href="https://stackoverflow.com/questions/30697324/how-to-check-if-directory-on-path-is-empty">https://stackoverflow.com/questions/30697324/how-to-check-if-directory-on-path-is-empty</a>
+this helps detect any edge cases where an empty directory is copied over
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsGlobExpMatch">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=20848:20919#L642">IsGlobExpMatch</a>
+				<a class="permalink" href="#IsGlobExpMatch">¶</a>
+				
+				
+			</h2>
+			<pre>func IsGlobExpMatch(strToMatch <a href="../../../../../builtin/#string">string</a>, globExps []<a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+IsGlobExpMatch compiles strToMatch against each of the passed globExps
+Parameters:
+strToMatch : a string for matching against the rules
+globExps : a list of glob patterns to match strToMatch with
+Returns: true if there is any match else false the error (if any)
+Notes:
+Source as well as glob expression to match is changed to forward
+slashes due to supporting Windows as well as support with the
+&#34;github.com/gobwas/glob&#34; library that we use.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsInvalidKubeConfigError">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=45554:45600#L1541">IsInvalidKubeConfigError</a>
+				<a class="permalink" href="#IsInvalidKubeConfigError">¶</a>
+				
+				
+			</h2>
+			<pre>func IsInvalidKubeConfigError(err <a href="../../../../../builtin/#error">error</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+IsInvalidKubeConfigError checks if specified error is due to invalid kubeconfig
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsSet">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/config_util.go.html?s=1821:1872#L65">IsSet</a>
+				<a class="permalink" href="#IsSet">¶</a>
+				
+				
+			</h2>
+			<pre>func IsSet(info interface{}, parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+IsSet uses reflection to check if a parameter is set in a struct
+using the name in a case insensitive manner
+only supports flat structs
+TODO: support deeper struct using recursion
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsValidProjectDir">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=27255:27316#L863">IsValidProjectDir</a>
+				<a class="permalink" href="#IsValidProjectDir">¶</a>
+				
+				
+			</h2>
+			<pre>func IsValidProjectDir(path <a href="../../../../../builtin/#string">string</a>, devfilePath <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+IsValidProjectDir checks that the folder to download the project from devfile is
+either empty or contains the devfile used.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NamespaceKubernetesObject">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=5165:5257#L167">NamespaceKubernetesObject</a>
+				<a class="permalink" href="#NamespaceKubernetesObject">¶</a>
+				
+				
+			</h2>
+			<pre>func NamespaceKubernetesObject(componentName <a href="../../../../../builtin/#string">string</a>, applicationName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+NamespaceKubernetesObject hyphenates applicationName and componentName
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NamespaceKubernetesObjectWithTrim">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=5883:5976#L187">NamespaceKubernetesObjectWithTrim</a>
+				<a class="permalink" href="#NamespaceKubernetesObjectWithTrim">¶</a>
+				
+				
+			</h2>
+			<pre>func NamespaceKubernetesObjectWithTrim(componentName, applicationName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+NamespaceKubernetesObjectWithTrim hyphenates applicationName and componentName
+if the resultant name is greater than 63 characters
+it trims each to 31 characters
+&lt;31-characters&gt;+&#34;-&#34;+&lt;31-characters&gt; = 63 characters
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NamespaceOpenShiftObject">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=4276:4367#L144">NamespaceOpenShiftObject</a>
+				<a class="permalink" href="#NamespaceOpenShiftObject">¶</a>
+				
+				
+			</h2>
+			<pre>func NamespaceOpenShiftObject(componentName <a href="../../../../../builtin/#string">string</a>, applicationName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+NamespaceOpenShiftObject hyphenates applicationName and componentName
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="OpenBrowser">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=13890:13924#L415">OpenBrowser</a>
+				<a class="permalink" href="#OpenBrowser">¶</a>
+				
+				
+			</h2>
+			<pre>func OpenBrowser(url <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+OpenBrowser opens the URL within the users default browser
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ParseComponentImageName">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=7276:7355#L228">ParseComponentImageName</a>
+				<a class="permalink" href="#ParseComponentImageName">¶</a>
+				
+				
+			</h2>
+			<pre>func ParseComponentImageName(imageName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+ParseComponentImageName returns
+1. image name
+2. component type i.e, builder image name
+3. component name default value is component type else the user requested component name
+4. component version which is by default latest else version passed with builder image name
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PathEqual">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=36835:36891#L1218">PathEqual</a>
+				<a class="permalink" href="#PathEqual">¶</a>
+				
+				
+			</h2>
+			<pre>func PathEqual(firstPath <a href="../../../../../builtin/#string">string</a>, secondPath <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+PathEqual compare the paths to determine if they are equal
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadFilePath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=8174:8221#L252">ReadFilePath</a>
+				<a class="permalink" href="#ReadFilePath">¶</a>
+				
+				
+			</h2>
+			<pre>func ReadFilePath(u *<a href="../../../../../net/url/">url</a>.<a href="../../../../../net/url/#URL">URL</a>, os <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+ReadFilePath Reads file path form URL file:///C:/path/to/file to C:\path\to\file
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RemoveDuplicates">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=21960:22002#L678">RemoveDuplicates</a>
+				<a class="permalink" href="#RemoveDuplicates">¶</a>
+				
+				
+			</h2>
+			<pre>func RemoveDuplicates(s []<a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+RemoveDuplicates goes through a string slice and removes all duplicates.
+Reference: <a href="https://siongui.github.io/2018/04/14/go-remove-duplicates-from-slice-or-array/">https://siongui.github.io/2018/04/14/go-remove-duplicates-from-slice-or-array/</a>
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RemoveRelativePathFromFiles">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=22418:22497#L698">RemoveRelativePathFromFiles</a>
+				<a class="permalink" href="#RemoveRelativePathFromFiles">¶</a>
+				
+				
+			</h2>
+			<pre>func RemoveRelativePathFromFiles(files []<a href="../../../../../builtin/#string">string</a>, path <a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+RemoveRelativePathFromFiles removes a specified path from a list of files
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ResolveIndexFilePath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=1855:1914#L63">ResolveIndexFilePath</a>
+				<a class="permalink" href="#ResolveIndexFilePath">¶</a>
+				
+				
+			</h2>
+			<pre>func ResolveIndexFilePath(directory <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ResolveIndexFilePath resolves the filepath of the odo index file in the .odo folder
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SafeGetBool">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=47359:47389#L1600">SafeGetBool</a>
+				<a class="permalink" href="#SafeGetBool">¶</a>
+				
+				
+			</h2>
+			<pre>func SafeGetBool(b *<a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+SafeGetBool returns the value of the bool pointer, or false if the pointer is nil
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SliceDifference">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=13559:13614#L400">SliceDifference</a>
+				<a class="permalink" href="#SliceDifference">¶</a>
+				
+				
+			</h2>
+			<pre>func SliceDifference(s1 []<a href="../../../../../builtin/#string">string</a>, s2 []<a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+SliceDifference returns the values of s2 that do not exist in s1
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="StartSignalWatcher">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=41723:41811#L1408">StartSignalWatcher</a>
+				<a class="permalink" href="#StartSignalWatcher">¶</a>
+				
+				
+			</h2>
+			<pre>func StartSignalWatcher(watchSignals []<a href="../../../../../os/">os</a>.<a href="../../../../../os/#Signal">Signal</a>, handle func(receivedSignal <a href="../../../../../os/">os</a>.<a href="../../../../../os/#Signal">Signal</a>))</pre>
+			<p>
+StartSignalWatcher watches for signals and handles the situation before exiting the program
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="TouchGitIgnoreFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=2984:3041#L97">TouchGitIgnoreFile</a>
+				<a class="permalink" href="#TouchGitIgnoreFile">¶</a>
+				
+				
+			</h2>
+			<pre>func TouchGitIgnoreFile(directory <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+TouchGitIgnoreFile checks .gitignore file exists or not, if not then create it
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="TruncateString">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=9127:9207#L281">TruncateString</a>
+				<a class="permalink" href="#TruncateString">¶</a>
+				
+				
+			</h2>
+			<pre>func TruncateString(str <a href="../../../../../builtin/#string">string</a>, maxLen <a href="../../../../../builtin/#int">int</a>, appendIfTrunicated ...<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+TruncateString truncates passed string to given length
+Note: if -1 is passed, the original string is returned
+if appendIfTrunicated is given, then it will be appended to trunicated
+string
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Unzip">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=29864:29923#L947">Unzip</a>
+				<a class="permalink" href="#Unzip">¶</a>
+				
+				
+			</h2>
+			<pre>func Unzip(src, dest, pathToUnzip <a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+Unzip will decompress a zip archive, moving specified files and folders
+within the zip file (parameter 1) to an output directory (parameter 2)
+Source: <a href="https://golangcode.com/unzip-files-in-go/">https://golangcode.com/unzip-files-in-go/</a>
+pathToUnzip (parameter 3) is the path within the zip folder to extract
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=35630:35670#L1162">ValidateFile</a>
+				<a class="permalink" href="#ValidateFile">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateFile(filePath <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+ValidateFile validates the file
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateK8sResourceName">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=34003:34063#L1100">ValidateK8sResourceName</a>
+				<a class="permalink" href="#ValidateK8sResourceName">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateK8sResourceName(key <a href="../../../../../builtin/#string">string</a>, value <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+ValidateK8sResourceName sanitizes kubernetes resource name with the following requirements:
+- Contain at most 63 characters
+- Contain only lowercase alphanumeric characters or ‘-’
+- Start with an alphanumeric character
+- End with an alphanumeric character
+- Must not contain all numeric values
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateURL">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=35146:35186#L1143">ValidateURL</a>
+				<a class="permalink" href="#ValidateURL">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateURL(sourceURL <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+ValidateURL validates the URL
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=5736:5809#L189">WriteFile</a>
+				<a class="permalink" href="#WriteFile">¶</a>
+				
+				
+			</h2>
+			<pre>func WriteFile(newFileMap map[<a href="../../../../../builtin/#string">string</a>]<a href="#FileData">FileData</a>, resolvedPath <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+WriteFile writes a file map to a file, the file map is given by
+newFileMap param and the file location is resolvedPath param
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="WriteToFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/config_util.go.html?s=1241:1295#L44">WriteToFile</a>
+				<a class="permalink" href="#WriteToFile">¶</a>
+				
+				
+			</h2>
+			<pre>func WriteToFile(c interface{}, filename <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+WriteToFile marshals a struct to a file
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ConcurrentTask">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/concurrent.go.html?s=89:154#L1">ConcurrentTask</a>
+				<a class="permalink" href="#ConcurrentTask">¶</a>
+				
+				
+			</h2>
+			<p>
+ConcurrentTask is a task to execute in a go-routine
+</p>
+
+			<pre>type ConcurrentTask struct {
+<span id="ConcurrentTask.ToRun"></span>    ToRun func(errChannel chan <a href="../../../../../builtin/#error">error</a>)
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ConcurrentTasks">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/concurrent.go.html?s=415:470#L9">ConcurrentTasks</a>
+				<a class="permalink" href="#ConcurrentTasks">¶</a>
+				
+				
+			</h2>
+			<p>
+ConcurrentTasks records tasks to be run concurrently with go-routines
+</p>
+
+			<pre>type ConcurrentTasks struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewConcurrentTasks">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/concurrent.go.html?s=595:651#L14">NewConcurrentTasks</a>
+					<a class="permalink" href="#NewConcurrentTasks">¶</a>
+					
+					
+				</h3>
+				<pre>func NewConcurrentTasks(taskNumber <a href="../../../../../builtin/#int">int</a>) *<a href="#ConcurrentTasks">ConcurrentTasks</a></pre>
+				<p>
+NewConcurrentTasks creates a new ConcurrentTasks instance, dimensioned to accept at least the specified number of tasks
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ConcurrentTasks.Add">func (*ConcurrentTasks) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/concurrent.go.html?s=813:864#L19">Add</a>
+					<a class="permalink" href="#ConcurrentTasks.Add">¶</a>
+					
+					
+				</h3>
+				<pre>func (ct *<a href="#ConcurrentTasks">ConcurrentTasks</a>) Add(task <a href="#ConcurrentTask">ConcurrentTask</a>)</pre>
+				<p>
+Add adds the specified ConcurrentTask to the list of tasks to be run concurrently
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ConcurrentTasks.Run">func (*ConcurrentTasks) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/concurrent.go.html?s=1114:1152#L28">Run</a>
+					<a class="permalink" href="#ConcurrentTasks.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (ct *<a href="#ConcurrentTasks">ConcurrentTasks</a>) Run() <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+Run concurrently runs the added tasks failing on the first error
+Based on <a href="https://garrypolley.com/2016/02/10/golang-routines-errors/">https://garrypolley.com/2016/02/10/golang-routines-errors/</a>
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DownloadParams">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=2266:2341#L71">DownloadParams</a>
+				<a class="permalink" href="#DownloadParams">¶</a>
+				
+				
+			</h2>
+			<p>
+DownloadParams holds parameters of forming file download request
+</p>
+
+			<pre>type DownloadParams struct {
+<span id="DownloadParams.Request"></span>    Request  <a href="#HTTPRequestParams">HTTPRequestParams</a>
+<span id="DownloadParams.Filepath"></span>    Filepath <a href="../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FileData">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=731:867#L30">FileData</a>
+				<a class="permalink" href="#FileData">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type FileData struct {
+<span id="FileData.Size"></span>    Size             <a href="../../../../../builtin/#int64">int64</a>
+<span id="FileData.LastModifiedDate"></span>    LastModifiedDate <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Time">Time</a>
+<span id="FileData.RemoteAttribute"></span>    RemoteAttribute  <a href="../../../../../builtin/#string">string</a> `json:&#34;RemoteAttribute,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GenerateNewFileDataEntry">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=4752:4851#L157">GenerateNewFileDataEntry</a>
+					<a class="permalink" href="#GenerateNewFileDataEntry">¶</a>
+					
+					
+				</h3>
+				<pre>func GenerateNewFileDataEntry(absolutePath <a href="../../../../../builtin/#string">string</a>, rootDirectory <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, *<a href="#FileData">FileData</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GenerateNewFileDataEntry creates a new FileData entry for use by IndexerRet and/or FileIndex
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="FileIndex">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=445:514#L13">FileIndex</a>
+				<a class="permalink" href="#FileIndex">¶</a>
+				
+				
+			</h2>
+			<p>
+FileIndex holds the file index used for storing local file state change
+</p>
+
+			<pre>type FileIndex struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>
+<span id="FileIndex.Files"></span>    Files map[<a href="../../../../../builtin/#string">string</a>]<a href="#FileData">FileData</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFileIndex">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=552:582#L19">NewFileIndex</a>
+					<a class="permalink" href="#NewFileIndex">¶</a>
+					
+					
+				</h3>
+				<pre>func NewFileIndex() *<a href="#FileIndex">FileIndex</a></pre>
+				<p>
+NewFileIndex returns a fileIndex
+</p>
+
+				
+				
+			
+				
+				<h3 id="ReadFileIndex">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=1078:1133#L38">ReadFileIndex</a>
+					<a class="permalink" href="#ReadFileIndex">¶</a>
+					
+					
+				</h3>
+				<pre>func ReadFileIndex(filePath <a href="../../../../../builtin/#string">string</a>) (*<a href="#FileIndex">FileIndex</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ReadFileIndex tries to read the odo index file from the given location and returns the data from the file
+if no such file is present, it means the folder hasn&#39;t been walked and thus returns a empty list
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="HTTPRequestParams">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=2135:2196#L65">HTTPRequestParams</a>
+				<a class="permalink" href="#HTTPRequestParams">¶</a>
+				
+				
+			</h2>
+			<p>
+HTTPRequestParams holds parameters of forming http request
+</p>
+
+			<pre>type HTTPRequestParams struct {
+<span id="HTTPRequestParams.URL"></span>    URL   <a href="../../../../../builtin/#string">string</a>
+<span id="HTTPRequestParams.Token"></span>    Token <a href="../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IndexerRet">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=4054:4209#L134">IndexerRet</a>
+				<a class="permalink" href="#IndexerRet">¶</a>
+				
+				
+			</h2>
+			<p>
+IndexerRet is a struct that represent return value of RunIndexer function
+</p>
+
+			<pre>type IndexerRet struct {
+<span id="IndexerRet.FilesChanged"></span>    FilesChanged  []<a href="../../../../../builtin/#string">string</a>
+<span id="IndexerRet.FilesDeleted"></span>    FilesDeleted  []<a href="../../../../../builtin/#string">string</a>
+<span id="IndexerRet.RemoteDeleted"></span>    RemoteDeleted []<a href="../../../../../builtin/#string">string</a>
+<span id="IndexerRet.NewFileMap"></span>    NewFileMap    map[<a href="../../../../../builtin/#string">string</a>]<a href="#FileData">FileData</a>
+<span id="IndexerRet.ResolvedPath"></span>    ResolvedPath  <a href="../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="RunIndexerWithRemote">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/file_indexer.go.html?s=6122:6252#L200">RunIndexerWithRemote</a>
+					<a class="permalink" href="#RunIndexerWithRemote">¶</a>
+					
+					
+				</h3>
+				<pre>func RunIndexerWithRemote(directory <a href="../../../../../builtin/#string">string</a>, ignoreRules []<a href="../../../../../builtin/#string">string</a>, remoteDirectories map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>) (ret <a href="#IndexerRet">IndexerRet</a>, err <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+RunIndexerWithRemote reads the existing index from the given directory and runs the indexer on it
+with the given ignore rules
+it also adds the file index to the .gitignore file and resolves the path
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ResourceRequirementInfo">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=1934:2071#L58">ResourceRequirementInfo</a>
+				<a class="permalink" href="#ResourceRequirementInfo">¶</a>
+				
+				
+			</h2>
+			<p>
+ResourceRequirementInfo holds resource quantity before transformation into its appropriate form in container spec
+</p>
+
+			<pre>type ResourceRequirementInfo struct {
+<span id="ResourceRequirementInfo.ResourceType"></span>    ResourceType <a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#ResourceName">ResourceName</a>
+<span id="ResourceRequirementInfo.MinQty"></span>    MinQty       <a href="../../../../../k8s.io/apimachinery/pkg/api/resource/">resource</a>.<a href="../../../../../k8s.io/apimachinery/pkg/api/resource/#Quantity">Quantity</a>
+<span id="ResourceRequirementInfo.MaxQty"></span>    MaxQty       <a href="../../../../../k8s.io/apimachinery/pkg/api/resource/">resource</a>.<a href="../../../../../k8s.io/apimachinery/pkg/api/resource/#Quantity">Quantity</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="FetchResourceQuantity">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/util/util.go.html?s=14407:14541#L436">FetchResourceQuantity</a>
+					<a class="permalink" href="#FetchResourceQuantity">¶</a>
+					
+					
+				</h3>
+				<pre>func FetchResourceQuantity(resourceType <a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#ResourceName">ResourceName</a>, min <a href="../../../../../builtin/#string">string</a>, max <a href="../../../../../builtin/#string">string</a>, request <a href="../../../../../builtin/#string">string</a>) (*<a href="#ResourceRequirementInfo">ResourceRequirementInfo</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+FetchResourceQuantity takes passed min, max and requested resource quantities and returns min and max resource requests
+</p>
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

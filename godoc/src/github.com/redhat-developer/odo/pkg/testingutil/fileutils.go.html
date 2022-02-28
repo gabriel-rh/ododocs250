@@ -1,0 +1,217 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>testingutil - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil">testingutil</a>/<span class="text-muted">fileutils.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../github.com/redhat-developer/odo/pkg/testingutil">github.com/redhat-developer/odo/pkg/testingutil</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package testingutil
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;fmt&#34;
+<span id="L5" class="ln">     5  </span>	&#34;io/ioutil&#34;
+<span id="L6" class="ln">     6  </span>	&#34;os&#34;
+<span id="L7" class="ln">     7  </span>	&#34;path/filepath&#34;
+<span id="L8" class="ln">     8  </span>
+<span id="L9" class="ln">     9  </span>	&#34;github.com/redhat-developer/odo/pkg/testingutil/filesystem&#34;
+<span id="L10" class="ln">    10  </span>
+<span id="L11" class="ln">    11  </span>	&#34;github.com/pkg/errors&#34;
+<span id="L12" class="ln">    12  </span>)
+<span id="L13" class="ln">    13  </span>
+<span id="L14" class="ln">    14  </span><span class="comment">// TempMkdir creates a temporary directory</span>
+<span id="L15" class="ln">    15  </span>func TempMkdir(parentDir string, newDirPrefix string) (string, error) {
+<span id="L16" class="ln">    16  </span>	parentDir = filepath.FromSlash(parentDir)
+<span id="L17" class="ln">    17  </span>	dir, err := ioutil.TempDir(parentDir, newDirPrefix)
+<span id="L18" class="ln">    18  </span>	if err != nil {
+<span id="L19" class="ln">    19  </span>		return &#34;&#34;, errors.Wrapf(err, &#34;failed to create dir with prefix %s in directory %s&#34;, newDirPrefix, parentDir)
+<span id="L20" class="ln">    20  </span>	}
+<span id="L21" class="ln">    21  </span>	return dir, nil
+<span id="L22" class="ln">    22  </span>}
+<span id="L23" class="ln">    23  </span>
+<span id="L24" class="ln">    24  </span><span class="comment">// TempMkFile creates a temporary file.</span>
+<span id="L25" class="ln">    25  </span>func TempMkFile(dir string, fileName string) (string, error) {
+<span id="L26" class="ln">    26  </span>	dir = filepath.FromSlash(dir)
+<span id="L27" class="ln">    27  </span>	f, err := ioutil.TempFile(dir, fileName)
+<span id="L28" class="ln">    28  </span>	if err != nil {
+<span id="L29" class="ln">    29  </span>		return &#34;&#34;, errors.Wrapf(err, &#34;failed to create test file %s in dir %s&#34;, fileName, dir)
+<span id="L30" class="ln">    30  </span>	}
+<span id="L31" class="ln">    31  </span>	if err := f.Close(); err != nil {
+<span id="L32" class="ln">    32  </span>		return &#34;&#34;, err
+<span id="L33" class="ln">    33  </span>	}
+<span id="L34" class="ln">    34  </span>	return f.Name(), nil
+<span id="L35" class="ln">    35  </span>}
+<span id="L36" class="ln">    36  </span>
+<span id="L37" class="ln">    37  </span><span class="comment">// FileType custom type to indicate type of file</span>
+<span id="L38" class="ln">    38  </span>type FileType int
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span>const (
+<span id="L41" class="ln">    41  </span>	<span class="comment">// RegularFile enum to represent regular file</span>
+<span id="L42" class="ln">    42  </span>	RegularFile FileType = 0
+<span id="L43" class="ln">    43  </span>	<span class="comment">// Directory enum to represent directory</span>
+<span id="L44" class="ln">    44  </span>	Directory FileType = 1
+<span id="L45" class="ln">    45  </span>)
+<span id="L46" class="ln">    46  </span>
+<span id="L47" class="ln">    47  </span><span class="comment">// ModificationType custom type to indicate file modification type</span>
+<span id="L48" class="ln">    48  </span>type ModificationType string
+<span id="L49" class="ln">    49  </span>
+<span id="L50" class="ln">    50  </span>const (
+<span id="L51" class="ln">    51  </span>	<span class="comment">// UPDATE enum representing update operation on a file</span>
+<span id="L52" class="ln">    52  </span>	UPDATE ModificationType = &#34;update&#34;
+<span id="L53" class="ln">    53  </span>	<span class="comment">// CREATE enum representing create operation for a file/folder</span>
+<span id="L54" class="ln">    54  </span>	CREATE ModificationType = &#34;create&#34;
+<span id="L55" class="ln">    55  </span>	<span class="comment">// DELETE enum representing delete operation for a file/folder</span>
+<span id="L56" class="ln">    56  </span>	DELETE ModificationType = &#34;delete&#34;
+<span id="L57" class="ln">    57  </span>	<span class="comment">// APPEND enum representing append operation on a file</span>
+<span id="L58" class="ln">    58  </span>	APPEND ModificationType = &#34;append&#34;
+<span id="L59" class="ln">    59  </span>)
+<span id="L60" class="ln">    60  </span>
+<span id="L61" class="ln">    61  </span><span class="comment">// FileProperties to contain meta-data of a file like, file/folder name, file/folder parent dir, file type and desired file modification type</span>
+<span id="L62" class="ln">    62  </span>type FileProperties struct {
+<span id="L63" class="ln">    63  </span>	FilePath         string
+<span id="L64" class="ln">    64  </span>	FileParent       string
+<span id="L65" class="ln">    65  </span>	FileType         FileType
+<span id="L66" class="ln">    66  </span>	ModificationType ModificationType
+<span id="L67" class="ln">    67  </span>}
+<span id="L68" class="ln">    68  </span>
+<span id="L69" class="ln">    69  </span><span class="comment">// SimulateFileModifications mock function to simulate requested file/folder operation</span>
+<span id="L70" class="ln">    70  </span><span class="comment">// Parameters:</span>
+<span id="L71" class="ln">    71  </span><span class="comment">//	basePath: The parent directory for file/folder involved in desired file operation</span>
+<span id="L72" class="ln">    72  </span><span class="comment">//	fileModification: Meta-data of file/folder</span>
+<span id="L73" class="ln">    73  </span><span class="comment">// Returns:</span>
+<span id="L74" class="ln">    74  </span><span class="comment">//	path to file/folder involved in the operation</span>
+<span id="L75" class="ln">    75  </span><span class="comment">//	error if any or nil</span>
+<span id="L76" class="ln">    76  </span>func SimulateFileModifications(basePath string, fileModification FileProperties) (string, error) {
+<span id="L77" class="ln">    77  </span>	<span class="comment">// Files/folders intended to be directly under basepath will be indicated by fileModification.FileParent set to empty string</span>
+<span id="L78" class="ln">    78  </span>	if fileModification.FileParent != &#34;&#34; {
+<span id="L79" class="ln">    79  </span>		<span class="comment">// If fileModification.FileParent is not empty, use it to generate file/folder absolute path</span>
+<span id="L80" class="ln">    80  </span>		basePath = filepath.Join(basePath, fileModification.FileParent)
+<span id="L81" class="ln">    81  </span>	}
+<span id="L82" class="ln">    82  </span>
+<span id="L83" class="ln">    83  </span>	switch fileModification.ModificationType {
+<span id="L84" class="ln">    84  </span>	case CREATE:
+<span id="L85" class="ln">    85  </span>		if fileModification.FileType == Directory {
+<span id="L86" class="ln">    86  </span>			filePath, err := TempMkdir(basePath, fileModification.FilePath)
+<span id="L87" class="ln">    87  </span>			<span class="comment">// t.Logf(&#34;In simulateFileModifications, Attempting to create folder %s in %s. Error : %v&#34;, fileModification.filePath, basePath, err)</span>
+<span id="L88" class="ln">    88  </span>			return filePath, err
+<span id="L89" class="ln">    89  </span>		} else if fileModification.FileType == RegularFile {
+<span id="L90" class="ln">    90  </span>			folderPath, err := TempMkFile(basePath, fileModification.FilePath)
+<span id="L91" class="ln">    91  </span>			<span class="comment">// t.Logf(&#34;In simulateFileModifications, Attempting to create file %s in %s&#34;, fileModification.filePath, basePath)</span>
+<span id="L92" class="ln">    92  </span>			return folderPath, err
+<span id="L93" class="ln">    93  </span>		}
+<span id="L94" class="ln">    94  </span>	case DELETE:
+<span id="L95" class="ln">    95  </span>		if fileModification.FileType == Directory {
+<span id="L96" class="ln">    96  </span>			return filepath.Join(basePath, fileModification.FilePath), os.RemoveAll(filepath.Join(basePath, fileModification.FilePath))
+<span id="L97" class="ln">    97  </span>		} else if fileModification.FileType == RegularFile {
+<span id="L98" class="ln">    98  </span>			return filepath.Join(basePath, fileModification.FilePath), os.Remove(filepath.Join(basePath, fileModification.FilePath))
+<span id="L99" class="ln">    99  </span>		}
+<span id="L100" class="ln">   100  </span>	case UPDATE:
+<span id="L101" class="ln">   101  </span>		if fileModification.FileType == Directory {
+<span id="L102" class="ln">   102  </span>			return &#34;&#34;, fmt.Errorf(&#34;Updating directory %s is not supported&#34;, fileModification.FilePath)
+<span id="L103" class="ln">   103  </span>		} else if fileModification.FileType == RegularFile {
+<span id="L104" class="ln">   104  </span>			f, err := os.Open(filepath.Join(basePath, fileModification.FilePath))
+<span id="L105" class="ln">   105  </span>			if err != nil {
+<span id="L106" class="ln">   106  </span>				return &#34;&#34;, err
+<span id="L107" class="ln">   107  </span>			}
+<span id="L108" class="ln">   108  </span>			if _, err := f.WriteString(&#34;Hello from Odo&#34;); err != nil {
+<span id="L109" class="ln">   109  </span>				return &#34;&#34;, err
+<span id="L110" class="ln">   110  </span>			}
+<span id="L111" class="ln">   111  </span>			if err := f.Sync(); err != nil {
+<span id="L112" class="ln">   112  </span>				return &#34;&#34;, err
+<span id="L113" class="ln">   113  </span>			}
+<span id="L114" class="ln">   114  </span>			if err := f.Close(); err != nil {
+<span id="L115" class="ln">   115  </span>				return &#34;&#34;, err
+<span id="L116" class="ln">   116  </span>			}
+<span id="L117" class="ln">   117  </span>			return filepath.Join(basePath, fileModification.FilePath), nil
+<span id="L118" class="ln">   118  </span>		}
+<span id="L119" class="ln">   119  </span>	case APPEND:
+<span id="L120" class="ln">   120  </span>		if fileModification.FileType == RegularFile {
+<span id="L121" class="ln">   121  </span>			err := ioutil.WriteFile(filepath.Join(basePath, fileModification.FilePath), []byte(&#34;// Check watch command&#34;), os.ModeAppend)
+<span id="L122" class="ln">   122  </span>			if err != nil {
+<span id="L123" class="ln">   123  </span>				return &#34;&#34;, err
+<span id="L124" class="ln">   124  </span>			}
+<span id="L125" class="ln">   125  </span>			return filepath.Join(basePath, fileModification.FilePath), nil
+<span id="L126" class="ln">   126  </span>		}
+<span id="L127" class="ln">   127  </span>
+<span id="L128" class="ln">   128  </span>		return &#34;&#34;, fmt.Errorf(&#34;Append not supported for file of type %v&#34;, fileModification.FileType)
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span>	default:
+<span id="L131" class="ln">   131  </span>		return &#34;&#34;, fmt.Errorf(&#34;Unsupported file operation %s&#34;, fileModification.ModificationType)
+<span id="L132" class="ln">   132  </span>	}
+<span id="L133" class="ln">   133  </span>	return &#34;&#34;, nil
+<span id="L134" class="ln">   134  </span>}
+<span id="L135" class="ln">   135  </span>
+<span id="L136" class="ln">   136  </span>func MkFileWithContent(path, content string, fs filesystem.Filesystem) (string, error) {
+<span id="L137" class="ln">   137  </span>	path = filepath.FromSlash(path)
+<span id="L138" class="ln">   138  </span>	f, err := fs.Create(path)
+<span id="L139" class="ln">   139  </span>	if err != nil {
+<span id="L140" class="ln">   140  </span>		return &#34;&#34;, errors.Wrapf(err, &#34;failed to create file in path %s&#34;, path)
+<span id="L141" class="ln">   141  </span>	}
+<span id="L142" class="ln">   142  </span>	_, err = f.WriteString(content)
+<span id="L143" class="ln">   143  </span>	if err != nil {
+<span id="L144" class="ln">   144  </span>		return &#34;&#34;, err
+<span id="L145" class="ln">   145  </span>	}
+<span id="L146" class="ln">   146  </span>	if err := f.Close(); err != nil {
+<span id="L147" class="ln">   147  </span>		return &#34;&#34;, err
+<span id="L148" class="ln">   148  </span>	}
+<span id="L149" class="ln">   149  </span>	return f.Name(), nil
+<span id="L150" class="ln">   150  </span>}
+<span id="L151" class="ln">   151  </span>
+</pre><p><a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/fileutils.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

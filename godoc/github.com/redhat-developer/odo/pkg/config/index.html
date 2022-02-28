@@ -1,0 +1,472 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>config - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package config
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/config" target="_blank">github.com/redhat-developer/odo/pkg/config</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#AsDevfileSupportedParameter">func AsDevfileSupportedParameter(param string) (string, bool)</a></dd>
+			
+				
+				<dd><a href="#DeleteDevfileConfiguration">func DeleteDevfileConfiguration(d parser.DevfileObj, parameter string) error</a></dd>
+			
+				
+				<dd><a href="#FormatDevfileSupportedParameters">func FormatDevfileSupportedParameters() (result string)</a></dd>
+			
+				
+				<dd><a href="#GetDevfileSupportedParameters">func GetDevfileSupportedParameters() []string</a></dd>
+			
+				
+				<dd><a href="#IsSetInDevfile">func IsSetInDevfile(d parser.DevfileObj, parameter string) bool</a></dd>
+			
+				
+				<dd><a href="#SetDevfileConfiguration">func SetDevfileConfiguration(d parser.DevfileObj, parameter string, value interface{}) error</a></dd>
+			
+			
+				
+				<dd><a href="#EnvVar">type EnvVar</a></dd>
+				
+					
+					<dd>    <a href="#NewEnvVarFromString">func NewEnvVarFromString(envStr string) (EnvVar, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#EnvVarList">type EnvVarList</a></dd>
+				
+					
+					<dd>    <a href="#NewEnvVarListFromDevfileEnv">func NewEnvVarListFromDevfileEnv(envList []devfilev1.EnvVar) EnvVarList</a></dd>
+				
+					
+					<dd>    <a href="#NewEnvVarListFromSlice">func NewEnvVarListFromSlice(envList []string) (EnvVarList, error)</a></dd>
+				
+					
+					<dd>    <a href="#RemoveEnvVarsFromList">func RemoveEnvVarsFromList(envVarList EnvVarList, keys []string) (EnvVarList, error)</a></dd>
+				
+				
+					
+					<dd>    <a href="#EnvVarList.Merge">func (evl EnvVarList) Merge(other EnvVarList) EnvVarList</a></dd>
+				
+					
+					<dd>    <a href="#EnvVarList.ToDevfileEnv">func (evl EnvVarList) ToDevfileEnv() []devfilev1.EnvVar</a></dd>
+				
+					
+					<dd>    <a href="#EnvVarList.ToStringSlice">func (evl EnvVarList) ToStringSlice() []string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/config.go.html">config.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html">env_var.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// Name is the name of the setting controlling the component name</span>
+    <span id="Name">Name</span> = &#34;Name&#34;
+    <span class="comment">// NameDescription is human-readable description of the Name setting</span>
+    <span id="NameDescription">NameDescription</span> = &#34;The name of the component&#34;
+    <span class="comment">// Memory is the name of the setting controlling the memory a component consumes</span>
+    <span id="Memory">Memory</span> = &#34;Memory&#34;
+    <span class="comment">// MemoryDescription is the description of the setting controlling the min and max memory to same value</span>
+    <span id="MemoryDescription">MemoryDescription</span> = &#34;The minimum and maximum memory a component can consume&#34;
+    <span class="comment">// Ports is the space separated list of user specified ports to be opened in the component</span>
+    <span id="Ports">Ports</span> = &#34;Ports&#34;
+    <span class="comment">// PortsDescription is the description of the ports component setting</span>
+    <span id="PortsDescription">PortsDescription</span> = &#34;Ports to be opened in the component&#34;
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="AsDevfileSupportedParameter">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/config.go.html?s=1736:1797#L39">AsDevfileSupportedParameter</a>
+				<a class="permalink" href="#AsDevfileSupportedParameter">¶</a>
+				
+				
+			</h2>
+			<pre>func AsDevfileSupportedParameter(param <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#bool">bool</a>)</pre>
+			<p>
+AsDevfileSupportedParameter returns the parameter in lower case and a boolean indicating if it is a supported parameter
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteDevfileConfiguration">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/config.go.html?s=2826:2902#L68">DeleteDevfileConfiguration</a>
+				<a class="permalink" href="#DeleteDevfileConfiguration">¶</a>
+				
+				
+			</h2>
+			<pre>func DeleteDevfileConfiguration(d <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DeleteConfiguration allows deleting  the parameters that are configurable in a devfile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FormatDevfileSupportedParameters">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/config.go.html?s=1225:1280#L27">FormatDevfileSupportedParameters</a>
+				<a class="permalink" href="#FormatDevfileSupportedParameters">¶</a>
+				
+				
+			</h2>
+			<pre>func FormatDevfileSupportedParameters() (result <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+FormatDevfileSupportedParameters outputs supported parameters and their description
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetDevfileSupportedParameters">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/config.go.html?s=1496:1541#L34">GetDevfileSupportedParameters</a>
+				<a class="permalink" href="#GetDevfileSupportedParameters">¶</a>
+				
+				
+			</h2>
+			<pre>func GetDevfileSupportedParameters() []<a href="../../../../../builtin/#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="IsSetInDevfile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/config.go.html?s=3286:3349#L83">IsSetInDevfile</a>
+				<a class="permalink" href="#IsSetInDevfile">¶</a>
+				
+				
+			</h2>
+			<pre>func IsSetInDevfile(d <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+IsSet checks if a parameter is set in the devfile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetDevfileConfiguration">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/config.go.html?s=1981:2073#L45">SetDevfileConfiguration</a>
+				<a class="permalink" href="#SetDevfileConfiguration">¶</a>
+				
+				
+			</h2>
+			<pre>func SetDevfileConfiguration(d <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, parameter <a href="../../../../../builtin/#string">string</a>, value interface{}) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+SetDevfileConfiguration allows setting all the parameters that are configurable in a devfile
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="EnvVar">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html?s=214:293#L3">EnvVar</a>
+				<a class="permalink" href="#EnvVar">¶</a>
+				
+				
+			</h2>
+			<p>
+EnvVar represents an environment variable
+</p>
+
+			<pre>type EnvVar struct {
+<span id="EnvVar.Name"></span>    Name  <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Name&#34;`
+<span id="EnvVar.Value"></span>    Value <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Value&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEnvVarFromString">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html?s=1634:1689#L59">NewEnvVarFromString</a>
+					<a class="permalink" href="#NewEnvVarFromString">¶</a>
+					
+					
+				</h3>
+				<pre>func NewEnvVarFromString(envStr <a href="../../../../../builtin/#string">string</a>) (<a href="#EnvVar">EnvVar</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+NewEnvVarFromString takes a string of format &#34;name=value&#34; and returns an Env
+variable struct
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="EnvVarList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html?s=352:376#L9">EnvVarList</a>
+				<a class="permalink" href="#EnvVarList">¶</a>
+				
+				
+			</h2>
+			<p>
+EnvVarList represents a list of environment variables
+</p>
+
+			<pre>type EnvVarList []<a href="#EnvVar">EnvVar</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEnvVarListFromDevfileEnv">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html?s=2469:2540#L89">NewEnvVarListFromDevfileEnv</a>
+					<a class="permalink" href="#NewEnvVarListFromDevfileEnv">¶</a>
+					
+					
+				</h3>
+				<pre>func NewEnvVarListFromDevfileEnv(envList []<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#EnvVar">EnvVar</a>) <a href="#EnvVarList">EnvVarList</a></pre>
+				<p>
+NewEnvVarListFromDevfileEnv creates an EnvVarList from the list of envs present in a devfile.
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewEnvVarListFromSlice">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html?s=2083:2148#L74">NewEnvVarListFromSlice</a>
+					<a class="permalink" href="#NewEnvVarListFromSlice">¶</a>
+					
+					
+				</h3>
+				<pre>func NewEnvVarListFromSlice(envList []<a href="../../../../../builtin/#string">string</a>) (<a href="#EnvVarList">EnvVarList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+NewEnvVarListFromSlice takes multiple env variables with format
+&#34;name=value&#34; and returns an EnvVarList
+</p>
+
+				
+				
+			
+				
+				<h3 id="RemoveEnvVarsFromList">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html?s=2824:2908#L102">RemoveEnvVarsFromList</a>
+					<a class="permalink" href="#RemoveEnvVarsFromList">¶</a>
+					
+					
+				</h3>
+				<pre>func RemoveEnvVarsFromList(envVarList <a href="#EnvVarList">EnvVarList</a>, keys []<a href="../../../../../builtin/#string">string</a>) (<a href="#EnvVarList">EnvVarList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+RemoveEnvVarsFromList removes the env variables based on the keys provided
+and returns a new EnvVarList
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="EnvVarList.Merge">func (EnvVarList) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html?s=1095:1151#L36">Merge</a>
+					<a class="permalink" href="#EnvVarList.Merge">¶</a>
+					
+					
+				</h3>
+				<pre>func (evl <a href="#EnvVarList">EnvVarList</a>) Merge(other <a href="#EnvVarList">EnvVarList</a>) <a href="#EnvVarList">EnvVarList</a></pre>
+				<p>
+Merge merges the other EnvVarlist with keeping last value for duplicate EnvVars
+and returns a new EnvVarList
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvVarList.ToDevfileEnv">func (EnvVarList) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html?s=752:807#L23">ToDevfileEnv</a>
+					<a class="permalink" href="#EnvVarList.ToDevfileEnv">¶</a>
+					
+					
+				</h3>
+				<pre>func (evl <a href="#EnvVarList">EnvVarList</a>) ToDevfileEnv() []<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#EnvVar">EnvVar</a></pre>
+				<p>
+ToDevfileEnv converts the EnvVarList to the list of Envs supported by devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvVarList.ToStringSlice">func (EnvVarList) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/config/env_var.go.html?s=466:512#L13">ToStringSlice</a>
+					<a class="permalink" href="#EnvVarList.ToStringSlice">¶</a>
+					
+					
+				</h3>
+				<pre>func (evl <a href="#EnvVarList">EnvVarList</a>) ToStringSlice() []<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+ToStringSlice converts the EnvVarList into a slice of env var of kind
+&#34;key=value&#34;
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

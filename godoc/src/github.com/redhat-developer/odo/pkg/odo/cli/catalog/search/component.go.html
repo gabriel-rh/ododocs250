@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>search - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo">odo</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli">cli</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog">catalog</a>/<a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/search">search</a>/<span class="text-muted">component.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/catalog/search">github.com/redhat-developer/odo/pkg/odo/cli/catalog/search</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package search
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;fmt&#34;
+<span id="L5" class="ln">     5  </span>
+<span id="L6" class="ln">     6  </span>	&#34;github.com/redhat-developer/odo/pkg/catalog&#34;
+<span id="L7" class="ln">     7  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/cmdline&#34;
+<span id="L8" class="ln">     8  </span>
+<span id="L9" class="ln">     9  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/cli/catalog/util&#34;
+<span id="L10" class="ln">    10  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/genericclioptions&#34;
+<span id="L11" class="ln">    11  </span>	&#34;github.com/spf13/cobra&#34;
+<span id="L12" class="ln">    12  </span>)
+<span id="L13" class="ln">    13  </span>
+<span id="L14" class="ln">    14  </span>const componentRecommendedCommandName = &#34;component&#34;
+<span id="L15" class="ln">    15  </span>
+<span id="L16" class="ln">    16  </span>var componentExample = `  # Search for a component
+<span id="L17" class="ln">    17  </span>  %[1]s python`
+<span id="L18" class="ln">    18  </span>
+<span id="L19" class="ln">    19  </span><span class="comment">// SearchComponentOptions encapsulates the options for the odo catalog describe service command</span>
+<span id="L20" class="ln">    20  </span>type SearchComponentOptions struct {
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Context</span>
+<span id="L22" class="ln">    22  </span>	*genericclioptions.Context
+<span id="L23" class="ln">    23  </span>
+<span id="L24" class="ln">    24  </span>	<span class="comment">// Parameters</span>
+<span id="L25" class="ln">    25  </span>	searchTerm string
+<span id="L26" class="ln">    26  </span>
+<span id="L27" class="ln">    27  </span>	<span class="comment">// components matching the search query</span>
+<span id="L28" class="ln">    28  </span>	components []string
+<span id="L29" class="ln">    29  </span>}
+<span id="L30" class="ln">    30  </span>
+<span id="L31" class="ln">    31  </span><span class="comment">// NewSearchComponentOptions creates a new SearchComponentOptions instance</span>
+<span id="L32" class="ln">    32  </span>func NewSearchComponentOptions() *SearchComponentOptions {
+<span id="L33" class="ln">    33  </span>	return &amp;SearchComponentOptions{}
+<span id="L34" class="ln">    34  </span>}
+<span id="L35" class="ln">    35  </span>
+<span id="L36" class="ln">    36  </span><span class="comment">// Complete completes SearchComponentOptions after they&#39;ve been created</span>
+<span id="L37" class="ln">    37  </span>func (o *SearchComponentOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error) {
+<span id="L38" class="ln">    38  </span>	o.Context, err = genericclioptions.New(genericclioptions.NewCreateParameters(cmdline))
+<span id="L39" class="ln">    39  </span>	if err != nil {
+<span id="L40" class="ln">    40  </span>		return err
+<span id="L41" class="ln">    41  </span>	}
+<span id="L42" class="ln">    42  </span>	o.searchTerm = args[0]
+<span id="L43" class="ln">    43  </span>
+<span id="L44" class="ln">    44  </span>	o.components, err = catalog.SearchComponent(o.KClient, o.searchTerm)
+<span id="L45" class="ln">    45  </span>	return err
+<span id="L46" class="ln">    46  </span>}
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span><span class="comment">// Validate validates the SearchComponentOptions based on completed values</span>
+<span id="L49" class="ln">    49  </span>func (o *SearchComponentOptions) Validate() error {
+<span id="L50" class="ln">    50  </span>	if len(o.components) == 0 {
+<span id="L51" class="ln">    51  </span>		return fmt.Errorf(&#34;no component matched the query: %s&#34;, o.searchTerm)
+<span id="L52" class="ln">    52  </span>	}
+<span id="L53" class="ln">    53  </span>
+<span id="L54" class="ln">    54  </span>	return nil
+<span id="L55" class="ln">    55  </span>}
+<span id="L56" class="ln">    56  </span>
+<span id="L57" class="ln">    57  </span><span class="comment">// Run contains the logic for the command associated with SearchComponentOptions</span>
+<span id="L58" class="ln">    58  </span>func (o *SearchComponentOptions) Run() error {
+<span id="L59" class="ln">    59  </span>	util.DisplayComponents(o.components)
+<span id="L60" class="ln">    60  </span>	return nil
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span><span class="comment">// NewCmdCatalogSearchComponent implements the odo catalog search component command</span>
+<span id="L64" class="ln">    64  </span>func NewCmdCatalogSearchComponent(name, fullName string) *cobra.Command {
+<span id="L65" class="ln">    65  </span>	o := NewSearchComponentOptions()
+<span id="L66" class="ln">    66  </span>	return &amp;cobra.Command{
+<span id="L67" class="ln">    67  </span>		Use:   name,
+<span id="L68" class="ln">    68  </span>		Short: &#34;Search component type in catalog&#34;,
+<span id="L69" class="ln">    69  </span>		Long: `Search component type in catalog.
+<span id="L70" class="ln">    70  </span>
+<span id="L71" class="ln">    71  </span>This searches for a partial match for the given search term in all the available
+<span id="L72" class="ln">    72  </span>components.
+<span id="L73" class="ln">    73  </span>`,
+<span id="L74" class="ln">    74  </span>		Args:    cobra.ExactArgs(1),
+<span id="L75" class="ln">    75  </span>		Example: fmt.Sprintf(componentExample, fullName),
+<span id="L76" class="ln">    76  </span>		Run: func(cmd *cobra.Command, args []string) {
+<span id="L77" class="ln">    77  </span>			genericclioptions.GenericRun(o, cmd, args)
+<span id="L78" class="ln">    78  </span>		},
+<span id="L79" class="ln">    79  </span>	}
+<span id="L80" class="ln">    80  </span>}
+<span id="L81" class="ln">    81  </span>
+</pre><p><a href="../../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/search/component.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

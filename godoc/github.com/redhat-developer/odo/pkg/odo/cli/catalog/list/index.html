@@ -1,0 +1,429 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>list - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package list
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/catalog/list" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/catalog/list</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#NewCmdCatalogList">func NewCmdCatalogList(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdCatalogListComponents">func NewCmdCatalogListComponents(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdCatalogListServices">func NewCmdCatalogListServices(name, fullName string) *cobra.Command</a></dd>
+			
+			
+				
+				<dd><a href="#ListComponentsOptions">type ListComponentsOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewListComponentsOptions">func NewListComponentsOptions() *ListComponentsOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ListComponentsOptions.Complete">func (o *ListComponentsOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ListComponentsOptions.Run">func (o *ListComponentsOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ListComponentsOptions.Validate">func (o *ListComponentsOptions) Validate() error</a></dd>
+				
+			
+				
+				<dd><a href="#ServiceOptions">type ServiceOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewServiceOptions">func NewServiceOptions() *ServiceOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ServiceOptions.Complete">func (o *ServiceOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ServiceOptions.Run">func (o *ServiceOptions) Run() error</a></dd>
+				
+					
+					<dd>    <a href="#ServiceOptions.Validate">func (o *ServiceOptions) Validate() error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/components.go.html">components.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/list.go.html">list.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/services.go.html">services.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+RecommendedCommandName is the recommended command name
+</p>
+
+				<pre>const <span id="RecommendedCommandName">RecommendedCommandName</span> = &#34;list&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="NewCmdCatalogList">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/list.go.html?s=266:326#L4">NewCmdCatalogList</a>
+				<a class="permalink" href="#NewCmdCatalogList">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdCatalogList(name, fullName <a href="../../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdCatalogList implements the odo catalog list command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdCatalogListComponents">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/components.go.html?s=2629:2699#L80">NewCmdCatalogListComponents</a>
+				<a class="permalink" href="#NewCmdCatalogListComponents">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdCatalogListComponents(name, fullName <a href="../../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdCatalogListComponents implements the odo catalog list components command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdCatalogListServices">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/services.go.html?s=2059:2127#L65">NewCmdCatalogListServices</a>
+				<a class="permalink" href="#NewCmdCatalogListServices">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdCatalogListServices(name, fullName <a href="../../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdCatalogListServices implements the odo catalog list services command
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ListComponentsOptions">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/components.go.html?s=653:793#L15">ListComponentsOptions</a>
+				<a class="permalink" href="#ListComponentsOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ListComponentsOptions encapsulates the options for the odo catalog list components command
+</p>
+
+			<pre>type ListComponentsOptions struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewListComponentsOptions">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/components.go.html?s=868:922#L23">NewListComponentsOptions</a>
+					<a class="permalink" href="#NewListComponentsOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewListComponentsOptions() *<a href="#ListComponentsOptions">ListComponentsOptions</a></pre>
+				<p>
+NewListComponentsOptions creates a new ListComponentsOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ListComponentsOptions.Complete">func (*ListComponentsOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/components.go.html?s=1032:1124#L28">Complete</a>
+					<a class="permalink" href="#ListComponentsOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ListComponentsOptions">ListComponentsOptions</a>) Complete(cmdline <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ListComponentsOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ListComponentsOptions.Run">func (*ListComponentsOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/components.go.html?s=1929:1978#L56">Run</a>
+					<a class="permalink" href="#ListComponentsOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ListComponentsOptions">ListComponentsOptions</a>) Run() (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the command associated with ListComponentsOptions
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ListComponentsOptions.Validate">func (*ListComponentsOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/components.go.html?s=1496:1544#L42">Validate</a>
+					<a class="permalink" href="#ListComponentsOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ListComponentsOptions">ListComponentsOptions</a>) Validate() <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates the ListComponentsOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServiceOptions">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/services.go.html?s=694:862#L15">ServiceOptions</a>
+				<a class="permalink" href="#ServiceOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ServiceOptions encapsulates the options for the odo catalog list services command
+</p>
+
+			<pre>type ServiceOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewServiceOptions">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/services.go.html?s=928:968#L24">NewServiceOptions</a>
+					<a class="permalink" href="#NewServiceOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewServiceOptions() *<a href="#ServiceOptions">ServiceOptions</a></pre>
+				<p>
+NewServiceOptions creates a new ListServicesOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ServiceOptions.Complete">func (*ServiceOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/services.go.html?s=1069:1154#L29">Complete</a>
+					<a class="permalink" href="#ServiceOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ServiceOptions">ServiceOptions</a>) Complete(cmdline <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ListServicesOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ServiceOptions.Run">func (*ServiceOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/services.go.html?s=1662:1698#L48">Run</a>
+					<a class="permalink" href="#ServiceOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ServiceOptions">ServiceOptions</a>) Run() <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Run contains the logic for the command associated with ListServicesOptions
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ServiceOptions.Validate">func (*ServiceOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/list/services.go.html?s=1525:1566#L43">Validate</a>
+					<a class="permalink" href="#ServiceOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ServiceOptions">ServiceOptions</a>) Validate() <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates the ListServicesOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

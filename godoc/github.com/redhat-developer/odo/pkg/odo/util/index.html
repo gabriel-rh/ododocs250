@@ -1,0 +1,467 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>util - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package util
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/util" target="_blank">github.com/redhat-developer/odo/pkg/odo/util</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#AddContextFlag">func AddContextFlag(cmd *cobra.Command, setValueTo *string)</a></dd>
+			
+				
+				<dd><a href="#AddNowFlag">func AddNowFlag(cmd *cobra.Command, setValueTo *bool)</a></dd>
+			
+				
+				<dd><a href="#CapitalizeFlagDescriptions">func CapitalizeFlagDescriptions(f *pflag.FlagSet) string</a></dd>
+			
+				
+				<dd><a href="#CheckOutputFlag">func CheckOutputFlag(outputFlag string) error</a></dd>
+			
+				
+				<dd><a href="#GetFullName">func GetFullName(parentName, name string) string</a></dd>
+			
+				
+				<dd><a href="#LogErrorAndExit">func LogErrorAndExit(err error, context string, a ...interface{})</a></dd>
+			
+				
+				<dd><a href="#MapFromParameters">func MapFromParameters(params []string) (map[string]string, error)</a></dd>
+			
+				
+				<dd><a href="#ModifyAdditionalFlags">func ModifyAdditionalFlags(cmd *cobra.Command) string</a></dd>
+			
+				
+				<dd><a href="#PrintComponentInfo">func PrintComponentInfo(client kclient.ClientInterface, currentComponentName string, componentDesc component.Component, applicationName string, project string) error</a></dd>
+			
+				
+				<dd><a href="#ThrowContextError">func ThrowContextError() error</a></dd>
+			
+				
+				<dd><a href="#VisitCommands">func VisitCommands(cmd *cobra.Command, f func(*cobra.Command))</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html">cmdutils.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/flag.go.html">flag.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// ProjectFlagName is the name of the flag allowing a user to specify which project to operate on</span>
+    <span id="ProjectFlagName">ProjectFlagName</span> = &#34;project&#34;
+    <span class="comment">// ApplicationFlagName is the name of the flag allowing a user to specify which application to operate on</span>
+    <span id="ApplicationFlagName">ApplicationFlagName</span> = &#34;app&#34;
+    <span class="comment">// ComponentFlagName is the name of the flag allowing a user to specify which component to operate on</span>
+    <span id="ComponentFlagName">ComponentFlagName</span> = &#34;component&#34;
+    <span class="comment">// OutputFlagName is the name of the flag allowing user to specify output format</span>
+    <span id="OutputFlagName">OutputFlagName</span> = &#34;o&#34;
+    <span class="comment">// ContextFlagName is the name of the flag allowing a user to specify the location of the component settings</span>
+    <span id="ContextFlagName">ContextFlagName</span> = &#34;context&#34;
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>
+CmdUsageTemplate is the main template used for all command line usage
+</p>
+
+				<pre>var <span id="CmdUsageTemplate">CmdUsageTemplate</span> = `Usage:{{if .Runnable}}
+  {{if .HasAvailableFlags}}{{appendIfNotPresent .UseLine &#34;[flags]&#34;}}{{else}}{{.UseLine}}{{end}}{{end}}{{if .HasAvailableSubCommands}}
+  {{ .CommandPath}} [command]{{end}}{{if gt .Aliases 0}}
+
+Aliases:
+  {{.NameAndAliases}}{{end}}{{if .HasExample}}
+
+Examples:
+{{ .Example }}{{end}}{{ if .HasAvailableSubCommands}}
+
+Available Commands:{{range .Commands}}{{if .IsAvailableCommand}}
+  {{rpad .Name .NamePadding }} {{.Short}}{{end}}{{end}}{{end}}{{ if .HasAvailableLocalFlags}}
+
+Flags:
+{{CapitalizeFlagDescriptions .LocalFlags | trimRightSpace}}{{end}}{{ if .HasAvailableInheritedFlags}}
+
+Additional Flags:
+{{ModifyAdditionalFlags . | trimRightSpace}}{{end}}{{if .HasHelpSubCommands}}
+
+Additional help topics:{{range .Commands}}{{if .IsHelpCommand}}
+  {{rpad .CommandPath .CommandPathPadding}} {{.Short}}{{end}}{{end}}{{end}}{{ if .HasAvailableSubCommands }}
+
+Use &#34;{{.CommandPath}} [command] --help&#34; for more information about a command.{{end}}
+`</pre>
+			
+		
+		
+			
+			
+			<h2 id="AddContextFlag">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/flag.go.html?s=767:826#L11">AddContextFlag</a>
+				<a class="permalink" href="#AddContextFlag">¶</a>
+				
+				
+			</h2>
+			<pre>func AddContextFlag(cmd *<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a>, setValueTo *<a href="../../../../../../builtin/#string">string</a>)</pre>
+			<p>
+AddContextFlag adds `context` flag to given cobra command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="AddNowFlag">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/flag.go.html?s=1128:1181#L21">AddNowFlag</a>
+				<a class="permalink" href="#AddNowFlag">¶</a>
+				
+				
+			</h2>
+			<pre>func AddNowFlag(cmd *<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a>, setValueTo *<a href="../../../../../../builtin/#bool">bool</a>)</pre>
+			<p>
+AddNowFlag adds `now` flag to given cobra command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CapitalizeFlagDescriptions">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html?s=6994:7050#L251">CapitalizeFlagDescriptions</a>
+				<a class="permalink" href="#CapitalizeFlagDescriptions">¶</a>
+				
+				
+			</h2>
+			<pre>func CapitalizeFlagDescriptions(f *<a href="../../../../../../github.com/spf13/pflag/">pflag</a>.<a href="../../../../../../github.com/spf13/pflag/#FlagSet">FlagSet</a>) <a href="../../../../../../builtin/#string">string</a></pre>
+			<p>
+CapitalizeFlagDescriptions adds capitalizations
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CheckOutputFlag">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html?s=1625:1670#L55">CheckOutputFlag</a>
+				<a class="permalink" href="#CheckOutputFlag">¶</a>
+				
+				
+			</h2>
+			<pre>func CheckOutputFlag(outputFlag <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+			<p>
+CheckOutputFlag validates the -o flag
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetFullName">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html?s=5887:5935#L215">GetFullName</a>
+				<a class="permalink" href="#GetFullName">¶</a>
+				
+				
+			</h2>
+			<pre>func GetFullName(parentName, name <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#string">string</a></pre>
+			<p>
+GetFullName generates a command&#39;s full name based on its parent&#39;s full name and its own name
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="LogErrorAndExit">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html?s=881:946#L20">LogErrorAndExit</a>
+				<a class="permalink" href="#LogErrorAndExit">¶</a>
+				
+				
+			</h2>
+			<pre>func LogErrorAndExit(err <a href="../../../../../../builtin/#error">error</a>, context <a href="../../../../../../builtin/#string">string</a>, a ...interface{})</pre>
+			<p>
+LogErrorAndExit prints the cause of the given error and exits the code with an
+exit code of 1.
+If the context is provided, then that is printed, if not, then the cause is
+detected using errors.Cause(err)
+*If* we are using the global json parameter, we instead output the json output
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MapFromParameters">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html?s=8733:8799#L294">MapFromParameters</a>
+				<a class="permalink" href="#MapFromParameters">¶</a>
+				
+				
+			</h2>
+			<pre>func MapFromParameters(params []<a href="../../../../../../builtin/#string">string</a>) (map[<a href="../../../../../../builtin/#string">string</a>]<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+MapFromParameters takes an array of strings which are of the format &#34;key=value&#34; and returns a map from these
+It returns error if any of the string in the array doesn&#39;t adhere to &#34;key=value&#34; format
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ModifyAdditionalFlags">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html?s=6507:6560#L233">ModifyAdditionalFlags</a>
+				<a class="permalink" href="#ModifyAdditionalFlags">¶</a>
+				
+				
+			</h2>
+			<pre>func ModifyAdditionalFlags(cmd *<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a>) <a href="../../../../../../builtin/#string">string</a></pre>
+			<p>
+ModifyAdditionalFlags modifies the flags and updates the descriptions
+as well as changes whether or not machine readable output
+has been passed in..
+</p>
+<p>
+Return the flag usages for the help output
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PrintComponentInfo">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html?s=1898:2063#L66">PrintComponentInfo</a>
+				<a class="permalink" href="#PrintComponentInfo">¶</a>
+				
+				
+			</h2>
+			<pre>func PrintComponentInfo(client <a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, currentComponentName <a href="../../../../../../builtin/#string">string</a>, componentDesc <a href="../../../../../../github.com/redhat-developer/odo/pkg/component/">component</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/component/#Component">Component</a>, applicationName <a href="../../../../../../builtin/#string">string</a>, project <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+			<p>
+PrintComponentInfo prints Component Information like path, URL &amp; storage
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ThrowContextError">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html?s=8344:8374#L287">ThrowContextError</a>
+				<a class="permalink" href="#ThrowContextError">¶</a>
+				
+				
+			</h2>
+			<pre>func ThrowContextError() <a href="../../../../../../builtin/#error">error</a></pre>
+			<p>
+ThrowContextError prints a context error if application/project is not found
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="VisitCommands">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/cmdutils.go.html?s=6155:6217#L221">VisitCommands</a>
+				<a class="permalink" href="#VisitCommands">¶</a>
+				
+				
+			</h2>
+			<pre>func VisitCommands(cmd *<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a>, f func(*<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a>))</pre>
+			<p>
+VisitCommands visits each command within Cobra.
+Adapted from: <a href="https://github.com/cppforlife/knctl/blob/612840d3c9729b1c57b20ca0450acab0d6eceeeb/pkg/knctl/cobrautil/misc.go#L23">https://github.com/cppforlife/knctl/blob/612840d3c9729b1c57b20ca0450acab0d6eceeeb/pkg/knctl/cobrautil/misc.go#L23</a>
+</p>
+
+			
+			
+
+		
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="completion/">completion</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="validation/">validation</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

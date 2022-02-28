@@ -1,0 +1,206 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>ui - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package ui
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/ui" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/ui</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#GetValidatorFor">func GetValidatorFor(prop validation.Validatable) survey.Validator</a></dd>
+			
+				
+				<dd><a href="#HandleError">func HandleError(err error)</a></dd>
+			
+				
+				<dd><a href="#Proceed">func Proceed(message string, stdio ...terminal.Stdio) bool</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/ui/common.go.html">common.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="GetValidatorFor">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/ui/common.go.html?s=619:685#L15">GetValidatorFor</a>
+				<a class="permalink" href="#GetValidatorFor">¶</a>
+				
+				
+			</h2>
+			<pre>func GetValidatorFor(prop <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/util/validation/">validation</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/util/validation/#Validatable">Validatable</a>) survey.<a href="#Validator">Validator</a></pre>
+			<p>
+GetValidatorFor returns an implementation specific validator for the given validatable to avoid type casting at each calling
+site
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HandleError">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/ui/common.go.html?s=295:322#L3">HandleError</a>
+				<a class="permalink" href="#HandleError">¶</a>
+				
+				
+			</h2>
+			<pre>func HandleError(err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+HandleError handles UI-related errors, in particular useful to gracefully handle ctrl-c interrupts gracefully
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Proceed">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/ui/common.go.html?s=907:965#L21">Proceed</a>
+				<a class="permalink" href="#Proceed">¶</a>
+				
+				
+			</h2>
+			<pre>func Proceed(message <a href="../../../../../../../builtin/#string">string</a>, stdio ...<a href="../../../../../../../gopkg.in/AlecAivazis/survey.v1/terminal/">terminal</a>.<a href="../../../../../../../gopkg.in/AlecAivazis/survey.v1/terminal/#Stdio">Stdio</a>) <a href="../../../../../../../builtin/#bool">bool</a></pre>
+			<p>
+Proceed displays a given message and asks the user if they want to proceed using the optionally specified Stdio instance (useful
+for testing purposes)
+</p>
+
+			
+			
+
+		
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>segment - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package segment
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/segment" target="_blank">github.com/redhat-developer/odo/pkg/segment</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#ErrorType">func ErrorType(err error) string</a></dd>
+			
+				
+				<dd><a href="#GetRegistryOptions">func GetRegistryOptions() registryLibrary.RegistryOptions</a></dd>
+			
+				
+				<dd><a href="#GetTelemetryFilePath">func GetTelemetryFilePath() string</a></dd>
+			
+				
+				<dd><a href="#IsTelemetryEnabled">func IsTelemetryEnabled(cfg preference.Client) bool</a></dd>
+			
+				
+				<dd><a href="#RunningInTerminal">func RunningInTerminal() bool</a></dd>
+			
+				
+				<dd><a href="#SetError">func SetError(err error) (errString string)</a></dd>
+			
+			
+				
+				<dd><a href="#Client">type Client</a></dd>
+				
+					
+					<dd>    <a href="#NewClient">func NewClient(preference preference.Client) (*Client, error)</a></dd>
+				
+				
+					
+					<dd>    <a href="#Client.Close">func (c *Client) Close() error</a></dd>
+				
+					
+					<dd>    <a href="#Client.Upload">func (c *Client) Upload(data TelemetryData) error</a></dd>
+				
+			
+				
+				<dd><a href="#TelemetryData">type TelemetryData</a></dd>
+				
+				
+			
+				
+				<dd><a href="#TelemetryProperties">type TelemetryProperties</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/integrations.go.html">integrations.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html">segment.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+DisableTelemetryEnv is name of environment variable, if set to true it disables odo telemetry completely
+hiding even the question
+</p>
+
+				<pre>const <span id="DisableTelemetryEnv">DisableTelemetryEnv</span> = &#34;ODO_DISABLE_TELEMETRY&#34;</pre>
+			
+				<p>
+Sanitizer replaces a PII data
+</p>
+
+				<pre>const <span id="Sanitizer">Sanitizer</span> = &#34;XXXX&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="ErrorType">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=7181:7213#L223">ErrorType</a>
+				<a class="permalink" href="#ErrorType">¶</a>
+				
+				
+			</h2>
+			<pre>func ErrorType(err <a href="../../../../../builtin/#error">error</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+ErrorType returns the type of error
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetRegistryOptions">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/integrations.go.html?s=1285:1342#L37">GetRegistryOptions</a>
+				<a class="permalink" href="#GetRegistryOptions">¶</a>
+				
+				
+			</h2>
+			<pre>func GetRegistryOptions() <a href="../../../../../github.com/devfile/registry-support/registry-library/library/">registryLibrary</a>.<a href="../../../../../github.com/devfile/registry-support/registry-library/library/#RegistryOptions">RegistryOptions</a></pre>
+			<p>
+GetRegistryOptions returns a populated RegistryOptions object containing all the properties needed to make a devfile registry library call
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetTelemetryFilePath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=5538:5572#L168">GetTelemetryFilePath</a>
+				<a class="permalink" href="#GetTelemetryFilePath">¶</a>
+				
+				
+			</h2>
+			<pre>func GetTelemetryFilePath() <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetTelemetryFilePath returns the default file path where the generated anonymous ID is stored
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsTelemetryEnabled">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=7590:7641#L240">IsTelemetryEnabled</a>
+				<a class="permalink" href="#IsTelemetryEnabled">¶</a>
+				
+				
+			</h2>
+			<pre>func IsTelemetryEnabled(cfg <a href="../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+IsTelemetryEnabled returns true if user has consented to telemetry
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RunningInTerminal">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=7441:7470#L235">RunningInTerminal</a>
+				<a class="permalink" href="#RunningInTerminal">¶</a>
+				
+				
+			</h2>
+			<pre>func RunningInTerminal() <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+RunningInTerminal checks if odo was run from a terminal
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetError">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=6608:6651#L201">SetError</a>
+				<a class="permalink" href="#SetError">¶</a>
+				
+				
+			</h2>
+			<pre>func SetError(err <a href="../../../../../builtin/#error">error</a>) (errString <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+SetError sanitizes any PII(Personally Identifiable Information) from the error
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=1376:1703#L43">Client</a>
+				<a class="permalink" href="#Client">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Client struct {
+<span id="Client.SegmentClient"></span>    <span class="comment">// SegmentClient helps interact with the segment API</span>
+    SegmentClient analytics.<a href="#Client">Client</a>
+<span id="Client.Preference"></span>    <span class="comment">// Preference points to the global odo config</span>
+    Preference <a href="../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>
+<span id="Client.TelemetryFilePath"></span>    <span class="comment">// TelemetryFilePath points to the file containing anonymousID used for tracking odo commands executed by the user</span>
+    TelemetryFilePath <a href="../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=1765:1826#L53">NewClient</a>
+					<a class="permalink" href="#NewClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewClient(preference <a href="../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) (*<a href="#Client">Client</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+NewClient returns a Client created with the default args
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="Client.Close">func (*Client) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=3239:3269#L99">Close</a>
+					<a class="permalink" href="#Client.Close">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Client">Client</a>) Close() <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+Close client connection and send the data
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Client.Upload">func (*Client) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=3403:3452#L104">Upload</a>
+					<a class="permalink" href="#Client.Upload">¶</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Client">Client</a>) Upload(data <a href="#TelemetryData">TelemetryData</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+Upload prepares the data to be sent to segment and send it once the client connection closes
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TelemetryData">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=1246:1374#L38">TelemetryData</a>
+				<a class="permalink" href="#TelemetryData">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type TelemetryData struct {
+<span id="TelemetryData.Event"></span>    Event      <a href="../../../../../builtin/#string">string</a>              `json:&#34;event&#34;`
+<span id="TelemetryData.Properties"></span>    Properties <a href="#TelemetryProperties">TelemetryProperties</a> `json:&#34;properties&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TelemetryProperties">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/segment/segment.go.html?s=821:1244#L28">TelemetryProperties</a>
+				<a class="permalink" href="#TelemetryProperties">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type TelemetryProperties struct {
+<span id="TelemetryProperties.Duration"></span>    Duration      <a href="../../../../../builtin/#int64">int64</a>                  `json:&#34;duration&#34;`
+<span id="TelemetryProperties.Error"></span>    Error         <a href="../../../../../builtin/#string">string</a>                 `json:&#34;error&#34;`
+<span id="TelemetryProperties.ErrorType"></span>    ErrorType     <a href="../../../../../builtin/#string">string</a>                 `json:&#34;errortype&#34;`
+<span id="TelemetryProperties.Success"></span>    Success       <a href="../../../../../builtin/#bool">bool</a>                   `json:&#34;success&#34;`
+<span id="TelemetryProperties.Tty"></span>    Tty           <a href="../../../../../builtin/#bool">bool</a>                   `json:&#34;tty&#34;`
+<span id="TelemetryProperties.Version"></span>    Version       <a href="../../../../../builtin/#string">string</a>                 `json:&#34;version&#34;`
+<span id="TelemetryProperties.CmdProperties"></span>    CmdProperties map[<a href="../../../../../builtin/#string">string</a>]interface{} `json:&#34;cmdProperties&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="context/">context</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

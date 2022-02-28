@@ -1,0 +1,3356 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>helper - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package helper
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/tests/helper" target="_blank">github.com/redhat-developer/odo/tests/helper</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#Chdir">func Chdir(dir string)</a></dd>
+			
+				
+				<dd><a href="#CmdRunner">func CmdRunner(program string, args ...string) *gexec.Session</a></dd>
+			
+				
+				<dd><a href="#CommonAfterEach">func CommonAfterEach(commonVar CommonVar)</a></dd>
+			
+				
+				<dd><a href="#CopyAndCreate">func CopyAndCreate(sourcePath, devfilePath, contextDir string)</a></dd>
+			
+				
+				<dd><a href="#CopyExample">func CopyExample(exampleName string, targetDir string)</a></dd>
+			
+				
+				<dd><a href="#CopyExampleDevFile">func CopyExampleDevFile(devfilePath, targetDst string)</a></dd>
+			
+				
+				<dd><a href="#CopyExampleFile">func CopyExampleFile(filePath, targetDst string)</a></dd>
+			
+				
+				<dd><a href="#CopyManifestFile">func CopyManifestFile(fileName, targetDst string)</a></dd>
+			
+				
+				<dd><a href="#CreateFileWithContent">func CreateFileWithContent(path string, fileContent string) error</a></dd>
+			
+				
+				<dd><a href="#CreateNewContext">func CreateNewContext() string</a></dd>
+			
+				
+				<dd><a href="#CreateRandProject">func CreateRandProject() string</a></dd>
+			
+				
+				<dd><a href="#CreateSimpleFile">func CreateSimpleFile(context, filePrefix, fileExtension string) (string, string)</a></dd>
+			
+				
+				<dd><a href="#CreateSymLink">func CreateSymLink(oldFileName, newFileName string)</a></dd>
+			
+				
+				<dd><a href="#DeleteDir">func DeleteDir(dir string)</a></dd>
+			
+				
+				<dd><a href="#DeleteFile">func DeleteFile(filepath string)</a></dd>
+			
+				
+				<dd><a href="#DeleteProject">func DeleteProject(projectName string)</a></dd>
+			
+				
+				<dd><a href="#DetermineRouteURL">func DetermineRouteURL(context string) string</a></dd>
+			
+				
+				<dd><a href="#DetermineRouteURLs">func DetermineRouteURLs(context string) []string</a></dd>
+			
+				
+				<dd><a href="#DontMatchAllInOutput">func DontMatchAllInOutput(output string, tonotmatch []string)</a></dd>
+			
+				
+				<dd><a href="#ExtractSubString">func ExtractSubString(output, start, end string) string</a></dd>
+			
+				
+				<dd><a href="#FileIsEmpty">func FileIsEmpty(filename string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="#FileShouldContainSubstring">func FileShouldContainSubstring(file string, subString string)</a></dd>
+			
+				
+				<dd><a href="#GetAnnotationsDeployment">func GetAnnotationsDeployment(path, componentName, appName, projectName string) map[string]string</a></dd>
+			
+				
+				<dd><a href="#GetConfigValue">func GetConfigValue(key string) string</a></dd>
+			
+				
+				<dd><a href="#GetConfigValueWithContext">func GetConfigValueWithContext(key string, context string) string</a></dd>
+			
+				
+				<dd><a href="#GetEnvFromEntry">func GetEnvFromEntry(path string, componentName string, appName string, projectName string) string</a></dd>
+			
+				
+				<dd><a href="#GetEnvRefNames">func GetEnvRefNames(path, componentName, appName, projectName string) []string</a></dd>
+			
+				
+				<dd><a href="#GetExamplePath">func GetExamplePath(args ...string) string</a></dd>
+			
+				
+				<dd><a href="#GetLocalEnvInfoValueWithContext">func GetLocalEnvInfoValueWithContext(key string, context string) string</a></dd>
+			
+				
+				<dd><a href="#GetMetadataFromDevfile">func GetMetadataFromDevfile(devfilePath string) devfilepkg.DevfileMetadata</a></dd>
+			
+				
+				<dd><a href="#GetPreferenceValue">func GetPreferenceValue(key string) string</a></dd>
+			
+				
+				<dd><a href="#GetSecrets">func GetSecrets(path, project string) string</a></dd>
+			
+				
+				<dd><a href="#GetUserHomeDir">func GetUserHomeDir() string</a></dd>
+			
+				
+				<dd><a href="#GetVolumeNamesFromDeployment">func GetVolumeNamesFromDeployment(path, componentName, appName, projectName string) map[string]string</a></dd>
+			
+				
+				<dd><a href="#Getwd">func Getwd() string</a></dd>
+			
+				
+				<dd><a href="#GjsonExactMatcher">func GjsonExactMatcher(values []gjson.Result, expected []string) bool</a></dd>
+			
+				
+				<dd><a href="#GjsonMatcher">func GjsonMatcher(values []gjson.Result, expected []string) bool</a></dd>
+			
+				
+				<dd><a href="#HttpFileServer">func HttpFileServer(port int, location string) *http.Server</a></dd>
+			
+				
+				<dd><a href="#HttpWaitFor">func HttpWaitFor(url string, match string, maxRetry int, interval int)</a></dd>
+			
+				
+				<dd><a href="#HttpWaitForWithStatus">func HttpWaitForWithStatus(url string, match string, maxRetry int, interval int, expectedCode int)</a></dd>
+			
+				
+				<dd><a href="#IsJSON">func IsJSON(s string) bool</a></dd>
+			
+				
+				<dd><a href="#IsKubernetesCluster">func IsKubernetesCluster() bool</a></dd>
+			
+				
+				<dd><a href="#ListFilesInDir">func ListFilesInDir(directoryName string) []string</a></dd>
+			
+				
+				<dd><a href="#LocalEnvInfo">func LocalEnvInfo(context string) *envinfo.EnvSpecificInfo</a></dd>
+			
+				
+				<dd><a href="#LocalKubeconfigSet">func LocalKubeconfigSet(context string)</a></dd>
+			
+				
+				<dd><a href="#MakeDir">func MakeDir(dir string)</a></dd>
+			
+				
+				<dd><a href="#MatchAllInOutput">func MatchAllInOutput(output string, tomatch []string)</a></dd>
+			
+				
+				<dd><a href="#RandString">func RandString(n int) string</a></dd>
+			
+				
+				<dd><a href="#ReadFile">func ReadFile(filePath string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#RenameFile">func RenameFile(oldFileName, newFileName string)</a></dd>
+			
+				
+				<dd><a href="#ReplaceDevfileField">func ReplaceDevfileField(devfileLocation, field, newValue string) error</a></dd>
+			
+				
+				<dd><a href="#ReplaceString">func ReplaceString(filename string, oldString string, newString string)</a></dd>
+			
+				
+				<dd><a href="#RunCmdWithMatchOutputFromBuffer">func RunCmdWithMatchOutputFromBuffer(timeoutAfter time.Duration, matchString, program string, args ...string) (bool, error)</a></dd>
+			
+				
+				<dd><a href="#RunTestSpecs">func RunTestSpecs(t *testing.T, description string)</a></dd>
+			
+				
+				<dd><a href="#RunWithExponentialBackoff">func RunWithExponentialBackoff(fxn func() error, maxDelayInSeconds int, expireDuration time.Duration) error</a></dd>
+			
+				
+				<dd><a href="#SetDefaultDevfileRegistryAsStaging">func SetDefaultDevfileRegistryAsStaging()</a></dd>
+			
+				
+				<dd><a href="#SetProjectName">func SetProjectName() string</a></dd>
+			
+				
+				<dd><a href="#StatFileInPodContainer">func StatFileInPodContainer(runner CliRunner, cmpName, containerName, appName, project, filepath string) string</a></dd>
+			
+				
+				<dd><a href="#Suffocate">func Suffocate(s string) string</a></dd>
+			
+				
+				<dd><a href="#Unindented">func Unindented(jsonStr string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#VerifyFileExists">func VerifyFileExists(filename string) bool</a></dd>
+			
+				
+				<dd><a href="#VerifyFilesExist">func VerifyFilesExist(path string, files []string) bool</a></dd>
+			
+				
+				<dd><a href="#VerifyResourcesDeleted">func VerifyResourcesDeleted(runner CliRunner, resources []ResourceInfo)</a></dd>
+			
+				
+				<dd><a href="#VerifyResourcesToBeDeleted">func VerifyResourcesToBeDeleted(runner CliRunner, resources []ResourceInfo)</a></dd>
+			
+				
+				<dd><a href="#WaitAndCheckForTerminatingState">func WaitAndCheckForTerminatingState(path, resourceType, namespace string, timeoutMinutes int) bool</a></dd>
+			
+				
+				<dd><a href="#WaitForCmdOut">func WaitForCmdOut(program string, args []string, timeout int, errOnFail bool, check func(output string) bool, includeStdErr ...bool) bool</a></dd>
+			
+				
+				<dd><a href="#WaitForOutputToContain">func WaitForOutputToContain(substring string, timeoutInSeconds int, intervalInSeconds int, session *gexec.Session)</a></dd>
+			
+				
+				<dd><a href="#WatchNonRetCmdStdOut">func WatchNonRetCmdStdOut(cmdStr string, timeout time.Duration, success func(output string) bool, startSimulationCh chan bool, startIndicatorFunc func(output string) bool) (bool, error)</a></dd>
+			
+			
+				
+				<dd><a href="#CliRunner">type CliRunner</a></dd>
+				
+					
+					<dd>    <a href="#GetCliRunner">func GetCliRunner() CliRunner</a></dd>
+				
+				
+			
+				
+				<dd><a href="#CmdWrapper">type CmdWrapper</a></dd>
+				
+					
+					<dd>    <a href="#Cmd">func Cmd(program string, args ...string) *CmdWrapper</a></dd>
+				
+				
+					
+					<dd>    <a href="#CmdWrapper.AddEnv">func (cw *CmdWrapper) AddEnv(args ...string) *CmdWrapper</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.Err">func (cw *CmdWrapper) Err() string</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.Out">func (cw *CmdWrapper) Out() string</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.OutAndErr">func (cw *CmdWrapper) OutAndErr() (string, string)</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.Runner">func (cw *CmdWrapper) Runner() *CmdWrapper</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.ShouldFail">func (cw *CmdWrapper) ShouldFail() *CmdWrapper</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.ShouldPass">func (cw *CmdWrapper) ShouldPass() *CmdWrapper</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.ShouldRun">func (cw *CmdWrapper) ShouldRun() *CmdWrapper</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.WithEnv">func (cw *CmdWrapper) WithEnv(args ...string) *CmdWrapper</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.WithRetry">func (cw *CmdWrapper) WithRetry(maxRetry int, intervalSeconds time.Duration) *CmdWrapper</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.WithTerminate">func (cw *CmdWrapper) WithTerminate(timeoutAfter time.Duration, stop chan bool) *CmdWrapper</a></dd>
+				
+					
+					<dd>    <a href="#CmdWrapper.WithTimeout">func (cw *CmdWrapper) WithTimeout(timeoutAfter time.Duration) *CmdWrapper</a></dd>
+				
+			
+				
+				<dd><a href="#CommonVar">type CommonVar</a></dd>
+				
+					
+					<dd>    <a href="#CommonBeforeEach">func CommonBeforeEach() CommonVar</a></dd>
+				
+				
+			
+				
+				<dd><a href="#KubectlRunner">type KubectlRunner</a></dd>
+				
+					
+					<dd>    <a href="#NewKubectlRunner">func NewKubectlRunner(kubectlPath string) KubectlRunner</a></dd>
+				
+				
+					
+					<dd>    <a href="#KubectlRunner.CheckCmdOpInRemoteDevfilePod">func (kubectl KubectlRunner) CheckCmdOpInRemoteDevfilePod(podName string, containerName string, prjName string, cmd []string, checkOp func(cmdOp string, err error) bool) bool</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.CreateRandNamespaceProject">func (kubectl KubectlRunner) CreateRandNamespaceProject() string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.CreateRandNamespaceProjectOfLength">func (kubectl KubectlRunner) CreateRandNamespaceProjectOfLength(i int) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.CreateSecret">func (kubectl KubectlRunner) CreateSecret(secretName, secretPass, project string)</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.DeleteNamespaceProject">func (kubectl KubectlRunner) DeleteNamespaceProject(projectName string)</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.DeletePod">func (kubectl KubectlRunner) DeletePod(podName string, namespace string)</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.Exec">func (kubectl KubectlRunner) Exec(podName string, projectName string, args ...string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.ExecListDir">func (kubectl KubectlRunner) ExecListDir(podName string, projectName string, dir string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetAllPVCNames">func (kubectl KubectlRunner) GetAllPVCNames(namespace string) []string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetAllPodsInNs">func (kubectl KubectlRunner) GetAllPodsInNs(namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetAnnotationsDeployment">func (kubectl KubectlRunner) GetAnnotationsDeployment(componentName, appName, projectName string) map[string]string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetContainerEnv">func (kubectl KubectlRunner) GetContainerEnv(podName, containerName, namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetEnvFromEntry">func (kubectl KubectlRunner) GetEnvFromEntry(componentName string, appName string, projectName string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetEnvRefNames">func (kubectl KubectlRunner) GetEnvRefNames(componentName, appName, projectName string) []string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetEnvsDevFileDeployment">func (kubectl KubectlRunner) GetEnvsDevFileDeployment(componentName, appName, projectName string) map[string]string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetPVCSize">func (kubectl KubectlRunner) GetPVCSize(compName, storageName, namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetPodInitContainers">func (kubectl KubectlRunner) GetPodInitContainers(compName string, namespace string) []string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetRunningPodNameByComponent">func (kubectl KubectlRunner) GetRunningPodNameByComponent(compName string, namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetSecrets">func (kubectl KubectlRunner) GetSecrets(project string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetServices">func (kubectl KubectlRunner) GetServices(namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetVolumeMountNamesandPathsFromContainer">func (kubectl KubectlRunner) GetVolumeMountNamesandPathsFromContainer(deployName string, containerName, namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.GetVolumeNamesFromDeployment">func (kubectl KubectlRunner) GetVolumeNamesFromDeployment(componentName, appName, projectName string) map[string]string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.PodsShouldBeRunning">func (kubectl KubectlRunner) PodsShouldBeRunning(project string, regex string)</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.Run">func (kubectl KubectlRunner) Run(args ...string) *gexec.Session</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.SetProject">func (kubectl KubectlRunner) SetProject(namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.VerifyResourceDeleted">func (kubectl KubectlRunner) VerifyResourceDeleted(ri ResourceInfo)</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.VerifyResourceToBeDeleted">func (kubectl KubectlRunner) VerifyResourceToBeDeleted(ri ResourceInfo)</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.WaitAndCheckForExistence">func (kubectl KubectlRunner) WaitAndCheckForExistence(resourceType, namespace string, timeoutMinutes int) bool</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.WaitAndCheckForTerminatingState">func (kubectl KubectlRunner) WaitAndCheckForTerminatingState(resourceType, namespace string, timeoutMinutes int) bool</a></dd>
+				
+					
+					<dd>    <a href="#KubectlRunner.WaitForRunnerCmdOut">func (kubectl KubectlRunner) WaitForRunnerCmdOut(args []string, timeout int, errOnFail bool, check func(output string) bool, includeStdErr ...bool) bool</a></dd>
+				
+			
+				
+				<dd><a href="#OcRunner">type OcRunner</a></dd>
+				
+					
+					<dd>    <a href="#NewOcRunner">func NewOcRunner(ocPath string) OcRunner</a></dd>
+				
+				
+					
+					<dd>    <a href="#OcRunner.AddSecret">func (oc OcRunner) AddSecret(comvar CommonVar)</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.CheckCmdOpInRemoteCmpPod">func (oc OcRunner) CheckCmdOpInRemoteCmpPod(cmpName string, appName string, prjName string, cmd []string, checkOp func(cmdOp string, err error) bool) bool</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.CheckCmdOpInRemoteDevfilePod">func (oc OcRunner) CheckCmdOpInRemoteDevfilePod(podName string, containerName string, prjName string, cmd []string, checkOp func(cmdOp string, err error) bool) bool</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.CreateRandNamespaceProject">func (oc OcRunner) CreateRandNamespaceProject() string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.CreateRandNamespaceProjectOfLength">func (oc OcRunner) CreateRandNamespaceProjectOfLength(i int) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.CreateSecret">func (oc OcRunner) CreateSecret(secretName, secretPass, project string)</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.DeleteNamespaceProject">func (oc OcRunner) DeleteNamespaceProject(projectName string)</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.DeletePod">func (oc OcRunner) DeletePod(podName string, namespace string)</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.Exec">func (oc OcRunner) Exec(podName string, projectName string, args ...string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.ExecListDir">func (oc OcRunner) ExecListDir(podName string, projectName string, dir string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetAllPVCNames">func (oc OcRunner) GetAllPVCNames(namespace string) []string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetAllPodsInNs">func (oc OcRunner) GetAllPodsInNs(namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetAnnotationsDeployment">func (oc OcRunner) GetAnnotationsDeployment(componentName, appName, projectName string) map[string]string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetComponentRoutes">func (oc OcRunner) GetComponentRoutes(component string, app string, project string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetContainerEnv">func (oc OcRunner) GetContainerEnv(podName, containerName, namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetCurrentProject">func (oc OcRunner) GetCurrentProject() string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetCurrentServerURL">func (oc OcRunner) GetCurrentServerURL() string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetEnvFromEntry">func (oc OcRunner) GetEnvFromEntry(componentName string, appName string, projectName string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetEnvRefNames">func (oc OcRunner) GetEnvRefNames(componentName, appName, projectName string) []string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetEnvsDevFileDeployment">func (oc OcRunner) GetEnvsDevFileDeployment(componentName, appName, projectName string) map[string]string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetFirstURL">func (oc OcRunner) GetFirstURL(component string, app string, project string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetLoginUser">func (oc OcRunner) GetLoginUser() string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetPVCSize">func (oc OcRunner) GetPVCSize(compName, storageName, namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetPodInitContainers">func (oc OcRunner) GetPodInitContainers(compName string, namespace string) []string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetRoute">func (oc OcRunner) GetRoute(urlName string, appName string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetRunningPodNameByComponent">func (oc OcRunner) GetRunningPodNameByComponent(compName string, namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetRunningPodNameOfComp">func (oc OcRunner) GetRunningPodNameOfComp(compName string, namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetSecrets">func (oc OcRunner) GetSecrets(project string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetServices">func (oc OcRunner) GetServices(namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetToken">func (oc OcRunner) GetToken() string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetVolumeMountNamesandPathsFromContainer">func (oc OcRunner) GetVolumeMountNamesandPathsFromContainer(deployName string, containerName, namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.GetVolumeNamesFromDeployment">func (oc OcRunner) GetVolumeNamesFromDeployment(componentName, appName, projectName string) map[string]string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.LoginUsingToken">func (oc OcRunner) LoginUsingToken(token string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.Logout">func (oc OcRunner) Logout()</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.PodsShouldBeRunning">func (oc OcRunner) PodsShouldBeRunning(project string, regex string)</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.Run">func (oc OcRunner) Run(args ...string) *gexec.Session</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.ServiceInstanceStatus">func (oc OcRunner) ServiceInstanceStatus(serviceInstanceName string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.SetProject">func (oc OcRunner) SetProject(namespace string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.StatFileInPod">func (oc OcRunner) StatFileInPod(cmpName, appName, project, filepath string) string</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.VerifyResourceDeleted">func (oc OcRunner) VerifyResourceDeleted(ri ResourceInfo)</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.VerifyResourceToBeDeleted">func (oc OcRunner) VerifyResourceToBeDeleted(ri ResourceInfo)</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.WaitAndCheckForExistence">func (oc OcRunner) WaitAndCheckForExistence(resourceType, namespace string, timeoutMinutes int) bool</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.WaitAndCheckForTerminatingState">func (oc OcRunner) WaitAndCheckForTerminatingState(resourceType, namespace string, timeoutMinutes int) bool</a></dd>
+				
+					
+					<dd>    <a href="#OcRunner.WaitForRunnerCmdOut">func (oc OcRunner) WaitForRunnerCmdOut(args []string, timeout int, errOnFail bool, check func(output string) bool, includeStdErr ...bool) bool</a></dd>
+				
+			
+				
+				<dd><a href="#ResourceInfo">type ResourceInfo</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cli.go.html">helper_cli.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html">helper_cmd_wrapper.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_configValidate.go.html">helper_configValidate.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html">helper_filesystem.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html">helper_generic.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_http.go.html">helper_http.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html">helper_kubectl.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html">helper_oc.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_run.go.html">helper_run.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/kubernetes_utils.go.html">kubernetes_utils.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html">odo_utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="ResourceTypeDeployment">ResourceTypeDeployment</span> = &#34;deployment&#34;
+    <span id="ResourceTypePod">ResourceTypePod</span>        = &#34;pod&#34;
+    <span id="ResourceTypePVC">ResourceTypePVC</span>        = &#34;pvc&#34;
+    <span id="ResourceTypeIngress">ResourceTypeIngress</span>    = &#34;ingress&#34;
+    <span id="ResourceTypeService">ResourceTypeService</span>    = &#34;service&#34;
+)</pre>
+			
+				
+				<pre>const (
+    <span id="ResourceTypeRoute">ResourceTypeRoute</span> = &#34;route&#34;
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="Chdir">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=2400:2422#L84">Chdir</a>
+				<a class="permalink" href="#Chdir">¶</a>
+				
+				
+			</h2>
+			<pre>func Chdir(dir <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+Chdir change current working dir
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CmdRunner">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_run.go.html?s=434:495#L12">CmdRunner</a>
+				<a class="permalink" href="#CmdRunner">¶</a>
+				
+				
+			</h2>
+			<pre>func CmdRunner(program <a href="../../../../../builtin/#string">string</a>, args ...<a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../github.com/onsi/gomega/gexec/">gexec</a>.<a href="../../../../../github.com/onsi/gomega/gexec/#Session">Session</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="CommonAfterEach">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=9364:9405#L300">CommonAfterEach</a>
+				<a class="permalink" href="#CommonAfterEach">¶</a>
+				
+				
+			</h2>
+			<pre>func CommonAfterEach(commonVar <a href="#CommonVar">CommonVar</a>)</pre>
+			<p>
+CommonAfterEach is common function that cleans up after every test Spec (It)
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CopyAndCreate">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=13028:13090#L390">CopyAndCreate</a>
+				<a class="permalink" href="#CopyAndCreate">¶</a>
+				
+				
+			</h2>
+			<pre>func CopyAndCreate(sourcePath, devfilePath, contextDir <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+CopyAndCreate copies required source code and devfile to the given context directory, and creates a component
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CopyExample">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=3497:3551#L121">CopyExample</a>
+				<a class="permalink" href="#CopyExample">¶</a>
+				
+				
+			</h2>
+			<pre>func CopyExample(exampleName <a href="../../../../../builtin/#string">string</a>, targetDir <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+CopyExample copies an example from tests/examples/&lt;binaryOrSource&gt;/&lt;componentName&gt;/&lt;exampleName&gt; into targetDir
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CopyExampleDevFile">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=4672:4726#L158">CopyExampleDevFile</a>
+				<a class="permalink" href="#CopyExampleDevFile">¶</a>
+				
+				
+			</h2>
+			<pre>func CopyExampleDevFile(devfilePath, targetDst <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+CopyExampleDevFile copies an example devfile from tests/examples/source/devfiles/&lt;componentName&gt;/devfile.yaml
+into targetDst
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CopyExampleFile">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=2968:3016#L106">CopyExampleFile</a>
+				<a class="permalink" href="#CopyExampleFile">¶</a>
+				
+				
+			</h2>
+			<pre>func CopyExampleFile(filePath, targetDst <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+CopyExampleFile copies an example file from tests/examples/&lt;file-path&gt;
+into targetDst
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CopyManifestFile">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=3914:3963#L135">CopyManifestFile</a>
+				<a class="permalink" href="#CopyManifestFile">¶</a>
+				
+				
+			</h2>
+			<pre>func CopyManifestFile(fileName, targetDst <a href="../../../../../builtin/#string">string</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="CreateFileWithContent">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=6628:6693#L222">CreateFileWithContent</a>
+				<a class="permalink" href="#CreateFileWithContent">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateFileWithContent(path <a href="../../../../../builtin/#string">string</a>, fileContent <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+CreateFileWithContent creates a file at the given path and writes the given content
+path is the path to the required file
+fileContent is the content to be written to the given file
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateNewContext">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=259:289#L8">CreateNewContext</a>
+				<a class="permalink" href="#CreateNewContext">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateNewContext() <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+CreateNewContext create new empty temporary directory
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateRandProject">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html?s=3643:3674#L102">CreateRandProject</a>
+				<a class="permalink" href="#CreateRandProject">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateRandProject() <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+CreateRandProject create new project with random name (10 letters)
+without writing to the config file (without switching project)
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateSimpleFile">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=9501:9582#L330">CreateSimpleFile</a>
+				<a class="permalink" href="#CreateSimpleFile">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateSimpleFile(context, filePrefix, fileExtension <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+CreateSimpleFile creates a simple file
+return the file path with random string
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateSymLink">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=7434:7485#L251">CreateSymLink</a>
+				<a class="permalink" href="#CreateSymLink">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateSymLink(oldFileName, newFileName <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+CreateSymLink creates a symlink between the oldFile and the newFile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteDir">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=713:739#L17">DeleteDir</a>
+				<a class="permalink" href="#DeleteDir">¶</a>
+				
+				
+			</h2>
+			<pre>func DeleteDir(dir <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+DeleteDir deletes the specified path; due to Windows behaviour (for example <a href="https://github.com/redhat-developer/odo/issues/3371">https://github.com/redhat-developer/odo/issues/3371</a>)
+where Windows temporarily holds a lock on files and folders, we keep trying to delete until the operation passes (or it expires)
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteFile">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=2009:2041#L71">DeleteFile</a>
+				<a class="permalink" href="#DeleteFile">¶</a>
+				
+				
+			</h2>
+			<pre>func DeleteFile(filepath <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+DeleteFile deletes file
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteProject">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html?s=4051:4089#L112">DeleteProject</a>
+				<a class="permalink" href="#DeleteProject">¶</a>
+				
+				
+			</h2>
+			<pre>func DeleteProject(projectName <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+DeleteProject deletes a specified project
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DetermineRouteURL">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html?s=2671:2716#L72">DetermineRouteURL</a>
+				<a class="permalink" href="#DetermineRouteURL">¶</a>
+				
+				
+			</h2>
+			<pre>func DetermineRouteURL(context <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+DetermineRouteURL takes context path as argument and returns the http URL
+where the current component exposes it&#39;s service this URL can
+then be used in order to interact with the deployed service running in Openshift
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DetermineRouteURLs">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html?s=3082:3130#L85">DetermineRouteURLs</a>
+				<a class="permalink" href="#DetermineRouteURLs">¶</a>
+				
+				
+			</h2>
+			<pre>func DetermineRouteURLs(context <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+DetermineRouteURLs takes context path as argument and returns the URLs
+where the current component exposes it&#39;s service, these URLs can
+then be used in order to interact with the deployed service running in Openshift
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DontMatchAllInOutput">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=2113:2174#L70">DontMatchAllInOutput</a>
+				<a class="permalink" href="#DontMatchAllInOutput">¶</a>
+				
+				
+			</h2>
+			<pre>func DontMatchAllInOutput(output <a href="../../../../../builtin/#string">string</a>, tonotmatch []<a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+DontMatchAllInOutput ensures all strings are not in output
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExtractSubString">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=2689:2744#L92">ExtractSubString</a>
+				<a class="permalink" href="#ExtractSubString">¶</a>
+				
+				
+			</h2>
+			<pre>func ExtractSubString(output, start, end <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+ExtractSubString extracts substring from output, beginning at start and before end
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FileIsEmpty">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=9026:9073#L306">FileIsEmpty</a>
+				<a class="permalink" href="#FileIsEmpty">¶</a>
+				
+				
+			</h2>
+			<pre>func FileIsEmpty(filename <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+FileIsEmpty checks if the file is empty
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FileShouldContainSubstring">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=5158:5220#L173">FileShouldContainSubstring</a>
+				<a class="permalink" href="#FileShouldContainSubstring">¶</a>
+				
+				
+			</h2>
+			<pre>func FileShouldContainSubstring(file <a href="../../../../../builtin/#string">string</a>, subString <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+FileShouldContainSubstring check if file contains subString
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetAnnotationsDeployment">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_run.go.html?s=2646:2743#L64">GetAnnotationsDeployment</a>
+				<a class="permalink" href="#GetAnnotationsDeployment">¶</a>
+				
+				
+			</h2>
+			<pre>func GetAnnotationsDeployment(path, componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetAnnotationsDeployment gets the annotations from the deployment
+belonging to the given component, app and project
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetConfigValue">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html?s=323:361#L7">GetConfigValue</a>
+				<a class="permalink" href="#GetConfigValue">¶</a>
+				
+				
+			</h2>
+			<pre>func GetConfigValue(key <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetConfigValue returns a local config value of given key or
+returns an empty string if value is not set
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetConfigValueWithContext">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html?s=546:611#L13">GetConfigValueWithContext</a>
+				<a class="permalink" href="#GetConfigValueWithContext">¶</a>
+				
+				
+			</h2>
+			<pre>func GetConfigValueWithContext(key <a href="../../../../../builtin/#string">string</a>, context <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetConfigValueWithContext returns a local config value of given key and contextdir or
+returns an empty string if value is not set
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetEnvFromEntry">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_run.go.html?s=4461:4559#L107">GetEnvFromEntry</a>
+				<a class="permalink" href="#GetEnvFromEntry">¶</a>
+				
+				
+			</h2>
+			<pre>func GetEnvFromEntry(path <a href="../../../../../builtin/#string">string</a>, componentName <a href="../../../../../builtin/#string">string</a>, appName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetEnvFromEntry returns envFrom entry of the deployment
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetEnvRefNames">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_run.go.html?s=3796:3874#L93">GetEnvRefNames</a>
+				<a class="permalink" href="#GetEnvRefNames">¶</a>
+				
+				
+			</h2>
+			<pre>func GetEnvRefNames(path, componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetEnvRefNames gets the ref values from the envFroms of the deployment belonging to the given data
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetExamplePath">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=4345:4387#L150">GetExamplePath</a>
+				<a class="permalink" href="#GetExamplePath">¶</a>
+				
+				
+			</h2>
+			<pre>func GetExamplePath(args ...<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetLocalEnvInfoValueWithContext">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html?s=1286:1357#L34">GetLocalEnvInfoValueWithContext</a>
+				<a class="permalink" href="#GetLocalEnvInfoValueWithContext">¶</a>
+				
+				
+			</h2>
+			<pre>func GetLocalEnvInfoValueWithContext(key <a href="../../../../../builtin/#string">string</a>, context <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetLocalEnvInfoValueWithContext returns an envInfo value of given key and contextdir or
+returns an empty string if value is not set
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetMetadataFromDevfile">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html?s=4379:4453#L119">GetMetadataFromDevfile</a>
+				<a class="permalink" href="#GetMetadataFromDevfile">¶</a>
+				
+				
+			</h2>
+			<pre>func GetMetadataFromDevfile(devfilePath <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../github.com/devfile/api/v2/pkg/devfile/">devfilepkg</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/devfile/#DevfileMetadata">DevfileMetadata</a></pre>
+			<p>
+GetMetadataFromDevfile retrieves the metadata from devfile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetPreferenceValue">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/odo_utils.go.html?s=1995:2037#L55">GetPreferenceValue</a>
+				<a class="permalink" href="#GetPreferenceValue">¶</a>
+				
+				
+			</h2>
+			<pre>func GetPreferenceValue(key <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetPreferenceValue a global config value of given key or
+returns an empty string if value is not set
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetSecrets">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_run.go.html?s=3467:3511#L85">GetSecrets</a>
+				<a class="permalink" href="#GetSecrets">¶</a>
+				
+				
+			</h2>
+			<pre>func GetSecrets(path, project <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetSecrets gets all the secrets belonging to the project
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetUserHomeDir">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=6925:6953#L230">GetUserHomeDir</a>
+				<a class="permalink" href="#GetUserHomeDir">¶</a>
+				
+				
+			</h2>
+			<pre>func GetUserHomeDir() <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetUserHomeDir gets the user home directory
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetVolumeNamesFromDeployment">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_run.go.html?s=4886:4987#L114">GetVolumeNamesFromDeployment</a>
+				<a class="permalink" href="#GetVolumeNamesFromDeployment">¶</a>
+				
+				
+			</h2>
+			<pre>func GetVolumeNamesFromDeployment(path, componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetVolumeNamesFromDeployment gets the volumes from the deployment belonging to the given data
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Getwd">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=2719:2738#L97">Getwd</a>
+				<a class="permalink" href="#Getwd">¶</a>
+				
+				
+			</h2>
+			<pre>func Getwd() <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+Getwd returns current working dir
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GjsonExactMatcher">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=10906:10975#L334">GjsonExactMatcher</a>
+				<a class="permalink" href="#GjsonExactMatcher">¶</a>
+				
+				
+			</h2>
+			<pre>func GjsonExactMatcher(values []<a href="../../../../../github.com/tidwall/gjson/">gjson</a>.<a href="../../../../../github.com/tidwall/gjson/#Result">Result</a>, expected []<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+GjsonExactMatcher validates if []results from gjson.GetMany match the expected values for each json path requested
+Values is an array of results returned by the gjson.GetMany function
+Expected is an array of strings, defines the expected values for each of the paths requested in the gjson.GetMany function
+For documentation about gjson see <a href="https://github.com/tidwall/gjson#get-multiple-values-at-once">https://github.com/tidwall/gjson#get-multiple-values-at-once</a>
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GjsonMatcher">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=10258:10322#L319">GjsonMatcher</a>
+				<a class="permalink" href="#GjsonMatcher">¶</a>
+				
+				
+			</h2>
+			<pre>func GjsonMatcher(values []<a href="../../../../../github.com/tidwall/gjson/">gjson</a>.<a href="../../../../../github.com/tidwall/gjson/#Result">Result</a>, expected []<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+GjsonMatcher validates if []results from gjson.GetMany match the expected values for each json path requested
+Values is an array of results returned by the gjson.GetMany function
+Expected is an array of strings, defines the expected values for each of the paths requested in the gjson.GetMany function
+For documentation about gjson see <a href="https://github.com/tidwall/gjson#get-multiple-values-at-once">https://github.com/tidwall/gjson#get-multiple-values-at-once</a>
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HttpFileServer">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_http.go.html?s=1970:2029#L51">HttpFileServer</a>
+				<a class="permalink" href="#HttpFileServer">¶</a>
+				
+				
+			</h2>
+			<pre>func HttpFileServer(port <a href="../../../../../builtin/#int">int</a>, location <a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../net/http/">http</a>.<a href="../../../../../net/http/#Server">Server</a></pre>
+			<p>
+HttpFileServer starts a http server with a file handler on the free port provided
+the file handler uses the location provided for serving the requests
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HttpWaitFor">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_http.go.html?s=1677:1747#L45">HttpWaitFor</a>
+				<a class="permalink" href="#HttpWaitFor">¶</a>
+				
+				
+			</h2>
+			<pre>func HttpWaitFor(url <a href="../../../../../builtin/#string">string</a>, match <a href="../../../../../builtin/#string">string</a>, maxRetry <a href="../../../../../builtin/#int">int</a>, interval <a href="../../../../../builtin/#int">int</a>)</pre>
+			<p>
+HttpWaitFor periodically (every interval) calls GET to given url
+ends when a 200 HTTP result response contains match string, or after the maxRetry
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HttpWaitForWithStatus">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_http.go.html?s=329:427#L8">HttpWaitForWithStatus</a>
+				<a class="permalink" href="#HttpWaitForWithStatus">¶</a>
+				
+				
+			</h2>
+			<pre>func HttpWaitForWithStatus(url <a href="../../../../../builtin/#string">string</a>, match <a href="../../../../../builtin/#string">string</a>, maxRetry <a href="../../../../../builtin/#int">int</a>, interval <a href="../../../../../builtin/#int">int</a>, expectedCode <a href="../../../../../builtin/#int">int</a>)</pre>
+			<p>
+HttpWaitForWithStatus periodically (every interval) calls GET to given url
+ends when result response contains match string and status code, or after the maxRetry
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsJSON">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=7847:7873#L260">IsJSON</a>
+				<a class="permalink" href="#IsJSON">¶</a>
+				
+				
+			</h2>
+			<pre>func IsJSON(s <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+IsJSON returns true if a string is in json format
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsKubernetesCluster">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=12182:12213#L361">IsKubernetesCluster</a>
+				<a class="permalink" href="#IsKubernetesCluster">¶</a>
+				
+				
+			</h2>
+			<pre>func IsKubernetesCluster() <a href="../../../../../builtin/#bool">bool</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ListFilesInDir">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=7074:7124#L239">ListFilesInDir</a>
+				<a class="permalink" href="#ListFilesInDir">¶</a>
+				
+				
+			</h2>
+			<pre>func ListFilesInDir(directoryName <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+ListFilesInDir lists all the files in the directory
+directoryName is the name of the directory
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="LocalEnvInfo">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_configValidate.go.html?s=188:246#L3">LocalEnvInfo</a>
+				<a class="permalink" href="#LocalEnvInfo">¶</a>
+				
+				
+			</h2>
+			<pre>func LocalEnvInfo(context <a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/">envinfo</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/envinfo/#EnvSpecificInfo">EnvSpecificInfo</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="LocalKubeconfigSet">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=7115:7154#L237">LocalKubeconfigSet</a>
+				<a class="permalink" href="#LocalKubeconfigSet">¶</a>
+				
+				
+			</h2>
+			<pre>func LocalKubeconfigSet(context <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+LocalKubeconfigSet sets the KUBECONFIG to the temporary config file
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MakeDir">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=2582:2606#L91">MakeDir</a>
+				<a class="permalink" href="#MakeDir">¶</a>
+				
+				
+			</h2>
+			<pre>func MakeDir(dir <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+MakeDir creates a new dir
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MatchAllInOutput">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=1918:1972#L63">MatchAllInOutput</a>
+				<a class="permalink" href="#MatchAllInOutput">¶</a>
+				
+				
+			</h2>
+			<pre>func MatchAllInOutput(output <a href="../../../../../builtin/#string">string</a>, tomatch []<a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+MatchAllInOutput ensures all strings are in output
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RandString">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=475:504#L18">RandString</a>
+				<a class="permalink" href="#RandString">¶</a>
+				
+				
+			</h2>
+			<pre>func RandString(n <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+RandString returns a random string of given length
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadFile">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=9261:9307#L320">ReadFile</a>
+				<a class="permalink" href="#ReadFile">¶</a>
+				
+				
+			</h2>
+			<pre>func ReadFile(filePath <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ReadFile reads the file from the filePath
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RenameFile">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=2231:2279#L78">RenameFile</a>
+				<a class="permalink" href="#RenameFile">¶</a>
+				
+				
+			</h2>
+			<pre>func RenameFile(oldFileName, newFileName <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+RenameFile renames a file from oldFileName to newFileName
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReplaceDevfileField">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=8434:8505#L283">ReplaceDevfileField</a>
+				<a class="permalink" href="#ReplaceDevfileField">¶</a>
+				
+				
+			</h2>
+			<pre>func ReplaceDevfileField(devfileLocation, field, newValue <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+ReplaceDevfileField replaces the value of a given field in a specified
+devfile.
+Currently only the first match of the field is replaced. i.e if the
+field is &#39;type&#39; and there are two types throughout the devfile, only one
+is replaced with the newValue
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReplaceString">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=5415:5486#L180">ReplaceString</a>
+				<a class="permalink" href="#ReplaceString">¶</a>
+				
+				
+			</h2>
+			<pre>func ReplaceString(filename <a href="../../../../../builtin/#string">string</a>, oldString <a href="../../../../../builtin/#string">string</a>, newString <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+ReplaceString replaces oldString with newString in text file
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RunCmdWithMatchOutputFromBuffer">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=5660:5783#L174">RunCmdWithMatchOutputFromBuffer</a>
+				<a class="permalink" href="#RunCmdWithMatchOutputFromBuffer">¶</a>
+				
+				
+			</h2>
+			<pre>func RunCmdWithMatchOutputFromBuffer(timeoutAfter <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Duration">Duration</a>, matchString, program <a href="../../../../../builtin/#string">string</a>, args ...<a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+RunCmdWithMatchOutputFromBuffer starts the command, and command stdout is attached to buffer.
+we read data from buffer line by line, and if expected string is matched it returns true
+It is different from WaitforCmdOut which gives stdout in one go using session.Out.Contents()
+for commands like odo log -f which streams continuous data and does not terminate by their own
+we need to read the stream data from buffer.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RunTestSpecs">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=11944:11995#L355">RunTestSpecs</a>
+				<a class="permalink" href="#RunTestSpecs">¶</a>
+				
+				
+			</h2>
+			<pre>func RunTestSpecs(t *<a href="../../../../../testing/">testing</a>.<a href="../../../../../testing/#T">T</a>, description <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+RunTestSpecs defines a common way how test specs in test suite are executed
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RunWithExponentialBackoff">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=1494:1601#L45">RunWithExponentialBackoff</a>
+				<a class="permalink" href="#RunWithExponentialBackoff">¶</a>
+				
+				
+			</h2>
+			<pre>func RunWithExponentialBackoff(fxn func() <a href="../../../../../builtin/#error">error</a>, maxDelayInSeconds <a href="../../../../../builtin/#int">int</a>, expireDuration <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Duration">Duration</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+RunWithExponentialBackoff keeps trying to run &#39;fxn&#39; until it no longer returns an error; if the function never succeeded,
+then the most recent error is returned.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetDefaultDevfileRegistryAsStaging">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=12664:12705#L383">SetDefaultDevfileRegistryAsStaging</a>
+				<a class="permalink" href="#SetDefaultDevfileRegistryAsStaging">¶</a>
+				
+				
+			</h2>
+			<pre>func SetDefaultDevfileRegistryAsStaging()</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SetProjectName">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=11319:11347#L346">SetProjectName</a>
+				<a class="permalink" href="#SetProjectName">¶</a>
+				
+				
+			</h2>
+			<pre>func SetProjectName() <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+SetProjectName sets projectNames based on the neame of the test file name (withouth path and replacing _ with -), line number of current ginkgo execution, and a random string of 3 letters
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="StatFileInPodContainer">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=2332:2443#L75">StatFileInPodContainer</a>
+				<a class="permalink" href="#StatFileInPodContainer">¶</a>
+				
+				
+			</h2>
+			<pre>func StatFileInPodContainer(runner <a href="#CliRunner">CliRunner</a>, cmpName, containerName, appName, project, filepath <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+StatFileInPodContainer returns stat result of filepath in a container of a pod of given component, in a given app, in a given project.
+It also strips access time information as it vaires accross file systems/kernel configs, and we are not interested
+in it anyway
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Suffocate">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=7658:7689#L255">Suffocate</a>
+				<a class="permalink" href="#Suffocate">¶</a>
+				
+				
+			</h2>
+			<pre>func Suffocate(s <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+Suffocate the string by removing all the space from it ;-)
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Unindented">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=2332:2379#L77">Unindented</a>
+				<a class="permalink" href="#Unindented">¶</a>
+				
+				
+			</h2>
+			<pre>func Unindented(jsonStr <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+Unindented returns the unindented version of the jsonStr passed to it
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyFileExists">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=7678:7721#L258">VerifyFileExists</a>
+				<a class="permalink" href="#VerifyFileExists">¶</a>
+				
+				
+			</h2>
+			<pre>func VerifyFileExists(filename <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+VerifyFileExists receives a path to a file, and returns whether or not
+it points to an existing file
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyFilesExist">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_filesystem.go.html?s=7995:8050#L269">VerifyFilesExist</a>
+				<a class="permalink" href="#VerifyFilesExist">¶</a>
+				
+				
+			</h2>
+			<pre>func VerifyFilesExist(path <a href="../../../../../builtin/#string">string</a>, files []<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+VerifyFilesExist receives an array of paths to files, and returns whether
+or not they all exist. If any one of the expected files doesn&#39;t exist, it
+returns false
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyResourcesDeleted">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=12354:12425#L371">VerifyResourcesDeleted</a>
+				<a class="permalink" href="#VerifyResourcesDeleted">¶</a>
+				
+				
+			</h2>
+			<pre>func VerifyResourcesDeleted(runner <a href="#CliRunner">CliRunner</a>, resources []<a href="#ResourceInfo">ResourceInfo</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="VerifyResourcesToBeDeleted">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=12505:12580#L377">VerifyResourcesToBeDeleted</a>
+				<a class="permalink" href="#VerifyResourcesToBeDeleted">¶</a>
+				
+				
+			</h2>
+			<pre>func VerifyResourcesToBeDeleted(runner <a href="#CliRunner">CliRunner</a>, resources []<a href="#ResourceInfo">ResourceInfo</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="WaitAndCheckForTerminatingState">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_run.go.html?s=1481:1580#L36">WaitAndCheckForTerminatingState</a>
+				<a class="permalink" href="#WaitAndCheckForTerminatingState">¶</a>
+				
+				
+			</h2>
+			<pre>func WaitAndCheckForTerminatingState(path, resourceType, namespace <a href="../../../../../builtin/#string">string</a>, timeoutMinutes <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+WaitAndCheckForTerminatingState waits for the given interval
+and checks if the given resource type has been deleted on the cluster or is in the terminating state
+path is the path to the program&#39;s binary
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="WaitForCmdOut">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=956:1094#L31">WaitForCmdOut</a>
+				<a class="permalink" href="#WaitForCmdOut">¶</a>
+				
+				
+			</h2>
+			<pre>func WaitForCmdOut(program <a href="../../../../../builtin/#string">string</a>, args []<a href="../../../../../builtin/#string">string</a>, timeout <a href="../../../../../builtin/#int">int</a>, errOnFail <a href="../../../../../builtin/#bool">bool</a>, check func(output <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a>, includeStdErr ...<a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+			<p>
+WaitForCmdOut runs a command until it gets
+the expected output.
+It accepts 5 arguments, program (program to be run)
+args (arguments to the program)
+timeout (the time to wait for the output)
+errOnFail (flag to set if test should fail if command fails)
+check (function with output check logic)
+It times out if the command doesn&#39;t fetch the
+expected output  within the timeout period.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="WaitForOutputToContain">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_run.go.html?s=979:1093#L24">WaitForOutputToContain</a>
+				<a class="permalink" href="#WaitForOutputToContain">¶</a>
+				
+				
+			</h2>
+			<pre>func WaitForOutputToContain(substring <a href="../../../../../builtin/#string">string</a>, timeoutInSeconds <a href="../../../../../builtin/#int">int</a>, intervalInSeconds <a href="../../../../../builtin/#int">int</a>, session *<a href="../../../../../github.com/onsi/gomega/gexec/">gexec</a>.<a href="../../../../../github.com/onsi/gomega/gexec/#Session">Session</a>)</pre>
+			<p>
+WaitForOutputToContain waits for for the session stdout output to contain a particular substring
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="WatchNonRetCmdStdOut">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=3428:3613#L107">WatchNonRetCmdStdOut</a>
+				<a class="permalink" href="#WatchNonRetCmdStdOut">¶</a>
+				
+				
+			</h2>
+			<pre>func WatchNonRetCmdStdOut(cmdStr <a href="../../../../../builtin/#string">string</a>, timeout <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Duration">Duration</a>, success func(output <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a>, startSimulationCh chan <a href="../../../../../builtin/#bool">bool</a>, startIndicatorFunc func(output <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+WatchNonRetCmdStdOut runs an &#39;odo watch&#39; command and stores the process&#39; stdout output into buffer.
+- startIndicatorFunc should check stdout output and return true when simulation is ready to begin (for example, buffer contains &#34;Waiting for something to change&#34;)
+- startSimulationCh will be sent a &#39;true&#39; when startIndicationFunc first returns true, at which point files/directories should be created by associated goroutine
+- success function is passed stdout buffer, and should return if the test conditions have passes
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CliRunner">type <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cli.go.html?s=263:2237#L1">CliRunner</a>
+				<a class="permalink" href="#CliRunner">¶</a>
+				
+				
+			</h2>
+			<p>
+CliRunner requires functions which are common for oc and kubectl
+By abstracting these functions into an interface, it handles the cli runner and calls the functions specified to particular cluster only
+</p>
+
+			<pre>type CliRunner interface {
+    Run(args ...<a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../github.com/onsi/gomega/gexec/">gexec</a>.<a href="../../../../../github.com/onsi/gomega/gexec/#Session">Session</a>
+    ExecListDir(podName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>, dir <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    Exec(podName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>, args ...<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    CheckCmdOpInRemoteDevfilePod(podName <a href="../../../../../builtin/#string">string</a>, containerName <a href="../../../../../builtin/#string">string</a>, prjName <a href="../../../../../builtin/#string">string</a>, cmd []<a href="../../../../../builtin/#string">string</a>, checkOp func(cmdOp <a href="../../../../../builtin/#string">string</a>, err <a href="../../../../../builtin/#error">error</a>) <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a>
+    GetRunningPodNameByComponent(compName <a href="../../../../../builtin/#string">string</a>, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    GetVolumeMountNamesandPathsFromContainer(deployName <a href="../../../../../builtin/#string">string</a>, containerName, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    WaitAndCheckForExistence(resourceType, namespace <a href="../../../../../builtin/#string">string</a>, timeoutMinutes <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#bool">bool</a>
+    GetServices(namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    CreateRandNamespaceProject() <a href="../../../../../builtin/#string">string</a>
+    CreateRandNamespaceProjectOfLength(i <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#string">string</a>
+    SetProject(namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    DeleteNamespaceProject(projectName <a href="../../../../../builtin/#string">string</a>)
+    DeletePod(podName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>)
+    GetEnvsDevFileDeployment(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>
+    GetEnvRefNames(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a>
+    GetPVCSize(compName, storageName, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    GetAllPVCNames(namespace <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a>
+    GetPodInitContainers(compName, namespace <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a>
+    GetContainerEnv(podName, containerName, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    WaitAndCheckForTerminatingState(resourceType, namespace <a href="../../../../../builtin/#string">string</a>, timeoutMinutes <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#bool">bool</a>
+    VerifyResourceDeleted(ri <a href="#ResourceInfo">ResourceInfo</a>)
+    VerifyResourceToBeDeleted(ri <a href="#ResourceInfo">ResourceInfo</a>)
+    GetAnnotationsDeployment(cmpName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>
+    GetAllPodsInNs(namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    WaitForRunnerCmdOut(args []<a href="../../../../../builtin/#string">string</a>, timeout <a href="../../../../../builtin/#int">int</a>, errOnFail <a href="../../../../../builtin/#bool">bool</a>, check func(output <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a>, includeStdErr ...<a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a>
+    PodsShouldBeRunning(project <a href="../../../../../builtin/#string">string</a>, regex <a href="../../../../../builtin/#string">string</a>)
+    CreateSecret(secretName, secretPass, project <a href="../../../../../builtin/#string">string</a>)
+    GetSecrets(project <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    GetEnvFromEntry(componentName <a href="../../../../../builtin/#string">string</a>, appName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a>
+    GetVolumeNamesFromDeployment(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetCliRunner">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=7467:7496#L247">GetCliRunner</a>
+					<a class="permalink" href="#GetCliRunner">¶</a>
+					
+					
+				</h3>
+				<pre>func GetCliRunner() <a href="#CliRunner">CliRunner</a></pre>
+				<p>
+GetCliRunner gets the running cli against Kubernetes or OpenShift
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="CmdWrapper">type <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=177:506#L6">CmdWrapper</a>
+				<a class="permalink" href="#CmdWrapper">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type CmdWrapper struct {
+<span id="CmdWrapper.Cmd"></span>    Cmd *<a href="../../../../../os/exec/">exec</a>.<a href="../../../../../os/exec/#Cmd">Cmd</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Cmd">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=508:560#L20">Cmd</a>
+					<a class="permalink" href="#Cmd">¶</a>
+					
+					
+				</h3>
+				<pre>func Cmd(program <a href="../../../../../builtin/#string">string</a>, args ...<a href="../../../../../builtin/#string">string</a>) *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="CmdWrapper.AddEnv">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=3154:3210#L122">AddEnv</a>
+					<a class="permalink" href="#CmdWrapper.AddEnv">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) AddEnv(args ...<a href="../../../../../builtin/#string">string</a>) *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.Err">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=3507:3541#L135">Err</a>
+					<a class="permalink" href="#CmdWrapper.Err">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) Err() <a href="../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.Out">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=3418:3452#L131">Out</a>
+					<a class="permalink" href="#CmdWrapper.Out">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) Out() <a href="../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.OutAndErr">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=3271:3321#L127">OutAndErr</a>
+					<a class="permalink" href="#CmdWrapper.OutAndErr">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) OutAndErr() (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#string">string</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.Runner">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=834:876#L32">Runner</a>
+					<a class="permalink" href="#CmdWrapper.Runner">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) Runner() *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.ShouldFail">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=2480:2526#L94">ShouldFail</a>
+					<a class="permalink" href="#CmdWrapper.ShouldFail">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) ShouldFail() *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.ShouldPass">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=2272:2318#L86">ShouldPass</a>
+					<a class="permalink" href="#CmdWrapper.ShouldPass">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) ShouldPass() *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.ShouldRun">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=2656:2701#L101">ShouldRun</a>
+					<a class="permalink" href="#CmdWrapper.ShouldRun">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) ShouldRun() *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.WithEnv">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=3061:3118#L117">WithEnv</a>
+					<a class="permalink" href="#CmdWrapper.WithEnv">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) WithEnv(args ...<a href="../../../../../builtin/#string">string</a>) *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.WithRetry">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=2105:2193#L80">WithRetry</a>
+					<a class="permalink" href="#CmdWrapper.WithRetry">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) WithRetry(maxRetry <a href="../../../../../builtin/#int">int</a>, intervalSeconds <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Duration">Duration</a>) *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.WithTerminate">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=2731:2822#L106">WithTerminate</a>
+					<a class="permalink" href="#CmdWrapper.WithTerminate">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) WithTerminate(timeoutAfter <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Duration">Duration</a>, stop chan <a href="../../../../../builtin/#bool">bool</a>) *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CmdWrapper.WithTimeout">func (*CmdWrapper) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_cmd_wrapper.go.html?s=2915:2988#L112">WithTimeout</a>
+					<a class="permalink" href="#CmdWrapper.WithTimeout">¶</a>
+					
+					
+				</h3>
+				<pre>func (cw *<a href="#CmdWrapper">CmdWrapper</a>) WithTimeout(timeoutAfter <a href="../../../../../time/">time</a>.<a href="../../../../../time/#Duration">Duration</a>) *<a href="#CmdWrapper">CmdWrapper</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CommonVar">type <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=7956:8334#L265">CommonVar</a>
+				<a class="permalink" href="#CommonVar">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type CommonVar struct {
+<span id="CommonVar.Project"></span>    <span class="comment">// Project is new clean project/namespace for each test</span>
+    Project <a href="../../../../../builtin/#string">string</a>
+<span id="CommonVar.Context"></span>    <span class="comment">// Context is a new temporary directory</span>
+    Context <a href="../../../../../builtin/#string">string</a>
+<span id="CommonVar.CliRunner"></span>    <span class="comment">// CliRunner is program command (oc or kubectl runner) according to cluster</span>
+    CliRunner <a href="#CliRunner">CliRunner</a>
+    <span class="comment">// original values to get restored after the test is done</span>
+<span id="CommonVar.OriginalWorkingDirectory"></span>    OriginalWorkingDirectory <a href="../../../../../builtin/#string">string</a>
+<span id="CommonVar.OriginalKubeconfig"></span>    OriginalKubeconfig       <a href="../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="CommonBeforeEach">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=8473:8506#L279">CommonBeforeEach</a>
+					<a class="permalink" href="#CommonBeforeEach">¶</a>
+					
+					
+				</h3>
+				<pre>func CommonBeforeEach() <a href="#CommonVar">CommonVar</a></pre>
+				<p>
+CommonBeforeEach is common function runs before every test Spec (It)
+returns CommonVar values that are used within the test script
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="KubectlRunner">type <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=464:533#L15">KubectlRunner</a>
+				<a class="permalink" href="#KubectlRunner">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type KubectlRunner struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewKubectlRunner">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=585:640#L21">NewKubectlRunner</a>
+					<a class="permalink" href="#NewKubectlRunner">¶</a>
+					
+					
+				</h3>
+				<pre>func NewKubectlRunner(kubectlPath <a href="../../../../../builtin/#string">string</a>) <a href="#KubectlRunner">KubectlRunner</a></pre>
+				<p>
+NewKubectlRunner initializes new KubectlRunner
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="KubectlRunner.CheckCmdOpInRemoteDevfilePod">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=1699:1873#L53">CheckCmdOpInRemoteDevfilePod</a>
+					<a class="permalink" href="#KubectlRunner.CheckCmdOpInRemoteDevfilePod">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) CheckCmdOpInRemoteDevfilePod(podName <a href="../../../../../builtin/#string">string</a>, containerName <a href="../../../../../builtin/#string">string</a>, prjName <a href="../../../../../builtin/#string">string</a>, cmd []<a href="../../../../../builtin/#string">string</a>, checkOp func(cmdOp <a href="../../../../../builtin/#string">string</a>, err <a href="../../../../../builtin/#error">error</a>) <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+CheckCmdOpInRemoteDevfilePod runs the provided command on remote component pod and returns the return value of command output handler function passed to it
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.CreateRandNamespaceProject">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=6181:6245#L144">CreateRandNamespaceProject</a>
+					<a class="permalink" href="#KubectlRunner.CreateRandNamespaceProject">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) CreateRandNamespaceProject() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+CreateRandNamespaceProject create new project
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.CreateRandNamespaceProjectOfLength">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=7271:7348#L168">CreateRandNamespaceProjectOfLength</a>
+					<a class="permalink" href="#KubectlRunner.CreateRandNamespaceProjectOfLength">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) CreateRandNamespaceProjectOfLength(i <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+CreateRandNamespaceProjectOfLength create new project with i as the length of the name
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.CreateSecret">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=13238:13319#L310">CreateSecret</a>
+					<a class="permalink" href="#KubectlRunner.CreateSecret">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) CreateSecret(secretName, secretPass, project <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+CreateSecret takes secret name, password and the namespace where we want to create the specific secret into the cluster
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.DeleteNamespaceProject">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=7529:7600#L175">DeleteNamespaceProject</a>
+					<a class="permalink" href="#KubectlRunner.DeleteNamespaceProject">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) DeleteNamespaceProject(projectName <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+DeleteNamespaceProject deletes a specified project in kubernetes cluster
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.DeletePod">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=8899:8971#L207">DeletePod</a>
+					<a class="permalink" href="#KubectlRunner.DeletePod">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) DeletePod(podName <a href="../../../../../builtin/#string">string</a>, namespace <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+DeletePod deletes a specified pod in the namespace
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.Exec">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=981:1073#L35">Exec</a>
+					<a class="permalink" href="#KubectlRunner.Exec">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) Exec(podName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>, args ...<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+Exec allows generic execution of commands, returning the contents of stdout
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.ExecListDir">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=1304:1399#L46">ExecListDir</a>
+					<a class="permalink" href="#KubectlRunner.ExecListDir">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) ExecListDir(podName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>, dir <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+ExecListDir returns dir list in specified location of pod
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetAllPVCNames">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=8480:8550#L196">GetAllPVCNames</a>
+					<a class="permalink" href="#KubectlRunner.GetAllPVCNames">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetAllPVCNames(namespace <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetAllPodsInNs">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=10924:10992#L248">GetAllPodsInNs</a>
+					<a class="permalink" href="#KubectlRunner.GetAllPodsInNs">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetAllPodsInNs(namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetAllPodsInNs gets the list of pods in given namespace. It waits for reasonable amount of time for pods to come up
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetAnnotationsDeployment">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=10601:10716#L243">GetAnnotationsDeployment</a>
+					<a class="permalink" href="#KubectlRunner.GetAnnotationsDeployment">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetAnnotationsDeployment(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetAnnotationsDeployment gets the annotations from the deployment
+belonging to the given component, app and project
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetContainerEnv">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=4557:4650#L102">GetContainerEnv</a>
+					<a class="permalink" href="#KubectlRunner.GetContainerEnv">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetContainerEnv(podName, containerName, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetContainerEnv returns the container env in the format name:value\n
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetEnvFromEntry">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=13961:14070#L325">GetEnvFromEntry</a>
+					<a class="permalink" href="#KubectlRunner.GetEnvFromEntry">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetEnvFromEntry(componentName <a href="../../../../../builtin/#string">string</a>, appName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetEnvFromEntry returns envFrom entry of the deployment
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetEnvRefNames">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=13726:13822#L320">GetEnvRefNames</a>
+					<a class="permalink" href="#KubectlRunner.GetEnvRefNames">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetEnvRefNames(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetEnvRefNames gets the ref values from the envFroms of the deployment belonging to the given data
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetEnvsDevFileDeployment">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=7738:7853#L180">GetEnvsDevFileDeployment</a>
+					<a class="permalink" href="#KubectlRunner.GetEnvsDevFileDeployment">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetEnvsDevFileDeployment(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetPVCSize">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=3039:3126#L78">GetPVCSize</a>
+					<a class="permalink" href="#KubectlRunner.GetPVCSize">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetPVCSize(compName, storageName, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetPVCSize executes kubectl command and returns the bound storage size
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetPodInitContainers">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=3544:3637#L85">GetPodInitContainers</a>
+					<a class="permalink" href="#KubectlRunner.GetPodInitContainers">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetPodInitContainers(compName <a href="../../../../../builtin/#string">string</a>, namespace <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetPodInitContainers executes kubectl command and returns the init containers of the pod
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetRunningPodNameByComponent">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=2621:2720#L71">GetRunningPodNameByComponent</a>
+					<a class="permalink" href="#KubectlRunner.GetRunningPodNameByComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetRunningPodNameByComponent(compName <a href="../../../../../builtin/#string">string</a>, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetRunningPodNameByComponent executes kubectl command and returns the running pod name of a deployed
+devfile component by passing component name as a argument
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetSecrets">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=13514:13576#L315">GetSecrets</a>
+					<a class="permalink" href="#KubectlRunner.GetSecrets">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetSecrets(project <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetSecrets gets all the secrets belonging to the project
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetServices">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=5873:5938#L136">GetServices</a>
+					<a class="permalink" href="#KubectlRunner.GetServices">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetServices(namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetServices gets services on the cluster
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetVolumeMountNamesandPathsFromContainer">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=4006:4134#L92">GetVolumeMountNamesandPathsFromContainer</a>
+					<a class="permalink" href="#KubectlRunner.GetVolumeMountNamesandPathsFromContainer">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetVolumeMountNamesandPathsFromContainer(deployName <a href="../../../../../builtin/#string">string</a>, containerName, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetVolumeMountNamesandPathsFromContainer returns the volume name and mount path in the format name:path\n
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.GetVolumeNamesFromDeployment">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=14248:14367#L330">GetVolumeNamesFromDeployment</a>
+					<a class="permalink" href="#KubectlRunner.GetVolumeNamesFromDeployment">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) GetVolumeNamesFromDeployment(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetVolumeNamesFromDeployment gets the volumes from the deployment belonging to the given data
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.PodsShouldBeRunning">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=11314:11392#L257">PodsShouldBeRunning</a>
+					<a class="permalink" href="#KubectlRunner.PodsShouldBeRunning">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) PodsShouldBeRunning(project <a href="../../../../../builtin/#string">string</a>, regex <a href="../../../../../builtin/#string">string</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.Run">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=729:792#L28">Run</a>
+					<a class="permalink" href="#KubectlRunner.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) Run(args ...<a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../github.com/onsi/gomega/gexec/">gexec</a>.<a href="../../../../../github.com/onsi/gomega/gexec/#Session">Session</a></pre>
+				<p>
+Run kubectl with given arguments
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.SetProject">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=6884:6948#L160">SetProject</a>
+					<a class="permalink" href="#KubectlRunner.SetProject">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) SetProject(namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.VerifyResourceDeleted">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=9528:9595#L218">VerifyResourceDeleted</a>
+					<a class="permalink" href="#KubectlRunner.VerifyResourceDeleted">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) VerifyResourceDeleted(ri <a href="#ResourceInfo">ResourceInfo</a>)</pre>
+				<p>
+VerifyResourceDeleted verifies if the given resource is deleted from cluster.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.VerifyResourceToBeDeleted">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=9943:10014#L226">VerifyResourceToBeDeleted</a>
+					<a class="permalink" href="#KubectlRunner.VerifyResourceToBeDeleted">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) VerifyResourceToBeDeleted(ri <a href="#ResourceInfo">ResourceInfo</a>)</pre>
+				<p>
+VerifyResourceToBeDeleted verifies if a resource if deleted, or if not, if it is marked for deletion
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.WaitAndCheckForExistence">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=5084:5194#L112">WaitAndCheckForExistence</a>
+					<a class="permalink" href="#KubectlRunner.WaitAndCheckForExistence">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) WaitAndCheckForExistence(resourceType, namespace <a href="../../../../../builtin/#string">string</a>, timeoutMinutes <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+WaitAndCheckForExistence wait for the given and checks if the given resource type gets deleted on the cluster
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.WaitAndCheckForTerminatingState">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=9229:9346#L213">WaitAndCheckForTerminatingState</a>
+					<a class="permalink" href="#KubectlRunner.WaitAndCheckForTerminatingState">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) WaitAndCheckForTerminatingState(resourceType, namespace <a href="../../../../../builtin/#string">string</a>, timeoutMinutes <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+WaitAndCheckForTerminatingState waits for the given interval
+and checks if the given resource type has been deleted on the cluster or is in the terminating state
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubectlRunner.WaitForRunnerCmdOut">func (KubectlRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_kubectl.go.html?s=12188:12340#L278">WaitForRunnerCmdOut</a>
+					<a class="permalink" href="#KubectlRunner.WaitForRunnerCmdOut">¶</a>
+					
+					
+				</h3>
+				<pre>func (kubectl <a href="#KubectlRunner">KubectlRunner</a>) WaitForRunnerCmdOut(args []<a href="../../../../../builtin/#string">string</a>, timeout <a href="../../../../../builtin/#int">int</a>, errOnFail <a href="../../../../../builtin/#bool">bool</a>, check func(output <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a>, includeStdErr ...<a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+WaitForCmdOut runs &#34;kubectl&#34; command until it gets
+the expected output.
+It accepts 4 arguments
+args (arguments to the program)
+timeout (the time to wait for the output)
+errOnFail (flag to set if test should fail if command fails)
+check (function with output check logic)
+It times out if the command doesn&#39;t fetch the
+expected output  within the timeout period.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="OcRunner">type <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=337:396#L13">OcRunner</a>
+				<a class="permalink" href="#OcRunner">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type OcRunner struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewOcRunner">func <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=438:478#L19">NewOcRunner</a>
+					<a class="permalink" href="#NewOcRunner">¶</a>
+					
+					
+				</h3>
+				<pre>func NewOcRunner(ocPath <a href="../../../../../builtin/#string">string</a>) <a href="#OcRunner">OcRunner</a></pre>
+				<p>
+NewOcRunner initializes new OcRunner
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="OcRunner.AddSecret">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=20041:20087#L491">AddSecret</a>
+					<a class="permalink" href="#OcRunner.AddSecret">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) AddSecret(comvar <a href="#CommonVar">CommonVar</a>)</pre>
+				<p>
+AddSecret adds pull-secret to the namespace, for e2e-test
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.CheckCmdOpInRemoteCmpPod">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=4248:4402#L129">CheckCmdOpInRemoteCmpPod</a>
+					<a class="permalink" href="#OcRunner.CheckCmdOpInRemoteCmpPod">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) CheckCmdOpInRemoteCmpPod(cmpName <a href="../../../../../builtin/#string">string</a>, appName <a href="../../../../../builtin/#string">string</a>, prjName <a href="../../../../../builtin/#string">string</a>, cmd []<a href="../../../../../builtin/#string">string</a>, checkOp func(cmdOp <a href="../../../../../builtin/#string">string</a>, err <a href="../../../../../builtin/#error">error</a>) <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+CheckCmdOpInRemoteCmpPod runs the provided command on remote component pod and returns the return value of command output handler function passed to it
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.CheckCmdOpInRemoteDevfilePod">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=5253:5417#L146">CheckCmdOpInRemoteDevfilePod</a>
+					<a class="permalink" href="#OcRunner.CheckCmdOpInRemoteDevfilePod">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) CheckCmdOpInRemoteDevfilePod(podName <a href="../../../../../builtin/#string">string</a>, containerName <a href="../../../../../builtin/#string">string</a>, prjName <a href="../../../../../builtin/#string">string</a>, cmd []<a href="../../../../../builtin/#string">string</a>, checkOp func(cmdOp <a href="../../../../../builtin/#string">string</a>, err <a href="../../../../../builtin/#error">error</a>) <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+CheckCmdOpInRemoteDevfilePod runs the provided command on remote component pod and returns the return value of command output handler function passed to it
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.CreateRandNamespaceProject">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=13577:13631#L331">CreateRandNamespaceProject</a>
+					<a class="permalink" href="#OcRunner.CreateRandNamespaceProject">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) CreateRandNamespaceProject() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+CreateRandNamespaceProject create new project
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.CreateRandNamespaceProjectOfLength">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=13816:13883#L338">CreateRandNamespaceProjectOfLength</a>
+					<a class="permalink" href="#OcRunner.CreateRandNamespaceProjectOfLength">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) CreateRandNamespaceProjectOfLength(i <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+CreateRandNamespaceProjectOfLength creates a new project with name of length i
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.CreateSecret">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=19329:19400#L476">CreateSecret</a>
+					<a class="permalink" href="#OcRunner.CreateSecret">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) CreateSecret(secretName, secretPass, project <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+CreateSecret takes secret name, password and the namespace where we want to create the specific secret into the cluster
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.DeleteNamespaceProject">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=14596:14657#L359">DeleteNamespaceProject</a>
+					<a class="permalink" href="#OcRunner.DeleteNamespaceProject">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) DeleteNamespaceProject(projectName <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+DeleteNamespaceProject deletes a specified project in oc cluster
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.DeletePod">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=15289:15351#L376">DeletePod</a>
+					<a class="permalink" href="#OcRunner.DeletePod">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) DeletePod(podName <a href="../../../../../builtin/#string">string</a>, namespace <a href="../../../../../builtin/#string">string</a>)</pre>
+				<p>
+DeletePod deletes a specified pod in the namespace
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.Exec">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=3846:3928#L118">Exec</a>
+					<a class="permalink" href="#OcRunner.Exec">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) Exec(podName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>, args ...<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+Exec allows generic execution of commands, returning the contents of stdout
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.ExecListDir">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=3546:3631#L111">ExecListDir</a>
+					<a class="permalink" href="#OcRunner.ExecListDir">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) ExecListDir(podName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>, dir <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+ExecListDir returns dir list in specified location of pod
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetAllPVCNames">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=14885:14945#L365">GetAllPVCNames</a>
+					<a class="permalink" href="#OcRunner.GetAllPVCNames">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetAllPVCNames(namespace <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetAllPodsInNs">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=15554:15612#L381">GetAllPodsInNs</a>
+					<a class="permalink" href="#OcRunner.GetAllPodsInNs">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetAllPodsInNs(namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetAllPodsInNs gets the list of pods in given namespace. It waits for reasonable amount of time for pods to come up
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetAnnotationsDeployment">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=17250:17355#L420">GetAnnotationsDeployment</a>
+					<a class="permalink" href="#OcRunner.GetAnnotationsDeployment">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetAnnotationsDeployment(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetAnnotationsDeployment gets the annotations from the deployment
+belonging to the given component, app and project
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetComponentRoutes">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=3117:3207#L96">GetComponentRoutes</a>
+					<a class="permalink" href="#OcRunner.GetComponentRoutes">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetComponentRoutes(component <a href="../../../../../builtin/#string">string</a>, app <a href="../../../../../builtin/#string">string</a>, project <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetComponentRoutes run command to get the Routes in yaml format for given component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetContainerEnv">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=9876:9959#L239">GetContainerEnv</a>
+					<a class="permalink" href="#OcRunner.GetContainerEnv">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetContainerEnv(podName, containerName, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetContainerEnv returns the container env in the format name:value\n
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetCurrentProject">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=846:891#L34">GetCurrentProject</a>
+					<a class="permalink" href="#OcRunner.GetCurrentProject">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetCurrentProject() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetCurrentProject get currently active project in oc
+returns empty string if there no active project, or no access to the project
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetCurrentServerURL">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=1203:1250#L45">GetCurrentServerURL</a>
+					<a class="permalink" href="#OcRunner.GetCurrentServerURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetCurrentServerURL() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetCurrentServerURL retrieves the URL of the server we&#39;re currently connected to
+returns empty if not connected or an error occurred
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetEnvFromEntry">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=10334:10433#L249">GetEnvFromEntry</a>
+					<a class="permalink" href="#OcRunner.GetEnvFromEntry">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetEnvFromEntry(componentName <a href="../../../../../builtin/#string">string</a>, appName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetEnvFromEntry returns envFrom entry of the deployment
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetEnvRefNames">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=11339:11425#L271">GetEnvRefNames</a>
+					<a class="permalink" href="#OcRunner.GetEnvRefNames">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetEnvRefNames(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetEnvRefNames gets the ref values from the envFroms of the deployment belonging to the given data
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetEnvsDevFileDeployment">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=10509:10614#L253">GetEnvsDevFileDeployment</a>
+					<a class="permalink" href="#OcRunner.GetEnvsDevFileDeployment">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetEnvsDevFileDeployment(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetFirstURL">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=1676:1759#L58">GetFirstURL</a>
+					<a class="permalink" href="#OcRunner.GetFirstURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetFirstURL(component <a href="../../../../../builtin/#string">string</a>, app <a href="../../../../../builtin/#string">string</a>, project <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetFirstURL returns the url of the first Route that it can find for given component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetLoginUser">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=8763:8803#L216">GetLoginUser</a>
+					<a class="permalink" href="#OcRunner.GetLoginUser">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetLoginUser() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetLoginUser returns current user name
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetPVCSize">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=7069:7146#L180">GetPVCSize</a>
+					<a class="permalink" href="#OcRunner.GetPVCSize">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetPVCSize(compName, storageName, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetPVCSize executes oc command and returns the bound storage size
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetPodInitContainers">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=7554:7637#L187">GetPodInitContainers</a>
+					<a class="permalink" href="#OcRunner.GetPodInitContainers">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetPodInitContainers(compName <a href="../../../../../builtin/#string">string</a>, namespace <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetPodInitContainers executes oc command and returns the init containers of the pod
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetRoute">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=7922:7988#L194">GetRoute</a>
+					<a class="permalink" href="#OcRunner.GetRoute">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetRoute(urlName <a href="../../../../../builtin/#string">string</a>, appName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetRoute returns route URL
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetRunningPodNameByComponent">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=6671:6760#L173">GetRunningPodNameByComponent</a>
+					<a class="permalink" href="#OcRunner.GetRunningPodNameByComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetRunningPodNameByComponent(compName <a href="../../../../../builtin/#string">string</a>, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetRunningPodNameByComponent executes oc command and returns the running pod name of a deployed
+devfile component by passing component name as a argument
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetRunningPodNameOfComp">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=6142:6226#L164">GetRunningPodNameOfComp</a>
+					<a class="permalink" href="#OcRunner.GetRunningPodNameOfComp">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetRunningPodNameOfComp(compName <a href="../../../../../builtin/#string">string</a>, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetRunningPodNameOfComp executes oc command and returns the running pod name of a deployed
+component by passing component name as a argument
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetSecrets">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=19590:19642#L481">GetSecrets</a>
+					<a class="permalink" href="#OcRunner.GetSecrets">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetSecrets(project <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetSecrets gets all the secrets belonging to the project
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetServices">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=12387:12442#L300">GetServices</a>
+					<a class="permalink" href="#OcRunner.GetServices">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetServices(namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetServices gets services on the cluster
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetToken">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=8240:8276#L202">GetToken</a>
+					<a class="permalink" href="#OcRunner.GetToken">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetToken() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetToken returns current user token
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetVolumeMountNamesandPathsFromContainer">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=9340:9458#L229">GetVolumeMountNamesandPathsFromContainer</a>
+					<a class="permalink" href="#OcRunner.GetVolumeMountNamesandPathsFromContainer">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetVolumeMountNamesandPathsFromContainer(deployName <a href="../../../../../builtin/#string">string</a>, containerName, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetVolumeMountNamesandPathsFromContainer returns the volume name and mount path in the format name:path\n
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.GetVolumeNamesFromDeployment">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=19782:19891#L486">GetVolumeNamesFromDeployment</a>
+					<a class="permalink" href="#OcRunner.GetVolumeNamesFromDeployment">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) GetVolumeNamesFromDeployment(componentName, appName, projectName <a href="../../../../../builtin/#string">string</a>) map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetVolumeNamesFromDeployment gets the volumes from the deployment belonging to the given data
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.LoginUsingToken">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=8494:8549#L209">LoginUsingToken</a>
+					<a class="permalink" href="#OcRunner.LoginUsingToken">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) LoginUsingToken(token <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+LoginUsingToken returns output after successful login
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.Logout">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=22256:22283#L553">Logout</a>
+					<a class="permalink" href="#OcRunner.Logout">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) Logout()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.PodsShouldBeRunning">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=17440:17508#L424">PodsShouldBeRunning</a>
+					<a class="permalink" href="#OcRunner.PodsShouldBeRunning">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) PodsShouldBeRunning(project <a href="../../../../../builtin/#string">string</a>, regex <a href="../../../../../builtin/#string">string</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.Run">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=552:605#L26">Run</a>
+					<a class="permalink" href="#OcRunner.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) Run(args ...<a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../github.com/onsi/gomega/gexec/">gexec</a>.<a href="../../../../../github.com/onsi/gomega/gexec/#Session">Session</a></pre>
+				<p>
+Run oc with given arguments
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.ServiceInstanceStatus">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=8942:9017#L222">ServiceInstanceStatus</a>
+					<a class="permalink" href="#OcRunner.ServiceInstanceStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) ServiceInstanceStatus(serviceInstanceName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+ServiceInstanceStatus returns service instance
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.SetProject">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=14333:14387#L352">SetProject</a>
+					<a class="permalink" href="#OcRunner.SetProject">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) SetProject(namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.StatFileInPod">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=16167:16250#L393">StatFileInPod</a>
+					<a class="permalink" href="#OcRunner.StatFileInPod">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) StatFileInPod(cmpName, appName, project, filepath <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+StatFileInPod returns stat result of filepath in pod of given component, in a given app, in a given project.
+It also strips access time information as it vaires accross file systems/kernel configs, and we are not interested
+in it anyway
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.VerifyResourceDeleted">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=12711:12768#L308">VerifyResourceDeleted</a>
+					<a class="permalink" href="#OcRunner.VerifyResourceDeleted">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) VerifyResourceDeleted(ri <a href="#ResourceInfo">ResourceInfo</a>)</pre>
+				<p>
+VerifyResourceDeleted verifies if the given resource is deleted from cluster
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.VerifyResourceToBeDeleted">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=13007:13068#L315">VerifyResourceToBeDeleted</a>
+					<a class="permalink" href="#OcRunner.VerifyResourceToBeDeleted">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) VerifyResourceToBeDeleted(ri <a href="#ResourceInfo">ResourceInfo</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.WaitAndCheckForExistence">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=11613:11713#L276">WaitAndCheckForExistence</a>
+					<a class="permalink" href="#OcRunner.WaitAndCheckForExistence">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) WaitAndCheckForExistence(resourceType, namespace <a href="../../../../../builtin/#string">string</a>, timeoutMinutes <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+WaitAndCheckForExistence wait for the given and checks if the given resource type gets deleted on the cluster
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.WaitAndCheckForTerminatingState">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=16925:17032#L414">WaitAndCheckForTerminatingState</a>
+					<a class="permalink" href="#OcRunner.WaitAndCheckForTerminatingState">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) WaitAndCheckForTerminatingState(resourceType, namespace <a href="../../../../../builtin/#string">string</a>, timeoutMinutes <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+WaitAndCheckForTerminatingState waits for the given interval
+and checks if the given resource type has been deleted on the cluster or is in the terminating state
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OcRunner.WaitForRunnerCmdOut">func (OcRunner) <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?s=18294:18436#L444">WaitForRunnerCmdOut</a>
+					<a class="permalink" href="#OcRunner.WaitForRunnerCmdOut">¶</a>
+					
+					
+				</h3>
+				<pre>func (oc <a href="#OcRunner">OcRunner</a>) WaitForRunnerCmdOut(args []<a href="../../../../../builtin/#string">string</a>, timeout <a href="../../../../../builtin/#int">int</a>, errOnFail <a href="../../../../../builtin/#bool">bool</a>, check func(output <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a>, includeStdErr ...<a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+WaitForRunnerCmdOut runs &#34;oc&#34; command until it gets
+the expected output.
+It accepts 4 arguments
+args (arguments to the program)
+timeout (the time to wait for the output)
+errOnFail (flag to set if test should fail if command fails)
+check (function with output check logic)
+It times out if the command doesn&#39;t fetch the
+expected output  within the timeout period.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ResourceInfo">type <a href="../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_generic.go.html?s=12261:12352#L365">ResourceInfo</a>
+				<a class="permalink" href="#ResourceInfo">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type ResourceInfo struct {
+<span id="ResourceInfo.ResourceType"></span>    ResourceType <a href="../../../../../builtin/#string">string</a>
+<span id="ResourceInfo.ResourceName"></span>    ResourceName <a href="../../../../../builtin/#string">string</a>
+<span id="ResourceInfo.Namespace"></span>    Namespace    <a href="../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="reporter/">reporter</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

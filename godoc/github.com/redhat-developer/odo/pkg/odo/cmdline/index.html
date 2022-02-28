@@ -1,0 +1,948 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>cmdline - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package cmdline
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cmdline" target="_blank">github.com/redhat-developer/odo/pkg/odo/cmdline</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+cmdline package provides an abstration of a cmdline utility
+and an implementation with the corba library
+</p>
+<p>
+Package cmdline is a generated GoMock package.
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="#Cmdline">type Cmdline</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Cobra">type Cobra</a></dd>
+				
+					
+					<dd>    <a href="#NewCobra">func NewCobra(cmd *cobra.Command) *Cobra</a></dd>
+				
+				
+					
+					<dd>    <a href="#Cobra.CheckIfConfigurationNeeded">func (o *Cobra) CheckIfConfigurationNeeded() (bool, error)</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.Context">func (o *Cobra) Context() context.Context</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.FlagValue">func (o *Cobra) FlagValue(flagName string) (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.FlagValueIfSet">func (o *Cobra) FlagValueIfSet(flagName string) string</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.GetArgsAfterDashes">func (o *Cobra) GetArgsAfterDashes(args []string) ([]string, error)</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.GetCmd">func (o *Cobra) GetCmd() *cobra.Command</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.GetKubeClient">func (o *Cobra) GetKubeClient() (kclient.ClientInterface, error)</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.GetName">func (o *Cobra) GetName() string</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.GetParentName">func (o *Cobra) GetParentName() string</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.GetRootName">func (o *Cobra) GetRootName() string</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.GetWorkingDirectory">func (o *Cobra) GetWorkingDirectory() (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#Cobra.IsFlagSet">func (o *Cobra) IsFlagSet(flagName string) bool</a></dd>
+				
+			
+				
+				<dd><a href="#MockCmdline">type MockCmdline</a></dd>
+				
+					
+					<dd>    <a href="#NewMockCmdline">func NewMockCmdline(ctrl *gomock.Controller) *MockCmdline</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockCmdline.CheckIfConfigurationNeeded">func (m *MockCmdline) CheckIfConfigurationNeeded() (bool, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.Context">func (m *MockCmdline) Context() context.Context</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.EXPECT">func (m *MockCmdline) EXPECT() *MockCmdlineMockRecorder</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.FlagValue">func (m *MockCmdline) FlagValue(flagName string) (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.FlagValueIfSet">func (m *MockCmdline) FlagValueIfSet(flagName string) string</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.GetArgsAfterDashes">func (m *MockCmdline) GetArgsAfterDashes(args []string) ([]string, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.GetKubeClient">func (m *MockCmdline) GetKubeClient() (kclient.ClientInterface, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.GetName">func (m *MockCmdline) GetName() string</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.GetParentName">func (m *MockCmdline) GetParentName() string</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.GetRootName">func (m *MockCmdline) GetRootName() string</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.GetWorkingDirectory">func (m *MockCmdline) GetWorkingDirectory() (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdline.IsFlagSet">func (m *MockCmdline) IsFlagSet(flagName string) bool</a></dd>
+				
+			
+				
+				<dd><a href="#MockCmdlineMockRecorder">type MockCmdlineMockRecorder</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.CheckIfConfigurationNeeded">func (mr *MockCmdlineMockRecorder) CheckIfConfigurationNeeded() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.Context">func (mr *MockCmdlineMockRecorder) Context() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.FlagValue">func (mr *MockCmdlineMockRecorder) FlagValue(flagName interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.FlagValueIfSet">func (mr *MockCmdlineMockRecorder) FlagValueIfSet(flagName interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.GetArgsAfterDashes">func (mr *MockCmdlineMockRecorder) GetArgsAfterDashes(args interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.GetKubeClient">func (mr *MockCmdlineMockRecorder) GetKubeClient() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.GetName">func (mr *MockCmdlineMockRecorder) GetName() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.GetParentName">func (mr *MockCmdlineMockRecorder) GetParentName() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.GetRootName">func (mr *MockCmdlineMockRecorder) GetRootName() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.GetWorkingDirectory">func (mr *MockCmdlineMockRecorder) GetWorkingDirectory() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockCmdlineMockRecorder.IsFlagSet">func (mr *MockCmdlineMockRecorder) IsFlagSet(flagName interface{}) *gomock.Call</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cmdline.go.html">cmdline.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html">cobra.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html">mock.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Cmdline">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cmdline.go.html?s=199:1358#L1">Cmdline</a>
+				<a class="permalink" href="#Cmdline">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Cmdline interface {
+    <span class="comment">// GetWorkingdirectory returns tehe directory on which the command should execute</span>
+    GetWorkingDirectory() (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)
+
+    <span class="comment">// FlagValue returns the value for a flag</span>
+    FlagValue(flagName <a href="../../../../../../builtin/#string">string</a>) (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)
+
+    <span class="comment">// FlagValueIfSet returns the value for a flag, or an empty string if not set</span>
+    FlagValueIfSet(flagName <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#string">string</a>
+
+    <span class="comment">// IsFlagSet returns true if the flag is explicitely set</span>
+    IsFlagSet(flagName <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#bool">bool</a>
+
+    <span class="comment">// CheckIfConfigurationNeeded checks against a set of commands that do *NOT* need configuration.</span>
+    CheckIfConfigurationNeeded() (<a href="../../../../../../builtin/#bool">bool</a>, <a href="../../../../../../builtin/#error">error</a>)
+
+    <span class="comment">// Context returns the context attached to the command</span>
+    Context() <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>
+
+    <span class="comment">// GetArgsAfterDashes returns the sub-array of args after `--`</span>
+    <span class="comment">// returns an error if no args were passed after --</span>
+    GetArgsAfterDashes(args []<a href="../../../../../../builtin/#string">string</a>) ([]<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)
+
+    <span class="comment">// GetParentName returns the name of the parent command or an empty string is there is no parent</span>
+    GetParentName() <a href="../../../../../../builtin/#string">string</a>
+
+    <span class="comment">// GetRootName returns the name of the root command</span>
+    GetRootName() <a href="../../../../../../builtin/#string">string</a>
+
+    <span class="comment">// GetName returns the name of the command</span>
+    GetName() <a href="../../../../../../builtin/#string">string</a>
+
+    GetKubeClient() (<a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, <a href="../../../../../../builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Cobra">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=221:262#L3">Cobra</a>
+				<a class="permalink" href="#Cobra">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Cobra struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCobra">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=264:304#L7">NewCobra</a>
+					<a class="permalink" href="#NewCobra">¶</a>
+					
+					
+				</h3>
+				<pre>func NewCobra(cmd *<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a>) *<a href="#Cobra">Cobra</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Cobra.CheckIfConfigurationNeeded">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=1942:2000#L80">CheckIfConfigurationNeeded</a>
+					<a class="permalink" href="#Cobra.CheckIfConfigurationNeeded">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) CheckIfConfigurationNeeded() (<a href="../../../../../../builtin/#bool">bool</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+checkIfConfigurationNeeded checks against a set of commands that do *NOT* need configuration.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Cobra.Context">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=400:441#L17">Context</a>
+					<a class="permalink" href="#Cobra.Context">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) Context() <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Cobra.FlagValue">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=1525:1583#L69">FlagValue</a>
+					<a class="permalink" href="#Cobra.FlagValue">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) FlagValue(flagName <a href="../../../../../../builtin/#string">string</a>) (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+FlagValueIfSet retrieves the value of the specified flag if it is set for the given command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Cobra.FlagValueIfSet">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=1726:1780#L74">FlagValueIfSet</a>
+					<a class="permalink" href="#Cobra.FlagValueIfSet">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) FlagValueIfSet(flagName <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#string">string</a></pre>
+				<p>
+FlagValueIfSet retrieves the value of the specified flag if it is set for the given command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Cobra.GetArgsAfterDashes">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=471:538#L21">GetArgsAfterDashes</a>
+					<a class="permalink" href="#Cobra.GetArgsAfterDashes">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) GetArgsAfterDashes(args []<a href="../../../../../../builtin/#string">string</a>) ([]<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Cobra.GetCmd">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=341:380#L13">GetCmd</a>
+					<a class="permalink" href="#Cobra.GetCmd">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) GetCmd() *<a href="../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Cobra.GetKubeClient">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=5348:5412#L172">GetKubeClient</a>
+					<a class="permalink" href="#Cobra.GetKubeClient">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) GetKubeClient() (<a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Cobra.GetName">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=851:883#L40">GetName</a>
+					<a class="permalink" href="#Cobra.GetName">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) GetName() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Cobra.GetParentName">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=667:705#L29">GetParentName</a>
+					<a class="permalink" href="#Cobra.GetParentName">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) GetParentName() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Cobra.GetRootName">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=781:817#L36">GetRootName</a>
+					<a class="permalink" href="#Cobra.GetRootName">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) GetRootName() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Cobra.GetWorkingDirectory">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=1003:1056#L48">GetWorkingDirectory</a>
+					<a class="permalink" href="#Cobra.GetWorkingDirectory">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) GetWorkingDirectory() (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Cobra.IsFlagSet">func (*Cobra) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/cobra.go.html?s=910:957#L44">IsFlagSet</a>
+					<a class="permalink" href="#Cobra.IsFlagSet">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#Cobra">Cobra</a>) IsFlagSet(flagName <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#bool">bool</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockCmdline">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=342:433#L6">MockCmdline</a>
+				<a class="permalink" href="#MockCmdline">¶</a>
+				
+				
+			</h2>
+			<p>
+MockCmdline is a mock of Cmdline interface.
+</p>
+
+			<pre>type MockCmdline struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMockCmdline">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=607:664#L17">NewMockCmdline</a>
+					<a class="permalink" href="#NewMockCmdline">¶</a>
+					
+					
+				</h3>
+				<pre>func NewMockCmdline(ctrl *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Controller">Controller</a>) *<a href="#MockCmdline">MockCmdline</a></pre>
+				<p>
+NewMockCmdline creates a new mock instance.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MockCmdline.CheckIfConfigurationNeeded">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=971:1035#L29">CheckIfConfigurationNeeded</a>
+					<a class="permalink" href="#MockCmdline.CheckIfConfigurationNeeded">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) CheckIfConfigurationNeeded() (<a href="../../../../../../builtin/#bool">bool</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+CheckIfConfigurationNeeded mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.Context">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=1559:1606#L44">Context</a>
+					<a class="permalink" href="#MockCmdline.Context">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) Context() <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a></pre>
+				<p>
+Context mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.EXPECT">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=842:897#L24">EXPECT</a>
+					<a class="permalink" href="#MockCmdline.EXPECT">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) EXPECT() *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a></pre>
+				<p>
+EXPECT returns an object that allows the caller to indicate expected use.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.FlagValue">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=1996:2060#L58">FlagValue</a>
+					<a class="permalink" href="#MockCmdline.FlagValue">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) FlagValue(flagName <a href="../../../../../../builtin/#string">string</a>) (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+FlagValue mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.FlagValueIfSet">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=2531:2591#L73">FlagValueIfSet</a>
+					<a class="permalink" href="#MockCmdline.FlagValueIfSet">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) FlagValueIfSet(flagName <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#string">string</a></pre>
+				<p>
+FlagValueIfSet mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.GetArgsAfterDashes">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=3063:3136#L87">GetArgsAfterDashes</a>
+					<a class="permalink" href="#MockCmdline.GetArgsAfterDashes">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) GetArgsAfterDashes(args []<a href="../../../../../../builtin/#string">string</a>) ([]<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetArgsAfterDashes mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.GetKubeClient">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=3650:3720#L102">GetKubeClient</a>
+					<a class="permalink" href="#MockCmdline.GetKubeClient">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) GetKubeClient() (<a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetKubeClient mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.GetName">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=4185:4223#L117">GetName</a>
+					<a class="permalink" href="#MockCmdline.GetName">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) GetName() <a href="../../../../../../builtin/#string">string</a></pre>
+				<p>
+GetName mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.GetParentName">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=4608:4652#L131">GetParentName</a>
+					<a class="permalink" href="#MockCmdline.GetParentName">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) GetParentName() <a href="../../../../../../builtin/#string">string</a></pre>
+				<p>
+GetParentName mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.GetRootName">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=5071:5113#L145">GetRootName</a>
+					<a class="permalink" href="#MockCmdline.GetRootName">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) GetRootName() <a href="../../../../../../builtin/#string">string</a></pre>
+				<p>
+GetRootName mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.GetWorkingDirectory">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=5528:5587#L159">GetWorkingDirectory</a>
+					<a class="permalink" href="#MockCmdline.GetWorkingDirectory">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) GetWorkingDirectory() (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetWorkingDirectory mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdline.IsFlagSet">func (*MockCmdline) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=6073:6126#L174">IsFlagSet</a>
+					<a class="permalink" href="#MockCmdline.IsFlagSet">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockCmdline">MockCmdline</a>) IsFlagSet(flagName <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#bool">bool</a></pre>
+				<p>
+IsFlagSet mocks base method.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockCmdlineMockRecorder">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=500:558#L12">MockCmdlineMockRecorder</a>
+				<a class="permalink" href="#MockCmdlineMockRecorder">¶</a>
+				
+				
+			</h2>
+			<p>
+MockCmdlineMockRecorder is the mock recorder for MockCmdline.
+</p>
+
+			<pre>type MockCmdlineMockRecorder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockCmdlineMockRecorder.CheckIfConfigurationNeeded">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=1273:1349#L38">CheckIfConfigurationNeeded</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.CheckIfConfigurationNeeded">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) CheckIfConfigurationNeeded() *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+CheckIfConfigurationNeeded indicates an expected call of CheckIfConfigurationNeeded.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.Context">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=1765:1822#L52">Context</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.Context">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) Context() *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Context indicates an expected call of Context.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.FlagValue">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=2259:2338#L67">FlagValue</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.FlagValue">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) FlagValue(flagName interface{}) *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+FlagValue indicates an expected call of FlagValue.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.FlagValueIfSet">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=2772:2856#L81">FlagValueIfSet</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.FlagValueIfSet">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) FlagValueIfSet(flagName interface{}) *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+FlagValueIfSet indicates an expected call of FlagValueIfSet.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.GetArgsAfterDashes">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=3360:3444#L96">GetArgsAfterDashes</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.GetArgsAfterDashes">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) GetArgsAfterDashes(args interface{}) *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetArgsAfterDashes indicates an expected call of GetArgsAfterDashes.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.GetKubeClient">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=3938:4001#L111">GetKubeClient</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.GetKubeClient">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) GetKubeClient() *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetKubeClient indicates an expected call of GetKubeClient.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.GetName">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=4373:4430#L125">GetName</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.GetName">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) GetName() *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetName indicates an expected call of GetName.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.GetParentName">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=4820:4883#L139">GetParentName</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.GetParentName">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) GetParentName() *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetParentName indicates an expected call of GetParentName.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.GetRootName">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=5275:5336#L153">GetRootName</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.GetRootName">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) GetRootName() *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetRootName indicates an expected call of GetRootName.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.GetWorkingDirectory">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=5806:5875#L168">GetWorkingDirectory</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.GetWorkingDirectory">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) GetWorkingDirectory() *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetWorkingDirectory indicates an expected call of GetWorkingDirectory.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockCmdlineMockRecorder.IsFlagSet">func (*MockCmdlineMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cmdline/mock.go.html?s=6290:6369#L182">IsFlagSet</a>
+					<a class="permalink" href="#MockCmdlineMockRecorder.IsFlagSet">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockCmdlineMockRecorder">MockCmdlineMockRecorder</a>) IsFlagSet(flagName interface{}) *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+IsFlagSet indicates an expected call of IsFlagSet.
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

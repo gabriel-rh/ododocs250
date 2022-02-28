@@ -1,0 +1,544 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>image - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package image
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/devfile/image" target="_blank">github.com/redhat-developer/odo/pkg/devfile/image</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+image package provides functions to work with Components of type Image declared in the devfile
+</p>
+<p>
+Package image is a generated GoMock package.
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#BuildPushImages">func BuildPushImages(ctx *genericclioptions.Context, push bool) error</a></dd>
+			
+				
+				<dd><a href="#BuildPushSpecificImage">func BuildPushSpecificImage(devfileObj parser.DevfileObj, devfilePath string, component devfile.Component, push bool) error</a></dd>
+			
+			
+				
+				<dd><a href="#Backend">type Backend</a></dd>
+				
+				
+			
+				
+				<dd><a href="#DockerCompatibleBackend">type DockerCompatibleBackend</a></dd>
+				
+					
+					<dd>    <a href="#NewDockerCompatibleBackend">func NewDockerCompatibleBackend(name string) *DockerCompatibleBackend</a></dd>
+				
+				
+					
+					<dd>    <a href="#DockerCompatibleBackend.Build">func (o *DockerCompatibleBackend) Build(image *devfile.ImageComponent, devfilePath string) error</a></dd>
+				
+					
+					<dd>    <a href="#DockerCompatibleBackend.Push">func (o *DockerCompatibleBackend) Push(image string) error</a></dd>
+				
+					
+					<dd>    <a href="#DockerCompatibleBackend.String">func (o *DockerCompatibleBackend) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#MockBackend">type MockBackend</a></dd>
+				
+					
+					<dd>    <a href="#NewMockBackend">func NewMockBackend(ctrl *gomock.Controller) *MockBackend</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockBackend.Build">func (m *MockBackend) Build(image *v1alpha2.ImageComponent, devfilePath string) error</a></dd>
+				
+					
+					<dd>    <a href="#MockBackend.EXPECT">func (m *MockBackend) EXPECT() *MockBackendMockRecorder</a></dd>
+				
+					
+					<dd>    <a href="#MockBackend.Push">func (m *MockBackend) Push(image string) error</a></dd>
+				
+					
+					<dd>    <a href="#MockBackend.String">func (m *MockBackend) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#MockBackendMockRecorder">type MockBackendMockRecorder</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockBackendMockRecorder.Build">func (mr *MockBackendMockRecorder) Build(image, devfilePath interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockBackendMockRecorder.Push">func (mr *MockBackendMockRecorder) Push(image interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockBackendMockRecorder.String">func (mr *MockBackendMockRecorder) String() *gomock.Call</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/docker_compatible.go.html">docker_compatible.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/image.go.html">image.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html">mock_Backend.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="BuildPushImages">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/image.go.html?s=940:1009#L20">BuildPushImages</a>
+				<a class="permalink" href="#BuildPushImages">¶</a>
+				
+				
+			</h2>
+			<pre>func BuildPushImages(ctx *<a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>, push <a href="../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+			<p>
+BuildPushImages build all images defined in the devfile with the detected backend
+If push is true, also push the images to their registries
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="BuildPushSpecificImage">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/image.go.html?s=1680:1803#L48">BuildPushSpecificImage</a>
+				<a class="permalink" href="#BuildPushSpecificImage">¶</a>
+				
+				
+			</h2>
+			<pre>func BuildPushSpecificImage(devfileObj <a href="../../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, devfilePath <a href="../../../../../../builtin/#string">string</a>, component <a href="../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfile</a>.<a href="../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Component">Component</a>, push <a href="../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+			<p>
+BuildPushSpecificImage build an image defined in the devfile
+If push is true, also push the image to its registry
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Backend">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/image.go.html?s=484:759#L7">Backend</a>
+				<a class="permalink" href="#Backend">¶</a>
+				
+				
+			</h2>
+			<p>
+Backend is in interface that must be implemented by container runtimes
+</p>
+
+			<pre>type Backend interface {
+    <span class="comment">// Build the image as defined in the devfile</span>
+    Build(image *<a href="../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfile</a>.<a href="../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#ImageComponent">ImageComponent</a>, devfilePath <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a>
+    <span class="comment">// Push the image to its registry as defined in the devfile</span>
+    Push(image <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a>
+    <span class="comment">// Return the name of the backend</span>
+    String() <a href="../../../../../../builtin/#string">string</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DockerCompatibleBackend">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/docker_compatible.go.html?s=308:360#L7">DockerCompatibleBackend</a>
+				<a class="permalink" href="#DockerCompatibleBackend">¶</a>
+				
+				
+			</h2>
+			<p>
+This backend uses a CLI compatible with the docker CLI (at least docker itself and podman)
+</p>
+
+			<pre>type DockerCompatibleBackend struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDockerCompatibleBackend">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/docker_compatible.go.html?s=362:431#L11">NewDockerCompatibleBackend</a>
+					<a class="permalink" href="#NewDockerCompatibleBackend">¶</a>
+					
+					
+				</h3>
+				<pre>func NewDockerCompatibleBackend(name <a href="../../../../../../builtin/#string">string</a>) *<a href="#DockerCompatibleBackend">DockerCompatibleBackend</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="DockerCompatibleBackend.Build">func (*DockerCompatibleBackend) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/docker_compatible.go.html?s=554:650#L16">Build</a>
+					<a class="permalink" href="#DockerCompatibleBackend.Build">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DockerCompatibleBackend">DockerCompatibleBackend</a>) Build(image *<a href="../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfile</a>.<a href="../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#ImageComponent">ImageComponent</a>, devfilePath <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+Build an image, as defined in devfile, using a Docker compatible CLI
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DockerCompatibleBackend.Push">func (*DockerCompatibleBackend) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/docker_compatible.go.html?s=1706:1764#L51">Push</a>
+					<a class="permalink" href="#DockerCompatibleBackend.Push">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DockerCompatibleBackend">DockerCompatibleBackend</a>) Push(image <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+Push an image to its registry using a Docker compatible CLI
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DockerCompatibleBackend.String">func (*DockerCompatibleBackend) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/docker_compatible.go.html?s=2140:2189#L65">String</a>
+					<a class="permalink" href="#DockerCompatibleBackend.String">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DockerCompatibleBackend">DockerCompatibleBackend</a>) String() <a href="../../../../../../builtin/#string">string</a></pre>
+				<p>
+String return the name of the docker compatible CLI used
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockBackend">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=331:422#L5">MockBackend</a>
+				<a class="permalink" href="#MockBackend">¶</a>
+				
+				
+			</h2>
+			<p>
+MockBackend is a mock of Backend interface.
+</p>
+
+			<pre>type MockBackend struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMockBackend">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=596:653#L16">NewMockBackend</a>
+					<a class="permalink" href="#NewMockBackend">¶</a>
+					
+					
+				</h3>
+				<pre>func NewMockBackend(ctrl *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Controller">Controller</a>) *<a href="#MockBackend">MockBackend</a></pre>
+				<p>
+NewMockBackend creates a new mock instance.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MockBackend.Build">func (*MockBackend) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=939:1024#L28">Build</a>
+					<a class="permalink" href="#MockBackend.Build">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockBackend">MockBackend</a>) Build(image *<a href="../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1alpha2</a>.<a href="../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#ImageComponent">ImageComponent</a>, devfilePath <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+Build mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockBackend.EXPECT">func (*MockBackend) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=831:886#L23">EXPECT</a>
+					<a class="permalink" href="#MockBackend.EXPECT">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockBackend">MockBackend</a>) EXPECT() *<a href="#MockBackendMockRecorder">MockBackendMockRecorder</a></pre>
+				<p>
+EXPECT returns an object that allows the caller to indicate expected use.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockBackend.Push">func (*MockBackend) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=1457:1503#L42">Push</a>
+					<a class="permalink" href="#MockBackend.Push">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockBackend">MockBackend</a>) Push(image <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+Push mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockBackend.String">func (*MockBackend) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=1893:1930#L56">String</a>
+					<a class="permalink" href="#MockBackend.String">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockBackend">MockBackend</a>) String() <a href="../../../../../../builtin/#string">string</a></pre>
+				<p>
+String mocks base method.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockBackendMockRecorder">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=489:547#L11">MockBackendMockRecorder</a>
+				<a class="permalink" href="#MockBackendMockRecorder">¶</a>
+				
+				
+			</h2>
+			<p>
+MockBackendMockRecorder is the mock recorder for MockBackend.
+</p>
+
+			<pre>type MockBackendMockRecorder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockBackendMockRecorder.Build">func (*MockBackendMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=1187:1272#L36">Build</a>
+					<a class="permalink" href="#MockBackendMockRecorder.Build">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockBackendMockRecorder">MockBackendMockRecorder</a>) Build(image, devfilePath interface{}) *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Build indicates an expected call of Build.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockBackendMockRecorder.Push">func (*MockBackendMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=1650:1721#L50">Push</a>
+					<a class="permalink" href="#MockBackendMockRecorder.Push">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockBackendMockRecorder">MockBackendMockRecorder</a>) Push(image interface{}) *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Push indicates an expected call of Push.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockBackendMockRecorder.String">func (*MockBackendMockRecorder) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/image/mock_Backend.go.html?s=2077:2133#L64">String</a>
+					<a class="permalink" href="#MockBackendMockRecorder.String">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockBackendMockRecorder">MockBackendMockRecorder</a>) String() *<a href="../../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+String indicates an expected call of String.
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>plugins - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package plugins
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/plugins" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/plugins</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#HandleCommand">func HandleCommand(handler PluginHandler, args []string) error</a></dd>
+			
+			
+				
+				<dd><a href="#ExecHandler">type ExecHandler</a></dd>
+				
+					
+					<dd>    <a href="#NewExecHandler">func NewExecHandler(prefix string) *ExecHandler</a></dd>
+				
+				
+					
+					<dd>    <a href="#ExecHandler.Execute">func (h *ExecHandler) Execute(filename string, args, env []string) error</a></dd>
+				
+					
+					<dd>    <a href="#ExecHandler.Lookup">func (h *ExecHandler) Lookup(command string) string</a></dd>
+				
+			
+				
+				<dd><a href="#PluginHandler">type PluginHandler</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/plugins/plugin_handler.go.html">plugin_handler.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="HandleCommand">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/plugins/plugin_handler.go.html?s=247:309#L4">HandleCommand</a>
+				<a class="permalink" href="#HandleCommand">¶</a>
+				
+				
+			</h2>
+			<pre>func HandleCommand(handler <a href="#PluginHandler">PluginHandler</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+HandleCommand receives a PluginHandler and command-line arguments and attempts to find
+a plugin executable on the PATH that satisfies the given arguments.
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ExecHandler">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/plugins/plugin_handler.go.html?s=1273:1332#L39">ExecHandler</a>
+				<a class="permalink" href="#ExecHandler">¶</a>
+				
+				
+			</h2>
+			<p>
+ExecHandler implements PluginHandler using the &#34;os/exec&#34; package.
+</p>
+
+			<pre>type ExecHandler struct {
+<span id="ExecHandler.Prefix"></span>    Prefix <a href="../../../../../../../builtin/#string">string</a>
+<span id="ExecHandler.Exec"></span>    Exec   execFunc
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewExecHandler">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/plugins/plugin_handler.go.html?s=675:722#L20">NewExecHandler</a>
+					<a class="permalink" href="#NewExecHandler">¶</a>
+					
+					
+				</h3>
+				<pre>func NewExecHandler(prefix <a href="../../../../../../../builtin/#string">string</a>) *<a href="#ExecHandler">ExecHandler</a></pre>
+				<p>
+NewExecHandler creates and returns a new ExecHandler configured with
+the prefix.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ExecHandler.Execute">func (*ExecHandler) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/plugins/plugin_handler.go.html?s=1744:1816#L58">Execute</a>
+					<a class="permalink" href="#ExecHandler.Execute">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#ExecHandler">ExecHandler</a>) Execute(filename <a href="../../../../../../../builtin/#string">string</a>, args, env []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Execute implements PluginHandler.Execute
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ExecHandler.Lookup">func (*ExecHandler) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/plugins/plugin_handler.go.html?s=1447:1498#L46">Lookup</a>
+					<a class="permalink" href="#ExecHandler.Lookup">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#ExecHandler">ExecHandler</a>) Lookup(command <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#string">string</a></pre>
+				<p>
+Lookup implements PluginHandler, using
+<a href="https://golang.org/pkg/os/exec/#LookPath">https://golang.org/pkg/os/exec/#LookPath</a> to search for the command.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PluginHandler">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/plugins/plugin_handler.go.html?s=882:1202#L29">PluginHandler</a>
+				<a class="permalink" href="#PluginHandler">¶</a>
+				
+				
+			</h2>
+			<p>
+PluginHandler provides functionality for finding and executing external
+plugins.
+</p>
+
+			<pre>type PluginHandler interface {
+    <span class="comment">// Lookup should return the full path to an executable for the provided</span>
+    <span class="comment">// command, or &#34;&#34; if no matching command can be found.</span>
+    Lookup(command <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#string">string</a>
+
+    <span class="comment">// Execute should execute the provided path, passing in the args and env.</span>
+    Execute(filename <a href="../../../../../../../builtin/#string">string</a>, args, env []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

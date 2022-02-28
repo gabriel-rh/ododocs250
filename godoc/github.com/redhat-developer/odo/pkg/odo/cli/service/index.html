@@ -1,0 +1,950 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>service - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package service
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/service" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/service</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+This file contains code for various service backends supported by odo. Different backends have different logics for
+Complete, Validate and Run functions. These are covered in this file.
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#NewCmdService">func NewCmdService(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdServiceCreate">func NewCmdServiceCreate(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdServiceDelete">func NewCmdServiceDelete(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdServiceDescribe">func NewCmdServiceDescribe(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdServiceList">func NewCmdServiceList(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewServiceItem">func NewServiceItem(name string) *serviceItem</a></dd>
+			
+				
+				<dd><a href="#PrintHumanReadableOutput">func PrintHumanReadableOutput(item *serviceItem) error</a></dd>
+			
+			
+				
+				<dd><a href="#CreateOptions">type CreateOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewCreateOptions">func NewCreateOptions() *CreateOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#CreateOptions.Complete">func (o *CreateOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#CreateOptions.Run">func (o *CreateOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#CreateOptions.Validate">func (o *CreateOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#DeleteOptions">type DeleteOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewDeleteOptions">func NewDeleteOptions() *DeleteOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#DeleteOptions.Complete">func (o *DeleteOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.Run">func (o *DeleteOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.Validate">func (o *DeleteOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#DescribeOptions">type DescribeOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewDescribeOptions">func NewDescribeOptions() *DescribeOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#DescribeOptions.Complete">func (o *DescribeOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DescribeOptions.Run">func (o *DescribeOptions) Run() error</a></dd>
+				
+					
+					<dd>    <a href="#DescribeOptions.Validate">func (o *DescribeOptions) Validate() error</a></dd>
+				
+			
+				
+				<dd><a href="#OperatorBackend">type OperatorBackend</a></dd>
+				
+					
+					<dd>    <a href="#NewOperatorBackend">func NewOperatorBackend() *OperatorBackend</a></dd>
+				
+				
+					
+					<dd>    <a href="#OperatorBackend.CompleteServiceCreate">func (b *OperatorBackend) CompleteServiceCreate(o *CreateOptions, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#OperatorBackend.DeleteService">func (b *OperatorBackend) DeleteService(o *DeleteOptions, name string, application string) error</a></dd>
+				
+					
+					<dd>    <a href="#OperatorBackend.DescribeService">func (b *OperatorBackend) DescribeService(o *DescribeOptions, serviceName, app string) error</a></dd>
+				
+					
+					<dd>    <a href="#OperatorBackend.RunServiceCreate">func (b *OperatorBackend) RunServiceCreate(o *CreateOptions) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#OperatorBackend.ServiceDefined">func (b *OperatorBackend) ServiceDefined(ctx *genericclioptions.Context, name string) (bool, error)</a></dd>
+				
+					
+					<dd>    <a href="#OperatorBackend.ValidateServiceCreate">func (b *OperatorBackend) ValidateServiceCreate(o *CreateOptions) error</a></dd>
+				
+			
+				
+				<dd><a href="#ServiceListOptions">type ServiceListOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewServiceListOptions">func NewServiceListOptions() *ServiceListOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ServiceListOptions.Complete">func (o *ServiceListOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ServiceListOptions.Run">func (o *ServiceListOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ServiceListOptions.Validate">func (o *ServiceListOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#ServiceProviderBackend">type ServiceProviderBackend</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/create.go.html">create.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/delete.go.html">delete.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/describe.go.html">describe.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/interface.go.html">interface.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list.go.html">list.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list_operator.go.html">list_operator.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/operator_backend.go.html">operator_backend.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/service.go.html">service.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/types.go.html">types.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/utils.go.html">utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+RecommendedCommandName is the recommended service command name
+</p>
+
+				<pre>const <span id="RecommendedCommandName">RecommendedCommandName</span> = &#34;service&#34;</pre>
+			
+				
+				<pre>const <span id="ServiceItemKind">ServiceItemKind</span> = &#34;Service&#34;</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="ErrNoMetadataName">ErrNoMetadataName</span> = <a href="../../../../../../../github.com/pkg/errors/">errors</a>.<a href="../../../../../../../github.com/pkg/errors/#New">New</a>(&#34;invalid \&#34;metadata\&#34; in the yaml; provide a valid \&#34;metadata.name\&#34;&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="NewCmdService">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/service.go.html?s=533:589#L10">NewCmdService</a>
+				<a class="permalink" href="#NewCmdService">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdService(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdService implements the odo service command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdServiceCreate">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/create.go.html?s=4087:4149#L110">NewCmdServiceCreate</a>
+				<a class="permalink" href="#NewCmdServiceCreate">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdServiceCreate(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdServiceCreate implements the odo service create command.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdServiceDelete">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/delete.go.html?s=2711:2773#L91">NewCmdServiceDelete</a>
+				<a class="permalink" href="#NewCmdServiceDelete">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdServiceDelete(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdServiceDelete implements the odo service delete command.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdServiceDescribe">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/describe.go.html?s=2403:2467#L81">NewCmdServiceDescribe</a>
+				<a class="permalink" href="#NewCmdServiceDescribe">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdServiceDescribe(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdDescribe implements the describe odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdServiceList">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list.go.html?s=1817:1877#L61">NewCmdServiceList</a>
+				<a class="permalink" href="#NewCmdServiceList">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdServiceList(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdServiceList implements the odo service list command.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewServiceItem">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list_operator.go.html?s=1174:1219#L32">NewServiceItem</a>
+				<a class="permalink" href="#NewServiceItem">¶</a>
+				
+				
+			</h2>
+			<pre>func NewServiceItem(name <a href="../../../../../../../builtin/#string">string</a>) *serviceItem</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="PrintHumanReadableOutput">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/operator_backend.go.html?s=9783:9837#L332">PrintHumanReadableOutput</a>
+				<a class="permalink" href="#PrintHumanReadableOutput">¶</a>
+				
+				
+			</h2>
+			<pre>func PrintHumanReadableOutput(item *serviceItem) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+PrintHumanReadableOutput outputs the description of a service in a human readable format
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CreateOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/create.go.html?s=1481:2328#L32">CreateOptions</a>
+				<a class="permalink" href="#CreateOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+CreateOptions encapsulates the options for the odo service create command
+</p>
+
+			<pre>type CreateOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+
+<span id="CreateOptions.DryRunFlag"></span>    DryRunFlag <a href="../../../../../../../builtin/#bool">bool</a>
+
+<span id="CreateOptions.ServiceType"></span>    <span class="comment">// ServiceType corresponds to the service class name</span>
+    ServiceType <a href="../../../../../../../builtin/#string">string</a>
+<span id="CreateOptions.ServiceName"></span>    <span class="comment">// ServiceName is how the service will be named and known by odo</span>
+    ServiceName <a href="../../../../../../../builtin/#string">string</a>
+<span id="CreateOptions.ParametersMap"></span>    <span class="comment">// ParametersMap is populated from the flag-provided values (parameters) and/or the interactive mode and is the expected format by the business logic</span>
+    ParametersMap map[<a href="../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../builtin/#string">string</a>
+
+<span id="CreateOptions.CmdFullName"></span>    <span class="comment">// CmdFullName records the command&#39;s full name</span>
+    CmdFullName <a href="../../../../../../../builtin/#string">string</a>
+<span id="CreateOptions.Backend"></span>    <span class="comment">// Backend is the service provider backend providing the service requested by the user</span>
+    Backend <a href="#ServiceProviderBackend">ServiceProviderBackend</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCreateOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/create.go.html?s=2387:2425#L59">NewCreateOptions</a>
+					<a class="permalink" href="#NewCreateOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewCreateOptions() *<a href="#CreateOptions">CreateOptions</a></pre>
+				<p>
+NewCreateOptions creates a new CreateOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CreateOptions.Complete">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/create.go.html?s=2519:2603#L64">Complete</a>
+					<a class="permalink" href="#CreateOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#CreateOptions">CreateOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes CreateOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CreateOptions.Run">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/create.go.html?s=3578:3619#L95">Run</a>
+					<a class="permalink" href="#CreateOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#CreateOptions">CreateOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the odo service create command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CreateOptions.Validate">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/create.go.html?s=3422:3468#L90">Validate</a>
+					<a class="permalink" href="#CreateOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#CreateOptions">CreateOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the CreateOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DeleteOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/delete.go.html?s=768:1035#L21">DeleteOptions</a>
+				<a class="permalink" href="#DeleteOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+DeleteOptions encapsulates the options for the odo service delete command
+</p>
+
+			<pre>type DeleteOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+
+<span id="DeleteOptions.Backend"></span>    <span class="comment">// Backend is the service provider backend that was used to create the service</span>
+    Backend <a href="#ServiceProviderBackend">ServiceProviderBackend</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDeleteOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/delete.go.html?s=1094:1132#L37">NewDeleteOptions</a>
+					<a class="permalink" href="#NewDeleteOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewDeleteOptions() *<a href="#DeleteOptions">DeleteOptions</a></pre>
+				<p>
+NewDeleteOptions creates a new DeleteOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="DeleteOptions.Complete">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/delete.go.html?s=1226:1310#L42">Complete</a>
+					<a class="permalink" href="#DeleteOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DeleteOptions">DeleteOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes DeleteOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.Run">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/delete.go.html?s=2184:2225#L77">Run</a>
+					<a class="permalink" href="#DeleteOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DeleteOptions">DeleteOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the odo service delete command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.Validate">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/delete.go.html?s=1802:1848#L64">Validate</a>
+					<a class="permalink" href="#DeleteOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DeleteOptions">DeleteOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the DeleteOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DescribeOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/describe.go.html?s=766:1017#L17">DescribeOptions</a>
+				<a class="permalink" href="#DescribeOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+DescribeOptions encapsulates the options for the odo service describe command
+</p>
+
+			<pre>type DescribeOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+
+<span id="DescribeOptions.Backend"></span>    <span class="comment">// Backend is the service provider backend that was used to create the service</span>
+    Backend <a href="#ServiceProviderBackend">ServiceProviderBackend</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDescribeOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/describe.go.html?s=1080:1122#L32">NewDescribeOptions</a>
+					<a class="permalink" href="#NewDescribeOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewDescribeOptions() *<a href="#DescribeOptions">DescribeOptions</a></pre>
+				<p>
+NewDescribeOptions creates a new DescribeOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="DescribeOptions.Complete">func (*DescribeOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/describe.go.html?s=1155:1241#L36">Complete</a>
+					<a class="permalink" href="#DescribeOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeOptions">DescribeOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DescribeOptions.Run">func (*DescribeOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/describe.go.html?s=2234:2271#L76">Run</a>
+					<a class="permalink" href="#DescribeOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeOptions">DescribeOptions</a>) Run() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Run contains the logic for the odo service describe command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DescribeOptions.Validate">func (*DescribeOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/describe.go.html?s=1735:1777#L58">Validate</a>
+					<a class="permalink" href="#DescribeOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeOptions">DescribeOptions</a>) Validate() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates the DescribeOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="OperatorBackend">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/types.go.html?s=146:495#L1">OperatorBackend</a>
+				<a class="permalink" href="#OperatorBackend">¶</a>
+				
+				
+			</h2>
+			<p>
+OperatorBackend implements the interface ServiceProviderBackend and contains methods that help create a service from Operators
+</p>
+
+			<pre>type OperatorBackend struct {
+    <span class="comment">// Custom Resrouce to create service from</span>
+<span id="OperatorBackend.CustomResource"></span>    CustomResource <a href="../../../../../../../builtin/#string">string</a>
+    <span class="comment">// Custom Resrouce&#39;s Definition fetched from alm-examples</span>
+<span id="OperatorBackend.CustomResourceDefinition"></span>    CustomResourceDefinition map[<a href="../../../../../../../builtin/#string">string</a>]interface{}
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewOperatorBackend">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/types.go.html?s=497:539#L9">NewOperatorBackend</a>
+					<a class="permalink" href="#NewOperatorBackend">¶</a>
+					
+					
+				</h3>
+				<pre>func NewOperatorBackend() *<a href="#OperatorBackend">OperatorBackend</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="OperatorBackend.CompleteServiceCreate">func (*OperatorBackend) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/operator_backend.go.html?s=957:1049#L23">CompleteServiceCreate</a>
+					<a class="permalink" href="#OperatorBackend.CompleteServiceCreate">¶</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="#OperatorBackend">OperatorBackend</a>) CompleteServiceCreate(o *<a href="#CreateOptions">CreateOptions</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+CompleteServiceCreate contains logic to complete the &#34;odo service create&#34; call for the case of Operator backend
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OperatorBackend.DeleteService">func (*OperatorBackend) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/operator_backend.go.html?s=8216:8312#L278">DeleteService</a>
+					<a class="permalink" href="#OperatorBackend.DeleteService">¶</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="#OperatorBackend">OperatorBackend</a>) DeleteService(o *<a href="#DeleteOptions">DeleteOptions</a>, name <a href="../../../../../../../builtin/#string">string</a>, application <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OperatorBackend.DescribeService">func (*OperatorBackend) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/operator_backend.go.html?s=8691:8783#L293">DescribeService</a>
+					<a class="permalink" href="#OperatorBackend.DescribeService">¶</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="#OperatorBackend">OperatorBackend</a>) DescribeService(o *<a href="#DescribeOptions">DescribeOptions</a>, serviceName, app <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OperatorBackend.RunServiceCreate">func (*OperatorBackend) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/operator_backend.go.html?s=6429:6501#L211">RunServiceCreate</a>
+					<a class="permalink" href="#OperatorBackend.RunServiceCreate">¶</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="#OperatorBackend">OperatorBackend</a>) RunServiceCreate(o *<a href="#CreateOptions">CreateOptions</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="OperatorBackend.ServiceDefined">func (*OperatorBackend) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/operator_backend.go.html?s=7929:8028#L270">ServiceDefined</a>
+					<a class="permalink" href="#OperatorBackend.ServiceDefined">¶</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="#OperatorBackend">OperatorBackend</a>) ServiceDefined(ctx *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>, name <a href="../../../../../../../builtin/#string">string</a>) (<a href="../../../../../../../builtin/#bool">bool</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ServiceDefined returns true if the service is defined in the devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="OperatorBackend.ValidateServiceCreate">func (*OperatorBackend) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/operator_backend.go.html?s=1847:1918#L54">ValidateServiceCreate</a>
+					<a class="permalink" href="#OperatorBackend.ValidateServiceCreate">¶</a>
+					
+					
+				</h3>
+				<pre>func (b *<a href="#OperatorBackend">OperatorBackend</a>) ValidateServiceCreate(o *<a href="#CreateOptions">CreateOptions</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServiceListOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list.go.html?s=589:766#L15">ServiceListOptions</a>
+				<a class="permalink" href="#ServiceListOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ServiceListOptions encapsulates the options for the odo service list command
+</p>
+
+			<pre>type ServiceListOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewServiceListOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list.go.html?s=835:883#L27">NewServiceListOptions</a>
+					<a class="permalink" href="#NewServiceListOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewServiceListOptions() *<a href="#ServiceListOptions">ServiceListOptions</a></pre>
+				<p>
+NewServiceListOptions creates a new ServiceListOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ServiceListOptions.Complete">func (*ServiceListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list.go.html?s=987:1076#L32">Complete</a>
+					<a class="permalink" href="#ServiceListOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ServiceListOptions">ServiceListOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ServiceListOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ServiceListOptions.Run">func (*ServiceListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list.go.html?s=1670:1716#L56">Run</a>
+					<a class="permalink" href="#ServiceListOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ServiceListOptions">ServiceListOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the odo service list command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ServiceListOptions.Validate">func (*ServiceListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/list.go.html?s=1542:1593#L51">Validate</a>
+					<a class="permalink" href="#ServiceListOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ServiceListOptions">ServiceListOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the ServiceListOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServiceProviderBackend">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/service/interface.go.html?s=227:661#L1">ServiceProviderBackend</a>
+				<a class="permalink" href="#ServiceProviderBackend">¶</a>
+				
+				
+			</h2>
+			<p>
+ServiceProviderBackend is implemented by the backends supported by odo
+It is used in &#34;odo service create&#34; and &#34;odo service delete&#34;
+</p>
+
+			<pre>type ServiceProviderBackend interface {
+    CompleteServiceCreate(options *<a href="#CreateOptions">CreateOptions</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a>
+    ValidateServiceCreate(options *<a href="#CreateOptions">CreateOptions</a>) <a href="../../../../../../../builtin/#error">error</a>
+    RunServiceCreate(options *<a href="#CreateOptions">CreateOptions</a>) <a href="../../../../../../../builtin/#error">error</a>
+
+    ServiceDefined(context *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>, name <a href="../../../../../../../builtin/#string">string</a>) (<a href="../../../../../../../builtin/#bool">bool</a>, <a href="../../../../../../../builtin/#error">error</a>)
+    DeleteService(options *<a href="#DeleteOptions">DeleteOptions</a>, serviceName, app <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a>
+    DescribeService(options *<a href="#DescribeOptions">DescribeOptions</a>, serviceName, app <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

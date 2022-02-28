@@ -1,0 +1,1207 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>envinfo - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package envinfo
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/envinfo" target="_blank">github.com/redhat-developer/odo/pkg/envinfo</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#FormatLocallySupportedParameters">func FormatLocallySupportedParameters() (result string)</a></dd>
+			
+				
+				<dd><a href="#GetLocallySupportedParameters">func GetLocallySupportedParameters() []string</a></dd>
+			
+				
+				<dd><a href="#GetVolumeMountPath">func GetVolumeMountPath(volumeMount devfilev1.VolumeMount) string</a></dd>
+			
+			
+				
+				<dd><a href="#ComponentSettings">type ComponentSettings</a></dd>
+				
+				
+			
+				
+				<dd><a href="#EnvInfo">type EnvInfo</a></dd>
+				
+					
+					<dd>    <a href="#GetFakeEnvInfo">func GetFakeEnvInfo(settings ComponentSettings) *EnvInfo</a></dd>
+				
+					
+					<dd>    <a href="#NewEnvInfo">func NewEnvInfo() EnvInfo</a></dd>
+				
+				
+					
+					<dd>    <a href="#EnvInfo.CompleteStorage">func (ei *EnvInfo) CompleteStorage(storage *localConfigProvider.LocalStorage)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.CompleteURL">func (ei *EnvInfo) CompleteURL(url *localConfigProvider.LocalURL) error</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.CreateStorage">func (ei *EnvInfo) CreateStorage(storage localConfigProvider.LocalStorage) error</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.DeleteStorage">func (ei *EnvInfo) DeleteStorage(name string) error</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetApplication">func (ei *EnvInfo) GetApplication() string</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetComponentPorts">func (ei *EnvInfo) GetComponentPorts() ([]string, error)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetContainerPorts">func (ei *EnvInfo) GetContainerPorts(container string) ([]string, error)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetContainers">func (ei *EnvInfo) GetContainers() ([]localConfigProvider.LocalContainer, error)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetDebugPort">func (ei *EnvInfo) GetDebugPort() int</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetDevfileObj">func (ei *EnvInfo) GetDevfileObj() parser.DevfileObj</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetName">func (ei *EnvInfo) GetName() string</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetNamespace">func (ei *EnvInfo) GetNamespace() string</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetRunMode">func (ei *EnvInfo) GetRunMode() RUNMode</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetStorage">func (ei *EnvInfo) GetStorage(name string) (*localConfigProvider.LocalStorage, error)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetStorageMountPath">func (ei *EnvInfo) GetStorageMountPath(storageName string) (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.GetURL">func (ei *EnvInfo) GetURL(name string) (*localConfigProvider.LocalURL, error)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.IsUserCreatedDevfile">func (ei *EnvInfo) IsUserCreatedDevfile() bool</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.ListStorage">func (ei *EnvInfo) ListStorage() ([]localConfigProvider.LocalStorage, error)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.ListURLs">func (ei *EnvInfo) ListURLs() ([]localConfigProvider.LocalURL, error)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.MatchComponent">func (ei *EnvInfo) MatchComponent(name, app, namespace string) bool</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.SetDevfileObj">func (ei *EnvInfo) SetDevfileObj(devfileObj parser.DevfileObj)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.SetIsRouteSupported">func (ei *EnvInfo) SetIsRouteSupported(isRouteSupported bool)</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.ValidateStorage">func (ei *EnvInfo) ValidateStorage(storage localConfigProvider.LocalStorage) error</a></dd>
+				
+					
+					<dd>    <a href="#EnvInfo.ValidateURL">func (ei *EnvInfo) ValidateURL(url localConfigProvider.LocalURL) error</a></dd>
+				
+			
+				
+				<dd><a href="#EnvSpecificInfo">type EnvSpecificInfo</a></dd>
+				
+					
+					<dd>    <a href="#New">func New() (*EnvSpecificInfo, error)</a></dd>
+				
+					
+					<dd>    <a href="#NewEnvSpecificInfo">func NewEnvSpecificInfo(envDir string) (*EnvSpecificInfo, error)</a></dd>
+				
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.CreateURL">func (esi *EnvSpecificInfo) CreateURL(url localConfigProvider.LocalURL) error</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.DeleteConfiguration">func (esi *EnvSpecificInfo) DeleteConfiguration(parameter string) error</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.DeleteEnvDirIfEmpty">func (esi *EnvSpecificInfo) DeleteEnvDirIfEmpty() error</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.DeleteEnvInfoFile">func (esi *EnvSpecificInfo) DeleteEnvInfoFile() error</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.DeleteURL">func (esi *EnvSpecificInfo) DeleteURL(name string) error</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.Exists">func (esi *EnvSpecificInfo) Exists() bool</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.GetComponentSettings">func (esi *EnvSpecificInfo) GetComponentSettings() ComponentSettings</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.GetDevfilePath">func (esi EnvSpecificInfo) GetDevfilePath() string</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.IsSet">func (esi *EnvSpecificInfo) IsSet(parameter string) bool</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.SetComponentSettings">func (esi *EnvSpecificInfo) SetComponentSettings(cs ComponentSettings) error</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.SetConfiguration">func (esi *EnvSpecificInfo) SetConfiguration(parameter string, value interface{}) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.SetRunMode">func (esi *EnvSpecificInfo) SetRunMode(runMode RUNMode) error</a></dd>
+				
+					
+					<dd>    <a href="#EnvSpecificInfo.SetUserCreatedDevfile">func (esi *EnvSpecificInfo) SetUserCreatedDevfile(value bool) error</a></dd>
+				
+			
+				
+				<dd><a href="#Info">type Info</a></dd>
+				
+					
+					<dd>    <a href="#NewInfo">func NewInfo(cs ComponentSettings) Info</a></dd>
+				
+				
+					
+					<dd>    <a href="#Info.Output">func (o Info) Output(w io.Writer)</a></dd>
+				
+			
+				
+				<dd><a href="#RUNMode">type RUNMode</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html">envinfo.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/fake.go.html">fake.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/storage.go.html">storage.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/types.go.html">types.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/url.go.html">url.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+
+    <span class="comment">// DefaultDebugPort is the default port used for debugging on remote pod</span>
+    <span id="DefaultDebugPort">DefaultDebugPort</span> = 5858
+
+    <span class="comment">// DefaultRunMode is the default run mode of the component</span>
+    <span id="DefaultRunMode">DefaultRunMode</span> = <a href="#Run">Run</a>
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// Name is the name of the setting controlling the component name</span>
+    <span id="Name">Name</span> = &#34;Name&#34;
+    <span class="comment">// NameDescription is the human-readable description for name setting</span>
+    <span id="NameDescription">NameDescription</span> = &#34;Set this value to user-defined component name to specify the component name&#34;
+    <span class="comment">// Project is the name of the setting controlling the component project</span>
+    <span id="Project">Project</span> = &#34;Project&#34;
+    <span class="comment">// ProjectDescription is the human-readable description for project setting</span>
+    <span id="ProjectDescription">ProjectDescription</span> = &#34;Set this value to user-defined project to let the component create under the project&#34;
+    <span class="comment">// DebugPort is the name of the setting controlling the component debug port</span>
+    <span id="DebugPort">DebugPort</span> = &#34;DebugPort&#34;
+    <span class="comment">// DebugPortDescription s the human-readable description for debug port setting</span>
+    <span id="DebugPortDescription">DebugPortDescription</span> = &#34;Set this value to user-defined debug port to assign the debug port to the component&#34;
+    <span class="comment">// URL parameter</span>
+    <span id="URL">URL</span> = &#34;URL&#34;
+    <span class="comment">// URLDescription is the description of URL</span>
+    <span id="URLDescription">URLDescription</span> = &#34;URL to access the component&#34;
+    <span class="comment">// Push parameter</span>
+    <span id="Push">Push</span> = &#34;PUSH&#34;
+    <span class="comment">// PushDescription is the description of push parameter</span>
+    <span id="PushDescription">PushDescription</span> = &#34;Push parameter is the action to write devfile commands to env.yaml&#34;
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// DefaultVolumeSize Default volume size for volumes defined in a devfile</span>
+    <span id="DefaultVolumeSize">DefaultVolumeSize</span> = &#34;1Gi&#34;
+)</pre>
+			
+				
+				<pre>const <span id="InfoKind">InfoKind</span> = &#34;EnvInfo&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="FormatLocallySupportedParameters">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=12087:12142#L382">FormatLocallySupportedParameters</a>
+				<a class="permalink" href="#FormatLocallySupportedParameters">¶</a>
+				
+				
+			</h2>
+			<pre>func FormatLocallySupportedParameters() (result <a href="../../../../../builtin/#string">string</a>)</pre>
+			<p>
+FormatLocallySupportedParameters outputs supported parameters and their description
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetLocallySupportedParameters">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=12586:12631#L395">GetLocallySupportedParameters</a>
+				<a class="permalink" href="#GetLocallySupportedParameters">¶</a>
+				
+				
+			</h2>
+			<pre>func GetLocallySupportedParameters() []<a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetLocallySupportedParameters returns the name of the supported global parameters
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetVolumeMountPath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/storage.go.html?s=6450:6515#L237">GetVolumeMountPath</a>
+				<a class="permalink" href="#GetVolumeMountPath">¶</a>
+				
+				
+			</h2>
+			<pre>func GetVolumeMountPath(volumeMount <a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#VolumeMount">VolumeMount</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetVolumeMountPath gets the volume mount&#39;s path.
+To be moved to devfile/library.
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ComponentSettings">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/types.go.html?s=476:1342#L13">ComponentSettings</a>
+				<a class="permalink" href="#ComponentSettings">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentSettings holds all component related information
+</p>
+
+			<pre>type ComponentSettings struct {
+<span id="ComponentSettings.Name"></span>    Name <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Name,omitempty&#34; json:&#34;name,omitempty&#34;`
+
+<span id="ComponentSettings.Project"></span>    Project <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Project,omitempty&#34; json:&#34;project,omitempty&#34;`
+
+<span id="ComponentSettings.UserCreatedDevfile"></span>    UserCreatedDevfile <a href="../../../../../builtin/#bool">bool</a> `yaml:&#34;UserCreatedDevfile,omitempty&#34; json:&#34;UserCreatedDevfile,omitempty&#34;`
+
+<span id="ComponentSettings.URL"></span>    URL *[]<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a> `yaml:&#34;Url,omitempty&#34; json:&#34;url,omitempty&#34;`
+<span id="ComponentSettings.AppName"></span>    <span class="comment">// AppName is the application name. Application is a virtual concept present in odo used</span>
+    <span class="comment">// for grouping of components. A namespace can contain multiple applications</span>
+    AppName <a href="../../../../../builtin/#string">string</a> `yaml:&#34;AppName,omitempty&#34; json:&#34;appName,omitempty&#34;`
+
+<span id="ComponentSettings.DebugPort"></span>    <span class="comment">// DebugPort controls the port used by the pod to run the debugging agent on</span>
+    DebugPort *<a href="../../../../../builtin/#int">int</a> `yaml:&#34;DebugPort,omitempty&#34; json:&#34;debugPort,omitempty&#34;`
+
+<span id="ComponentSettings.RunMode"></span>    <span class="comment">// RunMode indicates the mode of run used for a successful push</span>
+    RunMode *<a href="#RUNMode">RUNMode</a> `yaml:&#34;RunMode,omitempty&#34; json:&#34;runMode,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="EnvInfo">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=874:1147#L31">EnvInfo</a>
+				<a class="permalink" href="#EnvInfo">¶</a>
+				
+				
+			</h2>
+			<p>
+EnvInfo holds all the env specific information relevant to a specific Component.
+</p>
+
+			<pre>type EnvInfo struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetFakeEnvInfo">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/fake.go.html?s=89:145#L1">GetFakeEnvInfo</a>
+					<a class="permalink" href="#GetFakeEnvInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func GetFakeEnvInfo(settings <a href="#ComponentSettings">ComponentSettings</a>) *<a href="#EnvInfo">EnvInfo</a></pre>
+				<p>
+GetFakeEnvInfo gets a fake envInfo using the given componentSettings
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewEnvInfo">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=3894:3919#L130">NewEnvInfo</a>
+					<a class="permalink" href="#NewEnvInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func NewEnvInfo() <a href="#EnvInfo">EnvInfo</a></pre>
+				<p>
+NewEnvInfo creates an empty EnvSpecificInfo struct with typeMeta populated
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="EnvInfo.CompleteStorage">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/storage.go.html?s=434:511#L10">CompleteStorage</a>
+					<a class="permalink" href="#EnvInfo.CompleteStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) CompleteStorage(storage *<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalStorage">LocalStorage</a>)</pre>
+				<p>
+CompleteStorage completes the given storage
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.CompleteURL">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/url.go.html?s=2437:2508#L66">CompleteURL</a>
+					<a class="permalink" href="#EnvInfo.CompleteURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) CompleteURL(url *<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+CompleteURL completes the given URL with default values
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.CreateStorage">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/storage.go.html?s=2312:2392#L83">CreateStorage</a>
+					<a class="permalink" href="#EnvInfo.CreateStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) CreateStorage(storage <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalStorage">LocalStorage</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+CreateStorage sets the storage related information in the local configuration
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.DeleteStorage">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/storage.go.html?s=5191:5242#L192">DeleteStorage</a>
+					<a class="permalink" href="#EnvInfo.DeleteStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) DeleteStorage(name <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+DeleteStorage deletes the storage with the given name
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetApplication">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=9730:9772#L322">GetApplication</a>
+					<a class="permalink" href="#EnvInfo.GetApplication">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetApplication() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetApplication returns the application name
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetComponentPorts">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/url.go.html?s=1624:1680#L44">GetComponentPorts</a>
+					<a class="permalink" href="#EnvInfo.GetComponentPorts">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetComponentPorts() ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetComponentPorts returns all unique ports declared in all the containers
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetContainerPorts">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/url.go.html?s=1359:1431#L36">GetContainerPorts</a>
+					<a class="permalink" href="#EnvInfo.GetContainerPorts">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetContainerPorts(container <a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetContainerPorts returns list of the ports of specified container, if it exists
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetContainers">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=8269:8349#L273">GetContainers</a>
+					<a class="permalink" href="#EnvInfo.GetContainers">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetContainers() ([]<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalContainer">LocalContainer</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetContainers returns the Container components from the devfile
+returns empty list if nil
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetDebugPort">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=8017:8054#L264">GetDebugPort</a>
+					<a class="permalink" href="#EnvInfo.GetDebugPort">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetDebugPort() <a href="../../../../../builtin/#int">int</a></pre>
+				<p>
+GetDebugPort returns the DebugPort, returns default if nil
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetDevfileObj">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=10287:10339#L337">GetDevfileObj</a>
+					<a class="permalink" href="#EnvInfo.GetDevfileObj">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetDevfileObj() <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a></pre>
+				<p>
+GetDevfileObj returns devfileObj of the envinfo
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetName">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=7880:7915#L259">GetName</a>
+					<a class="permalink" href="#EnvInfo.GetName">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetName() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetName returns the component name
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetNamespace">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=9600:9640#L317">GetNamespace</a>
+					<a class="permalink" href="#EnvInfo.GetNamespace">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetNamespace() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetNamespace returns component namespace
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetRunMode">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=9222:9261#L303">GetRunMode</a>
+					<a class="permalink" href="#EnvInfo.GetRunMode">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetRunMode() <a href="#RUNMode">RUNMode</a></pre>
+				<p>
+GetRunMode returns the RunMode, returns default if nil
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetStorage">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/storage.go.html?s=1949:2034#L69">GetStorage</a>
+					<a class="permalink" href="#EnvInfo.GetStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetStorage(name <a href="../../../../../builtin/#string">string</a>) (*<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalStorage">LocalStorage</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetStorage gets the storage with the given name
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetStorageMountPath">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/storage.go.html?s=5586:5660#L211">GetStorageMountPath</a>
+					<a class="permalink" href="#EnvInfo.GetStorageMountPath">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetStorageMountPath(storageName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetStorageMountPath gets the mount path of the storage with the given storage name
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.GetURL">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/url.go.html?s=8242:8319#L255">GetURL</a>
+					<a class="permalink" href="#EnvInfo.GetURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) GetURL(name <a href="../../../../../builtin/#string">string</a>) (*<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetURL gets the given url from the env.yaml and devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.IsUserCreatedDevfile">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=8843:8889#L292">IsUserCreatedDevfile</a>
+					<a class="permalink" href="#EnvInfo.IsUserCreatedDevfile">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) IsUserCreatedDevfile() <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+IsUserCreatedDevfile returns the UserCreatedDevfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.ListStorage">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/storage.go.html?s=4100:4176#L151">ListStorage</a>
+					<a class="permalink" href="#EnvInfo.ListStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) ListStorage() ([]<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalStorage">LocalStorage</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ListStorage gets all the storage from the devfile.yaml
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.ListURLs">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/url.go.html?s=9562:9631#L300">ListURLs</a>
+					<a class="permalink" href="#EnvInfo.ListURLs">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) ListURLs() ([]<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ListURLs returns the urls from the env and devfile, returns default if nil
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.MatchComponent">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=9921:9988#L327">MatchComponent</a>
+					<a class="permalink" href="#EnvInfo.MatchComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) MatchComponent(name, app, namespace <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+MatchComponent matches a component information provided by a devfile component with the local env info
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.SetDevfileObj">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=10140:10202#L332">SetDevfileObj</a>
+					<a class="permalink" href="#EnvInfo.SetDevfileObj">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) SetDevfileObj(devfileObj <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>)</pre>
+				<p>
+SetDevfileObj sets the devfileObj for the envinfo
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.SetIsRouteSupported">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=10438:10499#L342">SetIsRouteSupported</a>
+					<a class="permalink" href="#EnvInfo.SetIsRouteSupported">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) SetIsRouteSupported(isRouteSupported <a href="../../../../../builtin/#bool">bool</a>)</pre>
+				<p>
+SetIsRouteSupported sets the isRouteSupported value for the envinfo
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.ValidateStorage">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/storage.go.html?s=802:884#L21">ValidateStorage</a>
+					<a class="permalink" href="#EnvInfo.ValidateStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) ValidateStorage(storage <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalStorage">LocalStorage</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+ValidateStorage validates the given storage
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvInfo.ValidateURL">func (*EnvInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/url.go.html?s=5082:5152#L162">ValidateURL</a>
+					<a class="permalink" href="#EnvInfo.ValidateURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (ei *<a href="#EnvInfo">EnvInfo</a>) ValidateURL(url <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+ValidateURL validates the given URL
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="EnvSpecificInfo">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=1439:1654#L46">EnvSpecificInfo</a>
+				<a class="permalink" href="#EnvSpecificInfo">¶</a>
+				
+				
+			</h2>
+			<p>
+EnvSpecificInfo wraps the envinfo and provides helpers to
+serialize it.
+</p>
+
+			<pre>type EnvSpecificInfo struct {
+<span id="EnvSpecificInfo.Filename"></span>    Filename <a href="../../../../../builtin/#string">string</a> `yaml:&#34;FileName,omitempty&#34;`
+
+    <a href="#EnvInfo">EnvInfo</a> `yaml:&#34;,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=2313:2349#L77">New</a>
+					<a class="permalink" href="#New">¶</a>
+					
+					
+				</h3>
+				<pre>func New() (*<a href="#EnvSpecificInfo">EnvSpecificInfo</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+New returns the EnvSpecificInfo
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewEnvSpecificInfo">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=2481:2545#L82">NewEnvSpecificInfo</a>
+					<a class="permalink" href="#NewEnvSpecificInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func NewEnvSpecificInfo(envDir <a href="../../../../../builtin/#string">string</a>) (*<a href="#EnvSpecificInfo">EnvSpecificInfo</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+NewEnvSpecificInfo retrieves the environment file. If it does not exist, it returns *blank*
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="EnvSpecificInfo.CreateURL">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/url.go.html?s=8548:8625#L269">CreateURL</a>
+					<a class="permalink" href="#EnvSpecificInfo.CreateURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) CreateURL(url <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalURL">LocalURL</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+CreateURL write the given url to the env.yaml and devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.DeleteConfiguration">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=6656:6727#L223">DeleteConfiguration</a>
+					<a class="permalink" href="#EnvSpecificInfo.DeleteConfiguration">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) DeleteConfiguration(parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+DeleteConfiguration is used to delete environment specific info from local odo envinfo
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.DeleteEnvDirIfEmpty">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=5319:5374#L172">DeleteEnvDirIfEmpty</a>
+					<a class="permalink" href="#EnvSpecificInfo.DeleteEnvDirIfEmpty">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) DeleteEnvDirIfEmpty() <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+DeleteEnvDirIfEmpty Deletes the env directory if its empty
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.DeleteEnvInfoFile">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=5979:6032#L199">DeleteEnvInfoFile</a>
+					<a class="permalink" href="#EnvSpecificInfo.DeleteEnvInfoFile">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) DeleteEnvInfoFile() <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+DeleteEnvInfoFile deletes the envinfo.yaml file if it exists
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.DeleteURL">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/url.go.html?s=11179:11235#L360">DeleteURL</a>
+					<a class="permalink" href="#EnvSpecificInfo.DeleteURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) DeleteURL(name <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+DeleteURL is used to delete environment specific info for url from envinfo and devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.Exists">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=6371:6412#L210">Exists</a>
+					<a class="permalink" href="#EnvSpecificInfo.Exists">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) Exists() <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+Exists returns whether the envinfo file exists or not
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.GetComponentSettings">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=7324:7392#L241">GetComponentSettings</a>
+					<a class="permalink" href="#EnvSpecificInfo.GetComponentSettings">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) GetComponentSettings() <a href="#ComponentSettings">ComponentSettings</a></pre>
+				<p>
+GetComponentSettings returns the componentSettings from envinfo
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.GetDevfilePath">func (EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=1656:1706#L54">GetDevfilePath</a>
+					<a class="permalink" href="#EnvSpecificInfo.GetDevfilePath">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi <a href="#EnvSpecificInfo">EnvSpecificInfo</a>) GetDevfilePath() <a href="../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.IsSet">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=6199:6255#L205">IsSet</a>
+					<a class="permalink" href="#EnvSpecificInfo.IsSet">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) IsSet(parameter <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+IsSet uses reflection to get the parameter from the envinfo struct, currently
+it only searches the componentSettings
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.SetComponentSettings">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=7522:7598#L246">SetComponentSettings</a>
+					<a class="permalink" href="#EnvSpecificInfo.SetComponentSettings">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) SetComponentSettings(cs <a href="#ComponentSettings">ComponentSettings</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+SetComponentSettings sets the componentSettings from to the envinfo and writes to the file
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.SetConfiguration">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=4267:4360#L141">SetConfiguration</a>
+					<a class="permalink" href="#EnvSpecificInfo.SetConfiguration">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) SetConfiguration(parameter <a href="../../../../../builtin/#string">string</a>, value interface{}) (err <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+SetConfiguration sets the environment specific info such as the Cluster Host, Name, etc.
+we then **write** this data to the environment yaml file (see envInfoFileName const)
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.SetRunMode">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=9421:9482#L311">SetRunMode</a>
+					<a class="permalink" href="#EnvSpecificInfo.SetRunMode">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) SetRunMode(runMode <a href="#RUNMode">RUNMode</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+SetRunMode sets the RunMode in the env file
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="EnvSpecificInfo.SetUserCreatedDevfile">func (*EnvSpecificInfo) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=9015:9082#L297">SetUserCreatedDevfile</a>
+					<a class="permalink" href="#EnvSpecificInfo.SetUserCreatedDevfile">¶</a>
+					
+					
+				</h3>
+				<pre>func (esi *<a href="#EnvSpecificInfo">EnvSpecificInfo</a>) SetUserCreatedDevfile(value <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+SetUserCreatedDevfile sets the UserCreatedDevfile and writes to file
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Info">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/types.go.html?s=231:385#L4">Info</a>
+				<a class="permalink" href="#Info">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Info struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="Info.Spec"></span>    Spec              <a href="#ComponentSettings">ComponentSettings</a> `json:&#34;spec&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewInfo">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/types.go.html?s=1344:1383#L32">NewInfo</a>
+					<a class="permalink" href="#NewInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func NewInfo(cs <a href="#ComponentSettings">ComponentSettings</a>) <a href="#Info">Info</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Info.Output">func (Info) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/types.go.html?s=1518:1551#L42">Output</a>
+					<a class="permalink" href="#Info.Output">¶</a>
+					
+					
+				</h3>
+				<pre>func (o <a href="#Info">Info</a>) Output(w <a href="../../../../../io/">io</a>.<a href="../../../../../io/#Writer">Writer</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="RUNMode">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/envinfo/envinfo.go.html?s=457:476#L12">RUNMode</a>
+				<a class="permalink" href="#RUNMode">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type RUNMode <a href="../../../../../builtin/#string">string</a></pre>
+
+			
+				
+				<pre>const (
+    <span id="Run">Run</span>   <a href="#RUNMode">RUNMode</a> = &#34;run&#34;
+    <span id="Debug">Debug</span> <a href="#RUNMode">RUNMode</a> = &#34;debug&#34;
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

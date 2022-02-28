@@ -1,0 +1,450 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>devfile - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package devfile
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/devfile" target="_blank">github.com/redhat-developer/odo/pkg/devfile</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#AddKubernetesComponent">func AddKubernetesComponent(crd, name, componentContext string, devfile parser.DevfileObj) error</a></dd>
+			
+				
+				<dd><a href="#AddKubernetesComponentToDevfile">func AddKubernetesComponentToDevfile(crd, name string, devfileObj parser.DevfileObj) error</a></dd>
+			
+				
+				<dd><a href="#DeleteKubernetesComponentFromDevfile">func DeleteKubernetesComponentFromDevfile(name string, devfileObj parser.DevfileObj, componentContext string) error</a></dd>
+			
+				
+				<dd><a href="#GetKubernetesComponentsToPush">func GetKubernetesComponentsToPush(devfileObj parser.DevfileObj) ([]devfilev1.Component, error)</a></dd>
+			
+				
+				<dd><a href="#IsComponentDefined">func IsComponentDefined(name string, devfileObj parser.DevfileObj) (bool, error)</a></dd>
+			
+				
+				<dd><a href="#ParseAndValidateFromData">func ParseAndValidateFromData(data []byte) (parser.DevfileObj, error)</a></dd>
+			
+				
+				<dd><a href="#ParseAndValidateFromFile">func ParseAndValidateFromFile(devfilePath string) (parser.DevfileObj, error)</a></dd>
+			
+				
+				<dd><a href="#ParseAndValidateFromURL">func ParseAndValidateFromURL(url string) (parser.DevfileObj, error)</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/components.go.html">components.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/devfile.go.html">devfile.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="AddKubernetesComponent">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/components.go.html?s=2906:3002#L93">AddKubernetesComponent</a>
+				<a class="permalink" href="#AddKubernetesComponent">¶</a>
+				
+				
+			</h2>
+			<pre>func AddKubernetesComponent(crd, name, componentContext <a href="../../../../../builtin/#string">string</a>, devfile <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+AddKubernetesComponent adds the crd information to a separate file and adds the uri information to a devfile component
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="AddKubernetesComponentToDevfile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/components.go.html?s=2234:2324#L71">AddKubernetesComponentToDevfile</a>
+				<a class="permalink" href="#AddKubernetesComponentToDevfile">¶</a>
+				
+				
+			</h2>
+			<pre>func AddKubernetesComponentToDevfile(crd, name <a href="../../../../../builtin/#string">string</a>, devfileObj <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+AddKubernetesComponentToDevfile adds a resource definition to devfile as an inlined Kubernetes component
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteKubernetesComponentFromDevfile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/components.go.html?s=4472:4587#L137">DeleteKubernetesComponentFromDevfile</a>
+				<a class="permalink" href="#DeleteKubernetesComponentFromDevfile">¶</a>
+				
+				
+			</h2>
+			<pre>func DeleteKubernetesComponentFromDevfile(name <a href="../../../../../builtin/#string">string</a>, devfileObj <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, componentContext <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+DeleteKubernetesComponentFromDevfile deletes an inlined Kubernetes component from devfile, if one exists
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetKubernetesComponentsToPush">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/components.go.html?s=689:784#L15">GetKubernetesComponentsToPush</a>
+				<a class="permalink" href="#GetKubernetesComponentsToPush">¶</a>
+				
+				
+			</h2>
+			<pre>func GetKubernetesComponentsToPush(devfileObj <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>) ([]<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Component">Component</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetKubernetesComponentsToPush returns the list of Kubernetes components to push,
+by getting the list of Kubernetes components and removing the ones
+referenced from a command in the devfile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsComponentDefined">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/components.go.html?s=1825:1905#L57">IsComponentDefined</a>
+				<a class="permalink" href="#IsComponentDefined">¶</a>
+				
+				
+			</h2>
+			<pre>func IsComponentDefined(name <a href="../../../../../builtin/#string">string</a>, devfileObj <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>) (<a href="../../../../../builtin/#bool">bool</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+IsComponentDefined checks if a component with the given name is defined in a DevFile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ParseAndValidateFromData">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/devfile.go.html?s=1548:1617#L41">ParseAndValidateFromData</a>
+				<a class="permalink" href="#ParseAndValidateFromData">¶</a>
+				
+				
+			</h2>
+			<pre>func ParseAndValidateFromData(data []<a href="../../../../../builtin/#byte">byte</a>) (<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ParseAndValidateFromData parses devfile from []byte and does all the validation
+if there are warning it logs them on stdout
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ParseAndValidateFromFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/devfile.go.html?s=1277:1353#L35">ParseAndValidateFromFile</a>
+				<a class="permalink" href="#ParseAndValidateFromFile">¶</a>
+				
+				
+			</h2>
+			<pre>func ParseAndValidateFromFile(devfilePath <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ParseAndValidateFromFile reads, parses and validates  devfile from a file
+if there are warning it logs them on stdout
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ParseAndValidateFromURL">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/devfile/devfile.go.html?s=1808:1875#L48">ParseAndValidateFromURL</a>
+				<a class="permalink" href="#ParseAndValidateFromURL">¶</a>
+				
+				
+			</h2>
+			<pre>func ParseAndValidateFromURL(url <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ParseAndValidateFromURL parses devfile from given url and does all the validation
+if there are warning it logs them on stdout
+</p>
+
+			
+			
+
+		
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="adapters/">adapters</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="adapters/common/">common</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="adapters/kubernetes/">kubernetes</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="adapters/kubernetes/component/">component</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="adapters/kubernetes/storage/">storage</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="adapters/kubernetes/utils/">utils</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="consts/">consts</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="image/">image</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						image package provides functions to work with Components of type Image declared in the devfile
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="location/">location</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="testing/">testing</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="validate/">validate</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

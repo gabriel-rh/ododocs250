@@ -1,0 +1,722 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>registry - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package registry
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/registry" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/registry</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#NewCmdAdd">func NewCmdAdd(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdDelete">func NewCmdDelete(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdList">func NewCmdList(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdRegistry">func NewCmdRegistry(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdUpdate">func NewCmdUpdate(name, fullName string) *cobra.Command</a></dd>
+			
+			
+				
+				<dd><a href="#AddOptions">type AddOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewAddOptions">func NewAddOptions(prefClient preference.Client) *AddOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#AddOptions.Complete">func (o *AddOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#AddOptions.Run">func (o *AddOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#AddOptions.Validate">func (o *AddOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#DeleteOptions">type DeleteOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewDeleteOptions">func NewDeleteOptions(prefClient preference.Client) *DeleteOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#DeleteOptions.Complete">func (o *DeleteOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.Run">func (o *DeleteOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.Validate">func (o *DeleteOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#ListOptions">type ListOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewListOptions">func NewListOptions(prefClient preference.Client) *ListOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ListOptions.Complete">func (o *ListOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ListOptions.Run">func (o *ListOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ListOptions.Validate">func (o *ListOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#UpdateOptions">type UpdateOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewUpdateOptions">func NewUpdateOptions(prefClient preference.Client) *UpdateOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#UpdateOptions.Complete">func (o *UpdateOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#UpdateOptions.Run">func (o *UpdateOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#UpdateOptions.Validate">func (o *UpdateOptions) Validate() (err error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/add.go.html">add.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/delete.go.html">delete.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/list.go.html">list.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/registry.go.html">registry.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/update.go.html">update.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// RecommendedCommandName is the recommended registry command name</span>
+    <span id="RecommendedCommandName">RecommendedCommandName</span> = &#34;registry&#34;
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="NewCmdAdd">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/add.go.html?s=2546:2598#L95">NewCmdAdd</a>
+				<a class="permalink" href="#NewCmdAdd">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdAdd(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdAdd implements the &#34;odo registry add&#34; command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdDelete">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/delete.go.html?s=2241:2296#L79">NewCmdDelete</a>
+				<a class="permalink" href="#NewCmdDelete">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdDelete(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdDelete implements the &#34;odo registry delete&#34; command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdList">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/list.go.html?s=2798:2851#L93">NewCmdList</a>
+				<a class="permalink" href="#NewCmdList">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdList(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdList implements the &#34;odo registry list&#34; command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdRegistry">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/registry.go.html?s=475:532#L13">NewCmdRegistry</a>
+				<a class="permalink" href="#NewCmdRegistry">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdRegistry(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdRegistry implements the registry configuration command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdUpdate">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/update.go.html?s=2907:2962#L103">NewCmdUpdate</a>
+				<a class="permalink" href="#NewCmdUpdate">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdUpdate(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdUpdate implements the &#34;odo registry update&#34; command
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AddOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/add.go.html?s=1029:1221#L28">AddOptions</a>
+				<a class="permalink" href="#AddOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+AddOptions encapsulates the options for the &#34;odo registry add&#34; command
+</p>
+
+			<pre>type AddOptions struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewAddOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/add.go.html?s=1274:1334#L44">NewAddOptions</a>
+					<a class="permalink" href="#NewAddOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewAddOptions(prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#AddOptions">AddOptions</a></pre>
+				<p>
+NewAddOptions creates a new AddOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="AddOptions.Complete">func (*AddOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/add.go.html?s=1450:1531#L51">Complete</a>
+					<a class="permalink" href="#AddOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#AddOptions">AddOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes AddOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AddOptions.Run">func (*AddOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/add.go.html?s=1988:2026#L72">Run</a>
+					<a class="permalink" href="#AddOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#AddOptions">AddOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for &#34;odo registry add&#34; command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AddOptions.Validate">func (*AddOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/add.go.html?s=1704:1747#L60">Validate</a>
+					<a class="permalink" href="#AddOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#AddOptions">AddOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the AddOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DeleteOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/delete.go.html?s=907:1103#L24">DeleteOptions</a>
+				<a class="permalink" href="#DeleteOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+DeleteOptions encapsulates the options for the &#34;odo registry delete&#34; command
+</p>
+
+			<pre>type DeleteOptions struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDeleteOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/delete.go.html?s=1162:1228#L40">NewDeleteOptions</a>
+					<a class="permalink" href="#NewDeleteOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewDeleteOptions(prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#DeleteOptions">DeleteOptions</a></pre>
+				<p>
+NewDeleteOptions creates a new DeleteOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="DeleteOptions.Complete">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/delete.go.html?s=1350:1434#L47">Complete</a>
+					<a class="permalink" href="#DeleteOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DeleteOptions">DeleteOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes DeleteOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.Run">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/delete.go.html?s=1732:1773#L61">Run</a>
+					<a class="permalink" href="#DeleteOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DeleteOptions">DeleteOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for &#34;odo registry delete&#34; command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.Validate">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/delete.go.html?s=1608:1654#L56">Validate</a>
+					<a class="permalink" href="#DeleteOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DeleteOptions">DeleteOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the DeleteOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ListOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/list.go.html?s=885:996#L26">ListOptions</a>
+				<a class="permalink" href="#ListOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ListOptions encapsulates the options for &#34;odo registry list&#34; command
+</p>
+
+			<pre>type ListOptions struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewListOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/list.go.html?s=1051:1113#L34">NewListOptions</a>
+					<a class="permalink" href="#NewListOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewListOptions(prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#ListOptions">ListOptions</a></pre>
+				<p>
+NewListOptions creates a new ListOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ListOptions.Complete">func (*ListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/list.go.html?s=1231:1313#L41">Complete</a>
+					<a class="permalink" href="#ListOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ListOptions">ListOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ListOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ListOptions.Run">func (*ListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/list.go.html?s=1515:1554#L51">Run</a>
+					<a class="permalink" href="#ListOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ListOptions">ListOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for &#34;odo registry list&#34; command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ListOptions.Validate">func (*ListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/list.go.html?s=1395:1439#L46">Validate</a>
+					<a class="permalink" href="#ListOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ListOptions">ListOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the ListOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UpdateOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/update.go.html?s=964:1175#L24">UpdateOptions</a>
+				<a class="permalink" href="#UpdateOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+UpdateOptions encapsulates the options for the &#34;odo registry update&#34; command
+</p>
+
+			<pre>type UpdateOptions struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewUpdateOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/update.go.html?s=1234:1300#L41">NewUpdateOptions</a>
+					<a class="permalink" href="#NewUpdateOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewUpdateOptions(prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#UpdateOptions">UpdateOptions</a></pre>
+				<p>
+NewUpdateOptions creates a new UpdateOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="UpdateOptions.Complete">func (*UpdateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/update.go.html?s=1422:1506#L48">Complete</a>
+					<a class="permalink" href="#UpdateOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#UpdateOptions">UpdateOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes UpdateOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UpdateOptions.Run">func (*UpdateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/update.go.html?s=1989:2030#L69">Run</a>
+					<a class="permalink" href="#UpdateOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#UpdateOptions">UpdateOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for &#34;odo registry update&#34; command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UpdateOptions.Validate">func (*UpdateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/registry/update.go.html?s=1685:1731#L57">Validate</a>
+					<a class="permalink" href="#UpdateOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#UpdateOptions">UpdateOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the UpdateOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="consts/">consts</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="util/">util</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>component - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli">cli</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component">component</a>/<span class="text-muted">delete.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component">github.com/redhat-developer/odo/pkg/odo/cli/component</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package component
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;fmt&#34;
+<span id="L5" class="ln">     5  </span>	&#34;os&#34;
+<span id="L6" class="ln">     6  </span>	&#34;path/filepath&#34;
+<span id="L7" class="ln">     7  </span>
+<span id="L8" class="ln">     8  </span>	&#34;github.com/spf13/cobra&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/redhat-developer/odo/pkg/devfile&#34;
+<span id="L11" class="ln">    11  </span>	&#34;github.com/redhat-developer/odo/pkg/devfile/adapters/common&#34;
+<span id="L12" class="ln">    12  </span>	&#34;github.com/redhat-developer/odo/pkg/devfile/consts&#34;
+<span id="L13" class="ln">    13  </span>	&#34;github.com/redhat-developer/odo/pkg/log&#34;
+<span id="L14" class="ln">    14  </span>	appCmd &#34;github.com/redhat-developer/odo/pkg/odo/cli/application&#34;
+<span id="L15" class="ln">    15  </span>	projectCmd &#34;github.com/redhat-developer/odo/pkg/odo/cli/project&#34;
+<span id="L16" class="ln">    16  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/cli/ui&#34;
+<span id="L17" class="ln">    17  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/cmdline&#34;
+<span id="L18" class="ln">    18  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/genericclioptions&#34;
+<span id="L19" class="ln">    19  </span>	odoutil &#34;github.com/redhat-developer/odo/pkg/odo/util&#34;
+<span id="L20" class="ln">    20  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/util/completion&#34;
+<span id="L21" class="ln">    21  </span>	&#34;github.com/redhat-developer/odo/pkg/util&#34;
+<span id="L22" class="ln">    22  </span>
+<span id="L23" class="ln">    23  </span>	&#34;k8s.io/klog&#34;
+<span id="L24" class="ln">    24  </span>	ktemplates &#34;k8s.io/kubectl/pkg/util/templates&#34;
+<span id="L25" class="ln">    25  </span>)
+<span id="L26" class="ln">    26  </span>
+<span id="L27" class="ln">    27  </span><span class="comment">// DeleteRecommendedCommandName is the recommended delete command name</span>
+<span id="L28" class="ln">    28  </span>const DeleteRecommendedCommandName = &#34;delete&#34;
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span>var deleteExample = ktemplates.Examples(`
+<span id="L31" class="ln">    31  </span># Delete the component present in the current directory from the cluster
+<span id="L32" class="ln">    32  </span>%[1]s
+<span id="L33" class="ln">    33  </span>
+<span id="L34" class="ln">    34  </span># Delete the component named &#39;frontend&#39; from the cluster
+<span id="L35" class="ln">    35  </span>%[1]s frontend
+<span id="L36" class="ln">    36  </span>
+<span id="L37" class="ln">    37  </span># Delete the component present in the current directory from the cluster and all of its related local config files(&#34;devfile.yaml&#34; and &#34;.odo&#34; directory)
+<span id="L38" class="ln">    38  </span>%[1]s --all
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span># Delete the component present in the &#39;./frontend&#39; directory from the cluster
+<span id="L41" class="ln">    41  </span>%[1]s --context ./frontend
+<span id="L42" class="ln">    42  </span>
+<span id="L43" class="ln">    43  </span># Delete the component present in the &#39;./frontend&#39; directory from the cluster and all of its related local config files(&#34;devfile.yaml&#34; and &#34;.odo&#34; directory)
+<span id="L44" class="ln">    44  </span>%[1]s --context ./frontend --all
+<span id="L45" class="ln">    45  </span>
+<span id="L46" class="ln">    46  </span># Delete the component &#39;frontend&#39; that is a part of &#39;myapp&#39; app inside the &#39;myproject&#39; project from the cluster	
+<span id="L47" class="ln">    47  </span>%[1]s frontend --app myapp --project myproject`)
+<span id="L48" class="ln">    48  </span>
+<span id="L49" class="ln">    49  </span><span class="comment">// DeleteOptions is a container to attach complete, validate and run pattern</span>
+<span id="L50" class="ln">    50  </span>type DeleteOptions struct {
+<span id="L51" class="ln">    51  </span>	<span class="comment">// Component Context</span>
+<span id="L52" class="ln">    52  </span>	*ComponentOptions
+<span id="L53" class="ln">    53  </span>
+<span id="L54" class="ln">    54  </span>	<span class="comment">// Flags</span>
+<span id="L55" class="ln">    55  </span>	contextFlag string
+<span id="L56" class="ln">    56  </span>	forceFlag   bool
+<span id="L57" class="ln">    57  </span>	allFlag     bool
+<span id="L58" class="ln">    58  </span>	waitFlag    bool
+<span id="L59" class="ln">    59  </span>	showLogFlag bool
+<span id="L60" class="ln">    60  </span>	deployFlag  bool
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span><span class="comment">// NewDeleteOptions returns new instance of DeleteOptions</span>
+<span id="L64" class="ln">    64  </span>func NewDeleteOptions() *DeleteOptions {
+<span id="L65" class="ln">    65  </span>	return &amp;DeleteOptions{
+<span id="L66" class="ln">    66  </span>		ComponentOptions: &amp;ComponentOptions{},
+<span id="L67" class="ln">    67  </span>	}
+<span id="L68" class="ln">    68  </span>}
+<span id="L69" class="ln">    69  </span>
+<span id="L70" class="ln">    70  </span><span class="comment">// Complete completes log args</span>
+<span id="L71" class="ln">    71  </span>func (do *DeleteOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error) {
+<span id="L72" class="ln">    72  </span>	do.Context, err = genericclioptions.New(genericclioptions.NewCreateParameters(cmdline).NeedDevfile(do.contextFlag))
+<span id="L73" class="ln">    73  </span>	return err
+<span id="L74" class="ln">    74  </span>}
+<span id="L75" class="ln">    75  </span>
+<span id="L76" class="ln">    76  </span><span class="comment">// Validate validates the list parameters</span>
+<span id="L77" class="ln">    77  </span>func (do *DeleteOptions) Validate() error {
+<span id="L78" class="ln">    78  </span>	return nil
+<span id="L79" class="ln">    79  </span>}
+<span id="L80" class="ln">    80  </span>
+<span id="L81" class="ln">    81  </span><span class="comment">// Run has the logic to perform the required actions as part of command</span>
+<span id="L82" class="ln">    82  </span>func (do *DeleteOptions) Run() (err error) {
+<span id="L83" class="ln">    83  </span>	klog.V(4).Infof(&#34;component delete called&#34;)
+<span id="L84" class="ln">    84  </span>	klog.V(4).Infof(&#34;args: %#v&#34;, do)
+<span id="L85" class="ln">    85  </span>
+<span id="L86" class="ln">    86  </span>	<span class="comment">// odo delete --deploy || odo delete --all</span>
+<span id="L87" class="ln">    87  </span>	if do.deployFlag || do.allFlag {
+<span id="L88" class="ln">    88  </span>		if do.forceFlag || ui.Proceed(&#34;Are you sure you want to undeploy?&#34;) {
+<span id="L89" class="ln">    89  </span>			err = do.DevfileUnDeploy()
+<span id="L90" class="ln">    90  </span>			if err != nil {
+<span id="L91" class="ln">    91  </span>				log.Errorf(&#34;error occurred while undeploying, cause: %v&#34;, err)
+<span id="L92" class="ln">    92  </span>			}
+<span id="L93" class="ln">    93  </span>		} else {
+<span id="L94" class="ln">    94  </span>			log.Error(&#34;Aborting the un-deployment&#34;)
+<span id="L95" class="ln">    95  </span>		}
+<span id="L96" class="ln">    96  </span>	}
+<span id="L97" class="ln">    97  </span>
+<span id="L98" class="ln">    98  </span>	<span class="comment">// odo delete || odo delete --all</span>
+<span id="L99" class="ln">    99  </span>	if !do.deployFlag || do.allFlag {
+<span id="L100" class="ln">   100  </span>		if do.forceFlag || ui.Proceed(fmt.Sprintf(&#34;Are you sure you want to delete the devfile component: %s?&#34;, do.EnvSpecificInfo.GetName())) {
+<span id="L101" class="ln">   101  </span>			err = do.DevfileComponentDelete()
+<span id="L102" class="ln">   102  </span>			if err != nil {
+<span id="L103" class="ln">   103  </span>				log.Errorf(&#34;error occurred while deleting component, cause: %v&#34;, err)
+<span id="L104" class="ln">   104  </span>			}
+<span id="L105" class="ln">   105  </span>		} else {
+<span id="L106" class="ln">   106  </span>			log.Error(&#34;Aborting deletion of component&#34;)
+<span id="L107" class="ln">   107  </span>		}
+<span id="L108" class="ln">   108  </span>	}
+<span id="L109" class="ln">   109  </span>
+<span id="L110" class="ln">   110  </span>	<span class="comment">// Delete the configuration files</span>
+<span id="L111" class="ln">   111  </span>	if do.allFlag {
+<span id="L112" class="ln">   112  </span>		log.Info(&#34;\nDeleting local config&#34;)
+<span id="L113" class="ln">   113  </span>		<span class="comment">// Prompt and delete env folder</span>
+<span id="L114" class="ln">   114  </span>		if do.forceFlag || ui.Proceed(&#34;Are you sure you want to delete env folder?&#34;) {
+<span id="L115" class="ln">   115  </span>			if !do.EnvSpecificInfo.Exists() {
+<span id="L116" class="ln">   116  </span>				return fmt.Errorf(&#34;env folder doesn&#39;t exist for the component&#34;)
+<span id="L117" class="ln">   117  </span>			}
+<span id="L118" class="ln">   118  </span>			if err = util.DeleteIndexFile(filepath.Dir(do.GetDevfilePath())); err != nil {
+<span id="L119" class="ln">   119  </span>				return err
+<span id="L120" class="ln">   120  </span>			}
+<span id="L121" class="ln">   121  </span>
+<span id="L122" class="ln">   122  </span>			err = do.EnvSpecificInfo.DeleteEnvInfoFile()
+<span id="L123" class="ln">   123  </span>			if err != nil {
+<span id="L124" class="ln">   124  </span>				return err
+<span id="L125" class="ln">   125  </span>			}
+<span id="L126" class="ln">   126  </span>			err = do.EnvSpecificInfo.DeleteEnvDirIfEmpty()
+<span id="L127" class="ln">   127  </span>			if err != nil {
+<span id="L128" class="ln">   128  </span>				return err
+<span id="L129" class="ln">   129  </span>			}
+<span id="L130" class="ln">   130  </span>			err = util.DeletePath(filepath.Join(do.contextFlag, util.DotOdoDirectory))
+<span id="L131" class="ln">   131  </span>			if err != nil {
+<span id="L132" class="ln">   132  </span>				return err
+<span id="L133" class="ln">   133  </span>			}
+<span id="L134" class="ln">   134  </span>			log.Successf(&#34;Successfully deleted env file&#34;)
+<span id="L135" class="ln">   135  </span>		} else {
+<span id="L136" class="ln">   136  </span>			log.Error(&#34;Aborting deletion of env folder&#34;)
+<span id="L137" class="ln">   137  </span>		}
+<span id="L138" class="ln">   138  </span>
+<span id="L139" class="ln">   139  </span>		if do.forceFlag {
+<span id="L140" class="ln">   140  </span>			if !util.CheckPathExists(do.GetDevfilePath()) {
+<span id="L141" class="ln">   141  </span>				return fmt.Errorf(&#34;devfile.yaml does not exist in the current directory&#34;)
+<span id="L142" class="ln">   142  </span>			}
+<span id="L143" class="ln">   143  </span>			if !do.EnvSpecificInfo.IsUserCreatedDevfile() {
+<span id="L144" class="ln">   144  </span>
+<span id="L145" class="ln">   145  </span>				<span class="comment">// first remove the uri based files mentioned in the devfile</span>
+<span id="L146" class="ln">   146  </span>				devfileObj, err := devfile.ParseAndValidateFromFile(do.GetDevfilePath())
+<span id="L147" class="ln">   147  </span>				if err != nil {
+<span id="L148" class="ln">   148  </span>					return err
+<span id="L149" class="ln">   149  </span>				}
+<span id="L150" class="ln">   150  </span>
+<span id="L151" class="ln">   151  </span>				err = common.RemoveDevfileURIContents(devfileObj, do.contextFlag)
+<span id="L152" class="ln">   152  </span>				if err != nil {
+<span id="L153" class="ln">   153  </span>					return err
+<span id="L154" class="ln">   154  </span>				}
+<span id="L155" class="ln">   155  </span>
+<span id="L156" class="ln">   156  </span>				empty, err := util.IsEmpty(filepath.Join(do.contextFlag, consts.UriFolder))
+<span id="L157" class="ln">   157  </span>				if err != nil &amp;&amp; !os.IsNotExist(err) {
+<span id="L158" class="ln">   158  </span>					return err
+<span id="L159" class="ln">   159  </span>				}
+<span id="L160" class="ln">   160  </span>
+<span id="L161" class="ln">   161  </span>				if !os.IsNotExist(err) &amp;&amp; empty {
+<span id="L162" class="ln">   162  </span>					err = os.RemoveAll(filepath.Join(do.contextFlag, consts.UriFolder))
+<span id="L163" class="ln">   163  </span>					if err != nil {
+<span id="L164" class="ln">   164  </span>						return err
+<span id="L165" class="ln">   165  </span>					}
+<span id="L166" class="ln">   166  </span>				}
+<span id="L167" class="ln">   167  </span>
+<span id="L168" class="ln">   168  </span>				err = util.DeletePath(do.GetDevfilePath())
+<span id="L169" class="ln">   169  </span>				if err != nil {
+<span id="L170" class="ln">   170  </span>					return err
+<span id="L171" class="ln">   171  </span>				}
+<span id="L172" class="ln">   172  </span>
+<span id="L173" class="ln">   173  </span>				log.Successf(&#34;Successfully deleted devfile.yaml file&#34;)
+<span id="L174" class="ln">   174  </span>
+<span id="L175" class="ln">   175  </span>			} else {
+<span id="L176" class="ln">   176  </span>				log.Info(&#34;Didn&#39;t delete the devfile as it was user provided&#34;)
+<span id="L177" class="ln">   177  </span>			}
+<span id="L178" class="ln">   178  </span>
+<span id="L179" class="ln">   179  </span>		} else if ui.Proceed(&#34;Are you sure you want to delete devfile.yaml?&#34;) {
+<span id="L180" class="ln">   180  </span>			if !util.CheckPathExists(do.GetDevfilePath()) {
+<span id="L181" class="ln">   181  </span>				return fmt.Errorf(&#34;devfile.yaml does not exist in the current directory&#34;)
+<span id="L182" class="ln">   182  </span>			}
+<span id="L183" class="ln">   183  </span>
+<span id="L184" class="ln">   184  </span>			<span class="comment">// first remove the uri based files mentioned in the devfile</span>
+<span id="L185" class="ln">   185  </span>			devfileObj, err := devfile.ParseAndValidateFromFile(do.GetDevfilePath())
+<span id="L186" class="ln">   186  </span>			if err != nil {
+<span id="L187" class="ln">   187  </span>				return err
+<span id="L188" class="ln">   188  </span>			}
+<span id="L189" class="ln">   189  </span>
+<span id="L190" class="ln">   190  </span>			err = common.RemoveDevfileURIContents(devfileObj, do.contextFlag)
+<span id="L191" class="ln">   191  </span>			if err != nil {
+<span id="L192" class="ln">   192  </span>				return err
+<span id="L193" class="ln">   193  </span>			}
+<span id="L194" class="ln">   194  </span>
+<span id="L195" class="ln">   195  </span>			empty, err := util.IsEmpty(filepath.Join(do.contextFlag, consts.UriFolder))
+<span id="L196" class="ln">   196  </span>			if err != nil &amp;&amp; !os.IsNotExist(err) {
+<span id="L197" class="ln">   197  </span>				return err
+<span id="L198" class="ln">   198  </span>			}
+<span id="L199" class="ln">   199  </span>
+<span id="L200" class="ln">   200  </span>			if !os.IsNotExist(err) &amp;&amp; empty {
+<span id="L201" class="ln">   201  </span>				err = os.RemoveAll(filepath.Join(do.contextFlag, consts.UriFolder))
+<span id="L202" class="ln">   202  </span>				if err != nil {
+<span id="L203" class="ln">   203  </span>					return err
+<span id="L204" class="ln">   204  </span>				}
+<span id="L205" class="ln">   205  </span>			}
+<span id="L206" class="ln">   206  </span>
+<span id="L207" class="ln">   207  </span>			err = util.DeletePath(do.GetDevfilePath())
+<span id="L208" class="ln">   208  </span>			if err != nil {
+<span id="L209" class="ln">   209  </span>				return err
+<span id="L210" class="ln">   210  </span>			}
+<span id="L211" class="ln">   211  </span>
+<span id="L212" class="ln">   212  </span>			log.Successf(&#34;Successfully deleted devfile.yaml file&#34;)
+<span id="L213" class="ln">   213  </span>		} else {
+<span id="L214" class="ln">   214  </span>			log.Error(&#34;Aborting deletion of devfile.yaml file&#34;)
+<span id="L215" class="ln">   215  </span>		}
+<span id="L216" class="ln">   216  </span>	}
+<span id="L217" class="ln">   217  </span>	return nil
+<span id="L218" class="ln">   218  </span>}
+<span id="L219" class="ln">   219  </span>
+<span id="L220" class="ln">   220  </span><span class="comment">// NewCmdDelete implements the delete odo command</span>
+<span id="L221" class="ln">   221  </span>func NewCmdDelete(name, fullName string) *cobra.Command {
+<span id="L222" class="ln">   222  </span>
+<span id="L223" class="ln">   223  </span>	do := NewDeleteOptions()
+<span id="L224" class="ln">   224  </span>
+<span id="L225" class="ln">   225  </span>	var componentDeleteCmd = &amp;cobra.Command{
+<span id="L226" class="ln">   226  </span>		Use:         fmt.Sprintf(&#34;%s &lt;component_name&gt;&#34;, name),
+<span id="L227" class="ln">   227  </span>		Short:       &#34;Delete component&#34;,
+<span id="L228" class="ln">   228  </span>		Long:        &#34;Delete component.&#34;,
+<span id="L229" class="ln">   229  </span>		Example:     fmt.Sprintf(deleteExample, fullName),
+<span id="L230" class="ln">   230  </span>		Args:        cobra.MaximumNArgs(1),
+<span id="L231" class="ln">   231  </span>		Annotations: map[string]string{&#34;command&#34;: &#34;component&#34;},
+<span id="L232" class="ln">   232  </span>		Run: func(cmd *cobra.Command, args []string) {
+<span id="L233" class="ln">   233  </span>			genericclioptions.GenericRun(do, cmd, args)
+<span id="L234" class="ln">   234  </span>		},
+<span id="L235" class="ln">   235  </span>	}
+<span id="L236" class="ln">   236  </span>
+<span id="L237" class="ln">   237  </span>	componentDeleteCmd.Flags().BoolVarP(&amp;do.forceFlag, &#34;force&#34;, &#34;f&#34;, false, &#34;Delete component without prompting&#34;)
+<span id="L238" class="ln">   238  </span>	componentDeleteCmd.Flags().BoolVarP(&amp;do.allFlag, &#34;all&#34;, &#34;a&#34;, false, &#34;Delete component and local config&#34;)
+<span id="L239" class="ln">   239  </span>	componentDeleteCmd.Flags().BoolVarP(&amp;do.waitFlag, &#34;wait&#34;, &#34;w&#34;, false, &#34;Wait for complete deletion of component and its dependent&#34;)
+<span id="L240" class="ln">   240  </span>	componentDeleteCmd.Flags().BoolVarP(&amp;do.deployFlag, &#34;deploy&#34;, &#34;d&#34;, false, &#34;Undeploy the Devfile Kubernetes Component deployed via `odo deploy`&#34;)
+<span id="L241" class="ln">   241  </span>
+<span id="L242" class="ln">   242  </span>	componentDeleteCmd.Flags().BoolVar(&amp;do.showLogFlag, &#34;show-log&#34;, false, &#34;If enabled, logs will be shown when deleted&#34;)
+<span id="L243" class="ln">   243  </span>
+<span id="L244" class="ln">   244  </span>	componentDeleteCmd.SetUsageTemplate(odoutil.CmdUsageTemplate)
+<span id="L245" class="ln">   245  </span>	completion.RegisterCommandHandler(componentDeleteCmd, completion.ComponentNameCompletionHandler)
+<span id="L246" class="ln">   246  </span>	<span class="comment">//Adding `--context` flag</span>
+<span id="L247" class="ln">   247  </span>	odoutil.AddContextFlag(componentDeleteCmd, &amp;do.contextFlag)
+<span id="L248" class="ln">   248  </span>
+<span id="L249" class="ln">   249  </span>	<span class="comment">//Adding `--project` flag</span>
+<span id="L250" class="ln">   250  </span>	projectCmd.AddProjectFlag(componentDeleteCmd)
+<span id="L251" class="ln">   251  </span>	<span class="comment">//Adding `--application` flag</span>
+<span id="L252" class="ln">   252  </span>	appCmd.AddApplicationFlag(componentDeleteCmd)
+<span id="L253" class="ln">   253  </span>
+<span id="L254" class="ln">   254  </span>	return componentDeleteCmd
+<span id="L255" class="ln">   255  </span>}
+<span id="L256" class="ln">   256  </span>
+</pre><p><a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/delete.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

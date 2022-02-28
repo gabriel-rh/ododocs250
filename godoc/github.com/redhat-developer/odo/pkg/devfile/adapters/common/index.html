@@ -1,0 +1,1494 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>common - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package common
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/devfile/adapters/common" target="_blank">github.com/redhat-developer/odo/pkg/devfile/adapters/common</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#CreateConsoleOutputWriterAndChannel">func CreateConsoleOutputWriterAndChannel() (*io.PipeWriter, chan []string)</a></dd>
+			
+				
+				<dd><a href="#ExecuteCommand">func ExecuteCommand(client ExecClient, compInfo ComponentInfo, command []string, show bool, consoleOutputStdout *io.PipeWriter, consoleOutputStderr *io.PipeWriter) (err error)</a></dd>
+			
+				
+				<dd><a href="#GetBootstrapperImage">func GetBootstrapperImage() string</a></dd>
+			
+				
+				<dd><a href="#GetBuildCommand">func GetBuildCommand(data data.DevfileData, devfileBuildCmd string) (buildCommand devfilev1.Command, err error)</a></dd>
+			
+				
+				<dd><a href="#GetCommandsFromEvent">func GetCommandsFromEvent(commandsMap map[string]devfilev1.Command, eventName string) []string</a></dd>
+			
+				
+				<dd><a href="#GetCommandsMap">func GetCommandsMap(commands []devfilev1.Command) map[string]devfilev1.Command</a></dd>
+			
+				
+				<dd><a href="#GetComponentEnvVar">func GetComponentEnvVar(env string, envs []devfilev1.EnvVar) string</a></dd>
+			
+				
+				<dd><a href="#GetDebugCommand">func GetDebugCommand(data data.DevfileData, devfileDebugCmd string) (debugCommand devfilev1.Command, err error)</a></dd>
+			
+				
+				<dd><a href="#GetDeployCommand">func GetDeployCommand(data data.DevfileData, devfileDeployCmd string) (deployCommand devfilev1.Command, err error)</a></dd>
+			
+				
+				<dd><a href="#GetRunCommand">func GetRunCommand(data data.DevfileData, devfileRunCmd string) (runCommand devfilev1.Command, err error)</a></dd>
+			
+				
+				<dd><a href="#GetSyncFilesFromAttributes">func GetSyncFilesFromAttributes(commandsMap PushCommandsMap) map[string]string</a></dd>
+			
+				
+				<dd><a href="#GetTestCommand">func GetTestCommand(data data.DevfileData, devfileTestCmd string) (runCommand devfilev1.Command, err error)</a></dd>
+			
+				
+				<dd><a href="#IsEnvPresent">func IsEnvPresent(envVars []devfilev1.EnvVar, envVarName string) bool</a></dd>
+			
+				
+				<dd><a href="#IsPortPresent">func IsPortPresent(endpoints []devfilev1.Endpoint, port int) bool</a></dd>
+			
+				
+				<dd><a href="#IsRestartRequired">func IsRestartRequired(hotReload bool, runModeChanged bool) bool</a></dd>
+			
+				
+				<dd><a href="#New">func New(devfile devfilev1.Command, knowCommands map[string]devfilev1.Command, executor commandExecutor) (command, error)</a></dd>
+			
+				
+				<dd><a href="#RemoveDevfileURIContents">func RemoveDevfileURIContents(devfile devfileParser.DevfileObj, componentContext string) error</a></dd>
+			
+				
+				<dd><a href="#ValidateAndGetDebugDevfileCommands">func ValidateAndGetDebugDevfileCommands(data data.DevfileData, devfileDebugCmd string) (pushDebugCommand devfilev1.Command, err error)</a></dd>
+			
+				
+				<dd><a href="#ValidateAndGetTestDevfileCommands">func ValidateAndGetTestDevfileCommands(data data.DevfileData, devfileTestCmd string) (testCommand devfilev1.Command, err error)</a></dd>
+			
+			
+				
+				<dd><a href="#AdapterContext">type AdapterContext</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ApplyClient">type ApplyClient</a></dd>
+				
+				
+			
+				
+				<dd><a href="#CommandNames">type CommandNames</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ComponentAdapter">type ComponentAdapter</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ComponentInfo">type ComponentInfo</a></dd>
+				
+				
+					
+					<dd>    <a href="#ComponentInfo.IsEmpty">func (ci ComponentInfo) IsEmpty() bool</a></dd>
+				
+			
+				
+				<dd><a href="#ComponentInfoFactory">type ComponentInfoFactory</a></dd>
+				
+				
+			
+				
+				<dd><a href="#DevfileEventType">type DevfileEventType</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ExecClient">type ExecClient</a></dd>
+				
+				
+			
+				
+				<dd><a href="#GenericAdapter">type GenericAdapter</a></dd>
+				
+					
+					<dd>    <a href="#NewGenericAdapter">func NewGenericAdapter(client ExecClient, context AdapterContext) *GenericAdapter</a></dd>
+				
+				
+					
+					<dd>    <a href="#GenericAdapter.ApplyComponent">func (a GenericAdapter) ApplyComponent(component string) error</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.ComponentInfo">func (a GenericAdapter) ComponentInfo(command devfilev1.Command) (ComponentInfo, error)</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.ExecCMDInContainer">func (a GenericAdapter) ExecCMDInContainer(info ComponentInfo, cmd []string, stdOut io.Writer, stdErr io.Writer, stdIn io.Reader, show bool) error</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.ExecDevfile">func (a GenericAdapter) ExecDevfile(commandsMap PushCommandsMap, componentExists bool, params PushParameters) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.ExecDevfileEvent">func (a GenericAdapter) ExecDevfileEvent(events []string, eventType DevfileEventType, show bool) error</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.ExecuteCommand">func (a GenericAdapter) ExecuteCommand(compInfo ComponentInfo, command []string, show bool, consoleOutputStdout *io.PipeWriter, consoleOutputStderr *io.PipeWriter) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.ExecuteDevfileCommand">func (a GenericAdapter) ExecuteDevfileCommand(command devfilev1.Command, show bool) error</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.InitWith">func (a *GenericAdapter) InitWith(executor commandExecutor)</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.Logger">func (a GenericAdapter) Logger() machineoutput.MachineEventLoggingClient</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.SetLogger">func (a *GenericAdapter) SetLogger(loggingClient machineoutput.MachineEventLoggingClient)</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.SupervisorComponentInfo">func (a GenericAdapter) SupervisorComponentInfo(command devfilev1.Command) (ComponentInfo, error)</a></dd>
+				
+					
+					<dd>    <a href="#GenericAdapter.UnApplyComponent">func (a GenericAdapter) UnApplyComponent(component string) error</a></dd>
+				
+			
+				
+				<dd><a href="#MoreDefaultForGroup">type MoreDefaultForGroup</a></dd>
+				
+				
+					
+					<dd>    <a href="#MoreDefaultForGroup.Error">func (m MoreDefaultForGroup) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#NoCommandForGroup">type NoCommandForGroup</a></dd>
+				
+				
+					
+					<dd>    <a href="#NoCommandForGroup.Error">func (n NoCommandForGroup) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#NoDefaultForGroup">type NoDefaultForGroup</a></dd>
+				
+				
+					
+					<dd>    <a href="#NoDefaultForGroup.Error">func (n NoDefaultForGroup) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#PredefinedDevfileCommands">type PredefinedDevfileCommands</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PushCommandsMap">type PushCommandsMap</a></dd>
+				
+					
+					<dd>    <a href="#NewPushCommandMap">func NewPushCommandMap() PushCommandsMap</a></dd>
+				
+					
+					<dd>    <a href="#ValidateAndGetPushDevfileCommands">func ValidateAndGetPushDevfileCommands(data data.DevfileData, devfileBuildCmd, devfileRunCmd string) (commandMap PushCommandsMap, err error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PushParameters">type PushParameters</a></dd>
+				
+				
+			
+				
+				<dd><a href="#SyncParameters">type SyncParameters</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/apply.go.html">apply.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html">command.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command_apply.go.html">command_apply.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command_composite.go.html">command_composite.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command_parallel_composite.go.html">command_parallel_composite.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command_simple.go.html">command_simple.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command_supervisor.go.html">command_supervisor.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/errors.go.html">errors.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/exec.go.html">exec.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/executor.go.html">executor.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html">generic.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/interface.go.html">interface.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/types.go.html">types.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html">utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// DefaultDevfileInitCommand is a predefined devfile command for init</span>
+    <span id="DefaultDevfileInitCommand">DefaultDevfileInitCommand</span> <a href="#PredefinedDevfileCommands">PredefinedDevfileCommands</a> = &#34;devinit&#34;
+
+    <span class="comment">// DefaultDevfileBuildCommand is a predefined devfile command for build</span>
+    <span id="DefaultDevfileBuildCommand">DefaultDevfileBuildCommand</span> <a href="#PredefinedDevfileCommands">PredefinedDevfileCommands</a> = &#34;devbuild&#34;
+
+    <span class="comment">// DefaultDevfileRunCommand is a predefined devfile command for run</span>
+    <span id="DefaultDevfileRunCommand">DefaultDevfileRunCommand</span> <a href="#PredefinedDevfileCommands">PredefinedDevfileCommands</a> = &#34;devrun&#34;
+
+    <span class="comment">// DefaultDevfileDebugCommand is a predefined devfile command for debug</span>
+    <span id="DefaultDevfileDebugCommand">DefaultDevfileDebugCommand</span> <a href="#PredefinedDevfileCommands">PredefinedDevfileCommands</a> = &#34;debugrun&#34;
+
+    <span class="comment">// SupervisordInitContainerName The init container name for supervisord</span>
+    <span id="SupervisordInitContainerName">SupervisordInitContainerName</span> = &#34;copy-supervisord&#34;
+
+    <span class="comment">// SupervisordControlCommand sub command which stands for control</span>
+    <span id="SupervisordControlCommand">SupervisordControlCommand</span> = &#34;ctl&#34;
+
+    <span class="comment">// SupervisordVolumeName Create a custom name and (hope) that users don&#39;t use the *exact* same name in their deployment (occlient.go)</span>
+    <span id="SupervisordVolumeName">SupervisordVolumeName</span> = &#34;odo-supervisord-shared-data&#34;
+
+    <span class="comment">// SupervisordMountPath The supervisord Mount Path for the container mounting the supervisord volume</span>
+    <span id="SupervisordMountPath">SupervisordMountPath</span> = &#34;/opt/odo/&#34;
+
+    <span class="comment">// SupervisordBinaryPath The supervisord binary path inside the container volume mount</span>
+    <span id="SupervisordBinaryPath">SupervisordBinaryPath</span> = &#34;/opt/odo/bin/supervisord&#34;
+
+    <span class="comment">// SupervisordConfFile The supervisord configuration file inside the container volume mount</span>
+    <span id="SupervisordConfFile">SupervisordConfFile</span> = &#34;/opt/odo/conf/devfile-supervisor.conf&#34;
+
+    <span class="comment">// OdoInitImageContents The path to the odo init image contents</span>
+    <span id="OdoInitImageContents">OdoInitImageContents</span> = &#34;/opt/odo-init/.&#34;
+
+    <span class="comment">// BinBash The path to sh executable</span>
+    <span id="BinBash">BinBash</span> = &#34;/bin/sh&#34;
+
+    <span class="comment">// DefaultVolumeSize Default volume size for volumes defined in a devfile</span>
+    <span id="DefaultVolumeSize">DefaultVolumeSize</span> = &#34;1Gi&#34;
+
+    <span class="comment">// EnvProjectsRoot is the env defined for project mount in a component container when component&#39;s mountSources=true</span>
+    <span id="EnvProjectsRoot">EnvProjectsRoot</span> = &#34;PROJECTS_ROOT&#34;
+
+    <span class="comment">// EnvProjectsSrc is the env defined for path to the project source in a component container</span>
+    <span id="EnvProjectsSrc">EnvProjectsSrc</span> = &#34;PROJECT_SOURCE&#34;
+
+    <span class="comment">// EnvOdoCommandRunWorkingDir is the env defined in the runtime component container which holds the work dir for the run command</span>
+    <span id="EnvOdoCommandRunWorkingDir">EnvOdoCommandRunWorkingDir</span> = &#34;ODO_COMMAND_RUN_WORKING_DIR&#34;
+
+    <span class="comment">// EnvOdoCommandRun is the env defined in the runtime component container which holds the run command to be executed</span>
+    <span id="EnvOdoCommandRun">EnvOdoCommandRun</span> = &#34;ODO_COMMAND_RUN&#34;
+
+    <span class="comment">// EnvOdoCommandDebugWorkingDir is the env defined in the runtime component container which holds the work dir for the debug command</span>
+    <span id="EnvOdoCommandDebugWorkingDir">EnvOdoCommandDebugWorkingDir</span> = &#34;ODO_COMMAND_DEBUG_WORKING_DIR&#34;
+
+    <span class="comment">// EnvOdoCommandDebug is the env defined in the runtime component container which holds the debug command to be executed</span>
+    <span id="EnvOdoCommandDebug">EnvOdoCommandDebug</span> = &#34;ODO_COMMAND_DEBUG&#34;
+
+    <span class="comment">// EnvDebugPort is the env defined in the runtime component container which holds the debug port for remote debugging</span>
+    <span id="EnvDebugPort">EnvDebugPort</span> = &#34;DEBUG_PORT&#34;
+
+    <span class="comment">// ShellExecutable is the shell executable</span>
+    <span id="ShellExecutable">ShellExecutable</span> = &#34;/bin/sh&#34;
+
+    <span class="comment">// SupervisordCtlSubCommand is the supervisord sub command ctl</span>
+    <span id="SupervisordCtlSubCommand">SupervisordCtlSubCommand</span> = &#34;ctl&#34;
+
+    <span class="comment">// PreStart is a devfile event</span>
+    <span id="PreStart">PreStart</span> <a href="#DevfileEventType">DevfileEventType</a> = &#34;preStart&#34;
+
+    <span class="comment">// PostStart is a devfile event</span>
+    <span id="PostStart">PostStart</span> <a href="#DevfileEventType">DevfileEventType</a> = &#34;postStart&#34;
+
+    <span class="comment">// PreStop is a devfile event</span>
+    <span id="PreStop">PreStop</span> <a href="#DevfileEventType">DevfileEventType</a> = &#34;preStop&#34;
+
+    <span class="comment">// PostStop is a devfile event</span>
+    <span id="PostStop">PostStop</span> <a href="#DevfileEventType">DevfileEventType</a> = &#34;postStop&#34;
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="CreateConsoleOutputWriterAndChannel">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/exec.go.html?s=3227:3301#L83">CreateConsoleOutputWriterAndChannel</a>
+				<a class="permalink" href="#CreateConsoleOutputWriterAndChannel">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateConsoleOutputWriterAndChannel() (*<a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#PipeWriter">PipeWriter</a>, chan []<a href="../../../../../../../builtin/#string">string</a>)</pre>
+			<p>
+CreateConsoleOutputWriterAndChannel is a utility function that returns a pipeWriter and a channel;
+any strings written to that PipeWriter will be output to the channel (as lines) when the
+writer closes. This is used to retrieve the stdout/stderr output from the container exec commands.
+</p>
+<p>
+The io.PipeWriter can be passed to ExecuteCommand(...) above, in order to receive the full
+stderr/stdout output from the process.
+See calling functions of CreateConsoleOutputWriterAndChannel for examples of usage.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ExecuteCommand">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/exec.go.html?s=443:618#L11">ExecuteCommand</a>
+				<a class="permalink" href="#ExecuteCommand">¶</a>
+				
+				
+			</h2>
+			<pre>func ExecuteCommand(client <a href="#ExecClient">ExecClient</a>, compInfo <a href="#ComponentInfo">ComponentInfo</a>, command []<a href="../../../../../../../builtin/#string">string</a>, show <a href="../../../../../../../builtin/#bool">bool</a>, consoleOutputStdout *<a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#PipeWriter">PipeWriter</a>, consoleOutputStderr *<a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#PipeWriter">PipeWriter</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ExecuteCommand executes the given command in the pod&#39;s container
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBootstrapperImage">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=4511:4545#L107">GetBootstrapperImage</a>
+				<a class="permalink" href="#GetBootstrapperImage">¶</a>
+				
+				
+			</h2>
+			<pre>func GetBootstrapperImage() <a href="../../../../../../../builtin/#string">string</a></pre>
+			<p>
+GetBootstrapperImage returns the odo-init bootstrapper image
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetBuildCommand">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html?s=4861:4972#L127">GetBuildCommand</a>
+				<a class="permalink" href="#GetBuildCommand">¶</a>
+				
+				
+			</h2>
+			<pre>func GetBuildCommand(data <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a>, devfileBuildCmd <a href="../../../../../../../builtin/#string">string</a>) (buildCommand <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetBuildCommand iterates through the components in the devfile and returns the build command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetCommandsFromEvent">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=6286:6380#L171">GetCommandsFromEvent</a>
+				<a class="permalink" href="#GetCommandsFromEvent">¶</a>
+				
+				
+			</h2>
+			<pre>func GetCommandsFromEvent(commandsMap map[<a href="../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, eventName <a href="../../../../../../../builtin/#string">string</a>) []<a href="../../../../../../../builtin/#string">string</a></pre>
+			<p>
+GetCommandsFromEvent returns the list of commands from the event name.
+If the event is a composite command, it returns the sub-commands from the tree
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetCommandsMap">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=7063:7141#L192">GetCommandsMap</a>
+				<a class="permalink" href="#GetCommandsMap">¶</a>
+				
+				
+			</h2>
+			<pre>func GetCommandsMap(commands []<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) map[<a href="../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a></pre>
+			<p>
+GetCommandsMap returns a map of the command Id to the command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetComponentEnvVar">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=5959:6026#L160">GetComponentEnvVar</a>
+				<a class="permalink" href="#GetComponentEnvVar">¶</a>
+				
+				
+			</h2>
+			<pre>func GetComponentEnvVar(env <a href="../../../../../../../builtin/#string">string</a>, envs []<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#EnvVar">EnvVar</a>) <a href="../../../../../../../builtin/#string">string</a></pre>
+			<p>
+GetComponentEnvVar returns true if a list of env vars contains the specified env var
+If the env exists, it returns the value of it
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetDebugCommand">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html?s=5149:5260#L132">GetDebugCommand</a>
+				<a class="permalink" href="#GetDebugCommand">¶</a>
+				
+				
+			</h2>
+			<pre>func GetDebugCommand(data <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a>, devfileDebugCmd <a href="../../../../../../../builtin/#string">string</a>) (debugCommand <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetDebugCommand iterates through the components in the devfile and returns the debug command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetDeployCommand">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html?s=5993:6107#L147">GetDeployCommand</a>
+				<a class="permalink" href="#GetDeployCommand">¶</a>
+				
+				
+			</h2>
+			<pre>func GetDeployCommand(data <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a>, devfileDeployCmd <a href="../../../../../../../builtin/#string">string</a>) (deployCommand <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetDeployCommand iterates through the components in the devfile and returns the deploy command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetRunCommand">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html?s=5433:5538#L137">GetRunCommand</a>
+				<a class="permalink" href="#GetRunCommand">¶</a>
+				
+				
+			</h2>
+			<pre>func GetRunCommand(data <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a>, devfileRunCmd <a href="../../../../../../../builtin/#string">string</a>) (runCommand <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetRunCommand iterates through the components in the devfile and returns the run command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetSyncFilesFromAttributes">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=7540:7618#L203">GetSyncFilesFromAttributes</a>
+				<a class="permalink" href="#GetSyncFilesFromAttributes">¶</a>
+				
+				
+			</h2>
+			<pre>func GetSyncFilesFromAttributes(commandsMap <a href="#PushCommandsMap">PushCommandsMap</a>) map[<a href="../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../builtin/#string">string</a></pre>
+			<p>
+GetSyncFilesFromAttributes gets the target files and folders along with their respective remote destination from the devfile
+it uses the &#34;dev.odo.push.path&#34; attribute in the run command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetTestCommand">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html?s=5709:5816#L142">GetTestCommand</a>
+				<a class="permalink" href="#GetTestCommand">¶</a>
+				
+				
+			</h2>
+			<pre>func GetTestCommand(data <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a>, devfileTestCmd <a href="../../../../../../../builtin/#string">string</a>) (runCommand <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetTestCommand iterates through the components in the devfile and returns the test command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsEnvPresent">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=5392:5461#L137">IsEnvPresent</a>
+				<a class="permalink" href="#IsEnvPresent">¶</a>
+				
+				
+			</h2>
+			<pre>func IsEnvPresent(envVars []<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#EnvVar">EnvVar</a>, envVarName <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#bool">bool</a></pre>
+			<p>
+IsEnvPresent checks if the env variable is present in an array of env variables
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsPortPresent">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=5641:5706#L148">IsPortPresent</a>
+				<a class="permalink" href="#IsPortPresent">¶</a>
+				
+				
+			</h2>
+			<pre>func IsPortPresent(endpoints []<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Endpoint">Endpoint</a>, port <a href="../../../../../../../builtin/#int">int</a>) <a href="../../../../../../../builtin/#bool">bool</a></pre>
+			<p>
+IsPortPresent checks if the port is present in the endpoints array
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="IsRestartRequired">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=5172:5236#L128">IsRestartRequired</a>
+				<a class="permalink" href="#IsRestartRequired">¶</a>
+				
+				
+			</h2>
+			<pre>func IsRestartRequired(hotReload <a href="../../../../../../../builtin/#bool">bool</a>, runModeChanged <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#bool">bool</a></pre>
+			<p>
+IsRestartRequired checks if restart required for run command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="New">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html?s=617:738#L13">New</a>
+				<a class="permalink" href="#New">¶</a>
+				
+				
+			</h2>
+			<pre>func New(devfile <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, knowCommands map[<a href="../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, executor commandExecutor) (command, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+New returns a new command implementation based on the specified devfile command and the known commands
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RemoveDevfileURIContents">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=8103:8197#L218">RemoveDevfileURIContents</a>
+				<a class="permalink" href="#RemoveDevfileURIContents">¶</a>
+				
+				
+			</h2>
+			<pre>func RemoveDevfileURIContents(devfile <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/">devfileParser</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, componentContext <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+RemoveDevfileURIContents removes contents
+which are used via a URI in the devfile
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateAndGetDebugDevfileCommands">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html?s=8597:8731#L208">ValidateAndGetDebugDevfileCommands</a>
+				<a class="permalink" href="#ValidateAndGetDebugDevfileCommands">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateAndGetDebugDevfileCommands(data <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a>, devfileDebugCmd <a href="../../../../../../../builtin/#string">string</a>) (pushDebugCommand <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ValidateAndGetDebugDevfileCommands validates the debug command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateAndGetTestDevfileCommands">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html?s=9306:9433#L230">ValidateAndGetTestDevfileCommands</a>
+				<a class="permalink" href="#ValidateAndGetTestDevfileCommands">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateAndGetTestDevfileCommands(data <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a>, devfileTestCmd <a href="../../../../../../../builtin/#string">string</a>) (testCommand <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+ValidateAndGetTestDevfileCommands validates the test command
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AdapterContext">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/types.go.html?s=271:728#L1">AdapterContext</a>
+				<a class="permalink" href="#AdapterContext">¶</a>
+				
+				
+			</h2>
+			<p>
+AdapterContext is a construct that is common to all adapters
+</p>
+
+			<pre>type AdapterContext struct {
+<span id="AdapterContext.ComponentName"></span>    ComponentName <a href="../../../../../../../builtin/#string">string</a>                   <span class="comment">// ComponentName is the odo component name, it is NOT related to any devfile components</span>
+<span id="AdapterContext.Context"></span>    Context       <a href="../../../../../../../builtin/#string">string</a>                   <span class="comment">// Context is the given directory containing the source code and configs</span>
+<span id="AdapterContext.AppName"></span>    AppName       <a href="../../../../../../../builtin/#string">string</a>                   <span class="comment">// the application name associated to a component</span>
+<span id="AdapterContext.Devfile"></span>    Devfile       <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/">devfileParser</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a> <span class="comment">// Devfile is the object returned by the Devfile parser</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ApplyClient">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/apply.go.html?s=109:221#L1">ApplyClient</a>
+				<a class="permalink" href="#ApplyClient">¶</a>
+				
+				
+			</h2>
+			<p>
+ApplyClient is a wrapper around ApplyComponent which runs an apply command on a component
+</p>
+
+			<pre>type ApplyClient interface {
+    ApplyComponent(component <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a>
+    UnApplyComponent(component <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="CommandNames">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=4377:4445#L101">CommandNames</a>
+				<a class="permalink" href="#CommandNames">¶</a>
+				
+				
+			</h2>
+			<p>
+CommandNames is a struct to store the default and adapter names for devfile commands
+</p>
+
+			<pre>type CommandNames struct {
+<span id="CommandNames.DefaultName"></span>    DefaultName <a href="../../../../../../../builtin/#string">string</a>
+<span id="CommandNames.AdapterName"></span>    AdapterName <a href="../../../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ComponentAdapter">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/interface.go.html?s=192:705#L1">ComponentAdapter</a>
+				<a class="permalink" href="#ComponentAdapter">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentAdapter defines the functions that platform-specific adapters must implement
+</p>
+
+			<pre>type ComponentAdapter interface {
+    Push(parameters <a href="#PushParameters">PushParameters</a>) <a href="../../../../../../../builtin/#error">error</a>
+    DoesComponentExist(cmpName <a href="../../../../../../../builtin/#string">string</a>, app <a href="../../../../../../../builtin/#string">string</a>) (<a href="../../../../../../../builtin/#bool">bool</a>, <a href="../../../../../../../builtin/#error">error</a>)
+    Delete(labels map[<a href="../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../builtin/#string">string</a>, show <a href="../../../../../../../builtin/#bool">bool</a>, wait <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#error">error</a>
+    Test(testCmd <a href="../../../../../../../builtin/#string">string</a>, show <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#error">error</a>
+    CheckSupervisordCommandStatus(command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) <a href="../../../../../../../builtin/#error">error</a>
+    StartContainerStatusWatch()
+    StartSupervisordCtlStatusWatch()
+    Log(follow <a href="../../../../../../../builtin/#bool">bool</a>, command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#ReadCloser">ReadCloser</a>, <a href="../../../../../../../builtin/#error">error</a>)
+    Exec(command []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a>
+    Deploy() <a href="../../../../../../../builtin/#error">error</a>
+    UnDeploy() <a href="../../../../../../../builtin/#error">error</a>
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ComponentInfo">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/types.go.html?s=3336:3431#L36">ComponentInfo</a>
+				<a class="permalink" href="#ComponentInfo">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentInfo is a struct that holds information about a component i.e.; pod name, container name, and source mount (if applicable)
+</p>
+
+			<pre>type ComponentInfo struct {
+<span id="ComponentInfo.PodName"></span>    PodName       <a href="../../../../../../../builtin/#string">string</a>
+<span id="ComponentInfo.ContainerName"></span>    ContainerName <a href="../../../../../../../builtin/#string">string</a>
+<span id="ComponentInfo.SyncFolder"></span>    SyncFolder    <a href="../../../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ComponentInfo.IsEmpty">func (ComponentInfo) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/types.go.html?s=3433:3471#L42">IsEmpty</a>
+					<a class="permalink" href="#ComponentInfo.IsEmpty">¶</a>
+					
+					
+				</h3>
+				<pre>func (ci <a href="#ComponentInfo">ComponentInfo</a>) IsEmpty() <a href="../../../../../../../builtin/#bool">bool</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ComponentInfoFactory">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=662:742#L8">ComponentInfoFactory</a>
+				<a class="permalink" href="#ComponentInfoFactory">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentInfoFactory defines a type for a function which creates a ComponentInfo based on the information provided by the specified DevfileCommand.
+This is used by adapters to provide the proper ComponentInfo identifying which component (including supervisor) to target when executing the command.
+</p>
+
+			<pre>type ComponentInfoFactory func(command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="#ComponentInfo">ComponentInfo</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DevfileEventType">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=550:578#L11">DevfileEventType</a>
+				<a class="permalink" href="#DevfileEventType">¶</a>
+				
+				
+			</h2>
+			<p>
+DevfileEventType encapsulates constants for devfile events
+</p>
+
+			<pre>type DevfileEventType <a href="../../../../../../../builtin/#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ExecClient">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/exec.go.html?s=254:373#L6">ExecClient</a>
+				<a class="permalink" href="#ExecClient">¶</a>
+				
+				
+			</h2>
+			<p>
+ExecClient  is a wrapper around ExecCMDInContainer which executes a command in a specific container of a pod.
+</p>
+
+			<pre>type ExecClient interface {
+    ExecCMDInContainer(<a href="#ComponentInfo">ComponentInfo</a>, []<a href="../../../../../../../builtin/#string">string</a>, <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Reader">Reader</a>, <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="GenericAdapter">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=863:1106#L11">GenericAdapter</a>
+				<a class="permalink" href="#GenericAdapter">¶</a>
+				
+				
+			</h2>
+			<p>
+GenericAdapter provides common code that can be reused by adapters allowing them to focus on more specific behavior
+</p>
+
+			<pre>type GenericAdapter struct {
+    <a href="#AdapterContext">AdapterContext</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGenericAdapter">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=1334:1415#L21">NewGenericAdapter</a>
+					<a class="permalink" href="#NewGenericAdapter">¶</a>
+					
+					
+				</h3>
+				<pre>func NewGenericAdapter(client <a href="#ExecClient">ExecClient</a>, context <a href="#AdapterContext">AdapterContext</a>) *<a href="#GenericAdapter">GenericAdapter</a></pre>
+				<p>
+NewGenericAdapter creates a new GenericAdapter instance based on the provided parameters. Client code must call InitWith on
+the newly created instance to finish the setup, providing the child implementation as parameter
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="GenericAdapter.ApplyComponent">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=8380:8442#L218">ApplyComponent</a>
+					<a class="permalink" href="#GenericAdapter.ApplyComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) ApplyComponent(component <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.ComponentInfo">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=2394:2481#L48">ComponentInfo</a>
+					<a class="permalink" href="#GenericAdapter.ComponentInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) ComponentInfo(command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="#ComponentInfo">ComponentInfo</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.ExecCMDInContainer">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=1950:2096#L36">ExecCMDInContainer</a>
+					<a class="permalink" href="#GenericAdapter.ExecCMDInContainer">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) ExecCMDInContainer(info <a href="#ComponentInfo">ComponentInfo</a>, cmd []<a href="../../../../../../../builtin/#string">string</a>, stdOut <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, stdErr <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, stdIn <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Reader">Reader</a>, show <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.ExecDevfile">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=4376:4497#L97">ExecDevfile</a>
+					<a class="permalink" href="#GenericAdapter.ExecDevfile">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) ExecDevfile(commandsMap <a href="#PushCommandsMap">PushCommandsMap</a>, componentExists <a href="../../../../../../../builtin/#bool">bool</a>, params <a href="#PushParameters">PushParameters</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ExecDevFile executes all the commands from the devfile in order: init and build - which are both optional, and a compulsory run.
+Init only runs once when the component is created.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.ExecDevfileEvent">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=7460:7562#L188">ExecDevfileEvent</a>
+					<a class="permalink" href="#GenericAdapter.ExecDevfileEvent">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) ExecDevfileEvent(events []<a href="../../../../../../../builtin/#string">string</a>, eventType <a href="#DevfileEventType">DevfileEventType</a>, show <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+ExecDevfileEvent receives a Devfile Event (PostStart, PreStop etc.) and loops through them
+Each Devfile Command associated with the given event is retrieved, and executed in the container specified
+in the command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.ExecuteCommand">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=2752:2927#L57">ExecuteCommand</a>
+					<a class="permalink" href="#GenericAdapter.ExecuteCommand">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) ExecuteCommand(compInfo <a href="#ComponentInfo">ComponentInfo</a>, command []<a href="../../../../../../../builtin/#string">string</a>, show <a href="../../../../../../../builtin/#bool">bool</a>, consoleOutputStdout *<a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#PipeWriter">PipeWriter</a>, consoleOutputStderr *<a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#PipeWriter">PipeWriter</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ExecuteCommand simply calls exec.ExecuteCommand using the GenericAdapter&#39;s client
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.ExecuteDevfileCommand">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=3130:3219#L62">ExecuteDevfileCommand</a>
+					<a class="permalink" href="#GenericAdapter.ExecuteDevfileCommand">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) ExecuteDevfileCommand(command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>, show <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+ExecuteDevfileCommand executes the devfile init, build and test command actions synchronously
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.InitWith">func (*GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=1780:1839#L31">InitWith</a>
+					<a class="permalink" href="#GenericAdapter.InitWith">¶</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="#GenericAdapter">GenericAdapter</a>) InitWith(executor commandExecutor)</pre>
+				<p>
+InitWith finishes the GenericAdapter setup after the rest of the adapter is created. This must be called before the adapter
+implementation is used and the specific implementation must be passed as parameter.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.Logger">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=2178:2250#L40">Logger</a>
+					<a class="permalink" href="#GenericAdapter.Logger">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) Logger() <a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/">machineoutput</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/#MachineEventLoggingClient">MachineEventLoggingClient</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.SetLogger">func (*GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=2273:2362#L44">SetLogger</a>
+					<a class="permalink" href="#GenericAdapter.SetLogger">¶</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="#GenericAdapter">GenericAdapter</a>) SetLogger(loggingClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/">machineoutput</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/#MachineEventLoggingClient">MachineEventLoggingClient</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.SupervisorComponentInfo">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=2520:2617#L52">SupervisorComponentInfo</a>
+					<a class="permalink" href="#GenericAdapter.SupervisorComponentInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) SupervisorComponentInfo(command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="#ComponentInfo">ComponentInfo</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="GenericAdapter.UnApplyComponent">func (GenericAdapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/generic.go.html?s=8460:8524#L222">UnApplyComponent</a>
+					<a class="permalink" href="#GenericAdapter.UnApplyComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (a <a href="#GenericAdapter">GenericAdapter</a>) UnApplyComponent(component <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MoreDefaultForGroup">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/errors.go.html?s=544:612#L9">MoreDefaultForGroup</a>
+				<a class="permalink" href="#MoreDefaultForGroup">¶</a>
+				
+				
+			</h2>
+			<p>
+MoreDefaultForGroup indicates a error when more than one default command was found for the given Group
+</p>
+
+			<pre>type MoreDefaultForGroup struct {
+<span id="MoreDefaultForGroup.Group"></span>    Group <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1alpha2</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#CommandGroupKind">CommandGroupKind</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MoreDefaultForGroup.Error">func (MoreDefaultForGroup) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/errors.go.html?s=614:657#L13">Error</a>
+					<a class="permalink" href="#MoreDefaultForGroup.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (m <a href="#MoreDefaultForGroup">MoreDefaultForGroup</a>) Error() <a href="../../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NoCommandForGroup">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/errors.go.html?s=895:961#L18">NoCommandForGroup</a>
+				<a class="permalink" href="#NoCommandForGroup">¶</a>
+				
+				
+			</h2>
+			<p>
+NoCommandForGroup indicates a error when no command was found for the given Group
+</p>
+
+			<pre>type NoCommandForGroup struct {
+<span id="NoCommandForGroup.Group"></span>    Group <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1alpha2</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#CommandGroupKind">CommandGroupKind</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NoCommandForGroup.Error">func (NoCommandForGroup) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/errors.go.html?s=963:1004#L22">Error</a>
+					<a class="permalink" href="#NoCommandForGroup.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (n <a href="#NoCommandForGroup">NoCommandForGroup</a>) Error() <a href="../../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NoDefaultForGroup">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/errors.go.html?s=187:253#L1">NoDefaultForGroup</a>
+				<a class="permalink" href="#NoDefaultForGroup">¶</a>
+				
+				
+			</h2>
+			<p>
+NoDefaultForGroup indicates a error when no default command was found for the given Group
+</p>
+
+			<pre>type NoDefaultForGroup struct {
+<span id="NoDefaultForGroup.Group"></span>    Group <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1alpha2</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#CommandGroupKind">CommandGroupKind</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NoDefaultForGroup.Error">func (NoDefaultForGroup) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/errors.go.html?s=255:296#L4">Error</a>
+					<a class="permalink" href="#NoDefaultForGroup.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (n <a href="#NoDefaultForGroup">NoDefaultForGroup</a>) Error() <a href="../../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PredefinedDevfileCommands">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/utils.go.html?s=449:486#L8">PredefinedDevfileCommands</a>
+				<a class="permalink" href="#PredefinedDevfileCommands">¶</a>
+				
+				
+			</h2>
+			<p>
+PredefinedDevfileCommands encapsulates constants for predefined devfile commands
+</p>
+
+			<pre>type PredefinedDevfileCommands <a href="../../../../../../../builtin/#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PushCommandsMap">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/types.go.html?s=3586:3655#L47">PushCommandsMap</a>
+				<a class="permalink" href="#PushCommandsMap">¶</a>
+				
+				
+			</h2>
+			<p>
+PushCommandsMap stores the commands to be executed as per their types.
+</p>
+
+			<pre>type PushCommandsMap map[<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#CommandGroupKind">CommandGroupKind</a>]<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPushCommandMap">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/types.go.html?s=3718:3758#L50">NewPushCommandMap</a>
+					<a class="permalink" href="#NewPushCommandMap">¶</a>
+					
+					
+				</h3>
+				<pre>func NewPushCommandMap() <a href="#PushCommandsMap">PushCommandsMap</a></pre>
+				<p>
+NewPushCommandMap returns the instance of PushCommandsMap
+</p>
+
+				
+				
+			
+				
+				<h3 id="ValidateAndGetPushDevfileCommands">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/command.go.html?s=6441:6581#L154">ValidateAndGetPushDevfileCommands</a>
+					<a class="permalink" href="#ValidateAndGetPushDevfileCommands">¶</a>
+					
+					
+				</h3>
+				<pre>func ValidateAndGetPushDevfileCommands(data <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a>, devfileBuildCmd, devfileRunCmd <a href="../../../../../../../builtin/#string">string</a>) (commandMap <a href="#PushCommandsMap">PushCommandsMap</a>, err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ValidateAndGetPushDevfileCommands validates the build and the run command,
+if provided through odo push or else checks the devfile for devBuild and devRun.
+It returns the build and run commands if its validated successfully, error otherwise.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PushParameters">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/types.go.html?s=833:2925#L9">PushParameters</a>
+				<a class="permalink" href="#PushParameters">¶</a>
+				
+				
+			</h2>
+			<p>
+PushParameters is a struct containing the parameters to be used when pushing to a devfile component
+</p>
+
+			<pre>type PushParameters struct {
+<span id="PushParameters.Path"></span>    Path                     <a href="../../../../../../../builtin/#string">string</a>                  <span class="comment">// Path refers to the parent folder containing the source code to push up to a component</span>
+<span id="PushParameters.WatchFiles"></span>    WatchFiles               []<a href="../../../../../../../builtin/#string">string</a>                <span class="comment">// Optional: WatchFiles is the list of changed files detected by odo watch. If empty or nil, odo will check .odo/odo-file-index.json to determine changed files</span>
+<span id="PushParameters.WatchDeletedFiles"></span>    WatchDeletedFiles        []<a href="../../../../../../../builtin/#string">string</a>                <span class="comment">// Optional: WatchDeletedFiles is the list of deleted files detected by odo watch. If empty or nil, odo will check .odo/odo-file-index.json to determine deleted files</span>
+<span id="PushParameters.IgnoredFiles"></span>    IgnoredFiles             []<a href="../../../../../../../builtin/#string">string</a>                <span class="comment">// IgnoredFiles is the list of files to not push up to a component</span>
+<span id="PushParameters.ForceBuild"></span>    ForceBuild               <a href="../../../../../../../builtin/#bool">bool</a>                    <span class="comment">// ForceBuild determines whether or not to push all of the files up to a component or just files that have changed, added or removed.</span>
+<span id="PushParameters.Show"></span>    Show                     <a href="../../../../../../../builtin/#bool">bool</a>                    <span class="comment">// Show tells whether the devfile command output should be shown on stdout</span>
+<span id="PushParameters.DevfileBuildCmd"></span>    DevfileBuildCmd          <a href="../../../../../../../builtin/#string">string</a>                  <span class="comment">// DevfileBuildCmd takes the build command through the command line and overwrites devfile build command</span>
+<span id="PushParameters.DevfileRunCmd"></span>    DevfileRunCmd            <a href="../../../../../../../builtin/#string">string</a>                  <span class="comment">// DevfileRunCmd takes the run command through the command line and overwrites devfile run command</span>
+<span id="PushParameters.DevfileDebugCmd"></span>    DevfileDebugCmd          <a href="../../../../../../../builtin/#string">string</a>                  <span class="comment">// DevfileDebugCmd takes the debug command through the command line and overwrites the devfile debug command</span>
+<span id="PushParameters.DevfileScanIndexForWatch"></span>    DevfileScanIndexForWatch <a href="../../../../../../../builtin/#bool">bool</a>                    <span class="comment">// DevfileScanIndexForWatch is true if watch&#39;s push should regenerate the index file during SyncFiles, false otherwise. See &#39;pkg/sync/adapter.go&#39; for details</span>
+<span id="PushParameters.EnvSpecificInfo"></span>    EnvSpecificInfo          <a href="../../../../../../../github.com/redhat-developer/odo/pkg/envinfo/">envinfo</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/envinfo/#EnvSpecificInfo">EnvSpecificInfo</a> <span class="comment">// EnvSpecificInfo contains information of env.yaml file</span>
+<span id="PushParameters.Debug"></span>    Debug                    <a href="../../../../../../../builtin/#bool">bool</a>                    <span class="comment">// Runs the component in debug mode</span>
+<span id="PushParameters.DebugPort"></span>    DebugPort                <a href="../../../../../../../builtin/#int">int</a>                     <span class="comment">// Port used for remote debugging</span>
+<span id="PushParameters.RunModeChanged"></span>    RunModeChanged           <a href="../../../../../../../builtin/#bool">bool</a>                    <span class="comment">// It determines if run mode is changed from run to debug or vice versa</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SyncParameters">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/common/types.go.html?s=3027:3199#L27">SyncParameters</a>
+				<a class="permalink" href="#SyncParameters">¶</a>
+				
+				
+			</h2>
+			<p>
+SyncParameters is a struct containing the parameters to be used when syncing a devfile component
+</p>
+
+			<pre>type SyncParameters struct {
+<span id="SyncParameters.PushParams"></span>    PushParams      <a href="#PushParameters">PushParameters</a>
+<span id="SyncParameters.CompInfo"></span>    CompInfo        <a href="#ComponentInfo">ComponentInfo</a>
+<span id="SyncParameters.PodChanged"></span>    PodChanged      <a href="../../../../../../../builtin/#bool">bool</a>
+<span id="SyncParameters.ComponentExists"></span>    ComponentExists <a href="../../../../../../../builtin/#bool">bool</a>
+<span id="SyncParameters.Files"></span>    Files           map[<a href="../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

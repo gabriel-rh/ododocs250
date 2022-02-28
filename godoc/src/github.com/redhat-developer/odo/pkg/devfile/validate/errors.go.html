@@ -1,0 +1,115 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>validate - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile">devfile</a>/<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate">validate</a>/<span class="text-muted">errors.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/validate">github.com/redhat-developer/odo/pkg/devfile/validate</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package validate
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;fmt&#34;
+<span id="L5" class="ln">     5  </span>
+<span id="L6" class="ln">     6  </span>	devfilev1 &#34;github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2&#34;
+<span id="L7" class="ln">     7  </span>)
+<span id="L8" class="ln">     8  </span>
+<span id="L9" class="ln">     9  </span><span class="comment">// NoComponentsError returns an error if no component is found</span>
+<span id="L10" class="ln">    10  </span>type NoComponentsError struct {
+<span id="L11" class="ln">    11  </span>}
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span>func (e *NoComponentsError) Error() string {
+<span id="L14" class="ln">    14  </span>	return &#34;no components present&#34;
+<span id="L15" class="ln">    15  </span>}
+<span id="L16" class="ln">    16  </span>
+<span id="L17" class="ln">    17  </span><span class="comment">// NoContainerComponentError returns an error if no container component is found</span>
+<span id="L18" class="ln">    18  </span>type NoContainerComponentError struct {
+<span id="L19" class="ln">    19  </span>}
+<span id="L20" class="ln">    20  </span>
+<span id="L21" class="ln">    21  </span>func (e *NoContainerComponentError) Error() string {
+<span id="L22" class="ln">    22  </span>	return fmt.Sprintf(&#34;odo requires atleast one component of type &#39;%s&#39; in devfile&#34;, devfilev1.ContainerComponentType)
+<span id="L23" class="ln">    23  </span>}
+<span id="L24" class="ln">    24  </span>
+<span id="L25" class="ln">    25  </span><span class="comment">// UnsupportedOdoCommandError returns an error if the command is neither exec nor composite</span>
+<span id="L26" class="ln">    26  </span>type UnsupportedOdoCommandError struct {
+<span id="L27" class="ln">    27  </span>	commandId string
+<span id="L28" class="ln">    28  </span>}
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span>func (e *UnsupportedOdoCommandError) Error() string {
+<span id="L31" class="ln">    31  </span>	return fmt.Sprintf(&#34;command %q must be of type \&#34;exec\&#34; or \&#34;composite\&#34;&#34;, e.commandId)
+<span id="L32" class="ln">    32  </span>}
+<span id="L33" class="ln">    33  </span>
+<span id="L34" class="ln">    34  </span><span class="comment">// CompositeRunKindError returns an error if the composite command is of kind run</span>
+<span id="L35" class="ln">    35  </span>type CompositeRunKindError struct {
+<span id="L36" class="ln">    36  </span>}
+<span id="L37" class="ln">    37  </span>
+<span id="L38" class="ln">    38  </span>func (e *CompositeRunKindError) Error() string {
+<span id="L39" class="ln">    39  </span>	return &#34;composite commands of run kind are not supported currently&#34;
+<span id="L40" class="ln">    40  </span>}
+<span id="L41" class="ln">    41  </span>
+<span id="L42" class="ln">    42  </span>type UnsupportedFieldError struct {
+<span id="L43" class="ln">    43  </span>	fieldName string
+<span id="L44" class="ln">    44  </span>}
+<span id="L45" class="ln">    45  </span>
+<span id="L46" class="ln">    46  </span>func (e *UnsupportedFieldError) Error() string {
+<span id="L47" class="ln">    47  </span>	return fmt.Sprintf(&#34;%q is not supported in odo&#34;, e.fieldName)
+<span id="L48" class="ln">    48  </span>}
+<span id="L49" class="ln">    49  </span>
+</pre><p><a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>sync - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/sync">sync</a>/<span class="text-muted">sync.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../github.com/redhat-developer/odo/pkg/sync">github.com/redhat-developer/odo/pkg/sync</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package sync
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	taro &#34;archive/tar&#34;
+<span id="L5" class="ln">     5  </span>	&#34;fmt&#34;
+<span id="L6" class="ln">     6  </span>	&#34;io&#34;
+<span id="L7" class="ln">     7  </span>	&#34;os&#34;
+<span id="L8" class="ln">     8  </span>	&#34;path/filepath&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/redhat-developer/odo/pkg/devfile/adapters/common&#34;
+<span id="L11" class="ln">    11  </span>	&#34;github.com/redhat-developer/odo/pkg/log&#34;
+<span id="L12" class="ln">    12  </span>	&#34;github.com/redhat-developer/odo/pkg/testingutil/filesystem&#34;
+<span id="L13" class="ln">    13  </span>	&#34;github.com/redhat-developer/odo/pkg/util&#34;
+<span id="L14" class="ln">    14  </span>
+<span id="L15" class="ln">    15  </span>	&#34;k8s.io/klog&#34;
+<span id="L16" class="ln">    16  </span>)
+<span id="L17" class="ln">    17  </span>
+<span id="L18" class="ln">    18  </span>type SyncClient interface {
+<span id="L19" class="ln">    19  </span>	ExecCMDInContainer(common.ComponentInfo, []string, io.Writer, io.Writer, io.Reader, bool) error
+<span id="L20" class="ln">    20  </span>	ExtractProjectToComponent(common.ComponentInfo, string, io.Reader) error
+<span id="L21" class="ln">    21  </span>}
+<span id="L22" class="ln">    22  </span>
+<span id="L23" class="ln">    23  </span><span class="comment">// CopyFile copies localPath directory or list of files in copyFiles list to the directory in running Pod.</span>
+<span id="L24" class="ln">    24  </span><span class="comment">// copyFiles is list of changed files captured during `odo watch` as well as binary file path</span>
+<span id="L25" class="ln">    25  </span><span class="comment">// During copying binary components, localPath represent base directory path to binary and copyFiles contains path of binary</span>
+<span id="L26" class="ln">    26  </span><span class="comment">// During copying local source components, localPath represent base directory path whereas copyFiles is empty</span>
+<span id="L27" class="ln">    27  </span><span class="comment">// During `odo watch`, localPath represent base directory path whereas copyFiles contains list of changed Files</span>
+<span id="L28" class="ln">    28  </span>func CopyFile(client SyncClient, localPath string, compInfo common.ComponentInfo, targetPath string, copyFiles []string, globExps []string, ret util.IndexerRet) error {
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span>	<span class="comment">// Destination is set to &#34;ToSlash&#34; as all containers being ran within OpenShift / S2I are all</span>
+<span id="L31" class="ln">    31  </span>	<span class="comment">// Linux based and thus: &#34;\opt\app-root\src&#34; would not work correctly.</span>
+<span id="L32" class="ln">    32  </span>	dest := filepath.ToSlash(filepath.Join(targetPath, filepath.Base(localPath)))
+<span id="L33" class="ln">    33  </span>	targetPath = filepath.ToSlash(targetPath)
+<span id="L34" class="ln">    34  </span>
+<span id="L35" class="ln">    35  </span>	klog.V(4).Infof(&#34;CopyFile arguments: localPath %s, dest %s, targetPath %s, copyFiles %s, globalExps %s&#34;, localPath, dest, targetPath, copyFiles, globExps)
+<span id="L36" class="ln">    36  </span>	reader, writer := io.Pipe()
+<span id="L37" class="ln">    37  </span>	<span class="comment">// inspired from https://github.com/kubernetes/kubernetes/blob/master/pkg/kubectl/cmd/cp.go#L235</span>
+<span id="L38" class="ln">    38  </span>	go func() {
+<span id="L39" class="ln">    39  </span>		defer writer.Close()
+<span id="L40" class="ln">    40  </span>
+<span id="L41" class="ln">    41  </span>		err := makeTar(localPath, dest, writer, copyFiles, globExps, ret, filesystem.DefaultFs{})
+<span id="L42" class="ln">    42  </span>		if err != nil {
+<span id="L43" class="ln">    43  </span>			log.Errorf(&#34;Error while creating tar: %#v&#34;, err)
+<span id="L44" class="ln">    44  </span>			os.Exit(1)
+<span id="L45" class="ln">    45  </span>		}
+<span id="L46" class="ln">    46  </span>
+<span id="L47" class="ln">    47  </span>	}()
+<span id="L48" class="ln">    48  </span>
+<span id="L49" class="ln">    49  </span>	err := client.ExtractProjectToComponent(compInfo, targetPath, reader)
+<span id="L50" class="ln">    50  </span>	if err != nil {
+<span id="L51" class="ln">    51  </span>		return err
+<span id="L52" class="ln">    52  </span>	}
+<span id="L53" class="ln">    53  </span>
+<span id="L54" class="ln">    54  </span>	return nil
+<span id="L55" class="ln">    55  </span>}
+<span id="L56" class="ln">    56  </span>
+<span id="L57" class="ln">    57  </span><span class="comment">// checkFileExist check if given file exists or not</span>
+<span id="L58" class="ln">    58  </span>func checkFileExistWithFS(fileName string, fs filesystem.Filesystem) bool {
+<span id="L59" class="ln">    59  </span>	_, err := fs.Stat(fileName)
+<span id="L60" class="ln">    60  </span>	return !os.IsNotExist(err)
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span><span class="comment">// makeTar function is copied from https://github.com/kubernetes/kubernetes/blob/master/pkg/kubectl/cmd/cp.go#L309</span>
+<span id="L64" class="ln">    64  </span><span class="comment">// srcPath is ignored if files is set</span>
+<span id="L65" class="ln">    65  </span>func makeTar(srcPath, destPath string, writer io.Writer, files []string, globExps []string, ret util.IndexerRet, fs filesystem.Filesystem) error {
+<span id="L66" class="ln">    66  </span>	<span class="comment">// TODO: use compression here?</span>
+<span id="L67" class="ln">    67  </span>	tarWriter := taro.NewWriter(writer)
+<span id="L68" class="ln">    68  </span>	defer tarWriter.Close()
+<span id="L69" class="ln">    69  </span>	srcPath = filepath.Clean(srcPath)
+<span id="L70" class="ln">    70  </span>
+<span id="L71" class="ln">    71  </span>	<span class="comment">// &#34;ToSlash&#34; is used as all containers within OpenShift are Linux based</span>
+<span id="L72" class="ln">    72  </span>	<span class="comment">// and thus \opt\app-root\src would be an invalid path. Backward slashes</span>
+<span id="L73" class="ln">    73  </span>	<span class="comment">// are converted to forward.</span>
+<span id="L74" class="ln">    74  </span>	destPath = filepath.ToSlash(filepath.Clean(destPath))
+<span id="L75" class="ln">    75  </span>	uniquePaths := make(map[string]bool)
+<span id="L76" class="ln">    76  </span>	klog.V(4).Infof(&#34;makeTar arguments: srcPath: %s, destPath: %s, files: %+v&#34;, srcPath, destPath, files)
+<span id="L77" class="ln">    77  </span>	if len(files) != 0 {
+<span id="L78" class="ln">    78  </span>		<span class="comment">//watchTar</span>
+<span id="L79" class="ln">    79  </span>		for _, fileName := range files {
+<span id="L80" class="ln">    80  </span>
+<span id="L81" class="ln">    81  </span>			if _, ok := uniquePaths[fileName]; ok {
+<span id="L82" class="ln">    82  </span>				continue
+<span id="L83" class="ln">    83  </span>			} else {
+<span id="L84" class="ln">    84  </span>				uniquePaths[fileName] = true
+<span id="L85" class="ln">    85  </span>			}
+<span id="L86" class="ln">    86  </span>
+<span id="L87" class="ln">    87  </span>			if checkFileExistWithFS(fileName, fs) {
+<span id="L88" class="ln">    88  </span>
+<span id="L89" class="ln">    89  </span>				matched, err := util.IsGlobExpMatch(fileName, globExps)
+<span id="L90" class="ln">    90  </span>				if err != nil {
+<span id="L91" class="ln">    91  </span>					return err
+<span id="L92" class="ln">    92  </span>				}
+<span id="L93" class="ln">    93  </span>				if matched {
+<span id="L94" class="ln">    94  </span>					continue
+<span id="L95" class="ln">    95  </span>				}
+<span id="L96" class="ln">    96  </span>
+<span id="L97" class="ln">    97  </span>				<span class="comment">// Fetch path of source file relative to that of source base path so that it can be passed to recursiveTar</span>
+<span id="L98" class="ln">    98  </span>				<span class="comment">// which uses path relative to base path for taro header to correctly identify file location when untarred</span>
+<span id="L99" class="ln">    99  </span>
+<span id="L100" class="ln">   100  </span>				<span class="comment">// Yes, now that the file exists, now we need to get the absolute path.. if we don&#39;t, then when we pass in:</span>
+<span id="L101" class="ln">   101  </span>				<span class="comment">// &#39;odo push --context foobar&#39; instead of &#39;odo push --context ~/foobar&#39; it will NOT work..</span>
+<span id="L102" class="ln">   102  </span>				fileAbsolutePath, err := util.GetAbsPath(fileName)
+<span id="L103" class="ln">   103  </span>				if err != nil {
+<span id="L104" class="ln">   104  </span>					return err
+<span id="L105" class="ln">   105  </span>				}
+<span id="L106" class="ln">   106  </span>				klog.V(4).Infof(&#34;Got abs path: %s&#34;, fileAbsolutePath)
+<span id="L107" class="ln">   107  </span>				klog.V(4).Infof(&#34;Making %s relative to %s&#34;, srcPath, fileAbsolutePath)
+<span id="L108" class="ln">   108  </span>
+<span id="L109" class="ln">   109  </span>				<span class="comment">// We use &#34;FromSlash&#34; to make this OS-based (Windows uses \, Linux &amp; macOS use /)</span>
+<span id="L110" class="ln">   110  </span>				<span class="comment">// we get the relative path by joining the two</span>
+<span id="L111" class="ln">   111  </span>				destFile, err := filepath.Rel(filepath.FromSlash(srcPath), filepath.FromSlash(fileAbsolutePath))
+<span id="L112" class="ln">   112  </span>				if err != nil {
+<span id="L113" class="ln">   113  </span>					return err
+<span id="L114" class="ln">   114  </span>				}
+<span id="L115" class="ln">   115  </span>
+<span id="L116" class="ln">   116  </span>				<span class="comment">// Now we get the source file and join it to the base directory.</span>
+<span id="L117" class="ln">   117  </span>				srcFile := filepath.Join(filepath.Base(srcPath), destFile)
+<span id="L118" class="ln">   118  </span>
+<span id="L119" class="ln">   119  </span>				if value, ok := ret.NewFileMap[destFile]; ok &amp;&amp; value.RemoteAttribute != &#34;&#34; {
+<span id="L120" class="ln">   120  </span>					destFile = value.RemoteAttribute
+<span id="L121" class="ln">   121  </span>				}
+<span id="L122" class="ln">   122  </span>
+<span id="L123" class="ln">   123  </span>				klog.V(4).Infof(&#34;makeTar srcFile: %s&#34;, srcFile)
+<span id="L124" class="ln">   124  </span>				klog.V(4).Infof(&#34;makeTar destFile: %s&#34;, destFile)
+<span id="L125" class="ln">   125  </span>
+<span id="L126" class="ln">   126  </span>				<span class="comment">// The file could be a regular file or even a folder, so use recursiveTar which handles symlinks, regular files and folders</span>
+<span id="L127" class="ln">   127  </span>				err = linearTar(filepath.Dir(srcPath), srcFile, filepath.Dir(destPath), destFile, tarWriter, fs)
+<span id="L128" class="ln">   128  </span>				if err != nil {
+<span id="L129" class="ln">   129  </span>					return err
+<span id="L130" class="ln">   130  </span>				}
+<span id="L131" class="ln">   131  </span>			}
+<span id="L132" class="ln">   132  </span>		}
+<span id="L133" class="ln">   133  </span>	}
+<span id="L134" class="ln">   134  </span>
+<span id="L135" class="ln">   135  </span>	return nil
+<span id="L136" class="ln">   136  </span>}
+<span id="L137" class="ln">   137  </span>
+<span id="L138" class="ln">   138  </span><span class="comment">// linearTar function is a modified version of https://github.com/kubernetes/kubernetes/blob/master/pkg/kubectl/cmd/cp.go#L319</span>
+<span id="L139" class="ln">   139  </span>func linearTar(srcBase, srcFile, destBase, destFile string, tw *taro.Writer, fs filesystem.Filesystem) error {
+<span id="L140" class="ln">   140  </span>	if destFile == &#34;&#34; {
+<span id="L141" class="ln">   141  </span>		return fmt.Errorf(&#34;linear Tar error, destFile cannot be empty&#34;)
+<span id="L142" class="ln">   142  </span>	}
+<span id="L143" class="ln">   143  </span>
+<span id="L144" class="ln">   144  </span>	klog.V(4).Infof(&#34;recursiveTar arguments: srcBase: %s, srcFile: %s, destBase: %s, destFile: %s&#34;, srcBase, srcFile, destBase, destFile)
+<span id="L145" class="ln">   145  </span>
+<span id="L146" class="ln">   146  </span>	<span class="comment">// The destination is a LINUX container and thus we *must* use ToSlash in order</span>
+<span id="L147" class="ln">   147  </span>	<span class="comment">// to get the copying over done correctly..</span>
+<span id="L148" class="ln">   148  </span>	destBase = filepath.ToSlash(destBase)
+<span id="L149" class="ln">   149  </span>	destFile = filepath.ToSlash(destFile)
+<span id="L150" class="ln">   150  </span>	klog.V(4).Infof(&#34;Corrected destinations: base: %s file: %s&#34;, destBase, destFile)
+<span id="L151" class="ln">   151  </span>
+<span id="L152" class="ln">   152  </span>	joinedPath := filepath.Join(srcBase, srcFile)
+<span id="L153" class="ln">   153  </span>
+<span id="L154" class="ln">   154  </span>	stat, err := fs.Stat(joinedPath)
+<span id="L155" class="ln">   155  </span>	if err != nil {
+<span id="L156" class="ln">   156  </span>		return err
+<span id="L157" class="ln">   157  </span>	}
+<span id="L158" class="ln">   158  </span>
+<span id="L159" class="ln">   159  </span>	if stat.IsDir() {
+<span id="L160" class="ln">   160  </span>		files, err := fs.ReadDir(joinedPath)
+<span id="L161" class="ln">   161  </span>		if err != nil {
+<span id="L162" class="ln">   162  </span>			return err
+<span id="L163" class="ln">   163  </span>		}
+<span id="L164" class="ln">   164  </span>		if len(files) == 0 {
+<span id="L165" class="ln">   165  </span>			<span class="comment">//case empty directory</span>
+<span id="L166" class="ln">   166  </span>			hdr, _ := taro.FileInfoHeader(stat, joinedPath)
+<span id="L167" class="ln">   167  </span>			hdr.Name = destFile
+<span id="L168" class="ln">   168  </span>			if err := tw.WriteHeader(hdr); err != nil {
+<span id="L169" class="ln">   169  </span>				return err
+<span id="L170" class="ln">   170  </span>			}
+<span id="L171" class="ln">   171  </span>		}
+<span id="L172" class="ln">   172  </span>		return nil
+<span id="L173" class="ln">   173  </span>	} else if stat.Mode()&amp;os.ModeSymlink != 0 {
+<span id="L174" class="ln">   174  </span>		<span class="comment">//case soft link</span>
+<span id="L175" class="ln">   175  </span>		hdr, _ := taro.FileInfoHeader(stat, joinedPath)
+<span id="L176" class="ln">   176  </span>		target, err := os.Readlink(joinedPath)
+<span id="L177" class="ln">   177  </span>		if err != nil {
+<span id="L178" class="ln">   178  </span>			return err
+<span id="L179" class="ln">   179  </span>		}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span>		hdr.Linkname = target
+<span id="L182" class="ln">   182  </span>		hdr.Name = destFile
+<span id="L183" class="ln">   183  </span>		if err := tw.WriteHeader(hdr); err != nil {
+<span id="L184" class="ln">   184  </span>			return err
+<span id="L185" class="ln">   185  </span>		}
+<span id="L186" class="ln">   186  </span>	} else {
+<span id="L187" class="ln">   187  </span>		<span class="comment">//case regular file or other file type like pipe</span>
+<span id="L188" class="ln">   188  </span>		hdr, err := taro.FileInfoHeader(stat, joinedPath)
+<span id="L189" class="ln">   189  </span>		if err != nil {
+<span id="L190" class="ln">   190  </span>			return err
+<span id="L191" class="ln">   191  </span>		}
+<span id="L192" class="ln">   192  </span>		hdr.Name = destFile
+<span id="L193" class="ln">   193  </span>
+<span id="L194" class="ln">   194  </span>		err = tw.WriteHeader(hdr)
+<span id="L195" class="ln">   195  </span>		if err != nil {
+<span id="L196" class="ln">   196  </span>			return err
+<span id="L197" class="ln">   197  </span>		}
+<span id="L198" class="ln">   198  </span>
+<span id="L199" class="ln">   199  </span>		f, err := fs.Open(joinedPath)
+<span id="L200" class="ln">   200  </span>		if err != nil {
+<span id="L201" class="ln">   201  </span>			return err
+<span id="L202" class="ln">   202  </span>		}
+<span id="L203" class="ln">   203  </span>		defer f.Close() <span class="comment">// #nosec G307</span>
+<span id="L204" class="ln">   204  </span>
+<span id="L205" class="ln">   205  </span>		if _, err := io.Copy(tw, f); err != nil {
+<span id="L206" class="ln">   206  </span>			return err
+<span id="L207" class="ln">   207  </span>		}
+<span id="L208" class="ln">   208  </span>
+<span id="L209" class="ln">   209  </span>		return f.Close()
+<span id="L210" class="ln">   210  </span>	}
+<span id="L211" class="ln">   211  </span>
+<span id="L212" class="ln">   212  </span>	return nil
+<span id="L213" class="ln">   213  </span>}
+<span id="L214" class="ln">   214  </span>
+</pre><p><a href="../../../../../../src/github.com/redhat-developer/odo/pkg/sync/sync.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

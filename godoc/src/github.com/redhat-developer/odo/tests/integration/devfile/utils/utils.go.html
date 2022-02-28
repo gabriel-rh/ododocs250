@@ -1,0 +1,359 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>utils - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/tests">tests</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/tests/integration">integration</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile">devfile</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils">utils</a>/<span class="text-muted">utils.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../../github.com/redhat-developer/odo/tests/integration/devfile/utils">github.com/redhat-developer/odo/tests/integration/devfile/utils</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package utils
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;encoding/json&#34;
+<span id="L5" class="ln">     5  </span>	&#34;fmt&#34;
+<span id="L6" class="ln">     6  </span>	&#34;index/suffixarray&#34;
+<span id="L7" class="ln">     7  </span>	&#34;os&#34;
+<span id="L8" class="ln">     8  </span>	&#34;path/filepath&#34;
+<span id="L9" class="ln">     9  </span>	&#34;strconv&#34;
+<span id="L10" class="ln">    10  </span>	&#34;strings&#34;
+<span id="L11" class="ln">    11  </span>	&#34;time&#34;
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span>	&#34;github.com/redhat-developer/odo/pkg/util&#34;
+<span id="L14" class="ln">    14  </span>
+<span id="L15" class="ln">    15  </span>	&#34;github.com/redhat-developer/odo/tests/helper&#34;
+<span id="L16" class="ln">    16  </span>
+<span id="L17" class="ln">    17  </span>	. &#34;github.com/onsi/ginkgo&#34;
+<span id="L18" class="ln">    18  </span>	. &#34;github.com/onsi/gomega&#34;
+<span id="L19" class="ln">    19  </span>)
+<span id="L20" class="ln">    20  </span>
+<span id="L21" class="ln">    21  </span>type OdoV2Watch struct {
+<span id="L22" class="ln">    22  </span>	CmpName               string
+<span id="L23" class="ln">    23  </span>	StringsToBeMatched    []string
+<span id="L24" class="ln">    24  </span>	StringsNotToBeMatched []string
+<span id="L25" class="ln">    25  </span>	FolderToCheck         string
+<span id="L26" class="ln">    26  </span>	SrcType               string
+<span id="L27" class="ln">    27  </span>}
+<span id="L28" class="ln">    28  </span>
+<span id="L29" class="ln">    29  </span><span class="comment">// OdoWatch creates files, dir in the context and watches for the changes to be pushed</span>
+<span id="L30" class="ln">    30  </span><span class="comment">// Specify OdoV2Watch for odo version 2(devfile)</span>
+<span id="L31" class="ln">    31  </span><span class="comment">// platform is kube</span>
+<span id="L32" class="ln">    32  </span>func OdoWatch(odoV2Watch OdoV2Watch, project, context, flag string, runner interface{}, platform string) {
+<span id="L33" class="ln">    33  </span>
+<span id="L34" class="ln">    34  </span>	<span class="comment">// After the watch command has started (indicated via channel), simulate file system changes</span>
+<span id="L35" class="ln">    35  </span>	startSimulationCh := make(chan bool)
+<span id="L36" class="ln">    36  </span>	go func() {
+<span id="L37" class="ln">    37  </span>		startMsg := &lt;-startSimulationCh
+<span id="L38" class="ln">    38  </span>		if startMsg {
+<span id="L39" class="ln">    39  </span>			err := os.MkdirAll(filepath.Join(context, &#34;.abc&#34;), 0750)
+<span id="L40" class="ln">    40  </span>			Expect(err).To(BeNil())
+<span id="L41" class="ln">    41  </span>
+<span id="L42" class="ln">    42  </span>			err = os.MkdirAll(filepath.Join(context, &#34;abcd&#34;), 0750)
+<span id="L43" class="ln">    43  </span>			Expect(err).To(BeNil())
+<span id="L44" class="ln">    44  </span>
+<span id="L45" class="ln">    45  </span>			_, err = os.Create(filepath.Join(context, &#34;a.txt&#34;))
+<span id="L46" class="ln">    46  </span>			Expect(err).To(BeNil())
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span>			if odoV2Watch.SrcType == &#34;openjdk&#34; {
+<span id="L49" class="ln">    49  </span>				helper.ReplaceString(filepath.Join(context, &#34;src&#34;, &#34;main&#34;, &#34;java&#34;, &#34;MessageProducer.java&#34;), &#34;Hello&#34;, &#34;Hello odo&#34;)
+<span id="L50" class="ln">    50  </span>			} else {
+<span id="L51" class="ln">    51  </span>				helper.ReplaceString(filepath.Join(context, &#34;server.js&#34;), &#34;Hello&#34;, &#34;Hello odo&#34;)
+<span id="L52" class="ln">    52  </span>			}
+<span id="L53" class="ln">    53  </span>
+<span id="L54" class="ln">    54  </span>		}
+<span id="L55" class="ln">    55  </span>	}()
+<span id="L56" class="ln">    56  </span>
+<span id="L57" class="ln">    57  </span>	success, err := helper.WatchNonRetCmdStdOut(
+<span id="L58" class="ln">    58  </span>		(&#34;odo watch &#34; + flag + &#34; --context &#34; + context),
+<span id="L59" class="ln">    59  </span>		time.Duration(5)*time.Minute,
+<span id="L60" class="ln">    60  </span>		func(output string) bool {
+<span id="L61" class="ln">    61  </span>			<span class="comment">// the test hangs up on the CI when the delay is set to 0</span>
+<span id="L62" class="ln">    62  </span>			<span class="comment">// so we only check if the start message was displayed correctly or not</span>
+<span id="L63" class="ln">    63  </span>			if strings.Contains(flag, &#34;delay 0&#34;) {
+<span id="L64" class="ln">    64  </span>				return true
+<span id="L65" class="ln">    65  </span>			}
+<span id="L66" class="ln">    66  </span>			<span class="comment">// Returns true if the test has succeeded, false if not yet</span>
+<span id="L67" class="ln">    67  </span>
+<span id="L68" class="ln">    68  </span>			stringsMatched := true
+<span id="L69" class="ln">    69  </span>
+<span id="L70" class="ln">    70  </span>			for _, stringToBeMatched := range odoV2Watch.StringsToBeMatched {
+<span id="L71" class="ln">    71  </span>				if !strings.Contains(output, stringToBeMatched) {
+<span id="L72" class="ln">    72  </span>					fmt.Fprintln(GinkgoWriter, &#34;Missing string: &#34;, stringToBeMatched)
+<span id="L73" class="ln">    73  </span>					stringsMatched = false
+<span id="L74" class="ln">    74  </span>				}
+<span id="L75" class="ln">    75  </span>			}
+<span id="L76" class="ln">    76  </span>
+<span id="L77" class="ln">    77  </span>			if stringsMatched {
+<span id="L78" class="ln">    78  </span>
+<span id="L79" class="ln">    79  </span>				<span class="comment">// first push is successful</span>
+<span id="L80" class="ln">    80  </span>				<span class="comment">// now delete a folder and check if the deletion is propagated properly</span>
+<span id="L81" class="ln">    81  </span>				<span class="comment">// and the file is removed from the cluster</span>
+<span id="L82" class="ln">    82  </span>				index := suffixarray.New([]byte(output))
+<span id="L83" class="ln">    83  </span>				offsets := index.Lookup([]byte(filepath.Join(context, &#34;abcd&#34;)+&#34; changed&#34;), -1)
+<span id="L84" class="ln">    84  </span>
+<span id="L85" class="ln">    85  </span>				<span class="comment">// the first occurrence of &#39;&lt;target-dir&gt; changed&#39; means the creation of it was pushed to the cluster</span>
+<span id="L86" class="ln">    86  </span>				<span class="comment">// and the first push was successful</span>
+<span id="L87" class="ln">    87  </span>				if len(offsets) == 1 {
+<span id="L88" class="ln">    88  </span>					helper.DeleteDir(filepath.Join(context, &#34;abcd&#34;))
+<span id="L89" class="ln">    89  </span>				} else if len(offsets) &gt; 1 {
+<span id="L90" class="ln">    90  </span>					<span class="comment">// the occurrence of &#39;target-directory&#39; more than once indicates that the deletion was propagated too</span>
+<span id="L91" class="ln">    91  </span>					<span class="comment">// Verify directory deleted from component pod</span>
+<span id="L92" class="ln">    92  </span>					err := validateContainerExecListDir(odoV2Watch, runner, platform, project)
+<span id="L93" class="ln">    93  </span>					Expect(err).To(BeNil())
+<span id="L94" class="ln">    94  </span>					return true
+<span id="L95" class="ln">    95  </span>				}
+<span id="L96" class="ln">    96  </span>			}
+<span id="L97" class="ln">    97  </span>
+<span id="L98" class="ln">    98  </span>			return false
+<span id="L99" class="ln">    99  </span>		},
+<span id="L100" class="ln">   100  </span>		startSimulationCh,
+<span id="L101" class="ln">   101  </span>		func(output string) bool {
+<span id="L102" class="ln">   102  </span>			<span class="comment">// Returns true to indicate the test should begin file system file change simulation</span>
+<span id="L103" class="ln">   103  </span>			return strings.Contains(output, &#34;Waiting for something to change&#34;)
+<span id="L104" class="ln">   104  </span>		})
+<span id="L105" class="ln">   105  </span>
+<span id="L106" class="ln">   106  </span>	Expect(success).To(Equal(true))
+<span id="L107" class="ln">   107  </span>	Expect(err).To(BeNil())
+<span id="L108" class="ln">   108  </span>}
+<span id="L109" class="ln">   109  </span>
+<span id="L110" class="ln">   110  </span><span class="comment">// OdoWatchWithDebug changes files in the context and watches for the changes to be pushed</span>
+<span id="L111" class="ln">   111  </span><span class="comment">// It checks if the push is in debug mode or not</span>
+<span id="L112" class="ln">   112  </span><span class="comment">// After a successful push with watch, it tries to start a debug session</span>
+<span id="L113" class="ln">   113  </span>func OdoWatchWithDebug(odoV2Watch OdoV2Watch, context, flag string) {
+<span id="L114" class="ln">   114  </span>
+<span id="L115" class="ln">   115  </span>	startSimulationCh := make(chan bool)
+<span id="L116" class="ln">   116  </span>	go func() {
+<span id="L117" class="ln">   117  </span>		startMsg := &lt;-startSimulationCh
+<span id="L118" class="ln">   118  </span>		if startMsg {
+<span id="L119" class="ln">   119  </span>			helper.ReplaceString(filepath.Join(context, &#34;server.js&#34;), &#34;Hello&#34;, &#34;Hello odo&#34;)
+<span id="L120" class="ln">   120  </span>			helper.ReplaceString(filepath.Join(context, &#34;package.json&#34;), &#34;application&#34;, &#34;app&#34;)
+<span id="L121" class="ln">   121  </span>		}
+<span id="L122" class="ln">   122  </span>	}()
+<span id="L123" class="ln">   123  </span>
+<span id="L124" class="ln">   124  </span>	success, err := helper.WatchNonRetCmdStdOut(
+<span id="L125" class="ln">   125  </span>		(&#34;odo watch &#34; + flag + &#34; --context &#34; + context),
+<span id="L126" class="ln">   126  </span>		time.Duration(5)*time.Minute,
+<span id="L127" class="ln">   127  </span>		func(output string) bool {
+<span id="L128" class="ln">   128  </span>			stringsMatched := true
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span>			for _, stringToBeMatched := range odoV2Watch.StringsToBeMatched {
+<span id="L131" class="ln">   131  </span>				if !strings.Contains(output, stringToBeMatched) {
+<span id="L132" class="ln">   132  </span>					stringsMatched = false
+<span id="L133" class="ln">   133  </span>				}
+<span id="L134" class="ln">   134  </span>			}
+<span id="L135" class="ln">   135  </span>
+<span id="L136" class="ln">   136  </span>			if stringsMatched {
+<span id="L137" class="ln">   137  </span>				httpPort, err := util.HTTPGetFreePort()
+<span id="L138" class="ln">   138  </span>				Expect(err).NotTo(HaveOccurred())
+<span id="L139" class="ln">   139  </span>				freePort := strconv.Itoa(httpPort)
+<span id="L140" class="ln">   140  </span>
+<span id="L141" class="ln">   141  </span>				stopChannel := make(chan bool)
+<span id="L142" class="ln">   142  </span>				go func() {
+<span id="L143" class="ln">   143  </span>					helper.Cmd(&#34;odo&#34;, &#34;debug&#34;, &#34;port-forward&#34;, &#34;--local-port&#34;, freePort).WithTerminate(60*time.Second, stopChannel).ShouldRun()
+<span id="L144" class="ln">   144  </span>				}()
+<span id="L145" class="ln">   145  </span>
+<span id="L146" class="ln">   146  </span>				<span class="comment">// 400 response expected because the endpoint expects a websocket request and we are doing a HTTP GET</span>
+<span id="L147" class="ln">   147  </span>				<span class="comment">// We are just using this to validate if nodejs agent is listening on the other side</span>
+<span id="L148" class="ln">   148  </span>				helper.HttpWaitForWithStatus(&#34;http://localhost:&#34;+freePort, &#34;WebSockets request was expected&#34;, 12, 5, 400)
+<span id="L149" class="ln">   149  </span>				stopChannel &lt;- true
+<span id="L150" class="ln">   150  </span>				return true
+<span id="L151" class="ln">   151  </span>			}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span>			return false
+<span id="L154" class="ln">   154  </span>		},
+<span id="L155" class="ln">   155  </span>		startSimulationCh,
+<span id="L156" class="ln">   156  </span>		func(output string) bool {
+<span id="L157" class="ln">   157  </span>			return strings.Contains(output, &#34;Waiting for something to change&#34;)
+<span id="L158" class="ln">   158  </span>		})
+<span id="L159" class="ln">   159  </span>
+<span id="L160" class="ln">   160  </span>	Expect(success).To(Equal(true))
+<span id="L161" class="ln">   161  </span>	Expect(err).To(BeNil())
+<span id="L162" class="ln">   162  </span>}
+<span id="L163" class="ln">   163  </span>
+<span id="L164" class="ln">   164  </span><span class="comment">// OdoWatchWithIgnore checks if odo watch ignores the specified files and</span>
+<span id="L165" class="ln">   165  </span><span class="comment">// it also checks if odo-file-index.json and .git are ignored</span>
+<span id="L166" class="ln">   166  </span><span class="comment">// when --ignores is used</span>
+<span id="L167" class="ln">   167  </span>func OdoWatchWithIgnore(odoV2Watch OdoV2Watch, context, flag string) {
+<span id="L168" class="ln">   168  </span>
+<span id="L169" class="ln">   169  </span>	startSimulationCh := make(chan bool)
+<span id="L170" class="ln">   170  </span>	go func() {
+<span id="L171" class="ln">   171  </span>		startMsg := &lt;-startSimulationCh
+<span id="L172" class="ln">   172  </span>		if startMsg {
+<span id="L173" class="ln">   173  </span>			_, err := os.Create(filepath.Join(context, &#34;doignoreme.txt&#34;))
+<span id="L174" class="ln">   174  </span>			Expect(err).To(BeNil())
+<span id="L175" class="ln">   175  </span>
+<span id="L176" class="ln">   176  </span>			_, err = os.Create(filepath.Join(context, &#34;donotignoreme.txt&#34;))
+<span id="L177" class="ln">   177  </span>			Expect(err).To(BeNil())
+<span id="L178" class="ln">   178  </span>		}
+<span id="L179" class="ln">   179  </span>	}()
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span>	success, err := helper.WatchNonRetCmdStdOut(
+<span id="L182" class="ln">   182  </span>		(&#34;odo watch &#34; + flag + &#34; --context &#34; + context),
+<span id="L183" class="ln">   183  </span>		time.Duration(5)*time.Minute,
+<span id="L184" class="ln">   184  </span>		func(output string) bool {
+<span id="L185" class="ln">   185  </span>			stringsMatched := true
+<span id="L186" class="ln">   186  </span>			for _, stringToBeMatched := range odoV2Watch.StringsToBeMatched {
+<span id="L187" class="ln">   187  </span>				if !strings.Contains(output, stringToBeMatched) {
+<span id="L188" class="ln">   188  </span>					stringsMatched = false
+<span id="L189" class="ln">   189  </span>				}
+<span id="L190" class="ln">   190  </span>			}
+<span id="L191" class="ln">   191  </span>
+<span id="L192" class="ln">   192  </span>			stringsNotMatched := true
+<span id="L193" class="ln">   193  </span>			for _, stringNotToBeMatched := range odoV2Watch.StringsNotToBeMatched {
+<span id="L194" class="ln">   194  </span>				if strings.Contains(output, stringNotToBeMatched) {
+<span id="L195" class="ln">   195  </span>					stringsNotMatched = false
+<span id="L196" class="ln">   196  </span>				}
+<span id="L197" class="ln">   197  </span>			}
+<span id="L198" class="ln">   198  </span>
+<span id="L199" class="ln">   199  </span>			if stringsMatched &amp;&amp; stringsNotMatched {
+<span id="L200" class="ln">   200  </span>				return true
+<span id="L201" class="ln">   201  </span>			}
+<span id="L202" class="ln">   202  </span>
+<span id="L203" class="ln">   203  </span>			return false
+<span id="L204" class="ln">   204  </span>		},
+<span id="L205" class="ln">   205  </span>		startSimulationCh,
+<span id="L206" class="ln">   206  </span>		func(output string) bool {
+<span id="L207" class="ln">   207  </span>			return strings.Contains(output, &#34;Waiting for something to change&#34;)
+<span id="L208" class="ln">   208  </span>		})
+<span id="L209" class="ln">   209  </span>
+<span id="L210" class="ln">   210  </span>	Expect(success).To(Equal(true))
+<span id="L211" class="ln">   211  </span>	Expect(err).To(BeNil())
+<span id="L212" class="ln">   212  </span>}
+<span id="L213" class="ln">   213  </span>
+<span id="L214" class="ln">   214  </span>func validateContainerExecListDir(odoV2Watch OdoV2Watch, runner interface{}, platform, project string) error {
+<span id="L215" class="ln">   215  </span>	var folderToCheck, podName string
+<span id="L216" class="ln">   216  </span>	cliRunner := runner.(helper.CliRunner)
+<span id="L217" class="ln">   217  </span>	switch platform {
+<span id="L218" class="ln">   218  </span>	case &#34;kube&#34;:
+<span id="L219" class="ln">   219  </span>		folderToCheck = &#34;/projects&#34;
+<span id="L220" class="ln">   220  </span>		if odoV2Watch.FolderToCheck != &#34;&#34; {
+<span id="L221" class="ln">   221  </span>			folderToCheck = odoV2Watch.FolderToCheck
+<span id="L222" class="ln">   222  </span>		}
+<span id="L223" class="ln">   223  </span>		podName = cliRunner.GetRunningPodNameByComponent(odoV2Watch.CmpName, project)
+<span id="L224" class="ln">   224  </span>
+<span id="L225" class="ln">   225  </span>	default:
+<span id="L226" class="ln">   226  </span>		return fmt.Errorf(&#34;Platform %s is not supported&#34;, platform)
+<span id="L227" class="ln">   227  </span>	}
+<span id="L228" class="ln">   228  </span>
+<span id="L229" class="ln">   229  </span>	<span class="comment">// check if contains a.txt, .abc &amp;&amp; abcd is deleted</span>
+<span id="L230" class="ln">   230  </span>	cliRunner.WaitForRunnerCmdOut([]string{&#34;exec&#34;, podName, &#34;--namespace&#34;, project,
+<span id="L231" class="ln">   231  </span>		&#34;--&#34;, &#34;ls&#34;, &#34;-lai&#34;, folderToCheck}, 5, true, func(output string) bool {
+<span id="L232" class="ln">   232  </span>		return !(strings.Contains(output, &#34;abcd&#34;)) &amp;&amp; (strings.Contains(output, &#34;a.txt&#34;)) &amp;&amp; (strings.Contains(output, &#34;.abc&#34;))
+<span id="L233" class="ln">   233  </span>	})
+<span id="L234" class="ln">   234  </span>
+<span id="L235" class="ln">   235  </span>	return nil
+<span id="L236" class="ln">   236  </span>}
+<span id="L237" class="ln">   237  </span>
+<span id="L238" class="ln">   238  </span><span class="comment">// DeleteLocalConfig helps user to delete local config files with flags</span>
+<span id="L239" class="ln">   239  </span>func DeleteLocalConfig(args ...string) {
+<span id="L240" class="ln">   240  </span>	helper.Cmd(&#34;odo&#34;, args...).ShouldFail()
+<span id="L241" class="ln">   241  </span>	output := helper.Cmd(&#34;odo&#34;, append(args, &#34;-af&#34;)...).ShouldPass().Out()
+<span id="L242" class="ln">   242  </span>	expectedOutput := []string{
+<span id="L243" class="ln">   243  </span>		&#34;Successfully deleted env file&#34;,
+<span id="L244" class="ln">   244  </span>		&#34;Successfully deleted devfile.yaml file&#34;,
+<span id="L245" class="ln">   245  </span>	}
+<span id="L246" class="ln">   246  </span>	helper.MatchAllInOutput(output, expectedOutput)
+<span id="L247" class="ln">   247  </span>}
+<span id="L248" class="ln">   248  </span>
+<span id="L249" class="ln">   249  </span><span class="comment">// VerifyCatalogListComponent verifies components inside wantOutput exists or not</span>
+<span id="L250" class="ln">   250  </span><span class="comment">// in Devfile Component list</span>
+<span id="L251" class="ln">   251  </span>func VerifyCatalogListComponent(output string, cmpName []string) error {
+<span id="L252" class="ln">   252  </span>	var data map[string]interface{}
+<span id="L253" class="ln">   253  </span>	listItems := []string{&#34;items&#34;}
+<span id="L254" class="ln">   254  </span>
+<span id="L255" class="ln">   255  </span>	if err := json.Unmarshal([]byte(output), &amp;data); err != nil {
+<span id="L256" class="ln">   256  </span>		return err
+<span id="L257" class="ln">   257  </span>	}
+<span id="L258" class="ln">   258  </span>
+<span id="L259" class="ln">   259  </span>	for _, items := range listItems {
+<span id="L260" class="ln">   260  </span>		outputBytes, err := json.Marshal(data[items])
+<span id="L261" class="ln">   261  </span>		if err != nil {
+<span id="L262" class="ln">   262  </span>			return err
+<span id="L263" class="ln">   263  </span>		}
+<span id="L264" class="ln">   264  </span>		output = string(outputBytes)
+<span id="L265" class="ln">   265  </span>		helper.MatchAllInOutput(output, cmpName)
+<span id="L266" class="ln">   266  </span>	}
+<span id="L267" class="ln">   267  </span>	return nil
+<span id="L268" class="ln">   268  </span>}
+<span id="L269" class="ln">   269  </span>
+<span id="L270" class="ln">   270  </span><span class="comment">// VerifyContainerSyncEnv verifies the sync env in the container</span>
+<span id="L271" class="ln">   271  </span>func VerifyContainerSyncEnv(podName, containerName, namespace, projectSourceValue, projectsRootValue string, cliRunner helper.CliRunner) {
+<span id="L272" class="ln">   272  </span>	envProjectsRoot, envProjectSource := &#34;PROJECTS_ROOT&#34;, &#34;PROJECT_SOURCE&#34;
+<span id="L273" class="ln">   273  </span>	projectSourceMatched, projectsRootMatched := false, false
+<span id="L274" class="ln">   274  </span>
+<span id="L275" class="ln">   275  </span>	envNamesAndValues := cliRunner.GetContainerEnv(podName, &#34;runtime&#34;, namespace)
+<span id="L276" class="ln">   276  </span>	envNamesAndValuesArr := strings.Fields(envNamesAndValues)
+<span id="L277" class="ln">   277  </span>
+<span id="L278" class="ln">   278  </span>	for _, envNamesAndValues := range envNamesAndValuesArr {
+<span id="L279" class="ln">   279  </span>		envNameAndValueArr := strings.Split(envNamesAndValues, &#34;:&#34;)
+<span id="L280" class="ln">   280  </span>
+<span id="L281" class="ln">   281  </span>		if envNameAndValueArr[0] == envProjectSource &amp;&amp; strings.Contains(envNameAndValueArr[1], projectSourceValue) {
+<span id="L282" class="ln">   282  </span>			projectSourceMatched = true
+<span id="L283" class="ln">   283  </span>		}
+<span id="L284" class="ln">   284  </span>
+<span id="L285" class="ln">   285  </span>		if envNameAndValueArr[0] == envProjectsRoot &amp;&amp; strings.Contains(envNameAndValueArr[1], projectsRootValue) {
+<span id="L286" class="ln">   286  </span>			projectsRootMatched = true
+<span id="L287" class="ln">   287  </span>		}
+<span id="L288" class="ln">   288  </span>	}
+<span id="L289" class="ln">   289  </span>
+<span id="L290" class="ln">   290  </span>	Expect(projectSourceMatched).To(Equal(true))
+<span id="L291" class="ln">   291  </span>	Expect(projectsRootMatched).To(Equal(true))
+<span id="L292" class="ln">   292  </span>}
+<span id="L293" class="ln">   293  </span>
+</pre><p><a href="../../../../../../../../src/github.com/redhat-developer/odo/tests/integration/devfile/utils/utils.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

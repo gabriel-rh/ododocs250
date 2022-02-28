@@ -1,0 +1,107 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>catalog - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli">cli</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog">catalog</a>/<span class="text-muted">catalog.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/catalog">github.com/redhat-developer/odo/pkg/odo/cli/catalog</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package catalog
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;fmt&#34;
+<span id="L5" class="ln">     5  </span>
+<span id="L6" class="ln">     6  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe&#34;
+<span id="L7" class="ln">     7  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/cli/catalog/list&#34;
+<span id="L8" class="ln">     8  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/cli/catalog/search&#34;
+<span id="L9" class="ln">     9  </span>	odoutil &#34;github.com/redhat-developer/odo/pkg/odo/util&#34;
+<span id="L10" class="ln">    10  </span>
+<span id="L11" class="ln">    11  </span>	&#34;github.com/spf13/cobra&#34;
+<span id="L12" class="ln">    12  </span>)
+<span id="L13" class="ln">    13  </span>
+<span id="L14" class="ln">    14  </span><span class="comment">// RecommendedCommandName is the recommended catalog command name</span>
+<span id="L15" class="ln">    15  </span>const RecommendedCommandName = &#34;catalog&#34;
+<span id="L16" class="ln">    16  </span>
+<span id="L17" class="ln">    17  </span><span class="comment">// NewCmdCatalog implements the odo catalog command</span>
+<span id="L18" class="ln">    18  </span>func NewCmdCatalog(name, fullName string) *cobra.Command {
+<span id="L19" class="ln">    19  </span>	catalogDescribeCmd := describe.NewCmdCatalogDescribe(describe.RecommendedCommandName, odoutil.GetFullName(fullName, describe.RecommendedCommandName))
+<span id="L20" class="ln">    20  </span>	catalogSearchCmd := search.NewCmdCatalogSearch(search.RecommendedCommandName, odoutil.GetFullName(fullName, search.RecommendedCommandName))
+<span id="L21" class="ln">    21  </span>	catalogListCmd := list.NewCmdCatalogList(list.RecommendedCommandName, odoutil.GetFullName(fullName, list.RecommendedCommandName))
+<span id="L22" class="ln">    22  </span>
+<span id="L23" class="ln">    23  </span>	catalogCmd := &amp;cobra.Command{
+<span id="L24" class="ln">    24  </span>		Use:   fmt.Sprintf(&#34;%s [options]&#34;, name),
+<span id="L25" class="ln">    25  </span>		Short: &#34;Catalog related operations&#34;,
+<span id="L26" class="ln">    26  </span>		Long:  &#34;Catalog related operations&#34;,
+<span id="L27" class="ln">    27  </span>		Example: fmt.Sprintf(&#34;%s\n%s\n%s&#34;,
+<span id="L28" class="ln">    28  </span>			catalogListCmd.Example,
+<span id="L29" class="ln">    29  </span>			catalogSearchCmd.Example,
+<span id="L30" class="ln">    30  </span>			catalogDescribeCmd.Example),
+<span id="L31" class="ln">    31  </span>	}
+<span id="L32" class="ln">    32  </span>
+<span id="L33" class="ln">    33  </span>	catalogCmd.AddCommand(catalogSearchCmd, catalogListCmd, catalogDescribeCmd)
+<span id="L34" class="ln">    34  </span>
+<span id="L35" class="ln">    35  </span>	<span class="comment">// Add a defined annotation in order to appear in the help menu</span>
+<span id="L36" class="ln">    36  </span>	catalogCmd.Annotations = map[string]string{&#34;command&#34;: &#34;main&#34;}
+<span id="L37" class="ln">    37  </span>	catalogCmd.SetUsageTemplate(odoutil.CmdUsageTemplate)
+<span id="L38" class="ln">    38  </span>
+<span id="L39" class="ln">    39  </span>	return catalogCmd
+<span id="L40" class="ln">    40  </span>}
+<span id="L41" class="ln">    41  </span>
+</pre><p><a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/catalog.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

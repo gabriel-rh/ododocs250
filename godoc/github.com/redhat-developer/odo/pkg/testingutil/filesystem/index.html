@@ -1,0 +1,730 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>filesystem - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package filesystem
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/testingutil/filesystem" target="_blank">github.com/redhat-developer/odo/pkg/testingutil/filesystem</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#Set">func Set(fs Filesystem)</a></dd>
+			
+			
+				
+				<dd><a href="#DefaultFs">type DefaultFs</a></dd>
+				
+				
+					
+					<dd>    <a href="#DefaultFs.Chmod">func (f DefaultFs) Chmod(name string, mode os.FileMode) error</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.Chtimes">func (DefaultFs) Chtimes(name string, atime time.Time, mtime time.Time) error</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.Create">func (DefaultFs) Create(name string) (File, error)</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.MkdirAll">func (DefaultFs) MkdirAll(path string, perm os.FileMode) error</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.Open">func (DefaultFs) Open(name string) (File, error)</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.OpenFile">func (DefaultFs) OpenFile(name string, flag int, perm os.FileMode) (File, error)</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.ReadDir">func (DefaultFs) ReadDir(dirname string) ([]os.FileInfo, error)</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.ReadFile">func (DefaultFs) ReadFile(filename string) ([]byte, error)</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.Remove">func (DefaultFs) Remove(name string) error</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.RemoveAll">func (DefaultFs) RemoveAll(path string) error</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.Rename">func (DefaultFs) Rename(oldpath, newpath string) error</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.Stat">func (DefaultFs) Stat(name string) (os.FileInfo, error)</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.TempDir">func (DefaultFs) TempDir(dir, prefix string) (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.TempFile">func (DefaultFs) TempFile(dir, prefix string) (File, error)</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.Walk">func (DefaultFs) Walk(root string, walkFn filepath.WalkFunc) error</a></dd>
+				
+					
+					<dd>    <a href="#DefaultFs.WriteFile">func (DefaultFs) WriteFile(filename string, data []byte, perm os.FileMode) error</a></dd>
+				
+			
+				
+				<dd><a href="#FSErrorHandler">type FSErrorHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="#FSEventHandler">type FSEventHandler</a></dd>
+				
+				
+			
+				
+				<dd><a href="#FSWatcher">type FSWatcher</a></dd>
+				
+					
+					<dd>    <a href="#NewFsnotifyWatcher">func NewFsnotifyWatcher() FSWatcher</a></dd>
+				
+				
+			
+				
+				<dd><a href="#File">type File</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Filesystem">type Filesystem</a></dd>
+				
+					
+					<dd>    <a href="#Get">func Get() Filesystem</a></dd>
+				
+					
+					<dd>    <a href="#NewFakeFs">func NewFakeFs() Filesystem</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html">default_fs.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/fake_fs.go.html">fake_fs.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/filesystem.go.html">filesystem.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/singleton.go.html">singleton.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/watcher.go.html">watcher.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="Set">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/singleton.go.html?s=140:163#L2">Set</a>
+				<a class="permalink" href="#Set">¶</a>
+				
+				
+			</h2>
+			<pre>func Set(fs <a href="#Filesystem">Filesystem</a>)</pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="DefaultFs">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=874:897#L22">DefaultFs</a>
+				<a class="permalink" href="#DefaultFs">¶</a>
+				
+				
+			</h2>
+			<p>
+DefaultFs implements Filesystem using same-named functions from &#34;os&#34; and &#34;io/ioutil&#34;
+</p>
+
+			<pre>type DefaultFs struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DefaultFs.Chmod">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=3145:3206#L120">Chmod</a>
+					<a class="permalink" href="#DefaultFs.Chmod">¶</a>
+					
+					
+				</h3>
+				<pre>func (f <a href="#DefaultFs">DefaultFs</a>) Chmod(name <a href="../../../../../../builtin/#string">string</a>, mode <a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileMode">FileMode</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+Chmod via os.Chmod
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.Chtimes">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=1890:1967#L71">Chtimes</a>
+					<a class="permalink" href="#DefaultFs.Chtimes">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) Chtimes(name <a href="../../../../../../builtin/#string">string</a>, atime <a href="../../../../../../time/">time</a>.<a href="../../../../../../time/#Time">Time</a>, mtime <a href="../../../../../../time/">time</a>.<a href="../../../../../../time/#Time">Time</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+Chtimes via os.Chtimes
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.Create">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=1058:1108#L32">Create</a>
+					<a class="permalink" href="#DefaultFs.Create">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) Create(name <a href="../../../../../../builtin/#string">string</a>) (<a href="#File">File</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Create via os.Create
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.MkdirAll">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=1764:1826#L66">MkdirAll</a>
+					<a class="permalink" href="#DefaultFs.MkdirAll">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) MkdirAll(path <a href="../../../../../../builtin/#string">string</a>, perm <a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileMode">FileMode</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+MkdirAll via os.MkdirAll
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.Open">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=1234:1282#L41">Open</a>
+					<a class="permalink" href="#DefaultFs.Open">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) Open(name <a href="../../../../../../builtin/#string">string</a>) (<a href="#File">File</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Open via os.Open
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.OpenFile">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=1415:1495#L51">OpenFile</a>
+					<a class="permalink" href="#DefaultFs.OpenFile">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) OpenFile(name <a href="../../../../../../builtin/#string">string</a>, flag <a href="../../../../../../builtin/#int">int</a>, perm <a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileMode">FileMode</a>) (<a href="#File">File</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+OpenFile via os.OpenFile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.ReadDir">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=2888:2951#L110">ReadDir</a>
+					<a class="permalink" href="#DefaultFs.ReadDir">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) ReadDir(dirname <a href="../../../../../../builtin/#string">string</a>) ([]<a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileInfo">FileInfo</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ReadDir via ioutil.ReadDir
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.ReadFile">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=2251:2309#L86">ReadFile</a>
+					<a class="permalink" href="#DefaultFs.ReadFile">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) ReadFile(filename <a href="../../../../../../builtin/#string">string</a>) ([]<a href="../../../../../../builtin/#byte">byte</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ReadFile via ioutil.ReadFile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.Remove">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=2147:2189#L81">Remove</a>
+					<a class="permalink" href="#DefaultFs.Remove">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) Remove(name <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+Remove via os.RemoveAll
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.RemoveAll">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=2042:2087#L76">RemoveAll</a>
+					<a class="permalink" href="#DefaultFs.RemoveAll">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) RemoveAll(path <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+RemoveAll via os.RemoveAll
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.Rename">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=1640:1694#L61">Rename</a>
+					<a class="permalink" href="#DefaultFs.Rename">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) Rename(oldpath, newpath <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+Rename via os.Rename
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.Stat">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=951:1006#L27">Stat</a>
+					<a class="permalink" href="#DefaultFs.Stat">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) Stat(name <a href="../../../../../../builtin/#string">string</a>) (<a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileInfo">FileInfo</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Stat via os.Stat
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.TempDir">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=2546:2606#L96">TempDir</a>
+					<a class="permalink" href="#DefaultFs.TempDir">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) TempDir(dir, prefix <a href="../../../../../../builtin/#string">string</a>) (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+TempDir via ioutil.TempDir
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.TempFile">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=2680:2739#L101">TempFile</a>
+					<a class="permalink" href="#DefaultFs.TempFile">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) TempFile(dir, prefix <a href="../../../../../../builtin/#string">string</a>) (<a href="#File">File</a>, <a href="../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+TempFile via ioutil.TempFile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.Walk">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=3015:3081#L115">Walk</a>
+					<a class="permalink" href="#DefaultFs.Walk">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) Walk(root <a href="../../../../../../builtin/#string">string</a>, walkFn <a href="../../../../../../path/filepath/">filepath</a>.<a href="../../../../../../path/filepath/#WalkFunc">WalkFunc</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+Walk via filepath.Walk
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DefaultFs.WriteFile">func (DefaultFs) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/default_fs.go.html?s=2383:2463#L91">WriteFile</a>
+					<a class="permalink" href="#DefaultFs.WriteFile">¶</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#DefaultFs">DefaultFs</a>) WriteFile(filename <a href="../../../../../../builtin/#string">string</a>, data []<a href="../../../../../../builtin/#byte">byte</a>, perm <a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileMode">FileMode</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				<p>
+WriteFile via ioutil.WriteFile
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FSErrorHandler">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/watcher.go.html?s=1373:1408#L36">FSErrorHandler</a>
+				<a class="permalink" href="#FSErrorHandler">¶</a>
+				
+				
+			</h2>
+			<p>
+FSErrorHandler is called when a fsnotify error occurs.
+</p>
+
+			<pre>type FSErrorHandler func(err <a href="../../../../../../builtin/#error">error</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FSEventHandler">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/watcher.go.html?s=1267:1313#L33">FSEventHandler</a>
+				<a class="permalink" href="#FSEventHandler">¶</a>
+				
+				
+			</h2>
+			<p>
+FSEventHandler is called when a fsnotify event occurs.
+</p>
+
+			<pre>type FSEventHandler func(event <a href="../../../../../../github.com/fsnotify/fsnotify/">fsnotify</a>.<a href="../../../../../../github.com/fsnotify/fsnotify/#Event">Event</a>)</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FSWatcher">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/watcher.go.html?s=850:1207#L19">FSWatcher</a>
+				<a class="permalink" href="#FSWatcher">¶</a>
+				
+				
+			</h2>
+			<p>
+FSWatcher is a callback-based filesystem watcher abstraction for fsnotify.
+</p>
+
+			<pre>type FSWatcher interface {
+    <span class="comment">// Initializes the watcher with the given watch handlers.</span>
+    <span class="comment">// Called before all other methods.</span>
+    Init(<a href="#FSEventHandler">FSEventHandler</a>, <a href="#FSErrorHandler">FSErrorHandler</a>) <a href="../../../../../../builtin/#error">error</a>
+
+    <span class="comment">// Starts listening for events and errors.</span>
+    <span class="comment">// When an event or error occurs, the corresponding handler is called.</span>
+    Run()
+
+    <span class="comment">// Add a filesystem path to watch</span>
+    AddWatch(path <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFsnotifyWatcher">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/watcher.go.html?s=1742:1777#L48">NewFsnotifyWatcher</a>
+					<a class="permalink" href="#NewFsnotifyWatcher">¶</a>
+					
+					
+				</h3>
+				<pre>func NewFsnotifyWatcher() <a href="#FSWatcher">FSWatcher</a></pre>
+				<p>
+NewFsnotifyWatcher returns an implementation of FSWatcher that continuously listens for
+fsnotify events and calls the event handler as soon as an event is received.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="File">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/filesystem.go.html?s=1789:2090#L45">File</a>
+				<a class="permalink" href="#File">¶</a>
+				
+				
+			</h2>
+			<p>
+File is an interface that we can use to mock various filesystem operations typically
+accessed through the File object from the &#34;os&#34; package
+</p>
+
+			<pre>type File interface {
+    <span class="comment">// for now, the only os.File methods used are those below, add more as necessary</span>
+    Name() <a href="../../../../../../builtin/#string">string</a>
+    Write(b []<a href="../../../../../../builtin/#byte">byte</a>) (n <a href="../../../../../../builtin/#int">int</a>, err <a href="../../../../../../builtin/#error">error</a>)
+    WriteString(s <a href="../../../../../../builtin/#string">string</a>) (n <a href="../../../../../../builtin/#int">int</a>, err <a href="../../../../../../builtin/#error">error</a>)
+    Sync() <a href="../../../../../../builtin/#error">error</a>
+    Close() <a href="../../../../../../builtin/#error">error</a>
+    Read(b []<a href="../../../../../../builtin/#byte">byte</a>) (n <a href="../../../../../../builtin/#int">int</a>, err <a href="../../../../../../builtin/#error">error</a>)
+    Readdir(n <a href="../../../../../../builtin/#int">int</a>) ([]<a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileInfo">FileInfo</a>, <a href="../../../../../../builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Filesystem">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/filesystem.go.html?s=858:1641#L21">Filesystem</a>
+				<a class="permalink" href="#Filesystem">¶</a>
+				
+				
+			</h2>
+			<p>
+Filesystem is an interface that we can use to mock various filesystem operations
+</p>
+
+			<pre>type Filesystem interface {
+    <span class="comment">// from &#34;os&#34;</span>
+    Stat(name <a href="../../../../../../builtin/#string">string</a>) (<a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileInfo">FileInfo</a>, <a href="../../../../../../builtin/#error">error</a>)
+    Create(name <a href="../../../../../../builtin/#string">string</a>) (<a href="#File">File</a>, <a href="../../../../../../builtin/#error">error</a>)
+    Open(name <a href="../../../../../../builtin/#string">string</a>) (<a href="#File">File</a>, <a href="../../../../../../builtin/#error">error</a>)
+    OpenFile(name <a href="../../../../../../builtin/#string">string</a>, flag <a href="../../../../../../builtin/#int">int</a>, perm <a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileMode">FileMode</a>) (<a href="#File">File</a>, <a href="../../../../../../builtin/#error">error</a>)
+    Rename(oldpath, newpath <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a>
+    MkdirAll(path <a href="../../../../../../builtin/#string">string</a>, perm <a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileMode">FileMode</a>) <a href="../../../../../../builtin/#error">error</a>
+    Chtimes(name <a href="../../../../../../builtin/#string">string</a>, atime <a href="../../../../../../time/">time</a>.<a href="../../../../../../time/#Time">Time</a>, mtime <a href="../../../../../../time/">time</a>.<a href="../../../../../../time/#Time">Time</a>) <a href="../../../../../../builtin/#error">error</a>
+    RemoveAll(path <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a>
+    Remove(name <a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a>
+    Chmod(name <a href="../../../../../../builtin/#string">string</a>, mode <a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileMode">FileMode</a>) <a href="../../../../../../builtin/#error">error</a>
+
+    <span class="comment">// from &#34;io/ioutil&#34;</span>
+    ReadFile(filename <a href="../../../../../../builtin/#string">string</a>) ([]<a href="../../../../../../builtin/#byte">byte</a>, <a href="../../../../../../builtin/#error">error</a>)
+    WriteFile(filename <a href="../../../../../../builtin/#string">string</a>, data []<a href="../../../../../../builtin/#byte">byte</a>, perm <a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileMode">FileMode</a>) <a href="../../../../../../builtin/#error">error</a>
+    TempDir(dir, prefix <a href="../../../../../../builtin/#string">string</a>) (<a href="../../../../../../builtin/#string">string</a>, <a href="../../../../../../builtin/#error">error</a>)
+    TempFile(dir, prefix <a href="../../../../../../builtin/#string">string</a>) (<a href="#File">File</a>, <a href="../../../../../../builtin/#error">error</a>)
+    ReadDir(dirname <a href="../../../../../../builtin/#string">string</a>) ([]<a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#FileInfo">FileInfo</a>, <a href="../../../../../../builtin/#error">error</a>)
+    Walk(root <a href="../../../../../../builtin/#string">string</a>, walkFn <a href="../../../../../../path/filepath/">filepath</a>.<a href="../../../../../../path/filepath/#WalkFunc">WalkFunc</a>) <a href="../../../../../../builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Get">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/singleton.go.html?s=45:66#L1">Get</a>
+					<a class="permalink" href="#Get">¶</a>
+					
+					
+				</h3>
+				<pre>func Get() <a href="#Filesystem">Filesystem</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="NewFakeFs">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/filesystem/fake_fs.go.html?s=963:990#L28">NewFakeFs</a>
+					<a class="permalink" href="#NewFakeFs">¶</a>
+					
+					
+				</h3>
+				<pre>func NewFakeFs() <a href="#Filesystem">Filesystem</a></pre>
+				<p>
+NewFakeFs returns a fake Filesystem that exists in-memory, useful for unit tests
+</p>
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

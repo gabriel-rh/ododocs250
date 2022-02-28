@@ -1,0 +1,257 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>storage - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package storage
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/devfile/adapters/kubernetes/storage" target="_blank">github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/storage</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#GetEphemeralVolumesAndVolumeMounts">func GetEphemeralVolumesAndVolumeMounts(devfileObj devfileParser.DevfileObj, containers []corev1.Container, initContainers []corev1.Container, ephemerals map[string]storage.Storage, options parsercommon.DevfileOptions) ([]corev1.Volume, error)</a></dd>
+			
+				
+				<dd><a href="#GetPersistentVolumesAndVolumeMounts">func GetPersistentVolumesAndVolumeMounts(devfileObj devfileParser.DevfileObj, containers []corev1.Container, initContainers []corev1.Container, volumeNameToVolInfo map[string]VolumeInfo, options parsercommon.DevfileOptions) ([]corev1.Volume, error)</a></dd>
+			
+				
+				<dd><a href="#GetVolumeInfos">func GetVolumeInfos(pvcs []corev1.PersistentVolumeClaim) (odoSourcePVCName string, infos map[string]VolumeInfo, _ error)</a></dd>
+			
+				
+				<dd><a href="#HandleEphemeralStorage">func HandleEphemeralStorage(client kclient.ClientInterface, storageClient storage.Client, componentName string, isEphemeral bool) error</a></dd>
+			
+			
+				
+				<dd><a href="#VolumeInfo">type VolumeInfo</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/storage/utils.go.html">utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="GetEphemeralVolumesAndVolumeMounts">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/storage/utils.go.html?s=3247:3490#L77">GetEphemeralVolumesAndVolumeMounts</a>
+				<a class="permalink" href="#GetEphemeralVolumesAndVolumeMounts">¶</a>
+				
+				
+			</h2>
+			<pre>func GetEphemeralVolumesAndVolumeMounts(devfileObj <a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/">devfileParser</a>.<a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, containers []<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#Container">Container</a>, initContainers []<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#Container">Container</a>, ephemerals map[<a href="../../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/storage/">storage</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/storage/#Storage">Storage</a>, options <a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/v2/common/">parsercommon</a>.<a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/v2/common/#DevfileOptions">DevfileOptions</a>) ([]<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#Volume">Volume</a>, <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetPersistentVolumesAndVolumeMounts">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/storage/utils.go.html?s=2073:2321#L51">GetPersistentVolumesAndVolumeMounts</a>
+				<a class="permalink" href="#GetPersistentVolumesAndVolumeMounts">¶</a>
+				
+				
+			</h2>
+			<pre>func GetPersistentVolumesAndVolumeMounts(devfileObj <a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/">devfileParser</a>.<a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, containers []<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#Container">Container</a>, initContainers []<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#Container">Container</a>, volumeNameToVolInfo map[<a href="../../../../../../../../builtin/#string">string</a>]<a href="#VolumeInfo">VolumeInfo</a>, options <a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/v2/common/">parsercommon</a>.<a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/v2/common/#DevfileOptions">DevfileOptions</a>) ([]<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#Volume">Volume</a>, <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetPersistentVolumesAndVolumeMounts gets the PVC volumes and updates the containers with the volume mounts.
+volumeNameToVolInfo is a map of the devfile volume name to the volume info containing the pvc name and the volume name.
+To be moved to devfile/library.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetVolumeInfos">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/storage/utils.go.html?s=1051:1171#L22">GetVolumeInfos</a>
+				<a class="permalink" href="#GetVolumeInfos">¶</a>
+				
+				
+			</h2>
+			<pre>func GetVolumeInfos(pvcs []<a href="../../../../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../../../../k8s.io/api/core/v1/#PersistentVolumeClaim">PersistentVolumeClaim</a>) (odoSourcePVCName <a href="../../../../../../../../builtin/#string">string</a>, infos map[<a href="../../../../../../../../builtin/#string">string</a>]<a href="#VolumeInfo">VolumeInfo</a>, _ <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetVolumeInfos returns the PVC name attached to the `odo-projects` directory and a map of other PVCs
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HandleEphemeralStorage">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/storage/utils.go.html?s=6848:6983#L179">HandleEphemeralStorage</a>
+				<a class="permalink" href="#HandleEphemeralStorage">¶</a>
+				
+				
+			</h2>
+			<pre>func HandleEphemeralStorage(client <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, storageClient <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/storage/">storage</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/storage/#Client">Client</a>, componentName <a href="../../../../../../../../builtin/#string">string</a>, isEphemeral <a href="../../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+			<p>
+HandleEphemeralStorage creates or deletes the ephemeral volume based on the preference setting
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="VolumeInfo">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/storage/utils.go.html?s=881:945#L16">VolumeInfo</a>
+				<a class="permalink" href="#VolumeInfo">¶</a>
+				
+				
+			</h2>
+			<p>
+VolumeInfo is a struct to hold the pvc name and the volume name to create a volume.
+To be moved to devfile/library.
+</p>
+
+			<pre>type VolumeInfo struct {
+<span id="VolumeInfo.PVCName"></span>    PVCName    <a href="../../../../../../../../builtin/#string">string</a>
+<span id="VolumeInfo.VolumeName"></span>    VolumeName <a href="../../../../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

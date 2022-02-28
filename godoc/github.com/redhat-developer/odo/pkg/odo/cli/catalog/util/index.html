@@ -1,0 +1,223 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>util - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package util
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/catalog/util" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/catalog/util</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#CsvOperators">func CsvOperators(crds olm.CustomResourceDefinitions) string</a></dd>
+			
+				
+				<dd><a href="#DisplayClusterServiceVersions">func DisplayClusterServiceVersions(csvs *olm.ClusterServiceVersionList)</a></dd>
+			
+				
+				<dd><a href="#DisplayComponents">func DisplayComponents(components []string)</a></dd>
+			
+				
+				<dd><a href="#DisplayServices">func DisplayServices(services catalog.ServiceTypeList)</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/util/util.go.html">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="CsvOperators">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/util/util.go.html?s=1577:1637#L38">CsvOperators</a>
+				<a class="permalink" href="#CsvOperators">¶</a>
+				
+				
+			</h2>
+			<pre>func CsvOperators(crds <a href="../../../../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/">olm</a>.<a href="../../../../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/#CustomResourceDefinitions">CustomResourceDefinitions</a>) <a href="../../../../../../../../builtin/#string">string</a></pre>
+			<p>
+CsvOperators returns a string contains all the Kind from the input crds
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DisplayClusterServiceVersions">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/util/util.go.html?s=1121:1192#L27">DisplayClusterServiceVersions</a>
+				<a class="permalink" href="#DisplayClusterServiceVersions">¶</a>
+				
+				
+			</h2>
+			<pre>func DisplayClusterServiceVersions(csvs *<a href="../../../../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/">olm</a>.<a href="../../../../../../../../github.com/operator-framework/api/pkg/operators/v1alpha1/#ClusterServiceVersionList">ClusterServiceVersionList</a>)</pre>
+			<p>
+DisplayClusterServiceVersions displays installed Operators in a human friendly manner
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DisplayComponents">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/util/util.go.html?s=803:846#L17">DisplayComponents</a>
+				<a class="permalink" href="#DisplayComponents">¶</a>
+				
+				
+			</h2>
+			<pre>func DisplayComponents(components []<a href="../../../../../../../../builtin/#string">string</a>)</pre>
+			<p>
+DisplayComponents displays the specified  components
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DisplayServices">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/util/util.go.html?s=274:328#L5">DisplayServices</a>
+				<a class="permalink" href="#DisplayServices">¶</a>
+				
+				
+			</h2>
+			<pre>func DisplayServices(services <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/catalog/">catalog</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/catalog/#ServiceTypeList">ServiceTypeList</a>)</pre>
+			<p>
+DisplayServices displays the specified services
+</p>
+
+			
+			
+
+		
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

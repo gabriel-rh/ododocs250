@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkodo_dev=self.webpackChunkodo_dev||[]).push([[1713],{3457:function(e){e.exports=JSON.parse('{"release":{"allTagsPath":"/blog/tags","slug":"release","name":"release","count":4,"permalink":"/blog/tags/release"}}')}}]);

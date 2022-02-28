@@ -1,0 +1,565 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>kubernetes - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package kubernetes
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/devfile/adapters/kubernetes" target="_blank">github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="#Adapter">type Adapter</a></dd>
+				
+					
+					<dd>    <a href="#New">func New(adapterContext common.AdapterContext, client kclient.ClientInterface, prefClient preference.Client) Adapter</a></dd>
+				
+				
+					
+					<dd>    <a href="#Adapter.ApplyComponent">func (k Adapter) ApplyComponent(component string) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.CheckSupervisordCommandStatus">func (k Adapter) CheckSupervisordCommandStatus(command devfilev1.Command) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.ComponentInfo">func (k Adapter) ComponentInfo(command devfilev1.Command) (common.ComponentInfo, error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Delete">func (k Adapter) Delete(labels map[string]string, show bool, wait bool) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Deploy">func (k Adapter) Deploy() error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.DoesComponentExist">func (k Adapter) DoesComponentExist(cmpName, appName string) (bool, error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Exec">func (k Adapter) Exec(command []string) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.ExecCMDInContainer">func (k Adapter) ExecCMDInContainer(info common.ComponentInfo, cmd []string, stdOut io.Writer, stdErr io.Writer, stdIn io.Reader, show bool) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Log">func (k Adapter) Log(follow bool, command devfilev1.Command) (io.ReadCloser, error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Logger">func (k Adapter) Logger() machineoutput.MachineEventLoggingClient</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Push">func (k Adapter) Push(parameters common.PushParameters) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.StartContainerStatusWatch">func (k Adapter) StartContainerStatusWatch()</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.StartSupervisordCtlStatusWatch">func (k Adapter) StartSupervisordCtlStatusWatch()</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.SupervisorComponentInfo">func (k Adapter) SupervisorComponentInfo(command devfilev1.Command) (common.ComponentInfo, error)</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.Test">func (k Adapter) Test(testCmd string, show bool) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.UnApplyComponent">func (k Adapter) UnApplyComponent(component string) error</a></dd>
+				
+					
+					<dd>    <a href="#Adapter.UnDeploy">func (k Adapter) UnDeploy() error</a></dd>
+				
+			
+				
+				<dd><a href="#KubernetesContext">type KubernetesContext</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html">adapter.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Adapter">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=484:549#L7">Adapter</a>
+				<a class="permalink" href="#Adapter">¶</a>
+				
+				
+			</h2>
+			<p>
+Adapter maps Devfiles to Kubernetes resources and actions
+</p>
+
+			<pre>type Adapter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="New">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=645:761#L16">New</a>
+					<a class="permalink" href="#New">¶</a>
+					
+					
+				</h3>
+				<pre>func New(adapterContext <a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#AdapterContext">AdapterContext</a>, client <a href="../../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) <a href="#Adapter">Adapter</a></pre>
+				<p>
+New instantiates a kubernetes adapter
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="Adapter.ApplyComponent">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=3725:3780#L110">ApplyComponent</a>
+					<a class="permalink" href="#Adapter.ApplyComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) ApplyComponent(component <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.CheckSupervisordCommandStatus">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=1433:1512#L45">CheckSupervisordCommandStatus</a>
+					<a class="permalink" href="#Adapter.CheckSupervisordCommandStatus">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) CheckSupervisordCommandStatus(command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+CheckSupervisordCommandStatus calls the component adapter&#39;s CheckSupervisordCommandStatus
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.ComponentInfo">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=2967:3054#L92">ComponentInfo</a>
+					<a class="permalink" href="#Adapter.ComponentInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) ComponentInfo(command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#ComponentInfo">ComponentInfo</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Delete">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=1989:2066#L60">Delete</a>
+					<a class="permalink" href="#Adapter.Delete">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) Delete(labels map[<a href="../../../../../../../builtin/#string">string</a>]<a href="../../../../../../../builtin/#string">string</a>, show <a href="../../../../../../../builtin/#bool">bool</a>, wait <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Delete deletes the Kubernetes resources that correspond to the devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Deploy">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=1190:1221#L36">Deploy</a>
+					<a class="permalink" href="#Adapter.Deploy">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) Deploy() <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.DoesComponentExist">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=1771:1845#L55">DoesComponentExist</a>
+					<a class="permalink" href="#Adapter.DoesComponentExist">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) DoesComponentExist(cmpName, appName <a href="../../../../../../../builtin/#string">string</a>) (<a href="../../../../../../../builtin/#bool">bool</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+DoesComponentExist returns true if a component with the specified name exists in the given app
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Exec">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=2531:2576#L81">Exec</a>
+					<a class="permalink" href="#Adapter.Exec">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) Exec(command []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Exec executes a command in the component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.ExecCMDInContainer">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=2623:2769#L85">ExecCMDInContainer</a>
+					<a class="permalink" href="#Adapter.ExecCMDInContainer">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) ExecCMDInContainer(info <a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#ComponentInfo">ComponentInfo</a>, cmd []<a href="../../../../../../../builtin/#string">string</a>, stdOut <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, stdErr <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, stdIn <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Reader">Reader</a>, show <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Log">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=2350:2433#L76">Log</a>
+					<a class="permalink" href="#Adapter.Log">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) Log(follow <a href="../../../../../../../builtin/#bool">bool</a>, command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#ReadCloser">ReadCloser</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Log shows log from component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Logger">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=2860:2925#L88">Logger</a>
+					<a class="permalink" href="#Adapter.Logger">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) Logger() <a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/">machineoutput</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/machineoutput/#MachineEventLoggingClient">MachineEventLoggingClient</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Push">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=985:1046#L26">Push</a>
+					<a class="permalink" href="#Adapter.Push">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) Push(parameters <a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#PushParameters">PushParameters</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Push creates Kubernetes resources that correspond to the devfile if they don&#39;t already exist
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.StartContainerStatusWatch">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=3396:3440#L101">StartContainerStatusWatch</a>
+					<a class="permalink" href="#Adapter.StartContainerStatusWatch">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) StartContainerStatusWatch()</pre>
+				<p>
+StartContainerStatusWatch outputs Kubernetes pod/container status changes to the console, as used by the status command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.StartSupervisordCtlStatusWatch">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=3617:3666#L106">StartSupervisordCtlStatusWatch</a>
+					<a class="permalink" href="#Adapter.StartSupervisordCtlStatusWatch">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) StartSupervisordCtlStatusWatch()</pre>
+				<p>
+StartSupervisordCtlStatusWatch outputs supervisord program status changes to the console, as used by the status command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.SupervisorComponentInfo">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=3110:3207#L96">SupervisorComponentInfo</a>
+					<a class="permalink" href="#Adapter.SupervisorComponentInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) SupervisorComponentInfo(command <a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a>) (<a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/">common</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/devfile/adapters/common/#ComponentInfo">ComponentInfo</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.Test">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=2211:2265#L71">Test</a>
+					<a class="permalink" href="#Adapter.Test">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) Test(testCmd <a href="../../../../../../../builtin/#string">string</a>, show <a href="../../../../../../../builtin/#bool">bool</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Test runs the devfile test command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Adapter.UnApplyComponent">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=3839:3896#L114">UnApplyComponent</a>
+					<a class="permalink" href="#Adapter.UnApplyComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) UnApplyComponent(component <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Adapter.UnDeploy">func (Adapter) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=1263:1296#L40">UnDeploy</a>
+					<a class="permalink" href="#Adapter.UnDeploy">¶</a>
+					
+					
+				</h3>
+				<pre>func (k <a href="#Adapter">Adapter</a>) UnDeploy() <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="KubernetesContext">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/adapters/kubernetes/adapter.go.html?s=551:602#L11">KubernetesContext</a>
+				<a class="permalink" href="#KubernetesContext">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type KubernetesContext struct {
+<span id="KubernetesContext.Namespace"></span>    Namespace <a href="../../../../../../../builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="component/">component</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="storage/">storage</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="utils/">utils</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

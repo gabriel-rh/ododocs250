@@ -1,0 +1,338 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>debug - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package debug
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/debug" target="_blank">github.com/redhat-developer/odo/pkg/debug</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#CreateDebugInfoFile">func CreateDebugInfoFile(f *DefaultPortForwarder, portPair string) error</a></dd>
+			
+				
+				<dd><a href="#GetDebugInfoFilePath">func GetDebugInfoFilePath(componentName, appName string, projectName string) string</a></dd>
+			
+			
+				
+				<dd><a href="#DefaultPortForwarder">type DefaultPortForwarder</a></dd>
+				
+					
+					<dd>    <a href="#NewDefaultPortForwarder">func NewDefaultPortForwarder(componentName, appName string, projectName string, kClient kclient.ClientInterface, streams k8sgenclioptions.IOStreams) *DefaultPortForwarder</a></dd>
+				
+				
+					
+					<dd>    <a href="#DefaultPortForwarder.ForwardPorts">func (f *DefaultPortForwarder) ForwardPorts(portPair string, stopChan, readyChan chan struct{}, isDevfile bool) error</a></dd>
+				
+			
+				
+				<dd><a href="#Info">type Info</a></dd>
+				
+					
+					<dd>    <a href="#GetInfo">func GetInfo(f *DefaultPortForwarder) (Info, bool)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#InfoSpec">type InfoSpec</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/info.go.html">info.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/portforward.go.html">portforward.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="CreateDebugInfoFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/info.go.html?s=1157:1229#L37">CreateDebugInfoFile</a>
+				<a class="permalink" href="#CreateDebugInfoFile">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateDebugInfoFile(f *<a href="#DefaultPortForwarder">DefaultPortForwarder</a>, portPair <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetDebugInfoFilePath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/info.go.html?s=735:818#L24">GetDebugInfoFilePath</a>
+				<a class="permalink" href="#GetDebugInfoFilePath">¶</a>
+				
+				
+			</h2>
+			<pre>func GetDebugInfoFilePath(componentName, appName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#string">string</a></pre>
+			<p>
+GetDebugInfoFilePath gets the file path of the debug info file
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="DefaultPortForwarder">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/portforward.go.html?s=392:555#L9">DefaultPortForwarder</a>
+				<a class="permalink" href="#DefaultPortForwarder">¶</a>
+				
+				
+			</h2>
+			<p>
+DefaultPortForwarder implements the SPDY based port forwarder
+</p>
+
+			<pre>type DefaultPortForwarder struct {
+    <a href="../../../../../k8s.io/cli-runtime/pkg/genericclioptions/">k8sgenclioptions</a>.<a href="../../../../../k8s.io/cli-runtime/pkg/genericclioptions/#IOStreams">IOStreams</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDefaultPortForwarder">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/portforward.go.html?s=557:727#L17">NewDefaultPortForwarder</a>
+					<a class="permalink" href="#NewDefaultPortForwarder">¶</a>
+					
+					
+				</h3>
+				<pre>func NewDefaultPortForwarder(componentName, appName <a href="../../../../../builtin/#string">string</a>, projectName <a href="../../../../../builtin/#string">string</a>, kClient <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>, streams <a href="../../../../../k8s.io/cli-runtime/pkg/genericclioptions/">k8sgenclioptions</a>.<a href="../../../../../k8s.io/cli-runtime/pkg/genericclioptions/#IOStreams">IOStreams</a>) *<a href="#DefaultPortForwarder">DefaultPortForwarder</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="DefaultPortForwarder.ForwardPorts">func (*DefaultPortForwarder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/portforward.go.html?s=1171:1288#L31">ForwardPorts</a>
+					<a class="permalink" href="#DefaultPortForwarder.ForwardPorts">¶</a>
+					
+					
+				</h3>
+				<pre>func (f *<a href="#DefaultPortForwarder">DefaultPortForwarder</a>) ForwardPorts(portPair <a href="../../../../../builtin/#string">string</a>, stopChan, readyChan chan struct{}, isDevfile <a href="../../../../../builtin/#bool">bool</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+ForwardPorts forwards the port using the url for the remote pod.
+portPair is a pair of port in format &#34;localPort:RemotePort&#34; that is to be forwarded
+stop Chan is used to stop port forwarding
+ready Chan is used to signal failure to the channel receiver
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Info">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/info.go.html?s=318:463#L10">Info</a>
+				<a class="permalink" href="#Info">¶</a>
+				
+				
+			</h2>
+			<p>
+Info contains the information about the current Debug session
+</p>
+
+			<pre>type Info struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="Info.Spec"></span>    Spec              <a href="#InfoSpec">InfoSpec</a> `json:&#34;spec&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetInfo">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/info.go.html?s=2791:2841#L93">GetInfo</a>
+					<a class="permalink" href="#GetInfo">¶</a>
+					
+					
+				</h3>
+				<pre>func GetInfo(f *<a href="#DefaultPortForwarder">DefaultPortForwarder</a>) (<a href="#Info">Info</a>, <a href="../../../../../builtin/#bool">bool</a>)</pre>
+				<p>
+GetInfo gathers the information with regards to debugging information
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="InfoSpec">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/debug/info.go.html?s=465:667#L16">InfoSpec</a>
+				<a class="permalink" href="#InfoSpec">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type InfoSpec struct {
+<span id="InfoSpec.App"></span>    App            <a href="../../../../../builtin/#string">string</a> `json:&#34;app,omitempty&#34;`
+<span id="InfoSpec.DebugProcessID"></span>    DebugProcessID <a href="../../../../../builtin/#int">int</a>    `json:&#34;debugProcessID&#34;`
+<span id="InfoSpec.RemotePort"></span>    RemotePort     <a href="../../../../../builtin/#int">int</a>    `json:&#34;remotePort&#34;`
+<span id="InfoSpec.LocalPort"></span>    LocalPort      <a href="../../../../../builtin/#int">int</a>    `json:&#34;localPort&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

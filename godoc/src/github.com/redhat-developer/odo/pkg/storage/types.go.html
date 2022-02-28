@@ -1,0 +1,150 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>storage - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/storage">storage</a>/<span class="text-muted">types.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../github.com/redhat-developer/odo/pkg/storage">github.com/redhat-developer/odo/pkg/storage</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package storage
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;github.com/redhat-developer/odo/pkg/machineoutput&#34;
+<span id="L5" class="ln">     5  </span>	metav1 &#34;k8s.io/apimachinery/pkg/apis/meta/v1&#34;
+<span id="L6" class="ln">     6  </span>)
+<span id="L7" class="ln">     7  </span>
+<span id="L8" class="ln">     8  </span>const StorageKind = &#34;Storage&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span><span class="comment">// Storage holds the information about storage attached to the component</span>
+<span id="L11" class="ln">    11  </span>type Storage struct {
+<span id="L12" class="ln">    12  </span>	metav1.TypeMeta   `json:&#34;,inline&#34;`
+<span id="L13" class="ln">    13  </span>	metav1.ObjectMeta `json:&#34;metadata,omitempty&#34;`
+<span id="L14" class="ln">    14  </span>	Spec              StorageSpec   `json:&#34;spec,omitempty&#34;`
+<span id="L15" class="ln">    15  </span>	Status            StorageStatus `json:&#34;status,omitempty&#34;`
+<span id="L16" class="ln">    16  </span>}
+<span id="L17" class="ln">    17  </span>
+<span id="L18" class="ln">    18  </span><span class="comment">// StorageState</span>
+<span id="L19" class="ln">    19  </span>type StorageStatus string
+<span id="L20" class="ln">    20  </span>
+<span id="L21" class="ln">    21  </span>const (
+<span id="L22" class="ln">    22  </span>	<span class="comment">// StateTypePushed means that Storage is present both locally and on cluster</span>
+<span id="L23" class="ln">    23  </span>	StateTypePushed StorageStatus = &#34;Pushed&#34;
+<span id="L24" class="ln">    24  </span>	<span class="comment">// StateTypeNotPushed means that Storage is only in local config, but not on the cluster</span>
+<span id="L25" class="ln">    25  </span>	StateTypeNotPushed = &#34;Not Pushed&#34;
+<span id="L26" class="ln">    26  </span>	<span class="comment">// StateTypeLocallyDeleted means that Storage was deleted from the local config, but it is still present on the cluster</span>
+<span id="L27" class="ln">    27  </span>	StateTypeLocallyDeleted = &#34;Locally Deleted&#34;
+<span id="L28" class="ln">    28  </span>)
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span><span class="comment">// StorageSpec indicates size and path of storage</span>
+<span id="L31" class="ln">    31  </span>type StorageSpec struct {
+<span id="L32" class="ln">    32  </span>	Size string `json:&#34;size,omitempty&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// if path is empty, it indicates that the storage is not mounted in any component</span>
+<span id="L34" class="ln">    34  </span>	Path string `json:&#34;path,omitempty&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// indicates if storage should be ephemeral, if nil the default behaviour will be used</span>
+<span id="L36" class="ln">    36  </span>	Ephemeral *bool `json:&#34;ephemeral,omitempty&#34;`
+<span id="L37" class="ln">    37  </span>
+<span id="L38" class="ln">    38  </span>	ContainerName string `json:&#34;containerName,omitempty&#34;`
+<span id="L39" class="ln">    39  </span>}
+<span id="L40" class="ln">    40  </span>
+<span id="L41" class="ln">    41  </span><span class="comment">// StorageList is a list of storages</span>
+<span id="L42" class="ln">    42  </span>type StorageList struct {
+<span id="L43" class="ln">    43  </span>	metav1.TypeMeta `json:&#34;,inline&#34;`
+<span id="L44" class="ln">    44  </span>	metav1.ListMeta `json:&#34;metadata,omitempty&#34;`
+<span id="L45" class="ln">    45  </span>	Items           []Storage `json:&#34;items&#34;`
+<span id="L46" class="ln">    46  </span>}
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span><span class="comment">// NewStorageList returns an instance of a list containning the `items` storages</span>
+<span id="L49" class="ln">    49  </span>func NewStorageList(items []Storage) StorageList {
+<span id="L50" class="ln">    50  </span>	return StorageList{
+<span id="L51" class="ln">    51  </span>		TypeMeta: metav1.TypeMeta{
+<span id="L52" class="ln">    52  </span>			Kind:       machineoutput.ListKind,
+<span id="L53" class="ln">    53  </span>			APIVersion: machineoutput.APIVersion,
+<span id="L54" class="ln">    54  </span>		},
+<span id="L55" class="ln">    55  </span>		ListMeta: metav1.ListMeta{},
+<span id="L56" class="ln">    56  </span>		Items:    items,
+<span id="L57" class="ln">    57  </span>	}
+<span id="L58" class="ln">    58  </span>}
+<span id="L59" class="ln">    59  </span>
+<span id="L60" class="ln">    60  </span><span class="comment">// NewStorage returns an instance of Storage</span>
+<span id="L61" class="ln">    61  </span><span class="comment">// storagePath indicates the path to which the storage is mounted to, &#34;&#34; if not mounted</span>
+<span id="L62" class="ln">    62  </span>func NewStorage(storageName, storageSize, storagePath string, ephemeral *bool) Storage {
+<span id="L63" class="ln">    63  </span>	return Storage{
+<span id="L64" class="ln">    64  </span>		TypeMeta: metav1.TypeMeta{
+<span id="L65" class="ln">    65  </span>			Kind:       StorageKind,
+<span id="L66" class="ln">    66  </span>			APIVersion: machineoutput.APIVersion,
+<span id="L67" class="ln">    67  </span>		},
+<span id="L68" class="ln">    68  </span>		ObjectMeta: metav1.ObjectMeta{Name: storageName},
+<span id="L69" class="ln">    69  </span>		Spec: StorageSpec{
+<span id="L70" class="ln">    70  </span>			Size:      storageSize,
+<span id="L71" class="ln">    71  </span>			Path:      storagePath,
+<span id="L72" class="ln">    72  </span>			Ephemeral: ephemeral,
+<span id="L73" class="ln">    73  </span>		},
+<span id="L74" class="ln">    74  </span>	}
+<span id="L75" class="ln">    75  </span>}
+<span id="L76" class="ln">    76  </span>
+<span id="L77" class="ln">    77  </span><span class="comment">// NewStorageWithContainer returns an instance of Storage with container specified</span>
+<span id="L78" class="ln">    78  </span><span class="comment">// storagePath indicates the path to which the storage is mounted to, &#34;&#34; if not mounted</span>
+<span id="L79" class="ln">    79  </span>func NewStorageWithContainer(storageName, storageSize, storagePath string, container string, ephemeral *bool) Storage {
+<span id="L80" class="ln">    80  </span>	storage := NewStorage(storageName, storageSize, storagePath, ephemeral)
+<span id="L81" class="ln">    81  </span>	storage.Spec.ContainerName = container
+<span id="L82" class="ln">    82  </span>	return storage
+<span id="L83" class="ln">    83  </span>}
+<span id="L84" class="ln">    84  </span>
+</pre><p><a href="../../../../../../src/github.com/redhat-developer/odo/pkg/storage/types.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

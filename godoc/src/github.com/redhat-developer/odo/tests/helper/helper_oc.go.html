@@ -1,0 +1,632 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>helper - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/tests">tests</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper">helper</a>/<span class="text-muted">helper_oc.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../github.com/redhat-developer/odo/tests/helper">github.com/redhat-developer/odo/tests/helper</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package helper
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;fmt&#34;
+<span id="L5" class="ln">     5  </span>	&#34;io/ioutil&#34;
+<span id="L6" class="ln">     6  </span>	&#34;os&#34;
+<span id="L7" class="ln">     7  </span>	&#34;regexp&#34;
+<span id="L8" class="ln">     8  </span>	&#34;strings&#34;
+<span id="L9" class="ln">     9  </span>	&#34;time&#34;
+<span id="L10" class="ln">    10  </span>
+<span id="L11" class="ln">    11  </span>	. &#34;github.com/onsi/ginkgo&#34;
+<span id="L12" class="ln">    12  </span>	. &#34;github.com/onsi/gomega&#34;
+<span id="L13" class="ln">    13  </span>	&#34;github.com/onsi/gomega/gexec&#34;
+<span id="L14" class="ln">    14  </span>
+<span id="L15" class="ln">    15  </span>	applabels &#34;github.com/redhat-developer/odo/pkg/application/labels&#34;
+<span id="L16" class="ln">    16  </span>	&#34;github.com/redhat-developer/odo/pkg/component/labels&#34;
+<span id="L17" class="ln">    17  </span>)
+<span id="L18" class="ln">    18  </span>
+<span id="L19" class="ln">    19  </span>const (
+<span id="L20" class="ln">    20  </span>	ResourceTypeRoute = &#34;route&#34;
+<span id="L21" class="ln">    21  </span>)
+<span id="L22" class="ln">    22  </span>
+<span id="L23" class="ln">    23  </span>type OcRunner struct {
+<span id="L24" class="ln">    24  </span>	<span class="comment">// path to oc binary</span>
+<span id="L25" class="ln">    25  </span>	path string
+<span id="L26" class="ln">    26  </span>}
+<span id="L27" class="ln">    27  </span>
+<span id="L28" class="ln">    28  </span><span class="comment">// NewOcRunner initializes new OcRunner</span>
+<span id="L29" class="ln">    29  </span>func NewOcRunner(ocPath string) OcRunner {
+<span id="L30" class="ln">    30  </span>	return OcRunner{
+<span id="L31" class="ln">    31  </span>		path: ocPath,
+<span id="L32" class="ln">    32  </span>	}
+<span id="L33" class="ln">    33  </span>}
+<span id="L34" class="ln">    34  </span>
+<span id="L35" class="ln">    35  </span><span class="comment">// Run oc with given arguments</span>
+<span id="L36" class="ln">    36  </span>func (oc OcRunner) Run(args ...string) *gexec.Session {
+<span id="L37" class="ln">    37  </span>	session := CmdRunner(oc.path, args...)
+<span id="L38" class="ln">    38  </span>	Eventually(session).Should(gexec.Exit(0))
+<span id="L39" class="ln">    39  </span>	return session
+<span id="L40" class="ln">    40  </span>}
+<span id="L41" class="ln">    41  </span>
+<span id="L42" class="ln">    42  </span><span class="comment">// GetCurrentProject get currently active project in oc</span>
+<span id="L43" class="ln">    43  </span><span class="comment">// returns empty string if there no active project, or no access to the project</span>
+<span id="L44" class="ln">    44  </span>func (oc OcRunner) GetCurrentProject() string {
+<span id="L45" class="ln">    45  </span>	session := CmdRunner(oc.path, &#34;project&#34;, &#34;-q&#34;)
+<span id="L46" class="ln">    46  </span>	session.Wait()
+<span id="L47" class="ln">    47  </span>	if session.ExitCode() == 0 {
+<span id="L48" class="ln">    48  </span>		return strings.TrimSpace(string(session.Out.Contents()))
+<span id="L49" class="ln">    49  </span>	}
+<span id="L50" class="ln">    50  </span>	return &#34;&#34;
+<span id="L51" class="ln">    51  </span>}
+<span id="L52" class="ln">    52  </span>
+<span id="L53" class="ln">    53  </span><span class="comment">// GetCurrentServerURL retrieves the URL of the server we&#39;re currently connected to</span>
+<span id="L54" class="ln">    54  </span><span class="comment">// returns empty if not connected or an error occurred</span>
+<span id="L55" class="ln">    55  </span>func (oc OcRunner) GetCurrentServerURL() string {
+<span id="L56" class="ln">    56  </span>	session := CmdRunner(oc.path, &#34;project&#34;)
+<span id="L57" class="ln">    57  </span>	session.Wait()
+<span id="L58" class="ln">    58  </span>	if session.ExitCode() == 0 {
+<span id="L59" class="ln">    59  </span>		output := strings.TrimSpace(string(session.Out.Contents()))
+<span id="L60" class="ln">    60  </span>		<span class="comment">// format is: Using project &#34;&lt;namespace&gt;&#34; on server &#34;&lt;url&gt;&#34;.</span>
+<span id="L61" class="ln">    61  </span>		a := strings.Split(output, &#34;\&#34;&#34;)
+<span id="L62" class="ln">    62  </span>		return a[len(a)-2] <span class="comment">// last entry is &#34;.&#34;, we need the one before that</span>
+<span id="L63" class="ln">    63  </span>	}
+<span id="L64" class="ln">    64  </span>	return &#34;&#34;
+<span id="L65" class="ln">    65  </span>}
+<span id="L66" class="ln">    66  </span>
+<span id="L67" class="ln">    67  </span><span class="comment">// GetFirstURL returns the url of the first Route that it can find for given component</span>
+<span id="L68" class="ln">    68  </span>func (oc OcRunner) GetFirstURL(component string, app string, project string) string {
+<span id="L69" class="ln">    69  </span>	session := CmdRunner(oc.path, &#34;get&#34;, &#34;route&#34;,
+<span id="L70" class="ln">    70  </span>		&#34;-n&#34;, project,
+<span id="L71" class="ln">    71  </span>		&#34;-l&#34;, &#34;app.kubernetes.io/instance=&#34;+component,
+<span id="L72" class="ln">    72  </span>		&#34;-l&#34;, &#34;app.kubernetes.io/part-of=&#34;+app,
+<span id="L73" class="ln">    73  </span>		&#34;-o&#34;, &#34;jsonpath={.items[0].spec.host}&#34;)
+<span id="L74" class="ln">    74  </span>
+<span id="L75" class="ln">    75  </span>	session.Wait()
+<span id="L76" class="ln">    76  </span>	if session.ExitCode() == 0 {
+<span id="L77" class="ln">    77  </span>		return string(session.Out.Contents())
+<span id="L78" class="ln">    78  </span>	}
+<span id="L79" class="ln">    79  </span>	return &#34;&#34;
+<span id="L80" class="ln">    80  </span>}
+<span id="L81" class="ln">    81  </span>
+<span id="L82" class="ln">    82  </span><span class="comment">//StatFileInPodContainer returns stat result of filepath in a container of a pod of given component, in a given app, in a given project.</span>
+<span id="L83" class="ln">    83  </span><span class="comment">//It also strips access time information as it vaires accross file systems/kernel configs, and we are not interested</span>
+<span id="L84" class="ln">    84  </span><span class="comment">//in it anyway</span>
+<span id="L85" class="ln">    85  </span>func StatFileInPodContainer(runner CliRunner, cmpName, containerName, appName, project, filepath string) string {
+<span id="L86" class="ln">    86  </span>	podName := runner.GetRunningPodNameByComponent(cmpName, project)
+<span id="L87" class="ln">    87  </span>	var result string
+<span id="L88" class="ln">    88  </span>	runner.CheckCmdOpInRemoteDevfilePod(
+<span id="L89" class="ln">    89  </span>		podName,
+<span id="L90" class="ln">    90  </span>		containerName,
+<span id="L91" class="ln">    91  </span>		project,
+<span id="L92" class="ln">    92  </span>		[]string{&#34;stat&#34;, filepath},
+<span id="L93" class="ln">    93  </span>		func(cmdOp string, err error) bool {
+<span id="L94" class="ln">    94  </span>			<span class="comment">//strip out access info as</span>
+<span id="L95" class="ln">    95  </span>			<span class="comment">// 1. Touching a file (such as running it in a script) modifies access times. This gives wrong value on mounts without noatime</span>
+<span id="L96" class="ln">    96  </span>			<span class="comment">// 2. We are not interested in Access info anyway.</span>
+<span id="L97" class="ln">    97  </span>			re := regexp.MustCompile(&#34;(?m)[\r\n]+^.*Access.*$&#34;)
+<span id="L98" class="ln">    98  </span>			result = re.ReplaceAllString(cmdOp, &#34;&#34;)
+<span id="L99" class="ln">    99  </span>			return true
+<span id="L100" class="ln">   100  </span>		},
+<span id="L101" class="ln">   101  </span>	)
+<span id="L102" class="ln">   102  </span>	return result
+<span id="L103" class="ln">   103  </span>}
+<span id="L104" class="ln">   104  </span>
+<span id="L105" class="ln">   105  </span><span class="comment">// GetComponentRoutes run command to get the Routes in yaml format for given component</span>
+<span id="L106" class="ln">   106  </span>func (oc OcRunner) GetComponentRoutes(component string, app string, project string) string {
+<span id="L107" class="ln">   107  </span>	session := CmdRunner(oc.path, &#34;get&#34;, &#34;route&#34;,
+<span id="L108" class="ln">   108  </span>		&#34;-n&#34;, project,
+<span id="L109" class="ln">   109  </span>		&#34;-l&#34;, &#34;app.kubernetes.io/instance=&#34;+component,
+<span id="L110" class="ln">   110  </span>		&#34;-l&#34;, &#34;app.kubernetes.io/part-of=&#34;+app,
+<span id="L111" class="ln">   111  </span>		&#34;-o&#34;, &#34;yaml&#34;)
+<span id="L112" class="ln">   112  </span>
+<span id="L113" class="ln">   113  </span>	session.Wait()
+<span id="L114" class="ln">   114  </span>	if session.ExitCode() == 0 {
+<span id="L115" class="ln">   115  </span>		return string(session.Out.Contents())
+<span id="L116" class="ln">   116  </span>	}
+<span id="L117" class="ln">   117  </span>	return &#34;&#34;
+<span id="L118" class="ln">   118  </span>}
+<span id="L119" class="ln">   119  </span>
+<span id="L120" class="ln">   120  </span><span class="comment">// ExecListDir returns dir list in specified location of pod</span>
+<span id="L121" class="ln">   121  </span>func (oc OcRunner) ExecListDir(podName string, projectName string, dir string) string {
+<span id="L122" class="ln">   122  </span>	stdOut := Cmd(oc.path, &#34;exec&#34;, podName, &#34;--namespace&#34;, projectName,
+<span id="L123" class="ln">   123  </span>		&#34;--&#34;, &#34;ls&#34;, &#34;-lai&#34;, dir).ShouldPass().Out()
+<span id="L124" class="ln">   124  </span>	return stdOut
+<span id="L125" class="ln">   125  </span>}
+<span id="L126" class="ln">   126  </span>
+<span id="L127" class="ln">   127  </span><span class="comment">// Exec allows generic execution of commands, returning the contents of stdout</span>
+<span id="L128" class="ln">   128  </span>func (oc OcRunner) Exec(podName string, projectName string, args ...string) string {
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span>	cmd := []string{&#34;exec&#34;, podName, &#34;--namespace&#34;, projectName}
+<span id="L131" class="ln">   131  </span>
+<span id="L132" class="ln">   132  </span>	cmd = append(cmd, args...)
+<span id="L133" class="ln">   133  </span>
+<span id="L134" class="ln">   134  </span>	stdOut := Cmd(oc.path, cmd...).ShouldPass().Out()
+<span id="L135" class="ln">   135  </span>	return stdOut
+<span id="L136" class="ln">   136  </span>}
+<span id="L137" class="ln">   137  </span>
+<span id="L138" class="ln">   138  </span><span class="comment">// CheckCmdOpInRemoteCmpPod runs the provided command on remote component pod and returns the return value of command output handler function passed to it</span>
+<span id="L139" class="ln">   139  </span>func (oc OcRunner) CheckCmdOpInRemoteCmpPod(cmpName string, appName string, prjName string, cmd []string, checkOp func(cmdOp string, err error) bool) bool {
+<span id="L140" class="ln">   140  </span>	cmpDCName := fmt.Sprintf(&#34;%s-%s&#34;, cmpName, appName)
+<span id="L141" class="ln">   141  </span>	outPodName := Cmd(oc.path, &#34;get&#34;, &#34;pods&#34;, &#34;--namespace&#34;, prjName,
+<span id="L142" class="ln">   142  </span>		&#34;--selector=deploymentconfig=&#34;+cmpDCName,
+<span id="L143" class="ln">   143  </span>		&#34;-o&#34;, &#34;jsonpath=&#39;{.items[0].metadata.name}&#39;&#34;).ShouldPass().Out()
+<span id="L144" class="ln">   144  </span>	podName := strings.Replace(outPodName, &#34;&#39;&#34;, &#34;&#34;, -1)
+<span id="L145" class="ln">   145  </span>	session := CmdRunner(oc.path, append([]string{&#34;exec&#34;, podName, &#34;--namespace&#34;, prjName,
+<span id="L146" class="ln">   146  </span>		&#34;-c&#34;, cmpDCName, &#34;--&#34;}, cmd...)...)
+<span id="L147" class="ln">   147  </span>	stdOut := string(session.Wait().Out.Contents())
+<span id="L148" class="ln">   148  </span>	stdErr := string(session.Wait().Err.Contents())
+<span id="L149" class="ln">   149  </span>	if stdErr != &#34;&#34; &amp;&amp; session.ExitCode() != 0 {
+<span id="L150" class="ln">   150  </span>		return checkOp(stdOut, fmt.Errorf(&#34;cmd %s failed with error %s on pod %s&#34;, cmd, stdErr, podName))
+<span id="L151" class="ln">   151  </span>	}
+<span id="L152" class="ln">   152  </span>	return checkOp(stdOut, nil)
+<span id="L153" class="ln">   153  </span>}
+<span id="L154" class="ln">   154  </span>
+<span id="L155" class="ln">   155  </span><span class="comment">// CheckCmdOpInRemoteDevfilePod runs the provided command on remote component pod and returns the return value of command output handler function passed to it</span>
+<span id="L156" class="ln">   156  </span>func (oc OcRunner) CheckCmdOpInRemoteDevfilePod(podName string, containerName string, prjName string, cmd []string, checkOp func(cmdOp string, err error) bool) bool {
+<span id="L157" class="ln">   157  </span>	var execOptions []string
+<span id="L158" class="ln">   158  </span>	execOptions = []string{&#34;exec&#34;, podName, &#34;--namespace&#34;, prjName, &#34;--&#34;}
+<span id="L159" class="ln">   159  </span>	if containerName != &#34;&#34; {
+<span id="L160" class="ln">   160  </span>		execOptions = []string{&#34;exec&#34;, podName, &#34;-c&#34;, containerName, &#34;--namespace&#34;, prjName, &#34;--&#34;}
+<span id="L161" class="ln">   161  </span>	}
+<span id="L162" class="ln">   162  </span>	args := append(execOptions, cmd...)
+<span id="L163" class="ln">   163  </span>	session := CmdRunner(oc.path, args...)
+<span id="L164" class="ln">   164  </span>	stdOut := string(session.Wait().Out.Contents())
+<span id="L165" class="ln">   165  </span>	stdErr := string(session.Wait().Err.Contents())
+<span id="L166" class="ln">   166  </span>	if stdErr != &#34;&#34; &amp;&amp; session.ExitCode() != 0 {
+<span id="L167" class="ln">   167  </span>		return checkOp(stdOut, fmt.Errorf(&#34;cmd %s failed with error %s on pod %s&#34;, cmd, stdErr, podName))
+<span id="L168" class="ln">   168  </span>	}
+<span id="L169" class="ln">   169  </span>	return checkOp(stdOut, nil)
+<span id="L170" class="ln">   170  </span>}
+<span id="L171" class="ln">   171  </span>
+<span id="L172" class="ln">   172  </span><span class="comment">// GetRunningPodNameOfComp executes oc command and returns the running pod name of a deployed</span>
+<span id="L173" class="ln">   173  </span><span class="comment">// component by passing component name as a argument</span>
+<span id="L174" class="ln">   174  </span>func (oc OcRunner) GetRunningPodNameOfComp(compName string, namespace string) string {
+<span id="L175" class="ln">   175  </span>	stdOut := Cmd(oc.path, &#34;get&#34;, &#34;pods&#34;, &#34;--namespace&#34;, namespace, &#34;--show-labels&#34;).ShouldPass().Out()
+<span id="L176" class="ln">   176  </span>	re := regexp.MustCompile(`(` + compName + `-\S+)\s+\S+\s+Running.*deploymentconfig=` + compName)
+<span id="L177" class="ln">   177  </span>	podName := re.FindStringSubmatch(stdOut)[1]
+<span id="L178" class="ln">   178  </span>	return strings.TrimSpace(podName)
+<span id="L179" class="ln">   179  </span>}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span><span class="comment">// GetRunningPodNameByComponent executes oc command and returns the running pod name of a deployed</span>
+<span id="L182" class="ln">   182  </span><span class="comment">// devfile component by passing component name as a argument</span>
+<span id="L183" class="ln">   183  </span>func (oc OcRunner) GetRunningPodNameByComponent(compName string, namespace string) string {
+<span id="L184" class="ln">   184  </span>	selector := fmt.Sprintf(&#34;--selector=component=%s&#34;, compName)
+<span id="L185" class="ln">   185  </span>	stdOut := Cmd(oc.path, &#34;get&#34;, &#34;pods&#34;, &#34;--namespace&#34;, namespace, selector, &#34;-o&#34;, &#34;jsonpath={.items[*].metadata.name}&#34;).ShouldPass().Out()
+<span id="L186" class="ln">   186  </span>	return strings.TrimSpace(stdOut)
+<span id="L187" class="ln">   187  </span>}
+<span id="L188" class="ln">   188  </span>
+<span id="L189" class="ln">   189  </span><span class="comment">// GetPVCSize executes oc command and returns the bound storage size</span>
+<span id="L190" class="ln">   190  </span>func (oc OcRunner) GetPVCSize(compName, storageName, namespace string) string {
+<span id="L191" class="ln">   191  </span>	selector := fmt.Sprintf(&#34;--selector=app.kubernetes.io/storage-name=%s,app.kubernetes.io/instance=%s&#34;, storageName, compName)
+<span id="L192" class="ln">   192  </span>	stdOut := Cmd(oc.path, &#34;get&#34;, &#34;pvc&#34;, &#34;--namespace&#34;, namespace, selector, &#34;-o&#34;, &#34;jsonpath={.items[*].spec.resources.requests.storage}&#34;).ShouldPass().Out()
+<span id="L193" class="ln">   193  </span>	return strings.TrimSpace(stdOut)
+<span id="L194" class="ln">   194  </span>}
+<span id="L195" class="ln">   195  </span>
+<span id="L196" class="ln">   196  </span><span class="comment">// GetPodInitContainers executes oc command and returns the init containers of the pod</span>
+<span id="L197" class="ln">   197  </span>func (oc OcRunner) GetPodInitContainers(compName string, namespace string) []string {
+<span id="L198" class="ln">   198  </span>	selector := fmt.Sprintf(&#34;--selector=component=%s&#34;, compName)
+<span id="L199" class="ln">   199  </span>	stdOut := Cmd(oc.path, &#34;get&#34;, &#34;pods&#34;, &#34;--namespace&#34;, namespace, selector, &#34;-o&#34;, &#34;jsonpath={.items[*].spec.initContainers[*].name}&#34;).ShouldPass().Out()
+<span id="L200" class="ln">   200  </span>	return strings.Split(stdOut, &#34; &#34;)
+<span id="L201" class="ln">   201  </span>}
+<span id="L202" class="ln">   202  </span>
+<span id="L203" class="ln">   203  </span><span class="comment">// GetRoute returns route URL</span>
+<span id="L204" class="ln">   204  </span>func (oc OcRunner) GetRoute(urlName string, appName string) string {
+<span id="L205" class="ln">   205  </span>	session := CmdRunner(oc.path, &#34;get&#34;, &#34;routes&#34;, urlName+&#34;-&#34;+appName,
+<span id="L206" class="ln">   206  </span>		&#34;-o jsonpath={.spec.host}&#34;)
+<span id="L207" class="ln">   207  </span>	Eventually(session).Should(gexec.Exit(0))
+<span id="L208" class="ln">   208  </span>	return strings.TrimSpace(string(session.Wait().Out.Contents()))
+<span id="L209" class="ln">   209  </span>}
+<span id="L210" class="ln">   210  </span>
+<span id="L211" class="ln">   211  </span><span class="comment">// GetToken returns current user token</span>
+<span id="L212" class="ln">   212  </span>func (oc OcRunner) GetToken() string {
+<span id="L213" class="ln">   213  </span>	session := CmdRunner(oc.path, &#34;whoami&#34;, &#34;-t&#34;)
+<span id="L214" class="ln">   214  </span>	Eventually(session).Should(gexec.Exit(0))
+<span id="L215" class="ln">   215  </span>	return strings.TrimSpace(string(session.Wait().Out.Contents()))
+<span id="L216" class="ln">   216  </span>}
+<span id="L217" class="ln">   217  </span>
+<span id="L218" class="ln">   218  </span><span class="comment">// LoginUsingToken returns output after successful login</span>
+<span id="L219" class="ln">   219  </span>func (oc OcRunner) LoginUsingToken(token string) string {
+<span id="L220" class="ln">   220  </span>	session := CmdRunner(oc.path, &#34;login&#34;, &#34;--token&#34;, token)
+<span id="L221" class="ln">   221  </span>	Eventually(session).Should(gexec.Exit(0))
+<span id="L222" class="ln">   222  </span>	return strings.TrimSpace(string(session.Wait().Out.Contents()))
+<span id="L223" class="ln">   223  </span>}
+<span id="L224" class="ln">   224  </span>
+<span id="L225" class="ln">   225  </span><span class="comment">// GetLoginUser returns current user name</span>
+<span id="L226" class="ln">   226  </span>func (oc OcRunner) GetLoginUser() string {
+<span id="L227" class="ln">   227  </span>	user := Cmd(oc.path, &#34;whoami&#34;).ShouldPass().Out()
+<span id="L228" class="ln">   228  </span>	return strings.TrimSpace(user)
+<span id="L229" class="ln">   229  </span>}
+<span id="L230" class="ln">   230  </span>
+<span id="L231" class="ln">   231  </span><span class="comment">// ServiceInstanceStatus returns service instance</span>
+<span id="L232" class="ln">   232  </span>func (oc OcRunner) ServiceInstanceStatus(serviceInstanceName string) string {
+<span id="L233" class="ln">   233  </span>	serviceinstance := Cmd(oc.path, &#34;get&#34;, &#34;serviceinstance&#34;, serviceInstanceName,
+<span id="L234" class="ln">   234  </span>		&#34;-o&#34;, &#34;go-template=&#39;{{ (index .status.conditions 0).reason}}&#39;&#34;).ShouldPass().Out()
+<span id="L235" class="ln">   235  </span>	return strings.TrimSpace(serviceinstance)
+<span id="L236" class="ln">   236  </span>}
+<span id="L237" class="ln">   237  </span>
+<span id="L238" class="ln">   238  </span><span class="comment">// GetVolumeMountNamesandPathsFromContainer returns the volume name and mount path in the format name:path\n</span>
+<span id="L239" class="ln">   239  </span>func (oc OcRunner) GetVolumeMountNamesandPathsFromContainer(deployName string, containerName, namespace string) string {
+<span id="L240" class="ln">   240  </span>	volumeName := Cmd(oc.path, &#34;get&#34;, &#34;deploy&#34;, deployName, &#34;--namespace&#34;, namespace,
+<span id="L241" class="ln">   241  </span>		&#34;-o&#34;, &#34;go-template=&#34;+
+<span id="L242" class="ln">   242  </span>			&#34;{{range .spec.template.spec.containers}}{{if eq .name \&#34;&#34;+containerName+
+<span id="L243" class="ln">   243  </span>			&#34;\&#34;}}{{range .volumeMounts}}{{.name}}{{\&#34;:\&#34;}}{{.mountPath}}{{\&#34;\\n\&#34;}}{{end}}{{end}}{{end}}&#34;).ShouldPass().Out()
+<span id="L244" class="ln">   244  </span>
+<span id="L245" class="ln">   245  </span>	return strings.TrimSpace(volumeName)
+<span id="L246" class="ln">   246  </span>}
+<span id="L247" class="ln">   247  </span>
+<span id="L248" class="ln">   248  </span><span class="comment">// GetContainerEnv returns the container env in the format name:value\n</span>
+<span id="L249" class="ln">   249  </span>func (oc OcRunner) GetContainerEnv(podName, containerName, namespace string) string {
+<span id="L250" class="ln">   250  </span>	containerEnv := Cmd(oc.path, &#34;get&#34;, &#34;po&#34;, podName, &#34;--namespace&#34;, namespace,
+<span id="L251" class="ln">   251  </span>		&#34;-o&#34;, &#34;go-template=&#34;+
+<span id="L252" class="ln">   252  </span>			&#34;{{range .spec.containers}}{{if eq .name \&#34;&#34;+containerName+
+<span id="L253" class="ln">   253  </span>			&#34;\&#34;}}{{range .env}}{{.name}}{{\&#34;:\&#34;}}{{.value}}{{\&#34;\\n\&#34;}}{{end}}{{end}}{{end}}&#34;).ShouldPass().Out()
+<span id="L254" class="ln">   254  </span>
+<span id="L255" class="ln">   255  </span>	return strings.TrimSpace(containerEnv)
+<span id="L256" class="ln">   256  </span>}
+<span id="L257" class="ln">   257  </span>
+<span id="L258" class="ln">   258  </span><span class="comment">// GetEnvFromEntry returns envFrom entry of the deployment</span>
+<span id="L259" class="ln">   259  </span>func (oc OcRunner) GetEnvFromEntry(componentName string, appName string, projectName string) string {
+<span id="L260" class="ln">   260  </span>	return GetEnvFromEntry(oc.path, componentName, appName, projectName)
+<span id="L261" class="ln">   261  </span>}
+<span id="L262" class="ln">   262  </span>
+<span id="L263" class="ln">   263  </span>func (oc OcRunner) GetEnvsDevFileDeployment(componentName, appName, projectName string) map[string]string {
+<span id="L264" class="ln">   264  </span>	var mapOutput = make(map[string]string)
+<span id="L265" class="ln">   265  </span>
+<span id="L266" class="ln">   266  </span>	selector := fmt.Sprintf(&#34;--selector=%s=%s,%s=%s&#34;, labels.ComponentLabel, componentName, applabels.ApplicationLabel, appName)
+<span id="L267" class="ln">   267  </span>	output := Cmd(oc.path, &#34;get&#34;, &#34;deployment&#34;, selector, &#34;--namespace&#34;, projectName,
+<span id="L268" class="ln">   268  </span>		&#34;-o&#34;, &#34;jsonpath=&#39;{range .items[0].spec.template.spec.containers[0].env[*]}{.name}:{.value}{\&#34;\\n\&#34;}{end}&#39;&#34;).ShouldPass().Out()
+<span id="L269" class="ln">   269  </span>
+<span id="L270" class="ln">   270  </span>	for _, line := range strings.Split(output, &#34;\n&#34;) {
+<span id="L271" class="ln">   271  </span>		line = strings.TrimPrefix(line, &#34;&#39;&#34;)
+<span id="L272" class="ln">   272  </span>		splits := strings.Split(line, &#34;:&#34;)
+<span id="L273" class="ln">   273  </span>		name := splits[0]
+<span id="L274" class="ln">   274  </span>		value := strings.Join(splits[1:], &#34;:&#34;)
+<span id="L275" class="ln">   275  </span>		mapOutput[name] = value
+<span id="L276" class="ln">   276  </span>	}
+<span id="L277" class="ln">   277  </span>	return mapOutput
+<span id="L278" class="ln">   278  </span>}
+<span id="L279" class="ln">   279  </span>
+<span id="L280" class="ln">   280  </span><span class="comment">// GetEnvRefNames gets the ref values from the envFroms of the deployment belonging to the given data</span>
+<span id="L281" class="ln">   281  </span>func (oc OcRunner) GetEnvRefNames(componentName, appName, projectName string) []string {
+<span id="L282" class="ln">   282  </span>	return GetEnvRefNames(oc.path, componentName, appName, projectName)
+<span id="L283" class="ln">   283  </span>}
+<span id="L284" class="ln">   284  </span>
+<span id="L285" class="ln">   285  </span><span class="comment">// WaitAndCheckForExistence wait for the given and checks if the given resource type gets deleted on the cluster</span>
+<span id="L286" class="ln">   286  </span>func (oc OcRunner) WaitAndCheckForExistence(resourceType, namespace string, timeoutMinutes int) bool {
+<span id="L287" class="ln">   287  </span>	pingTimeout := time.After(time.Duration(timeoutMinutes) * time.Minute)
+<span id="L288" class="ln">   288  </span>	<span class="comment">// this is a test package so time.Tick() is acceptable</span>
+<span id="L289" class="ln">   289  </span>	<span class="comment">// nolint</span>
+<span id="L290" class="ln">   290  </span>	tick := time.Tick(time.Second)
+<span id="L291" class="ln">   291  </span>	for {
+<span id="L292" class="ln">   292  </span>		select {
+<span id="L293" class="ln">   293  </span>		case &lt;-pingTimeout:
+<span id="L294" class="ln">   294  </span>			Fail(fmt.Sprintf(&#34;Timeout after %d minutes&#34;, timeoutMinutes))
+<span id="L295" class="ln">   295  </span>
+<span id="L296" class="ln">   296  </span>		case &lt;-tick:
+<span id="L297" class="ln">   297  </span>			session := CmdRunner(oc.path, &#34;get&#34;, resourceType, &#34;--namespace&#34;, namespace)
+<span id="L298" class="ln">   298  </span>			Eventually(session).Should(gexec.Exit(0))
+<span id="L299" class="ln">   299  </span>			<span class="comment">// https://github.com/kubernetes/kubectl/issues/847</span>
+<span id="L300" class="ln">   300  </span>			output := string(session.Wait().Err.Contents())
+<span id="L301" class="ln">   301  </span>
+<span id="L302" class="ln">   302  </span>			if strings.Contains(strings.ToLower(output), &#34;no resources found&#34;) {
+<span id="L303" class="ln">   303  </span>				return true
+<span id="L304" class="ln">   304  </span>			}
+<span id="L305" class="ln">   305  </span>		}
+<span id="L306" class="ln">   306  </span>	}
+<span id="L307" class="ln">   307  </span>}
+<span id="L308" class="ln">   308  </span>
+<span id="L309" class="ln">   309  </span><span class="comment">// GetServices gets services on the cluster</span>
+<span id="L310" class="ln">   310  </span>func (oc OcRunner) GetServices(namespace string) string {
+<span id="L311" class="ln">   311  </span>	session := CmdRunner(oc.path, &#34;get&#34;, &#34;services&#34;, &#34;--namespace&#34;, namespace)
+<span id="L312" class="ln">   312  </span>	Eventually(session).Should(gexec.Exit(0))
+<span id="L313" class="ln">   313  </span>	output := string(session.Wait().Out.Contents())
+<span id="L314" class="ln">   314  </span>	return output
+<span id="L315" class="ln">   315  </span>}
+<span id="L316" class="ln">   316  </span>
+<span id="L317" class="ln">   317  </span><span class="comment">// VerifyResourceDeleted verifies if the given resource is deleted from cluster</span>
+<span id="L318" class="ln">   318  </span>func (oc OcRunner) VerifyResourceDeleted(ri ResourceInfo) {
+<span id="L319" class="ln">   319  </span>	session := CmdRunner(oc.path, &#34;get&#34;, ri.ResourceType, &#34;--namespace&#34;, ri.Namespace)
+<span id="L320" class="ln">   320  </span>	Eventually(session).Should(gexec.Exit(0))
+<span id="L321" class="ln">   321  </span>	output := string(session.Wait().Out.Contents())
+<span id="L322" class="ln">   322  </span>	Expect(output).NotTo(ContainSubstring(ri.ResourceName))
+<span id="L323" class="ln">   323  </span>}
+<span id="L324" class="ln">   324  </span>
+<span id="L325" class="ln">   325  </span>func (oc OcRunner) VerifyResourceToBeDeleted(ri ResourceInfo) {
+<span id="L326" class="ln">   326  </span>	deletedOrMarkedToDelete := func() bool {
+<span id="L327" class="ln">   327  </span>		session := CmdRunner(oc.path, &#34;get&#34;, ri.ResourceType, ri.ResourceName, &#34;--namespace&#34;, ri.Namespace, &#34;-o&#34;, &#34;jsonpath=&#39;{.metadata.deletionTimestamp}&#39;&#34;)
+<span id="L328" class="ln">   328  </span>		exit := session.Wait().ExitCode()
+<span id="L329" class="ln">   329  </span>		if exit == 1 {
+<span id="L330" class="ln">   330  </span>			<span class="comment">// resources does not exist</span>
+<span id="L331" class="ln">   331  </span>			return true
+<span id="L332" class="ln">   332  </span>		}
+<span id="L333" class="ln">   333  </span>		content := session.Wait().Out.Contents()
+<span id="L334" class="ln">   334  </span>		<span class="comment">// resource is marked for deletion</span>
+<span id="L335" class="ln">   335  </span>		return len(content) &gt; 0
+<span id="L336" class="ln">   336  </span>	}
+<span id="L337" class="ln">   337  </span>	Expect(deletedOrMarkedToDelete()).To(BeTrue())
+<span id="L338" class="ln">   338  </span>}
+<span id="L339" class="ln">   339  </span>
+<span id="L340" class="ln">   340  </span><span class="comment">// CreateRandNamespaceProject create new project</span>
+<span id="L341" class="ln">   341  </span>func (oc OcRunner) CreateRandNamespaceProject() string {
+<span id="L342" class="ln">   342  </span>	projectName := SetProjectName()
+<span id="L343" class="ln">   343  </span>	oc.createRandNamespaceProject(projectName)
+<span id="L344" class="ln">   344  </span>	return projectName
+<span id="L345" class="ln">   345  </span>}
+<span id="L346" class="ln">   346  </span>
+<span id="L347" class="ln">   347  </span><span class="comment">// CreateRandNamespaceProjectOfLength creates a new project with name of length i</span>
+<span id="L348" class="ln">   348  </span>func (oc OcRunner) CreateRandNamespaceProjectOfLength(i int) string {
+<span id="L349" class="ln">   349  </span>	projectName := RandString(i)
+<span id="L350" class="ln">   350  </span>	oc.createRandNamespaceProject(projectName)
+<span id="L351" class="ln">   351  </span>	return projectName
+<span id="L352" class="ln">   352  </span>}
+<span id="L353" class="ln">   353  </span>
+<span id="L354" class="ln">   354  </span>func (oc OcRunner) createRandNamespaceProject(projectName string) string {
+<span id="L355" class="ln">   355  </span>	fmt.Fprintf(GinkgoWriter, &#34;Creating a new project: %s\n&#34;, projectName)
+<span id="L356" class="ln">   356  </span>	session := Cmd(&#34;odo&#34;, &#34;project&#34;, &#34;create&#34;, projectName, &#34;-w&#34;, &#34;-v4&#34;).ShouldPass().Out()
+<span id="L357" class="ln">   357  </span>	Expect(session).To(ContainSubstring(projectName))
+<span id="L358" class="ln">   358  </span>	oc.addConfigMapForCleanup(projectName)
+<span id="L359" class="ln">   359  </span>	return projectName
+<span id="L360" class="ln">   360  </span>}
+<span id="L361" class="ln">   361  </span>
+<span id="L362" class="ln">   362  </span>func (oc OcRunner) SetProject(namespace string) string {
+<span id="L363" class="ln">   363  </span>	fmt.Fprintf(GinkgoWriter, &#34;Setting project: %s\n&#34;, namespace)
+<span id="L364" class="ln">   364  </span>	Cmd(&#34;odo&#34;, &#34;project&#34;, &#34;set&#34;, namespace).ShouldPass()
+<span id="L365" class="ln">   365  </span>	return namespace
+<span id="L366" class="ln">   366  </span>}
+<span id="L367" class="ln">   367  </span>
+<span id="L368" class="ln">   368  </span><span class="comment">// DeleteNamespaceProject deletes a specified project in oc cluster</span>
+<span id="L369" class="ln">   369  </span>func (oc OcRunner) DeleteNamespaceProject(projectName string) {
+<span id="L370" class="ln">   370  </span>	fmt.Fprintf(GinkgoWriter, &#34;Deleting project: %s\n&#34;, projectName)
+<span id="L371" class="ln">   371  </span>	session := Cmd(&#34;odo&#34;, &#34;project&#34;, &#34;delete&#34;, projectName, &#34;-f&#34;).ShouldPass().Out()
+<span id="L372" class="ln">   372  </span>	Expect(session).To(ContainSubstring(&#34;Deleted project : &#34; + projectName))
+<span id="L373" class="ln">   373  </span>}
+<span id="L374" class="ln">   374  </span>
+<span id="L375" class="ln">   375  </span>func (oc OcRunner) GetAllPVCNames(namespace string) []string {
+<span id="L376" class="ln">   376  </span>	session := CmdRunner(oc.path, &#34;get&#34;, &#34;pvc&#34;, &#34;--namespace&#34;, namespace, &#34;-o&#34;, &#34;jsonpath={.items[*].metadata.name}&#34;)
+<span id="L377" class="ln">   377  </span>	Eventually(session).Should(gexec.Exit(0))
+<span id="L378" class="ln">   378  </span>	output := string(session.Wait().Out.Contents())
+<span id="L379" class="ln">   379  </span>	if output == &#34;&#34; {
+<span id="L380" class="ln">   380  </span>		return []string{}
+<span id="L381" class="ln">   381  </span>	}
+<span id="L382" class="ln">   382  </span>	return strings.Split(output, &#34; &#34;)
+<span id="L383" class="ln">   383  </span>}
+<span id="L384" class="ln">   384  </span>
+<span id="L385" class="ln">   385  </span><span class="comment">// DeletePod deletes a specified pod in the namespace</span>
+<span id="L386" class="ln">   386  </span>func (oc OcRunner) DeletePod(podName string, namespace string) {
+<span id="L387" class="ln">   387  </span>	Cmd(oc.path, &#34;delete&#34;, &#34;pod&#34;, &#34;--namespace&#34;, namespace, podName).ShouldPass()
+<span id="L388" class="ln">   388  </span>}
+<span id="L389" class="ln">   389  </span>
+<span id="L390" class="ln">   390  </span><span class="comment">//GetAllPodsInNs gets the list of pods in given namespace. It waits for reasonable amount of time for pods to come up</span>
+<span id="L391" class="ln">   391  </span>func (oc OcRunner) GetAllPodsInNs(namespace string) string {
+<span id="L392" class="ln">   392  </span>	args := []string{&#34;get&#34;, &#34;pods&#34;, &#34;-n&#34;, namespace}
+<span id="L393" class="ln">   393  </span>	noResourcesMsg := fmt.Sprintf(&#34;No resources found in %s namespace&#34;, namespace)
+<span id="L394" class="ln">   394  </span>	oc.WaitForRunnerCmdOut(args, 1, true, func(output string) bool {
+<span id="L395" class="ln">   395  </span>		return !strings.Contains(output, noResourcesMsg)
+<span id="L396" class="ln">   396  </span>	}, true)
+<span id="L397" class="ln">   397  </span>	return Cmd(oc.path, args...).ShouldPass().Out()
+<span id="L398" class="ln">   398  </span>}
+<span id="L399" class="ln">   399  </span>
+<span id="L400" class="ln">   400  </span><span class="comment">//StatFileInPod returns stat result of filepath in pod of given component, in a given app, in a given project.</span>
+<span id="L401" class="ln">   401  </span><span class="comment">//It also strips access time information as it vaires accross file systems/kernel configs, and we are not interested</span>
+<span id="L402" class="ln">   402  </span><span class="comment">//in it anyway</span>
+<span id="L403" class="ln">   403  </span>func (oc OcRunner) StatFileInPod(cmpName, appName, project, filepath string) string {
+<span id="L404" class="ln">   404  </span>	var result string
+<span id="L405" class="ln">   405  </span>	oc.CheckCmdOpInRemoteCmpPod(
+<span id="L406" class="ln">   406  </span>		cmpName,
+<span id="L407" class="ln">   407  </span>		appName,
+<span id="L408" class="ln">   408  </span>		project,
+<span id="L409" class="ln">   409  </span>		[]string{&#34;stat&#34;, filepath},
+<span id="L410" class="ln">   410  </span>		func(cmdOp string, err error) bool {
+<span id="L411" class="ln">   411  </span>			<span class="comment">//strip out access info as</span>
+<span id="L412" class="ln">   412  </span>			<span class="comment">// 1. Touching a file (such as running it in a script) modifies access times. This gives wrong value on mounts without noatime</span>
+<span id="L413" class="ln">   413  </span>			<span class="comment">// 2. We are not interested in Access info anyway.</span>
+<span id="L414" class="ln">   414  </span>			re := regexp.MustCompile(&#34;(?m)[\r\n]+^.*Access.*$&#34;)
+<span id="L415" class="ln">   415  </span>			result = re.ReplaceAllString(cmdOp, &#34;&#34;)
+<span id="L416" class="ln">   416  </span>			return true
+<span id="L417" class="ln">   417  </span>		},
+<span id="L418" class="ln">   418  </span>	)
+<span id="L419" class="ln">   419  </span>	return result
+<span id="L420" class="ln">   420  </span>}
+<span id="L421" class="ln">   421  </span>
+<span id="L422" class="ln">   422  </span><span class="comment">// WaitAndCheckForTerminatingState waits for the given interval</span>
+<span id="L423" class="ln">   423  </span><span class="comment">// and checks if the given resource type has been deleted on the cluster or is in the terminating state</span>
+<span id="L424" class="ln">   424  </span>func (oc OcRunner) WaitAndCheckForTerminatingState(resourceType, namespace string, timeoutMinutes int) bool {
+<span id="L425" class="ln">   425  </span>	return WaitAndCheckForTerminatingState(oc.path, resourceType, namespace, timeoutMinutes)
+<span id="L426" class="ln">   426  </span>}
+<span id="L427" class="ln">   427  </span>
+<span id="L428" class="ln">   428  </span><span class="comment">// GetAnnotationsDeployment gets the annotations from the deployment</span>
+<span id="L429" class="ln">   429  </span><span class="comment">// belonging to the given component, app and project</span>
+<span id="L430" class="ln">   430  </span>func (oc OcRunner) GetAnnotationsDeployment(componentName, appName, projectName string) map[string]string {
+<span id="L431" class="ln">   431  </span>	return GetAnnotationsDeployment(oc.path, componentName, appName, projectName)
+<span id="L432" class="ln">   432  </span>}
+<span id="L433" class="ln">   433  </span>
+<span id="L434" class="ln">   434  </span>func (oc OcRunner) PodsShouldBeRunning(project string, regex string) {
+<span id="L435" class="ln">   435  </span>	<span class="comment">// now verify if the pods for the operator have started</span>
+<span id="L436" class="ln">   436  </span>	pods := oc.GetAllPodsInNs(project)
+<span id="L437" class="ln">   437  </span>	<span class="comment">// Look for pods with specified regex</span>
+<span id="L438" class="ln">   438  </span>	pod := regexp.MustCompile(regex).FindString(pods)
+<span id="L439" class="ln">   439  </span>	args := []string{&#34;get&#34;, &#34;pods&#34;, pod, &#34;-o&#34;, &#34;template=\&#34;{{.status.phase}}\&#34;&#34;, &#34;-n&#34;, project}
+<span id="L440" class="ln">   440  </span>	oc.WaitForRunnerCmdOut(args, 8, true, func(output string) bool {
+<span id="L441" class="ln">   441  </span>		return strings.Contains(output, &#34;Running&#34;)
+<span id="L442" class="ln">   442  </span>	})
+<span id="L443" class="ln">   443  </span>}
+<span id="L444" class="ln">   444  </span>
+<span id="L445" class="ln">   445  </span><span class="comment">// WaitForRunnerCmdOut runs &#34;oc&#34; command until it gets</span>
+<span id="L446" class="ln">   446  </span><span class="comment">// the expected output.</span>
+<span id="L447" class="ln">   447  </span><span class="comment">// It accepts 4 arguments</span>
+<span id="L448" class="ln">   448  </span><span class="comment">// args (arguments to the program)</span>
+<span id="L449" class="ln">   449  </span><span class="comment">// timeout (the time to wait for the output)</span>
+<span id="L450" class="ln">   450  </span><span class="comment">// errOnFail (flag to set if test should fail if command fails)</span>
+<span id="L451" class="ln">   451  </span><span class="comment">// check (function with output check logic)</span>
+<span id="L452" class="ln">   452  </span><span class="comment">// It times out if the command doesn&#39;t fetch the</span>
+<span id="L453" class="ln">   453  </span><span class="comment">// expected output  within the timeout period.</span>
+<span id="L454" class="ln">   454  </span>func (oc OcRunner) WaitForRunnerCmdOut(args []string, timeout int, errOnFail bool, check func(output string) bool, includeStdErr ...bool) bool {
+<span id="L455" class="ln">   455  </span>	pingTimeout := time.After(time.Duration(timeout) * time.Minute)
+<span id="L456" class="ln">   456  </span>	<span class="comment">// this is a test package so time.Tick() is acceptable</span>
+<span id="L457" class="ln">   457  </span>	<span class="comment">// nolint</span>
+<span id="L458" class="ln">   458  </span>	tick := time.Tick(time.Second)
+<span id="L459" class="ln">   459  </span>	for {
+<span id="L460" class="ln">   460  </span>		select {
+<span id="L461" class="ln">   461  </span>		case &lt;-pingTimeout:
+<span id="L462" class="ln">   462  </span>			Fail(fmt.Sprintf(&#34;Timeout after %v minutes&#34;, timeout))
+<span id="L463" class="ln">   463  </span>
+<span id="L464" class="ln">   464  </span>		case &lt;-tick:
+<span id="L465" class="ln">   465  </span>			session := CmdRunner(oc.path, args...)
+<span id="L466" class="ln">   466  </span>			if errOnFail {
+<span id="L467" class="ln">   467  </span>				Eventually(session).Should(gexec.Exit(0), runningCmd(session.Command))
+<span id="L468" class="ln">   468  </span>			} else {
+<span id="L469" class="ln">   469  </span>				Eventually(session).Should(gexec.Exit(), runningCmd(session.Command))
+<span id="L470" class="ln">   470  </span>			}
+<span id="L471" class="ln">   471  </span>			session.Wait()
+<span id="L472" class="ln">   472  </span>			output := string(session.Out.Contents())
+<span id="L473" class="ln">   473  </span>
+<span id="L474" class="ln">   474  </span>			if len(includeStdErr) &gt; 0 &amp;&amp; includeStdErr[0] {
+<span id="L475" class="ln">   475  </span>				output += &#34;\n&#34;
+<span id="L476" class="ln">   476  </span>				output += string(session.Err.Contents())
+<span id="L477" class="ln">   477  </span>			}
+<span id="L478" class="ln">   478  </span>			if check(strings.TrimSpace(string(output))) {
+<span id="L479" class="ln">   479  </span>				return true
+<span id="L480" class="ln">   480  </span>			}
+<span id="L481" class="ln">   481  </span>		}
+<span id="L482" class="ln">   482  </span>	}
+<span id="L483" class="ln">   483  </span>}
+<span id="L484" class="ln">   484  </span>
+<span id="L485" class="ln">   485  </span><span class="comment">// CreateSecret takes secret name, password and the namespace where we want to create the specific secret into the cluster</span>
+<span id="L486" class="ln">   486  </span>func (oc OcRunner) CreateSecret(secretName, secretPass, project string) {
+<span id="L487" class="ln">   487  </span>	Cmd(oc.path, &#34;create&#34;, &#34;secret&#34;, &#34;generic&#34;, secretName, &#34;--from-literal=password=&#34;+secretPass, &#34;-n&#34;, project).ShouldPass()
+<span id="L488" class="ln">   488  </span>}
+<span id="L489" class="ln">   489  </span>
+<span id="L490" class="ln">   490  </span><span class="comment">// GetSecrets gets all the secrets belonging to the project</span>
+<span id="L491" class="ln">   491  </span>func (oc OcRunner) GetSecrets(project string) string {
+<span id="L492" class="ln">   492  </span>	return GetSecrets(oc.path, project)
+<span id="L493" class="ln">   493  </span>}
+<span id="L494" class="ln">   494  </span>
+<span id="L495" class="ln">   495  </span><span class="comment">// GetVolumeNamesFromDeployment gets the volumes from the deployment belonging to the given data</span>
+<span id="L496" class="ln">   496  </span>func (oc OcRunner) GetVolumeNamesFromDeployment(componentName, appName, projectName string) map[string]string {
+<span id="L497" class="ln">   497  </span>	return GetVolumeNamesFromDeployment(oc.path, componentName, appName, projectName)
+<span id="L498" class="ln">   498  </span>}
+<span id="L499" class="ln">   499  </span>
+<span id="L500" class="ln">   500  </span><span class="comment">// AddSecret adds pull-secret to the namespace, for e2e-test</span>
+<span id="L501" class="ln">   501  </span>func (oc OcRunner) AddSecret(comvar CommonVar) {
+<span id="L502" class="ln">   502  </span>
+<span id="L503" class="ln">   503  </span>	clusterType := os.Getenv(&#34;CLUSTER_TYPE&#34;)
+<span id="L504" class="ln">   504  </span>	if clusterType == &#34;PSI&#34; || clusterType == &#34;IBM&#34; {
+<span id="L505" class="ln">   505  </span>
+<span id="L506" class="ln">   506  </span>		token := oc.doAsAdmin(clusterType)
+<span id="L507" class="ln">   507  </span>
+<span id="L508" class="ln">   508  </span>		yaml := Cmd(oc.path, &#34;get&#34;, &#34;secret&#34;, &#34;pull-secret&#34;, &#34;-n&#34;, &#34;openshift-config&#34;, &#34;-o&#34;, &#34;yaml&#34;).ShouldPass().Out()
+<span id="L509" class="ln">   509  </span>		newYaml := strings.Replace(yaml, &#34;openshift-config&#34;, comvar.Project, -1)
+<span id="L510" class="ln">   510  </span>		filename := fmt.Sprint(RandString(4), &#34;.yaml&#34;)
+<span id="L511" class="ln">   511  </span>		newYamlinByte := []byte(newYaml)
+<span id="L512" class="ln">   512  </span>		err := ioutil.WriteFile(filename, newYamlinByte, 0600)
+<span id="L513" class="ln">   513  </span>		if err != nil {
+<span id="L514" class="ln">   514  </span>			fmt.Println(err)
+<span id="L515" class="ln">   515  </span>		}
+<span id="L516" class="ln">   516  </span>		Cmd(oc.path, &#34;apply&#34;, &#34;-f&#34;, filename).ShouldPass()
+<span id="L517" class="ln">   517  </span>		os.Remove(filename)
+<span id="L518" class="ln">   518  </span>		oc.doAsDeveloper(token, clusterType)
+<span id="L519" class="ln">   519  </span>	}
+<span id="L520" class="ln">   520  </span>
+<span id="L521" class="ln">   521  </span>}
+<span id="L522" class="ln">   522  </span>
+<span id="L523" class="ln">   523  </span><span class="comment">// doAsAdmin logins as admin to perform some task that requires admin privileges</span>
+<span id="L524" class="ln">   524  </span>func (oc OcRunner) doAsAdmin(clusterType string) string {
+<span id="L525" class="ln">   525  </span>	<span class="comment">//save token for developer</span>
+<span id="L526" class="ln">   526  </span>	token := oc.GetToken()
+<span id="L527" class="ln">   527  </span>	if clusterType == &#34;PSI&#34; || clusterType == &#34;IBM&#34; {
+<span id="L528" class="ln">   528  </span>
+<span id="L529" class="ln">   529  </span>		adminToken := os.Getenv(&#34;IBMC_OCLOGIN_APIKEY&#34;)
+<span id="L530" class="ln">   530  </span>		if adminToken != &#34;&#34; {
+<span id="L531" class="ln">   531  </span>			ibmcloudAdminToken := os.Getenv(&#34;IBMC_ADMIN_LOGIN_APIKEY&#34;)
+<span id="L532" class="ln">   532  </span>			cluster := os.Getenv(&#34;IBMC_OCP47_SERVER&#34;)
+<span id="L533" class="ln">   533  </span>			<span class="comment">//login ibmcloud</span>
+<span id="L534" class="ln">   534  </span>			Cmd(&#34;ibmcloud&#34;, &#34;login&#34;, &#34;--apikey&#34;, ibmcloudAdminToken, &#34;-r&#34;, &#34;eu-de&#34;, &#34;-g&#34;, &#34;Developer-CI-and-QE&#34;)
+<span id="L535" class="ln">   535  </span>			<span class="comment">//login as admin in cluster</span>
+<span id="L536" class="ln">   536  </span>			Cmd(oc.path, &#34;login&#34;, &#34;--token=&#34;, adminToken, &#34;--server=&#34;, cluster)
+<span id="L537" class="ln">   537  </span>		} else {
+<span id="L538" class="ln">   538  </span>			pass := os.Getenv(&#34;OCP4X_KUBEADMIN_PASSWORD&#34;)
+<span id="L539" class="ln">   539  </span>			cluster := os.Getenv(&#34;OCP4X_API_URL&#34;)
+<span id="L540" class="ln">   540  </span>			<span class="comment">//login as kubeadmin</span>
+<span id="L541" class="ln">   541  </span>			Cmd(oc.path, &#34;login&#34;, &#34;-u&#34;, &#34;kubeadmin&#34;, &#34;-p&#34;, pass, cluster).ShouldPass()
+<span id="L542" class="ln">   542  </span>		}
+<span id="L543" class="ln">   543  </span>	}
+<span id="L544" class="ln">   544  </span>	return token
+<span id="L545" class="ln">   545  </span>}
+<span id="L546" class="ln">   546  </span>
+<span id="L547" class="ln">   547  </span><span class="comment">//  doAsDeveloper logins as developer to perform some task</span>
+<span id="L548" class="ln">   548  </span>func (oc OcRunner) doAsDeveloper(token, clusterType string) {
+<span id="L549" class="ln">   549  </span>
+<span id="L550" class="ln">   550  </span>	if clusterType == &#34;IBM&#34; {
+<span id="L551" class="ln">   551  </span>		ibmcloudDeveloperToken := os.Getenv(&#34;IBMC_DEVELOPER_LOGIN_APIKEY&#34;)
+<span id="L552" class="ln">   552  </span>		Cmd(&#34;ibmcloud&#34;, &#34;login&#34;, &#34;--apikey&#34;, ibmcloudDeveloperToken, &#34;-r&#34;, &#34;eu-de&#34;, &#34;-g&#34;, &#34;Developer-CI-and-QE&#34;)
+<span id="L553" class="ln">   553  </span>		<span class="comment">//login as developer using token</span>
+<span id="L554" class="ln">   554  </span>	}
+<span id="L555" class="ln">   555  </span>	oc.LoginUsingToken(token)
+<span id="L556" class="ln">   556  </span>}
+<span id="L557" class="ln">   557  </span>
+<span id="L558" class="ln">   558  </span><span class="comment">// add config map to the project for cleanup</span>
+<span id="L559" class="ln">   559  </span>func (oc OcRunner) addConfigMapForCleanup(projectName string) {
+<span id="L560" class="ln">   560  </span>	Cmd(oc.path, &#34;create&#34;, &#34;configmap&#34;, &#34;config-map-for-cleanup&#34;, &#34;--from-literal&#34;, &#34;type=testing&#34;, &#34;--from-literal&#34;, &#34;team=odo&#34;, &#34;-n&#34;, projectName).ShouldPass()
+<span id="L561" class="ln">   561  </span>}
+<span id="L562" class="ln">   562  </span>
+<span id="L563" class="ln">   563  </span>func (oc OcRunner) Logout() {
+<span id="L564" class="ln">   564  </span>	Cmd(oc.path, &#34;logout&#34;)
+<span id="L565" class="ln">   565  </span>}
+<span id="L566" class="ln">   566  </span>
+</pre><p><a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/helper_oc.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>debug - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package debug
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/debug" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/debug</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#NewCmdDebug">func NewCmdDebug(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdInfo">func NewCmdInfo(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdPortForward">func NewCmdPortForward(name, fullName string) *cobra.Command</a></dd>
+			
+			
+				
+				<dd><a href="#InfoOptions">type InfoOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewInfoOptions">func NewInfoOptions() *InfoOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#InfoOptions.Complete">func (o *InfoOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#InfoOptions.Run">func (o InfoOptions) Run() error</a></dd>
+				
+					
+					<dd>    <a href="#InfoOptions.Validate">func (o InfoOptions) Validate() error</a></dd>
+				
+			
+				
+				<dd><a href="#PortForwardOptions">type PortForwardOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewPortForwardOptions">func NewPortForwardOptions() *PortForwardOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#PortForwardOptions.Complete">func (o *PortForwardOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#PortForwardOptions.Run">func (o PortForwardOptions) Run() error</a></dd>
+				
+					
+					<dd>    <a href="#PortForwardOptions.Validate">func (o PortForwardOptions) Validate() error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/debug.go.html">debug.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/info.go.html">info.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/portforward.go.html">portforward.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// DefaultDebugPort is the default port used for debugging on remote pod</span>
+    <span id="DefaultDebugPort">DefaultDebugPort</span> = 5858
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// RecommendedCommandName is the recommended debug command name</span>
+    <span id="RecommendedCommandName">RecommendedCommandName</span> = &#34;debug&#34;
+)</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="NewCmdDebug">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/debug.go.html?s=364:418#L8">NewCmdDebug</a>
+				<a class="permalink" href="#NewCmdDebug">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdDebug(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdInfo">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/info.go.html?s=2279:2332#L72">NewCmdInfo</a>
+				<a class="permalink" href="#NewCmdInfo">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdInfo(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdInfo implements the debug info odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdPortForward">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/portforward.go.html?s=4635:4695#L143">NewCmdPortForward</a>
+				<a class="permalink" href="#NewCmdPortForward">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdPortForward(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdPortForward implements the port-forward odo command
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="InfoOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/info.go.html?s=542:711#L8">InfoOptions</a>
+				<a class="permalink" href="#InfoOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+InfoOptions contains all the options for running the info cli command.
+</p>
+
+			<pre>type InfoOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+
+    <span class="comment">// Port forwarder backend</span>
+<span id="InfoOptions.PortForwarder"></span>    PortForwarder *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/debug/">debug</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/debug/#DefaultPortForwarder">DefaultPortForwarder</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewInfoOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/info.go.html?s=989:1023#L35">NewInfoOptions</a>
+					<a class="permalink" href="#NewInfoOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewInfoOptions() *<a href="#InfoOptions">InfoOptions</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="InfoOptions.Complete">func (*InfoOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/info.go.html?s=1121:1203#L40">Complete</a>
+					<a class="permalink" href="#InfoOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#InfoOptions">InfoOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes all the required options for port-forward cmd.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="InfoOptions.Run">func (InfoOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/info.go.html?s=1813:1845#L58">Run</a>
+					<a class="permalink" href="#InfoOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o <a href="#InfoOptions">InfoOptions</a>) Run() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Run implements all the necessary functionality for port-forward cmd.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="InfoOptions.Validate">func (InfoOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/info.go.html?s=1686:1723#L53">Validate</a>
+					<a class="permalink" href="#InfoOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o <a href="#InfoOptions">InfoOptions</a>) Validate() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates all the required options for port-forward cmd.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PortForwardOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/portforward.go.html?s=764:1254#L21">PortForwardOptions</a>
+				<a class="permalink" href="#PortForwardOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+PortForwardOptions contains all the options for running the port-forward cli command.
+</p>
+
+			<pre>type PortForwardOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+
+<span id="PortForwardOptions.PortPair"></span>    <span class="comment">// PortPair is the combination of local and remote port in the format &#34;local:remote&#34;</span>
+    PortPair <a href="../../../../../../../builtin/#string">string</a>
+
+    <span class="comment">// Port forwarder backend</span>
+<span id="PortForwardOptions.PortForwarder"></span>    PortForwarder *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/debug/">debug</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/debug/#DefaultPortForwarder">DefaultPortForwarder</a>
+
+<span id="PortForwardOptions.StopChannel"></span>    <span class="comment">// StopChannel is used to stop port forwarding</span>
+    StopChannel chan struct{}
+
+    <span class="comment">// ReadChannel is used to receive status of port forwarding ( ready or not ready )</span>
+<span id="PortForwardOptions.ReadyChannel"></span>    ReadyChannel chan struct{}
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPortForwardOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/portforward.go.html?s=1984:2032#L61">NewPortForwardOptions</a>
+					<a class="permalink" href="#NewPortForwardOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewPortForwardOptions() *<a href="#PortForwardOptions">PortForwardOptions</a></pre>
+				<p>
+NewPortForwardOptions returns the PortForwardOptions struct
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="PortForwardOptions.Complete">func (*PortForwardOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/portforward.go.html?s=2137:2226#L66">Complete</a>
+					<a class="permalink" href="#PortForwardOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#PortForwardOptions">PortForwardOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes all the required options for port-forward cmd.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PortForwardOptions.Run">func (PortForwardOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/portforward.go.html?s=3841:3880#L115">Run</a>
+					<a class="permalink" href="#PortForwardOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o <a href="#PortForwardOptions">PortForwardOptions</a>) Run() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Run implements all the necessary functionality for port-forward cmd.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PortForwardOptions.Validate">func (PortForwardOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/debug/portforward.go.html?s=3633:3677#L107">Validate</a>
+					<a class="permalink" href="#PortForwardOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o <a href="#PortForwardOptions">PortForwardOptions</a>) Validate() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates all the required options for port-forward cmd.
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

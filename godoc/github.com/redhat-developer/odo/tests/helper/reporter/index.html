@@ -1,0 +1,317 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>reporter - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package reporter
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/tests/helper/reporter" target="_blank">github.com/redhat-developer/odo/tests/helper/reporter</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#JunitReport">func JunitReport(t *testing.T, filePath string) *reporters.JUnitReporter</a></dd>
+			
+			
+				
+				<dd><a href="#HTTPMeasurementReporter">type HTTPMeasurementReporter</a></dd>
+				
+					
+					<dd>    <a href="#NewHTTPMeasurementReporter">func NewHTTPMeasurementReporter(url string) *HTTPMeasurementReporter</a></dd>
+				
+				
+					
+					<dd>    <a href="#HTTPMeasurementReporter.AfterSuiteDidRun">func (r *HTTPMeasurementReporter) AfterSuiteDidRun(setupSummary *types.SetupSummary)</a></dd>
+				
+					
+					<dd>    <a href="#HTTPMeasurementReporter.BeforeSuiteDidRun">func (r *HTTPMeasurementReporter) BeforeSuiteDidRun(setupSummary *types.SetupSummary)</a></dd>
+				
+					
+					<dd>    <a href="#HTTPMeasurementReporter.SpecDidComplete">func (r *HTTPMeasurementReporter) SpecDidComplete(specSummary *types.SpecSummary)</a></dd>
+				
+					
+					<dd>    <a href="#HTTPMeasurementReporter.SpecSuiteDidEnd">func (r *HTTPMeasurementReporter) SpecSuiteDidEnd(summary *types.SuiteSummary)</a></dd>
+				
+					
+					<dd>    <a href="#HTTPMeasurementReporter.SpecSuiteWillBegin">func (r *HTTPMeasurementReporter) SpecSuiteWillBegin(config config.GinkgoConfigType, summary *types.SuiteSummary)</a></dd>
+				
+					
+					<dd>    <a href="#HTTPMeasurementReporter.SpecWillRun">func (r *HTTPMeasurementReporter) SpecWillRun(specSummary *types.SpecSummary)</a></dd>
+				
+					
+					<dd>    <a href="#HTTPMeasurementReporter.SubmitMeasurement">func (r *HTTPMeasurementReporter) SubmitMeasurement(data map[string]string) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html">httpMeasurementReporter.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/junitReporter.go.html">junitReporter.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="JunitReport">func <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/junitReporter.go.html?s=237:309#L5">JunitReport</a>
+				<a class="permalink" href="#JunitReport">¶</a>
+				
+				
+			</h2>
+			<pre>func JunitReport(t *<a href="../../../../../../testing/">testing</a>.<a href="../../../../../../testing/#T">T</a>, filePath <a href="../../../../../../builtin/#string">string</a>) *<a href="../../../../../../github.com/onsi/ginkgo/reporters/">reporters</a>.<a href="../../../../../../github.com/onsi/ginkgo/reporters/#JUnitReporter">JUnitReporter</a></pre>
+			<p>
+JunitReport takes test object and filepath as argument, returns junitReporter object
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="HTTPMeasurementReporter">type <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html?s=189:240#L7">HTTPMeasurementReporter</a>
+				<a class="permalink" href="#HTTPMeasurementReporter">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type HTTPMeasurementReporter struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewHTTPMeasurementReporter">func <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html?s=242:310#L11">NewHTTPMeasurementReporter</a>
+					<a class="permalink" href="#NewHTTPMeasurementReporter">¶</a>
+					
+					
+				</h3>
+				<pre>func NewHTTPMeasurementReporter(url <a href="../../../../../../builtin/#string">string</a>) *<a href="#HTTPMeasurementReporter">HTTPMeasurementReporter</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="HTTPMeasurementReporter.AfterSuiteDidRun">func (*HTTPMeasurementReporter) <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html?s=1700:1784#L52">AfterSuiteDidRun</a>
+					<a class="permalink" href="#HTTPMeasurementReporter.AfterSuiteDidRun">¶</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="#HTTPMeasurementReporter">HTTPMeasurementReporter</a>) AfterSuiteDidRun(setupSummary *<a href="../../../../../../github.com/onsi/ginkgo/types/">types</a>.<a href="../../../../../../github.com/onsi/ginkgo/types/#SetupSummary">SetupSummary</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HTTPMeasurementReporter.BeforeSuiteDidRun">func (*HTTPMeasurementReporter) <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html?s=492:577#L21">BeforeSuiteDidRun</a>
+					<a class="permalink" href="#HTTPMeasurementReporter.BeforeSuiteDidRun">¶</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="#HTTPMeasurementReporter">HTTPMeasurementReporter</a>) BeforeSuiteDidRun(setupSummary *<a href="../../../../../../github.com/onsi/ginkgo/types/">types</a>.<a href="../../../../../../github.com/onsi/ginkgo/types/#SetupSummary">SetupSummary</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HTTPMeasurementReporter.SpecDidComplete">func (*HTTPMeasurementReporter) <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html?s=664:745#L25">SpecDidComplete</a>
+					<a class="permalink" href="#HTTPMeasurementReporter.SpecDidComplete">¶</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="#HTTPMeasurementReporter">HTTPMeasurementReporter</a>) SpecDidComplete(specSummary *<a href="../../../../../../github.com/onsi/ginkgo/types/">types</a>.<a href="../../../../../../github.com/onsi/ginkgo/types/#SpecSummary">SpecSummary</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HTTPMeasurementReporter.SpecSuiteDidEnd">func (*HTTPMeasurementReporter) <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html?s=1789:1867#L54">SpecSuiteDidEnd</a>
+					<a class="permalink" href="#HTTPMeasurementReporter.SpecSuiteDidEnd">¶</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="#HTTPMeasurementReporter">HTTPMeasurementReporter</a>) SpecSuiteDidEnd(summary *<a href="../../../../../../github.com/onsi/ginkgo/types/">types</a>.<a href="../../../../../../github.com/onsi/ginkgo/types/#SuiteSummary">SuiteSummary</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HTTPMeasurementReporter.SpecSuiteWillBegin">func (*HTTPMeasurementReporter) <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html?s=373:486#L18">SpecSuiteWillBegin</a>
+					<a class="permalink" href="#HTTPMeasurementReporter.SpecSuiteWillBegin">¶</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="#HTTPMeasurementReporter">HTTPMeasurementReporter</a>) SpecSuiteWillBegin(config <a href="../../../../../../github.com/onsi/ginkgo/config/">config</a>.<a href="../../../../../../github.com/onsi/ginkgo/config/#GinkgoConfigType">GinkgoConfigType</a>, summary *<a href="../../../../../../github.com/onsi/ginkgo/types/">types</a>.<a href="../../../../../../github.com/onsi/ginkgo/types/#SuiteSummary">SuiteSummary</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HTTPMeasurementReporter.SpecWillRun">func (*HTTPMeasurementReporter) <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html?s=582:659#L23">SpecWillRun</a>
+					<a class="permalink" href="#HTTPMeasurementReporter.SpecWillRun">¶</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="#HTTPMeasurementReporter">HTTPMeasurementReporter</a>) SpecWillRun(specSummary *<a href="../../../../../../github.com/onsi/ginkgo/types/">types</a>.<a href="../../../../../../github.com/onsi/ginkgo/types/#SpecSummary">SpecSummary</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HTTPMeasurementReporter.SubmitMeasurement">func (*HTTPMeasurementReporter) <a href="../../../../../../src/github.com/redhat-developer/odo/tests/helper/reporter/httpMeasurementReporter.go.html?s=1872:1953#L56">SubmitMeasurement</a>
+					<a class="permalink" href="#HTTPMeasurementReporter.SubmitMeasurement">¶</a>
+					
+					
+				</h3>
+				<pre>func (r *<a href="#HTTPMeasurementReporter">HTTPMeasurementReporter</a>) SubmitMeasurement(data map[<a href="../../../../../../builtin/#string">string</a>]<a href="../../../../../../builtin/#string">string</a>) <a href="../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

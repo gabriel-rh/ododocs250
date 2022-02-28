@@ -1,0 +1,351 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>context - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package context
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/segment/context" target="_blank">github.com/redhat-developer/odo/pkg/segment/context</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#GetContextProperties">func GetContextProperties(ctx context.Context) map[string]interface{}</a></dd>
+			
+				
+				<dd><a href="#GetTelemetryStatus">func GetTelemetryStatus(ctx context.Context) bool</a></dd>
+			
+				
+				<dd><a href="#NewContext">func NewContext(ctx context.Context) context.Context</a></dd>
+			
+				
+				<dd><a href="#SetClusterType">func SetClusterType(ctx context.Context, client kclient.ClientInterface)</a></dd>
+			
+				
+				<dd><a href="#SetComponentType">func SetComponentType(ctx context.Context, value string)</a></dd>
+			
+				
+				<dd><a href="#SetDevfileName">func SetDevfileName(ctx context.Context, devfileName string)</a></dd>
+			
+				
+				<dd><a href="#SetLanguage">func SetLanguage(ctx context.Context, language string)</a></dd>
+			
+				
+				<dd><a href="#SetProjectType">func SetProjectType(ctx context.Context, projectType string)</a></dd>
+			
+				
+				<dd><a href="#SetSignal">func SetSignal(ctx context.Context, signal os.Signal)</a></dd>
+			
+				
+				<dd><a href="#SetTelemetryStatus">func SetTelemetryStatus(ctx context.Context, isEnabled bool)</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html">context.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const <span id="ClusterType">ClusterType</span> = &#34;clusterType&#34;</pre>
+			
+				
+				<pre>const <span id="ComponentType">ComponentType</span> = &#34;componentType&#34;</pre>
+			
+				
+				<pre>const <span id="DevfileName">DevfileName</span> = &#34;devfileName&#34;</pre>
+			
+				
+				<pre>const <span id="Language">Language</span> = &#34;language&#34;</pre>
+			
+				
+				<pre>const <span id="NOTFOUND">NOTFOUND</span> = &#34;not-found&#34;</pre>
+			
+				
+				<pre>const <span id="ProjectType">ProjectType</span> = &#34;projectType&#34;</pre>
+			
+				
+				<pre>const <span id="TelemetryStatus">TelemetryStatus</span> = &#34;isTelemetryEnabled&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="GetContextProperties">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=964:1033#L30">GetContextProperties</a>
+				<a class="permalink" href="#GetContextProperties">¶</a>
+				
+				
+			</h2>
+			<pre>func GetContextProperties(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>) map[<a href="../../../../../../builtin/#string">string</a>]interface{}</pre>
+			<p>
+GetContextProperties retrieves all the values set in a given context
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetTelemetryStatus">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=3123:3172#L98">GetTelemetryStatus</a>
+				<a class="permalink" href="#GetTelemetryStatus">¶</a>
+				
+				
+			</h2>
+			<pre>func GetTelemetryStatus(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>) <a href="../../../../../../builtin/#bool">bool</a></pre>
+			<p>
+GetTelemetryStatus gets the telemetry status that is set before a command is run
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewContext">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=746:798#L25">NewContext</a>
+				<a class="permalink" href="#NewContext">¶</a>
+				
+				
+			</h2>
+			<pre>func NewContext(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>) <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a></pre>
+			<p>
+NewContext returns a context more specifically to be used for telemetry data collection
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetClusterType">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=1533:1605#L44">SetClusterType</a>
+				<a class="permalink" href="#SetClusterType">¶</a>
+				
+				
+			</h2>
+			<pre>func SetClusterType(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>, client <a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>)</pre>
+			<p>
+SetClusterType sets clusterType property for telemetry data when a component is pushed or a project is created/set
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetComponentType">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=1279:1335#L39">SetComponentType</a>
+				<a class="permalink" href="#SetComponentType">¶</a>
+				
+				
+			</h2>
+			<pre>func SetComponentType(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>, value <a href="../../../../../../builtin/#string">string</a>)</pre>
+			<p>
+SetComponentType sets componentType property for telemetry data when a component is created/pushed
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetDevfileName">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=2700:2760#L85">SetDevfileName</a>
+				<a class="permalink" href="#SetDevfileName">¶</a>
+				
+				
+			</h2>
+			<pre>func SetDevfileName(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>, devfileName <a href="../../../../../../builtin/#string">string</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SetLanguage">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=2817:2871#L89">SetLanguage</a>
+				<a class="permalink" href="#SetLanguage">¶</a>
+				
+				
+			</h2>
+			<pre>func SetLanguage(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>, language <a href="../../../../../../builtin/#string">string</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SetProjectType">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=2922:2982#L93">SetProjectType</a>
+				<a class="permalink" href="#SetProjectType">¶</a>
+				
+				
+			</h2>
+			<pre>func SetProjectType(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>, projectType <a href="../../../../../../builtin/#string">string</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SetSignal">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=2581:2634#L81">SetSignal</a>
+				<a class="permalink" href="#SetSignal">¶</a>
+				
+				
+			</h2>
+			<pre>func SetSignal(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>, signal <a href="../../../../../../os/">os</a>.<a href="../../../../../../os/#Signal">Signal</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="SetTelemetryStatus">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/segment/context/context.go.html?s=2462:2522#L77">SetTelemetryStatus</a>
+				<a class="permalink" href="#SetTelemetryStatus">¶</a>
+				
+				
+			</h2>
+			<pre>func SetTelemetryStatus(ctx <a href="../../../../../../context/">context</a>.<a href="../../../../../../context/#Context">Context</a>, isEnabled <a href="../../../../../../builtin/#bool">bool</a>)</pre>
+			<p>
+SetTelemetryStatus sets telemetry status before a command is run
+</p>
+
+			
+			
+
+		
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

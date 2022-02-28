@@ -1,0 +1,407 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>validate - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package validate
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/devfile/validate" target="_blank">github.com/redhat-developer/odo/pkg/devfile/validate</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#ValidateDevfileData">func ValidateDevfileData(data interface{}) error</a></dd>
+			
+			
+				
+				<dd><a href="#CompositeRunKindError">type CompositeRunKindError</a></dd>
+				
+				
+					
+					<dd>    <a href="#CompositeRunKindError.Error">func (e *CompositeRunKindError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#NoComponentsError">type NoComponentsError</a></dd>
+				
+				
+					
+					<dd>    <a href="#NoComponentsError.Error">func (e *NoComponentsError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#NoContainerComponentError">type NoContainerComponentError</a></dd>
+				
+				
+					
+					<dd>    <a href="#NoContainerComponentError.Error">func (e *NoContainerComponentError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#UnsupportedFieldError">type UnsupportedFieldError</a></dd>
+				
+				
+					
+					<dd>    <a href="#UnsupportedFieldError.Error">func (e *UnsupportedFieldError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#UnsupportedOdoCommandError">type UnsupportedOdoCommandError</a></dd>
+				
+				
+					
+					<dd>    <a href="#UnsupportedOdoCommandError.Error">func (e *UnsupportedOdoCommandError) Error() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/commands.go.html">commands.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/components.go.html">components.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html">errors.go</a>
+			
+				<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/validate.go.html">validate.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="ValidateDevfileData">func <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/validate.go.html?s=383:431#L5">ValidateDevfileData</a>
+				<a class="permalink" href="#ValidateDevfileData">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateDevfileData(data interface{}) <a href="../../../../../../builtin/#error">error</a></pre>
+			<p>
+ValidateDevfileData validates whether sections of devfile are odo compatible
+after invoking the generic devfile validation
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CompositeRunKindError">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=962:999#L25">CompositeRunKindError</a>
+				<a class="permalink" href="#CompositeRunKindError">¶</a>
+				
+				
+			</h2>
+			<p>
+CompositeRunKindError returns an error if the composite command is of kind run
+</p>
+
+			<pre>type CompositeRunKindError struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="CompositeRunKindError.Error">func (*CompositeRunKindError) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=1001:1047#L28">Error</a>
+					<a class="permalink" href="#CompositeRunKindError.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="#CompositeRunKindError">CompositeRunKindError</a>) Error() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NoComponentsError">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=169:202#L1">NoComponentsError</a>
+				<a class="permalink" href="#NoComponentsError">¶</a>
+				
+				
+			</h2>
+			<p>
+NoComponentsError returns an error if no component is found
+</p>
+
+			<pre>type NoComponentsError struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NoComponentsError.Error">func (*NoComponentsError) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=204:246#L3">Error</a>
+					<a class="permalink" href="#NoComponentsError.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="#NoComponentsError">NoComponentsError</a>) Error() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NoContainerComponentError">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=365:406#L8">NoContainerComponentError</a>
+				<a class="permalink" href="#NoContainerComponentError">¶</a>
+				
+				
+			</h2>
+			<p>
+NoContainerComponentError returns an error if no container component is found
+</p>
+
+			<pre>type NoContainerComponentError struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="NoContainerComponentError.Error">func (*NoContainerComponentError) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=408:458#L11">Error</a>
+					<a class="permalink" href="#NoContainerComponentError.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="#NoContainerComponentError">NoContainerComponentError</a>) Error() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UnsupportedFieldError">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=1122:1177#L32">UnsupportedFieldError</a>
+				<a class="permalink" href="#UnsupportedFieldError">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type UnsupportedFieldError struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="UnsupportedFieldError.Error">func (*UnsupportedFieldError) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=1179:1225#L36">Error</a>
+					<a class="permalink" href="#UnsupportedFieldError.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="#UnsupportedFieldError">UnsupportedFieldError</a>) Error() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UnsupportedOdoCommandError">type <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=672:732#L16">UnsupportedOdoCommandError</a>
+				<a class="permalink" href="#UnsupportedOdoCommandError">¶</a>
+				
+				
+			</h2>
+			<p>
+UnsupportedOdoCommandError returns an error if the command is neither exec nor composite
+</p>
+
+			<pre>type UnsupportedOdoCommandError struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="UnsupportedOdoCommandError.Error">func (*UnsupportedOdoCommandError) <a href="../../../../../../src/github.com/redhat-developer/odo/pkg/devfile/validate/errors.go.html?s=734:785#L20">Error</a>
+					<a class="permalink" href="#UnsupportedOdoCommandError.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="#UnsupportedOdoCommandError">UnsupportedOdoCommandError</a>) Error() <a href="../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

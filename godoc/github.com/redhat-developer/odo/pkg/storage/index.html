@@ -1,0 +1,778 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>storage - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package storage
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/storage" target="_blank">github.com/redhat-developer/odo/pkg/storage</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+Package storage is a generated GoMock package.
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#Push">func Push(client Client, configProvider localConfigProvider.LocalConfigProvider) (ephemerals map[string]Storage, _ error)</a></dd>
+			
+			
+				
+				<dd><a href="#Client">type Client</a></dd>
+				
+					
+					<dd>    <a href="#NewClient">func NewClient(options ClientOptions) Client</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ClientOptions">type ClientOptions</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MockClient">type MockClient</a></dd>
+				
+					
+					<dd>    <a href="#NewMockClient">func NewMockClient(ctrl *gomock.Controller) *MockClient</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockClient.Create">func (m *MockClient) Create(arg0 Storage) error</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.Delete">func (m *MockClient) Delete(arg0 string) error</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.EXPECT">func (m *MockClient) EXPECT() *MockClientMockRecorder</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.List">func (m *MockClient) List() (StorageList, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockClient.ListFromCluster">func (m *MockClient) ListFromCluster() (StorageList, error)</a></dd>
+				
+			
+				
+				<dd><a href="#MockClientMockRecorder">type MockClientMockRecorder</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.Create">func (mr *MockClientMockRecorder) Create(arg0 interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.Delete">func (mr *MockClientMockRecorder) Delete(arg0 interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.List">func (mr *MockClientMockRecorder) List() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockClientMockRecorder.ListFromCluster">func (mr *MockClientMockRecorder) ListFromCluster() *gomock.Call</a></dd>
+				
+			
+				
+				<dd><a href="#Storage">type Storage</a></dd>
+				
+					
+					<dd>    <a href="#NewStorage">func NewStorage(storageName, storageSize, storagePath string, ephemeral *bool) Storage</a></dd>
+				
+					
+					<dd>    <a href="#NewStorageWithContainer">func NewStorageWithContainer(storageName, storageSize, storagePath string, container string, ephemeral *bool) Storage</a></dd>
+				
+				
+			
+				
+				<dd><a href="#StorageList">type StorageList</a></dd>
+				
+					
+					<dd>    <a href="#ConvertListLocalToMachine">func ConvertListLocalToMachine(storageListConfig []localConfigProvider.LocalStorage) StorageList</a></dd>
+				
+					
+					<dd>    <a href="#NewStorageList">func NewStorageList(items []Storage) StorageList</a></dd>
+				
+				
+			
+				
+				<dd><a href="#StorageSpec">type StorageSpec</a></dd>
+				
+				
+			
+				
+				<dd><a href="#StorageStatus">type StorageStatus</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/kubernetes.go.html">kubernetes.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html">mock_Client.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/storage.go.html">storage.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/types.go.html">types.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/utils.go.html">utils.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span class="comment">// OdoSourceVolume is the constant containing the name of the emptyDir volume containing the project source</span>
+    <span id="OdoSourceVolume">OdoSourceVolume</span> = &#34;odo-projects&#34;
+
+    <span class="comment">// OdoSupervisordVolume is the constant containing the name of the emptyDir volume containing Supervisord shared data</span>
+    <span id="OdoSupervisordVolume">OdoSupervisordVolume</span> = &#34;odo-supervisord-shared-data&#34;
+
+    <span class="comment">// OdoSourceVolumeSize specifies size for odo source volume.</span>
+    <span id="OdoSourceVolumeSize">OdoSourceVolumeSize</span> = &#34;2Gi&#34;
+)</pre>
+			
+				
+				<pre>const (
+    <span class="comment">// StateTypePushed means that Storage is present both locally and on cluster</span>
+    <span id="StateTypePushed">StateTypePushed</span> <a href="#StorageStatus">StorageStatus</a> = &#34;Pushed&#34;
+    <span class="comment">// StateTypeNotPushed means that Storage is only in local config, but not on the cluster</span>
+    <span id="StateTypeNotPushed">StateTypeNotPushed</span> = &#34;Not Pushed&#34;
+    <span class="comment">// StateTypeLocallyDeleted means that Storage was deleted from the local config, but it is still present on the cluster</span>
+    <span id="StateTypeLocallyDeleted">StateTypeLocallyDeleted</span> = &#34;Locally Deleted&#34;
+)</pre>
+			
+				
+				<pre>const <span id="StorageKind">StorageKind</span> = &#34;Storage&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="Push">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/storage.go.html?s=2191:2312#L60">Push</a>
+				<a class="permalink" href="#Push">¶</a>
+				
+				
+			</h2>
+			<pre>func Push(client <a href="#Client">Client</a>, configProvider <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalConfigProvider">LocalConfigProvider</a>) (ephemerals map[<a href="../../../../../builtin/#string">string</a>]<a href="#Storage">Storage</a>, _ <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+Push creates and deletes the required persistent storages and returns the list of ephemeral storages
+it compares the local storage against the storage on the cluster
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/storage.go.html?s=1156:1295#L27">Client</a>
+				<a class="permalink" href="#Client">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type Client interface {
+    Create(<a href="#Storage">Storage</a>) <a href="../../../../../builtin/#error">error</a>
+    Delete(<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a>
+    ListFromCluster() (<a href="#StorageList">StorageList</a>, <a href="../../../../../builtin/#error">error</a>)
+    List() (<a href="#StorageList">StorageList</a>, <a href="../../../../../builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/storage.go.html?s=1370:1414#L35">NewClient</a>
+					<a class="permalink" href="#NewClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewClient(options <a href="#ClientOptions">ClientOptions</a>) <a href="#Client">Client</a></pre>
+				<p>
+NewClient gets the appropriate Storage client based on the parameters
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ClientOptions">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/storage.go.html?s=983:1154#L21">ClientOptions</a>
+				<a class="permalink" href="#ClientOptions">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type ClientOptions struct {
+<span id="ClientOptions.Client"></span>    Client              <a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/">kclient</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/kclient/#ClientInterface">ClientInterface</a>
+<span id="ClientOptions.LocalConfigProvider"></span>    LocalConfigProvider <a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalConfigProvider">LocalConfigProvider</a>
+<span id="ClientOptions.Deployment"></span>    Deployment          *<a href="../../../../../k8s.io/api/apps/v1/">v1</a>.<a href="../../../../../k8s.io/api/apps/v1/#Deployment">Deployment</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MockClient">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=262:351#L4">MockClient</a>
+				<a class="permalink" href="#MockClient">¶</a>
+				
+				
+			</h2>
+			<p>
+MockClient is a mock of Client interface.
+</p>
+
+			<pre>type MockClient struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMockClient">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=520:575#L15">NewMockClient</a>
+					<a class="permalink" href="#NewMockClient">¶</a>
+					
+					
+				</h3>
+				<pre>func NewMockClient(ctrl *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Controller">Controller</a>) *<a href="#MockClient">MockClient</a></pre>
+				<p>
+NewMockClient creates a new mock instance.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MockClient.Create">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=858:905#L27">Create</a>
+					<a class="permalink" href="#MockClient.Create">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) Create(arg0 <a href="#Storage">Storage</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+Create mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.Delete">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=1302:1348#L41">Delete</a>
+					<a class="permalink" href="#MockClient.Delete">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) Delete(arg0 <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+Delete mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.EXPECT">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=751:804#L22">EXPECT</a>
+					<a class="permalink" href="#MockClient.EXPECT">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) EXPECT() *<a href="#MockClientMockRecorder">MockClientMockRecorder</a></pre>
+				<p>
+EXPECT returns an object that allows the caller to indicate expected use.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.List">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=1743:1791#L55">List</a>
+					<a class="permalink" href="#MockClient.List">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) List() (<a href="#StorageList">StorageList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+List mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClient.ListFromCluster">func (*MockClient) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=2196:2255#L70">ListFromCluster</a>
+					<a class="permalink" href="#MockClient.ListFromCluster">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockClient">MockClient</a>) ListFromCluster() (<a href="#StorageList">StorageList</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ListFromCluster mocks base method.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockClientMockRecorder">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=416:472#L10">MockClientMockRecorder</a>
+				<a class="permalink" href="#MockClientMockRecorder">¶</a>
+				
+				
+			</h2>
+			<p>
+MockClientMockRecorder is the mock recorder for MockClient.
+</p>
+
+			<pre>type MockClientMockRecorder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockClientMockRecorder.Create">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=1057:1128#L35">Create</a>
+					<a class="permalink" href="#MockClientMockRecorder.Create">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) Create(arg0 interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Create indicates an expected call of Create.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.Delete">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=1500:1571#L49">Delete</a>
+					<a class="permalink" href="#MockClientMockRecorder.Delete">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) Delete(arg0 interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Delete indicates an expected call of Delete.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.List">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=1970:2023#L64">List</a>
+					<a class="permalink" href="#MockClientMockRecorder.List">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) List() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+List indicates an expected call of List.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockClientMockRecorder.ListFromCluster">func (*MockClientMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/mock_Client.go.html?s=2467:2531#L79">ListFromCluster</a>
+					<a class="permalink" href="#MockClientMockRecorder.ListFromCluster">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockClientMockRecorder">MockClientMockRecorder</a>) ListFromCluster() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+ListFromCluster indicates an expected call of ListFromCluster.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Storage">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/types.go.html?s=233:455#L1">Storage</a>
+				<a class="permalink" href="#Storage">¶</a>
+				
+				
+			</h2>
+			<p>
+Storage holds the information about storage attached to the component
+</p>
+
+			<pre>type Storage struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a>   `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ObjectMeta">ObjectMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="Storage.Spec"></span>    Spec              <a href="#StorageSpec">StorageSpec</a>   `json:&#34;spec,omitempty&#34;`
+<span id="Storage.Status"></span>    Status            <a href="#StorageStatus">StorageStatus</a> `json:&#34;status,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStorage">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/types.go.html?s=1992:2078#L52">NewStorage</a>
+					<a class="permalink" href="#NewStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func NewStorage(storageName, storageSize, storagePath <a href="../../../../../builtin/#string">string</a>, ephemeral *<a href="../../../../../builtin/#bool">bool</a>) <a href="#Storage">Storage</a></pre>
+				<p>
+NewStorage returns an instance of Storage
+storagePath indicates the path to which the storage is mounted to, &#34;&#34; if not mounted
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewStorageWithContainer">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/types.go.html?s=2535:2652#L69">NewStorageWithContainer</a>
+					<a class="permalink" href="#NewStorageWithContainer">¶</a>
+					
+					
+				</h3>
+				<pre>func NewStorageWithContainer(storageName, storageSize, storagePath <a href="../../../../../builtin/#string">string</a>, container <a href="../../../../../builtin/#string">string</a>, ephemeral *<a href="../../../../../builtin/#bool">bool</a>) <a href="#Storage">Storage</a></pre>
+				<p>
+NewStorageWithContainer returns an instance of Storage with container specified
+storagePath indicates the path to which the storage is mounted to, &#34;&#34; if not mounted
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="StorageList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/types.go.html?s=1386:1534#L32">StorageList</a>
+				<a class="permalink" href="#StorageList">¶</a>
+				
+				
+			</h2>
+			<p>
+StorageList is a list of storages
+</p>
+
+			<pre>type StorageList struct {
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#TypeMeta">TypeMeta</a> `json:&#34;,inline&#34;`
+    <a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/">metav1</a>.<a href="../../../../../k8s.io/apimachinery/pkg/apis/meta/v1/#ListMeta">ListMeta</a> `json:&#34;metadata,omitempty&#34;`
+<span id="StorageList.Items"></span>    Items           []<a href="#Storage">Storage</a> `json:&#34;items&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ConvertListLocalToMachine">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/utils.go.html?s=1527:1623#L37">ConvertListLocalToMachine</a>
+					<a class="permalink" href="#ConvertListLocalToMachine">¶</a>
+					
+					
+				</h3>
+				<pre>func ConvertListLocalToMachine(storageListConfig []<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/">localConfigProvider</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/localConfigProvider/#LocalStorage">LocalStorage</a>) <a href="#StorageList">StorageList</a></pre>
+				<p>
+ConvertListLocalToMachine converts storage config list to StorageList type
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewStorageList">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/types.go.html?s=1617:1665#L39">NewStorageList</a>
+					<a class="permalink" href="#NewStorageList">¶</a>
+					
+					
+				</h3>
+				<pre>func NewStorageList(items []<a href="#Storage">Storage</a>) <a href="#StorageList">StorageList</a></pre>
+				<p>
+NewStorageList returns an instance of a list containning the `items` storages
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="StorageSpec">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/types.go.html?s=972:1347#L21">StorageSpec</a>
+				<a class="permalink" href="#StorageSpec">¶</a>
+				
+				
+			</h2>
+			<p>
+StorageSpec indicates size and path of storage
+</p>
+
+			<pre>type StorageSpec struct {
+<span id="StorageSpec.Size"></span>    Size <a href="../../../../../builtin/#string">string</a> `json:&#34;size,omitempty&#34;`
+    <span class="comment">// if path is empty, it indicates that the storage is not mounted in any component</span>
+<span id="StorageSpec.Path"></span>    Path <a href="../../../../../builtin/#string">string</a> `json:&#34;path,omitempty&#34;`
+    <span class="comment">// indicates if storage should be ephemeral, if nil the default behaviour will be used</span>
+<span id="StorageSpec.Ephemeral"></span>    Ephemeral *<a href="../../../../../builtin/#bool">bool</a> `json:&#34;ephemeral,omitempty&#34;`
+
+<span id="StorageSpec.ContainerName"></span>    ContainerName <a href="../../../../../builtin/#string">string</a> `json:&#34;containerName,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="StorageStatus">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/storage/types.go.html?s=473:498#L9">StorageStatus</a>
+				<a class="permalink" href="#StorageStatus">¶</a>
+				
+				
+			</h2>
+			<p>
+StorageState
+</p>
+
+			<pre>type StorageStatus <a href="../../../../../builtin/#string">string</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="labels/">labels</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

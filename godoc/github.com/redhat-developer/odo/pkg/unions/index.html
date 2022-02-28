@@ -1,0 +1,404 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>unions - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package unions
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/unions" target="_blank">github.com/redhat-developer/odo/pkg/unions</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="#KubernetesIngress">type KubernetesIngress</a></dd>
+				
+					
+					<dd>    <a href="#NewGeneratedKubernetesIngress">func NewGeneratedKubernetesIngress() *KubernetesIngress</a></dd>
+				
+					
+					<dd>    <a href="#NewKubernetesIngressFromParams">func NewKubernetesIngressFromParams(ingressParams generator.IngressParams) *KubernetesIngress</a></dd>
+				
+					
+					<dd>    <a href="#NewNonGeneratedKubernetesIngress">func NewNonGeneratedKubernetesIngress() *KubernetesIngress</a></dd>
+				
+				
+					
+					<dd>    <a href="#KubernetesIngress.GetHost">func (ki *KubernetesIngress) GetHost() string</a></dd>
+				
+					
+					<dd>    <a href="#KubernetesIngress.GetName">func (ki *KubernetesIngress) GetName() string</a></dd>
+				
+					
+					<dd>    <a href="#KubernetesIngress.GetProtocol">func (ki *KubernetesIngress) GetProtocol() string</a></dd>
+				
+					
+					<dd>    <a href="#KubernetesIngress.GetURLString">func (ki *KubernetesIngress) GetURLString() string</a></dd>
+				
+					
+					<dd>    <a href="#KubernetesIngress.IsGenerated">func (ki *KubernetesIngress) IsGenerated() bool</a></dd>
+				
+			
+				
+				<dd><a href="#KubernetesIngressList">type KubernetesIngressList</a></dd>
+				
+					
+					<dd>    <a href="#NewEmptyKubernetesIngressList">func NewEmptyKubernetesIngressList() *KubernetesIngressList</a></dd>
+				
+				
+					
+					<dd>    <a href="#KubernetesIngressList.GetExtensionV1Beta1IngresList">func (kil *KubernetesIngressList) GetExtensionV1Beta1IngresList(skipIfNetworkingV1Set bool) *v1beta1.IngressList</a></dd>
+				
+					
+					<dd>    <a href="#KubernetesIngressList.GetNetworkingV1IngressList">func (kil *KubernetesIngressList) GetNetworkingV1IngressList(skipIfExtensionV1Set bool) *v1.IngressList</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html">kubernetes_ingress.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="KubernetesIngress">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=271:413#L3">KubernetesIngress</a>
+				<a class="permalink" href="#KubernetesIngress">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type KubernetesIngress struct {
+<span id="KubernetesIngress.NetworkingV1Ingress"></span>    NetworkingV1Ingress     *<a href="../../../../../k8s.io/api/networking/v1/">v1</a>.<a href="../../../../../k8s.io/api/networking/v1/#Ingress">Ingress</a>
+<span id="KubernetesIngress.ExtensionV1Beta1Ingress"></span>    ExtensionV1Beta1Ingress *<a href="../../../../../k8s.io/api/extensions/v1beta1/">v1beta1</a>.<a href="../../../../../k8s.io/api/extensions/v1beta1/#Ingress">Ingress</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGeneratedKubernetesIngress">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=823:878#L19">NewGeneratedKubernetesIngress</a>
+					<a class="permalink" href="#NewGeneratedKubernetesIngress">¶</a>
+					
+					
+				</h3>
+				<pre>func NewGeneratedKubernetesIngress() *<a href="#KubernetesIngress">KubernetesIngress</a></pre>
+				<p>
+NewGeneratedKubernetesIngress returns a generated KubernetesIngress to be populated by caller
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewKubernetesIngressFromParams">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=1103:1196#L28">NewKubernetesIngressFromParams</a>
+					<a class="permalink" href="#NewKubernetesIngressFromParams">¶</a>
+					
+					
+				</h3>
+				<pre>func NewKubernetesIngressFromParams(ingressParams <a href="../../../../../github.com/devfile/library/pkg/devfile/generator/">generator</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/generator/#IngressParams">IngressParams</a>) *<a href="#KubernetesIngress">KubernetesIngress</a></pre>
+				<p>
+NewKubernetesIngressFromParams generates a new KubernetesIngress from the ingress params
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewNonGeneratedKubernetesIngress">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=534:592#L10">NewNonGeneratedKubernetesIngress</a>
+					<a class="permalink" href="#NewNonGeneratedKubernetesIngress">¶</a>
+					
+					
+				</h3>
+				<pre>func NewNonGeneratedKubernetesIngress() *<a href="#KubernetesIngress">KubernetesIngress</a></pre>
+				<p>
+NewNonGeneratedKubernetesIngress returns a new empty KubernetesIngress to be populated by caller. It is not genrated
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="KubernetesIngress.GetHost">func (*KubernetesIngress) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=2343:2388#L59">GetHost</a>
+					<a class="permalink" href="#KubernetesIngress.GetHost">¶</a>
+					
+					
+				</h3>
+				<pre>func (ki *<a href="#KubernetesIngress">KubernetesIngress</a>) GetHost() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetHost returns the host of underlying networking v1 or extensions v1 ingress
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubernetesIngress.GetName">func (*KubernetesIngress) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=1655:1700#L41">GetName</a>
+					<a class="permalink" href="#KubernetesIngress.GetName">¶</a>
+					
+					
+				</h3>
+				<pre>func (ki *<a href="#KubernetesIngress">KubernetesIngress</a>) GetName() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetName returns the name of underlying networking v1 or extensions v1 ingress
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubernetesIngress.GetProtocol">func (*KubernetesIngress) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=2004:2053#L51">GetProtocol</a>
+					<a class="permalink" href="#KubernetesIngress.GetProtocol">¶</a>
+					
+					
+				</h3>
+				<pre>func (ki *<a href="#KubernetesIngress">KubernetesIngress</a>) GetProtocol() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetProtocol returns `https` if tls is configured on either networking v1 or extensions v1 ingress, else `http`
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubernetesIngress.GetURLString">func (*KubernetesIngress) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=2681:2731#L69">GetURLString</a>
+					<a class="permalink" href="#KubernetesIngress.GetURLString">¶</a>
+					
+					
+				</h3>
+				<pre>func (ki *<a href="#KubernetesIngress">KubernetesIngress</a>) GetURLString() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetURLString returns the fully formed url of the form `GetProtocol()://GetHost()`
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubernetesIngress.IsGenerated">func (*KubernetesIngress) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=1499:1546#L36">IsGenerated</a>
+					<a class="permalink" href="#KubernetesIngress.IsGenerated">¶</a>
+					
+					
+				</h3>
+				<pre>func (ki *<a href="#KubernetesIngress">KubernetesIngress</a>) IsGenerated() <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+IsGenerated returns true if ths KubernetesIngress was generated using generators
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="KubernetesIngressList">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=2800:2865#L73">KubernetesIngressList</a>
+				<a class="permalink" href="#KubernetesIngressList">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type KubernetesIngressList struct {
+<span id="KubernetesIngressList.Items"></span>    Items []*<a href="#KubernetesIngress">KubernetesIngress</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEmptyKubernetesIngressList">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=2867:2926#L77">NewEmptyKubernetesIngressList</a>
+					<a class="permalink" href="#NewEmptyKubernetesIngressList">¶</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyKubernetesIngressList() *<a href="#KubernetesIngressList">KubernetesIngressList</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="KubernetesIngressList.GetExtensionV1Beta1IngresList">func (*KubernetesIngressList) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=3874:3986#L99">GetExtensionV1Beta1IngresList</a>
+					<a class="permalink" href="#KubernetesIngressList.GetExtensionV1Beta1IngresList">¶</a>
+					
+					
+				</h3>
+				<pre>func (kil *<a href="#KubernetesIngressList">KubernetesIngressList</a>) GetExtensionV1Beta1IngresList(skipIfNetworkingV1Set <a href="../../../../../builtin/#bool">bool</a>) *<a href="../../../../../k8s.io/api/extensions/v1beta1/">v1beta1</a>.<a href="../../../../../k8s.io/api/extensions/v1beta1/#IngressList">IngressList</a></pre>
+				<p>
+GetExtensionV1Beta1IngresList returns a v1beta1.IngressList populated by extensions v1 beta1 ingresses
+if skipIfNetworkingV1Set it true, then if both networking v1 and extension v1 are set for
+specific KubernetesIngress, then it will be skipped form the returned list
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="KubernetesIngressList.GetNetworkingV1IngressList">func (*KubernetesIngressList) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/unions/kubernetes_ingress.go.html?s=3224:3327#L84">GetNetworkingV1IngressList</a>
+					<a class="permalink" href="#KubernetesIngressList.GetNetworkingV1IngressList">¶</a>
+					
+					
+				</h3>
+				<pre>func (kil *<a href="#KubernetesIngressList">KubernetesIngressList</a>) GetNetworkingV1IngressList(skipIfExtensionV1Set <a href="../../../../../builtin/#bool">bool</a>) *<a href="../../../../../k8s.io/api/networking/v1/">v1</a>.<a href="../../../../../k8s.io/api/networking/v1/#IngressList">IngressList</a></pre>
+				<p>
+GetNetworkingV1IngressList returns a v1.IngressList populated by networking v1 ingresses
+if skipIfExtensionV1Set it true, then if both networking v1 and extension v1 are set for
+specific KubernetesIngress, then it will be skipped form the returned list
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

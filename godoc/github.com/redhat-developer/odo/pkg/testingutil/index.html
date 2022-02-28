@@ -1,0 +1,1182 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>testingutil - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package testingutil
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/testingutil" target="_blank">github.com/redhat-developer/odo/pkg/testingutil</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#CreateFakeContainer">func CreateFakeContainer(containerName string) corev1.Container</a></dd>
+			
+				
+				<dd><a href="#CreateFakeContainerWithVolumeMounts">func CreateFakeContainerWithVolumeMounts(containerName string, volumeMounts []corev1.VolumeMount) corev1.Container</a></dd>
+			
+				
+				<dd><a href="#CreateFakeDeployment">func CreateFakeDeployment(podName string) *appsv1.Deployment</a></dd>
+			
+				
+				<dd><a href="#CreateFakeDeploymentsWithContainers">func CreateFakeDeploymentsWithContainers(podName string, containers []corev1.Container, initContainers []corev1.Container) *appsv1.Deployment</a></dd>
+			
+				
+				<dd><a href="#CreateFakePod">func CreateFakePod(componentName, podName string) *corev1.Pod</a></dd>
+			
+				
+				<dd><a href="#CreateFakePodWithContainers">func CreateFakePodWithContainers(componentName, podName string, containers []corev1.Container) *corev1.Pod</a></dd>
+			
+				
+				<dd><a href="#DevfileObjWithInternalNoneEndpoints">func DevfileObjWithInternalNoneEndpoints(fs devfilefs.Filesystem) parser.DevfileObj</a></dd>
+			
+				
+				<dd><a href="#DevfileObjWithSecureEndpoints">func DevfileObjWithSecureEndpoints(fs devfilefs.Filesystem) parser.DevfileObj</a></dd>
+			
+				
+				<dd><a href="#FakeClusterServiceClass">func FakeClusterServiceClass(name string, tags ...string) scv1beta1.ClusterServiceClass</a></dd>
+			
+				
+				<dd><a href="#FakeClusterServicePlan">func FakeClusterServicePlan(name string, planNumber int) scv1beta1.ClusterServicePlan</a></dd>
+			
+				
+				<dd><a href="#FakeKubeService">func FakeKubeService(componentName, serviceName string) corev1.Service</a></dd>
+			
+				
+				<dd><a href="#FakeKubeServices">func FakeKubeServices(componentName string) []corev1.Service</a></dd>
+			
+				
+				<dd><a href="#FakeNamespaceStatus">func FakeNamespaceStatus(status corev1.NamespacePhase, name string) *corev1.Namespace</a></dd>
+			
+				
+				<dd><a href="#FakeNamespaces">func FakeNamespaces() *corev1.NamespaceList</a></dd>
+			
+				
+				<dd><a href="#FakeOnlyOneExistingNamespace">func FakeOnlyOneExistingNamespace() *corev1.NamespaceList</a></dd>
+			
+				
+				<dd><a href="#FakeOnlyOneExistingProjects">func FakeOnlyOneExistingProjects() *v1.ProjectList</a></dd>
+			
+				
+				<dd><a href="#FakePVC">func FakePVC(pvcName, size string, labels map[string]string) *corev1.PersistentVolumeClaim</a></dd>
+			
+				
+				<dd><a href="#FakePlanInstanceCreateParameterSchemasRaw">func FakePlanInstanceCreateParameterSchemasRaw() [][]byte</a></dd>
+			
+				
+				<dd><a href="#FakePortListener">func FakePortListener(startedChan chan&lt;- bool, stopChan &lt;-chan bool, localPort int) error</a></dd>
+			
+				
+				<dd><a href="#FakeProjectStatus">func FakeProjectStatus(prjStatus corev1.NamespacePhase, prjName string) *projectv1.Project</a></dd>
+			
+				
+				<dd><a href="#FakeProjects">func FakeProjects() *v1.ProjectList</a></dd>
+			
+				
+				<dd><a href="#FakeRemoveProject">func FakeRemoveProject(project string, projects *v1.ProjectList) *v1.ProjectList</a></dd>
+			
+				
+				<dd><a href="#FakeServiceClassInstance">func FakeServiceClassInstance(serviceInstanceName string, serviceClassName string, planName string, status string) scv1beta1.ServiceInstance</a></dd>
+			
+				
+				<dd><a href="#GetFakeContainerComponent">func GetFakeContainerComponent(name string) v1.Component</a></dd>
+			
+				
+				<dd><a href="#GetFakeEnv">func GetFakeEnv(name, value string) v1.EnvVar</a></dd>
+			
+				
+				<dd><a href="#GetFakeExecRunCommands">func GetFakeExecRunCommands() []v1.Command</a></dd>
+			
+				
+				<dd><a href="#GetFakeVolumeComponent">func GetFakeVolumeComponent(name, size string) v1.Component</a></dd>
+			
+				
+				<dd><a href="#GetFakeVolumeMount">func GetFakeVolumeMount(name, path string) v1.VolumeMount</a></dd>
+			
+				
+				<dd><a href="#GetRouteListWithMultiple">func GetRouteListWithMultiple(componentName, applicationName string) *routev1.RouteList</a></dd>
+			
+				
+				<dd><a href="#GetSingleRoute">func GetSingleRoute(urlName string, port int, componentName, applicationName string) routev1.Route</a></dd>
+			
+				
+				<dd><a href="#GetSingleSecureRoute">func GetSingleSecureRoute(urlName string, port int, componentName, applicationName string) routev1.Route</a></dd>
+			
+				
+				<dd><a href="#GetTestDevfileObj">func GetTestDevfileObj(fs devfilefs.Filesystem) parser.DevfileObj</a></dd>
+			
+				
+				<dd><a href="#GetTestDevfileObjWithMultipleEndpoints">func GetTestDevfileObjWithMultipleEndpoints(fs devfilefs.Filesystem) parser.DevfileObj</a></dd>
+			
+				
+				<dd><a href="#GetTestDevfileObjWithPath">func GetTestDevfileObjWithPath(fs devfilefs.Filesystem) parser.DevfileObj</a></dd>
+			
+				
+				<dd><a href="#MkFileWithContent">func MkFileWithContent(path, content string, fs filesystem.Filesystem) (string, error)</a></dd>
+			
+				
+				<dd><a href="#RunPromptTest">func RunPromptTest(t *testing.T, test PromptTest)</a></dd>
+			
+				
+				<dd><a href="#RunTest">func RunTest(t *testing.T, procedure func(*expect.Console), test func(terminal.Stdio) error)</a></dd>
+			
+				
+				<dd><a href="#SimulateFileModifications">func SimulateFileModifications(basePath string, fileModification FileProperties) (string, error)</a></dd>
+			
+				
+				<dd><a href="#SingleValuedRawExtension">func SingleValuedRawExtension(name, value string) *runtime.RawExtension</a></dd>
+			
+				
+				<dd><a href="#Stdio">func Stdio(c *expect.Console) terminal.Stdio</a></dd>
+			
+				
+				<dd><a href="#TempMkFile">func TempMkFile(dir string, fileName string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#TempMkdir">func TempMkdir(parentDir string, newDirPrefix string) (string, error)</a></dd>
+			
+			
+				
+				<dd><a href="#FileProperties">type FileProperties</a></dd>
+				
+				
+			
+				
+				<dd><a href="#FileType">type FileType</a></dd>
+				
+				
+			
+				
+				<dd><a href="#M">type M</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ModificationType">type ModificationType</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PromptTest">type PromptTest</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/containers.go.html">containers.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/deployments.go.html">deployments.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html">devfile.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/fileutils.go.html">fileutils.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/httputils.go.html">httputils.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/pods.go.html">pods.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/projects.go.html">projects.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/pvcs.go.html">pvcs.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/routes.go.html">routes.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html">services.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/survey_ui.go.html">survey_ui.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="CreateFakeContainer">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/containers.go.html?s=129:192#L1">CreateFakeContainer</a>
+				<a class="permalink" href="#CreateFakeContainer">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateFakeContainer(containerName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Container">Container</a></pre>
+			<p>
+CreateFakeContainer creates a container with the given containerName
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateFakeContainerWithVolumeMounts">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/containers.go.html?s=355:469#L3">CreateFakeContainerWithVolumeMounts</a>
+				<a class="permalink" href="#CreateFakeContainerWithVolumeMounts">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateFakeContainerWithVolumeMounts(containerName <a href="../../../../../builtin/#string">string</a>, volumeMounts []<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#VolumeMount">VolumeMount</a>) <a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Container">Container</a></pre>
+			<p>
+CreateFakeContainerWithVolumeMounts creates a container with the given containerName and volumeMounts
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateFakeDeployment">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/deployments.go.html?s=396:456#L3">CreateFakeDeployment</a>
+				<a class="permalink" href="#CreateFakeDeployment">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateFakeDeployment(podName <a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../k8s.io/api/apps/v1/">appsv1</a>.<a href="../../../../../k8s.io/api/apps/v1/#Deployment">Deployment</a></pre>
+			<p>
+CreateFakeDeployment creates a fake deployment with the given pod name and labels
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateFakeDeploymentsWithContainers">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/deployments.go.html?s=1043:1184#L25">CreateFakeDeploymentsWithContainers</a>
+				<a class="permalink" href="#CreateFakeDeploymentsWithContainers">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateFakeDeploymentsWithContainers(podName <a href="../../../../../builtin/#string">string</a>, containers []<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Container">Container</a>, initContainers []<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Container">Container</a>) *<a href="../../../../../k8s.io/api/apps/v1/">appsv1</a>.<a href="../../../../../k8s.io/api/apps/v1/#Deployment">Deployment</a></pre>
+			<p>
+CreateFakeDeploymentsWithContainers creates a fake pod with the given pod name, container name and containers
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateFakePod">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/pods.go.html?s=260:321#L1">CreateFakePod</a>
+				<a class="permalink" href="#CreateFakePod">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateFakePod(componentName, podName <a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Pod">Pod</a></pre>
+			<p>
+CreateFakePod creates a fake pod with the given pod name and component name
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CreateFakePodWithContainers">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/pods.go.html?s=663:769#L14">CreateFakePodWithContainers</a>
+				<a class="permalink" href="#CreateFakePodWithContainers">¶</a>
+				
+				
+			</h2>
+			<pre>func CreateFakePodWithContainers(componentName, podName <a href="../../../../../builtin/#string">string</a>, containers []<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Container">Container</a>) *<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Pod">Pod</a></pre>
+			<p>
+CreateFakePodWithContainers creates a fake pod with the given pod name, container name and containers
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DevfileObjWithInternalNoneEndpoints">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=4325:4408#L169">DevfileObjWithInternalNoneEndpoints</a>
+				<a class="permalink" href="#DevfileObjWithInternalNoneEndpoints">¶</a>
+				
+				
+			</h2>
+			<pre>func DevfileObjWithInternalNoneEndpoints(fs <a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/">devfilefs</a>.<a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/#Filesystem">Filesystem</a>) <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a></pre>
+			<p>
+DevfileObjWithInternalNoneEndpoints returns a devfile object with internal endpoints for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="DevfileObjWithSecureEndpoints">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=5387:5464#L214">DevfileObjWithSecureEndpoints</a>
+				<a class="permalink" href="#DevfileObjWithSecureEndpoints">¶</a>
+				
+				
+			</h2>
+			<pre>func DevfileObjWithSecureEndpoints(fs <a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/">devfilefs</a>.<a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/#Filesystem">Filesystem</a>) <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a></pre>
+			<p>
+DevfileObjWithSecureEndpoints returns a devfile object with internal endpoints for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeClusterServiceClass">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html?s=573:660#L9">FakeClusterServiceClass</a>
+				<a class="permalink" href="#FakeClusterServiceClass">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeClusterServiceClass(name <a href="../../../../../builtin/#string">string</a>, tags ...<a href="../../../../../builtin/#string">string</a>) <a href="../../../../../github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1/">scv1beta1</a>.<a href="../../../../../github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1/#ClusterServiceClass">ClusterServiceClass</a></pre>
+			<p>
+FakeClusterServiceClass creates a fake service class with the specified name for testing purposes
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeClusterServicePlan">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html?s=1311:1396#L34">FakeClusterServicePlan</a>
+				<a class="permalink" href="#FakeClusterServicePlan">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeClusterServicePlan(name <a href="../../../../../builtin/#string">string</a>, planNumber <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1/">scv1beta1</a>.<a href="../../../../../github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1/#ClusterServicePlan">ClusterServicePlan</a></pre>
+			<p>
+FakeClusterServicePlan creates a fake plan with the specified external name and using planNumber to customize description,
+metadata and parameter values
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeKubeService">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html?s=5120:5190#L152">FakeKubeService</a>
+				<a class="permalink" href="#FakeKubeService">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeKubeService(componentName, serviceName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Service">Service</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="FakeKubeServices">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html?s=5352:5412#L161">FakeKubeServices</a>
+				<a class="permalink" href="#FakeKubeServices">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeKubeServices(componentName <a href="../../../../../builtin/#string">string</a>) []<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Service">Service</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="FakeNamespaceStatus">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/projects.go.html?s=1449:1534#L49">FakeNamespaceStatus</a>
+				<a class="permalink" href="#FakeNamespaceStatus">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeNamespaceStatus(status <a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#NamespacePhase">NamespacePhase</a>, name <a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#Namespace">Namespace</a></pre>
+			<p>
+FakeNamespaceStatus returns fake namespace status for use by mock watch on namespace
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeNamespaces">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/projects.go.html?s=836:879#L28">FakeNamespaces</a>
+				<a class="permalink" href="#FakeNamespaces">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeNamespaces() *<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#NamespaceList">NamespaceList</a></pre>
+			<p>
+FakeNamespaces returns fake namespace list for use by API mock functions for Unit tests
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeOnlyOneExistingNamespace">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/projects.go.html?s=2071:2128#L68">FakeOnlyOneExistingNamespace</a>
+				<a class="permalink" href="#FakeOnlyOneExistingNamespace">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeOnlyOneExistingNamespace() *<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#NamespaceList">NamespaceList</a></pre>
+			<p>
+FakeOnlyOneExistingNamespace similar as FakeOnlyOneExistingProjects only with Namespace
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeOnlyOneExistingProjects">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/projects.go.html?s=1838:1888#L59">FakeOnlyOneExistingProjects</a>
+				<a class="permalink" href="#FakeOnlyOneExistingProjects">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeOnlyOneExistingProjects() *<a href="../../../../../github.com/openshift/api/project/v1/">v1</a>.<a href="../../../../../github.com/openshift/api/project/v1/#ProjectList">ProjectList</a></pre>
+			<p>
+FakeOnlyOneExistingProjects returns fake projectlist with single project for use by API mock functions for Unit tests testing delete of the only available project
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakePVC">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/pvcs.go.html?s=150:240#L1">FakePVC</a>
+				<a class="permalink" href="#FakePVC">¶</a>
+				
+				
+			</h2>
+			<pre>func FakePVC(pvcName, size <a href="../../../../../builtin/#string">string</a>, labels map[<a href="../../../../../builtin/#string">string</a>]<a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#PersistentVolumeClaim">PersistentVolumeClaim</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="FakePlanInstanceCreateParameterSchemasRaw">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html?s=2551:2608#L65">FakePlanInstanceCreateParameterSchemasRaw</a>
+				<a class="permalink" href="#FakePlanInstanceCreateParameterSchemasRaw">¶</a>
+				
+				
+			</h2>
+			<pre>func FakePlanInstanceCreateParameterSchemasRaw() [][]<a href="../../../../../builtin/#byte">byte</a></pre>
+			<p>
+FakePlanInstanceCreateParameterSchemasRaw creates 2 create parameter schemas for testing purposes
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakePortListener">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/httputils.go.html?s=190:279#L4">FakePortListener</a>
+				<a class="permalink" href="#FakePortListener">¶</a>
+				
+				
+			</h2>
+			<pre>func FakePortListener(startedChan chan&lt;- <a href="../../../../../builtin/#bool">bool</a>, stopChan &lt;-chan <a href="../../../../../builtin/#bool">bool</a>, localPort <a href="../../../../../builtin/#int">int</a>) <a href="../../../../../builtin/#error">error</a></pre>
+			<p>
+FakePortListener starts a fake test server and listens on the given localPort
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeProjectStatus">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/projects.go.html?s=1125:1215#L39">FakeProjectStatus</a>
+				<a class="permalink" href="#FakeProjectStatus">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeProjectStatus(prjStatus <a href="../../../../../k8s.io/api/core/v1/">corev1</a>.<a href="../../../../../k8s.io/api/core/v1/#NamespacePhase">NamespacePhase</a>, prjName <a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../github.com/openshift/api/project/v1/">projectv1</a>.<a href="../../../../../github.com/openshift/api/project/v1/#Project">Project</a></pre>
+			<p>
+FakeProjectStatus returns fake project status for use by mock watch on project
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeProjects">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/projects.go.html?s=564:599#L17">FakeProjects</a>
+				<a class="permalink" href="#FakeProjects">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeProjects() *<a href="../../../../../github.com/openshift/api/project/v1/">v1</a>.<a href="../../../../../github.com/openshift/api/project/v1/#ProjectList">ProjectList</a></pre>
+			<p>
+FakeProjects returns fake projectlist for use by API mock functions for Unit tests
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeRemoveProject">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/projects.go.html?s=2325:2405#L77">FakeRemoveProject</a>
+				<a class="permalink" href="#FakeRemoveProject">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeRemoveProject(project <a href="../../../../../builtin/#string">string</a>, projects *<a href="../../../../../github.com/openshift/api/project/v1/">v1</a>.<a href="../../../../../github.com/openshift/api/project/v1/#ProjectList">ProjectList</a>) *<a href="../../../../../github.com/openshift/api/project/v1/">v1</a>.<a href="../../../../../github.com/openshift/api/project/v1/#ProjectList">ProjectList</a></pre>
+			<p>
+FakeRemoveProject removes the delete requested project from the list of projects passed
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FakeServiceClassInstance">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html?s=4280:4420#L124">FakeServiceClassInstance</a>
+				<a class="permalink" href="#FakeServiceClassInstance">¶</a>
+				
+				
+			</h2>
+			<pre>func FakeServiceClassInstance(serviceInstanceName <a href="../../../../../builtin/#string">string</a>, serviceClassName <a href="../../../../../builtin/#string">string</a>, planName <a href="../../../../../builtin/#string">string</a>, status <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1/">scv1beta1</a>.<a href="../../../../../github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1/#ServiceInstance">ServiceInstance</a></pre>
+			<p>
+FakeServiceClassInstance creates and returns a simple service class instance for testing purpose
+serviceInstanceName is the name of the service class instance
+serviceClassName is the name of the service class
+planName is the name of the plan
+status is the status of the service instance
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetFakeContainerComponent">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=452:508#L3">GetFakeContainerComponent</a>
+				<a class="permalink" href="#GetFakeContainerComponent">¶</a>
+				
+				
+			</h2>
+			<pre>func GetFakeContainerComponent(name <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Component">Component</a></pre>
+			<p>
+GetFakeContainerComponent returns a fake container component for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetFakeEnv">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=1900:1945#L64">GetFakeEnv</a>
+				<a class="permalink" href="#GetFakeEnv">¶</a>
+				
+				
+			</h2>
+			<pre>func GetFakeEnv(name, value <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#EnvVar">EnvVar</a></pre>
+			<p>
+GetFakeExecRunCommands returns a fake env for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetFakeExecRunCommands">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=1386:1428#L41">GetFakeExecRunCommands</a>
+				<a class="permalink" href="#GetFakeExecRunCommands">¶</a>
+				
+				
+			</h2>
+			<pre>func GetFakeExecRunCommands() []<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Command">Command</a></pre>
+			<p>
+GetFakeExecRunCommands returns fake commands for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetFakeVolumeComponent">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=1106:1165#L29">GetFakeVolumeComponent</a>
+				<a class="permalink" href="#GetFakeVolumeComponent">¶</a>
+				
+				
+			</h2>
+			<pre>func GetFakeVolumeComponent(name, size <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#Component">Component</a></pre>
+			<p>
+GetFakeVolumeComponent returns a fake volume component for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetFakeVolumeMount">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=2066:2123#L72">GetFakeVolumeMount</a>
+				<a class="permalink" href="#GetFakeVolumeMount">¶</a>
+				
+				
+			</h2>
+			<pre>func GetFakeVolumeMount(name, path <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">v1</a>.<a href="../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#VolumeMount">VolumeMount</a></pre>
+			<p>
+GetFakeVolumeMount returns a fake volume mount for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetRouteListWithMultiple">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/routes.go.html?s=522:609#L7">GetRouteListWithMultiple</a>
+				<a class="permalink" href="#GetRouteListWithMultiple">¶</a>
+				
+				
+			</h2>
+			<pre>func GetRouteListWithMultiple(componentName, applicationName <a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../github.com/openshift/api/route/v1/">routev1</a>.<a href="../../../../../github.com/openshift/api/route/v1/#RouteList">RouteList</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetSingleRoute">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/routes.go.html?s=815:913#L16">GetSingleRoute</a>
+				<a class="permalink" href="#GetSingleRoute">¶</a>
+				
+				
+			</h2>
+			<pre>func GetSingleRoute(urlName <a href="../../../../../builtin/#string">string</a>, port <a href="../../../../../builtin/#int">int</a>, componentName, applicationName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../github.com/openshift/api/route/v1/">routev1</a>.<a href="../../../../../github.com/openshift/api/route/v1/#Route">Route</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetSingleSecureRoute">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/routes.go.html?s=1636:1740#L43">GetSingleSecureRoute</a>
+				<a class="permalink" href="#GetSingleSecureRoute">¶</a>
+				
+				
+			</h2>
+			<pre>func GetSingleSecureRoute(urlName <a href="../../../../../builtin/#string">string</a>, port <a href="../../../../../builtin/#int">int</a>, componentName, applicationName <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../github.com/openshift/api/route/v1/">routev1</a>.<a href="../../../../../github.com/openshift/api/route/v1/#Route">Route</a></pre>
+			<p>
+GetSingleSecureRoute returns a secure route generated with the given parameters
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetTestDevfileObj">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=2242:2307#L80">GetTestDevfileObj</a>
+				<a class="permalink" href="#GetTestDevfileObj">¶</a>
+				
+				
+			</h2>
+			<pre>func GetTestDevfileObj(fs <a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/">devfilefs</a>.<a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/#Filesystem">Filesystem</a>) <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a></pre>
+			<p>
+GetTestDevfileObj returns a devfile object for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetTestDevfileObjWithMultipleEndpoints">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=3348:3434#L128">GetTestDevfileObjWithMultipleEndpoints</a>
+				<a class="permalink" href="#GetTestDevfileObjWithMultipleEndpoints">¶</a>
+				
+				
+			</h2>
+			<pre>func GetTestDevfileObjWithMultipleEndpoints(fs <a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/">devfilefs</a>.<a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/#Filesystem">Filesystem</a>) <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a></pre>
+			<p>
+GetTestDevfileObjWithMultipleEndpoints returns a devfile object with multiple endpoints for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetTestDevfileObjWithPath">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/devfile.go.html?s=6452:6525#L259">GetTestDevfileObjWithPath</a>
+				<a class="permalink" href="#GetTestDevfileObjWithPath">¶</a>
+				
+				
+			</h2>
+			<pre>func GetTestDevfileObjWithPath(fs <a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/">devfilefs</a>.<a href="../../../../../github.com/devfile/library/pkg/testingutil/filesystem/#Filesystem">Filesystem</a>) <a href="../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a></pre>
+			<p>
+GetTestDevfileObjWithPath returns a devfile object for testing
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MkFileWithContent">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/fileutils.go.html?s=4736:4822#L126">MkFileWithContent</a>
+				<a class="permalink" href="#MkFileWithContent">¶</a>
+				
+				
+			</h2>
+			<pre>func MkFileWithContent(path, content <a href="../../../../../builtin/#string">string</a>, fs <a href="../../../../../github.com/redhat-developer/odo/pkg/testingutil/filesystem/">filesystem</a>.<a href="../../../../../github.com/redhat-developer/odo/pkg/testingutil/filesystem/#Filesystem">Filesystem</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="RunPromptTest">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/survey_ui.go.html?s=1150:1199#L31">RunPromptTest</a>
+				<a class="permalink" href="#RunPromptTest">¶</a>
+				
+				
+			</h2>
+			<pre>func RunPromptTest(t *<a href="../../../../../testing/">testing</a>.<a href="../../../../../testing/#T">T</a>, test <a href="#PromptTest">PromptTest</a>)</pre>
+			<p>
+RunPromptTest runs the specified PromptTest in the given testing context
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RunTest">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/survey_ui.go.html?s=1584:1676#L45">RunTest</a>
+				<a class="permalink" href="#RunTest">¶</a>
+				
+				
+			</h2>
+			<pre>func RunTest(t *<a href="../../../../../testing/">testing</a>.<a href="../../../../../testing/#T">T</a>, procedure func(*expect.<a href="#Console">Console</a>), test func(<a href="../../../../../gopkg.in/AlecAivazis/survey.v1/terminal/">terminal</a>.<a href="../../../../../gopkg.in/AlecAivazis/survey.v1/terminal/#Stdio">Stdio</a>) <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+RunTest runs the given test using the specified procedure simulating the user interaction with the console
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SimulateFileModifications">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/fileutils.go.html?s=2205:2301#L66">SimulateFileModifications</a>
+				<a class="permalink" href="#SimulateFileModifications">¶</a>
+				
+				
+			</h2>
+			<pre>func SimulateFileModifications(basePath <a href="../../../../../builtin/#string">string</a>, fileModification <a href="#FileProperties">FileProperties</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+SimulateFileModifications mock function to simulate requested file/folder operation
+Parameters:
+</p>
+<pre>basePath: The parent directory for file/folder involved in desired file operation
+fileModification: Meta-data of file/folder
+</pre>
+<p>
+Returns:
+</p>
+<pre>path to file/folder involved in the operation
+error if any or nil
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="SingleValuedRawExtension">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html?s=2189:2260#L54">SingleValuedRawExtension</a>
+				<a class="permalink" href="#SingleValuedRawExtension">¶</a>
+				
+				
+			</h2>
+			<pre>func SingleValuedRawExtension(name, value <a href="../../../../../builtin/#string">string</a>) *<a href="../../../../../k8s.io/apimachinery/pkg/runtime/">runtime</a>.<a href="../../../../../k8s.io/apimachinery/pkg/runtime/#RawExtension">RawExtension</a></pre>
+			<p>
+SingleValuedRawExtension creates a simple, single valued (name=value), raw extension
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Stdio">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/survey_ui.go.html?s=647:691#L14">Stdio</a>
+				<a class="permalink" href="#Stdio">¶</a>
+				
+				
+			</h2>
+			<pre>func Stdio(c *expect.<a href="#Console">Console</a>) <a href="../../../../../gopkg.in/AlecAivazis/survey.v1/terminal/">terminal</a>.<a href="../../../../../gopkg.in/AlecAivazis/survey.v1/terminal/#Stdio">Stdio</a></pre>
+			<p>
+Stdio converts an expect.Console into a survey terminal.Stdio
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="TempMkFile">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/fileutils.go.html?s=567:627#L15">TempMkFile</a>
+				<a class="permalink" href="#TempMkFile">¶</a>
+				
+				
+			</h2>
+			<pre>func TempMkFile(dir <a href="../../../../../builtin/#string">string</a>, fileName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+TempMkFile creates a temporary file.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="TempMkdir">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/fileutils.go.html?s=208:277#L5">TempMkdir</a>
+				<a class="permalink" href="#TempMkdir">¶</a>
+				
+				
+			</h2>
+			<pre>func TempMkdir(parentDir <a href="../../../../../builtin/#string">string</a>, newDirPrefix <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+			<p>
+TempMkdir creates a temporary directory
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="FileProperties">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/fileutils.go.html?s=1744:1886#L52">FileProperties</a>
+				<a class="permalink" href="#FileProperties">¶</a>
+				
+				
+			</h2>
+			<p>
+FileProperties to contain meta-data of a file like, file/folder name, file/folder parent dir, file type and desired file modification type
+</p>
+
+			<pre>type FileProperties struct {
+<span id="FileProperties.FilePath"></span>    FilePath         <a href="../../../../../builtin/#string">string</a>
+<span id="FileProperties.FileParent"></span>    FileParent       <a href="../../../../../builtin/#string">string</a>
+<span id="FileProperties.FileType"></span>    FileType         <a href="#FileType">FileType</a>
+<span id="FileProperties.ModificationType"></span>    ModificationType <a href="#ModificationType">ModificationType</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FileType">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/fileutils.go.html?s=941:958#L28">FileType</a>
+				<a class="permalink" href="#FileType">¶</a>
+				
+				
+			</h2>
+			<p>
+FileType custom type to indicate type of file
+</p>
+
+			<pre>type FileType <a href="../../../../../builtin/#int">int</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// RegularFile enum to represent regular file</span>
+    <span id="RegularFile">RegularFile</span> <a href="#FileType">FileType</a> = 0
+    <span class="comment">// Directory enum to represent directory</span>
+    <span id="Directory">Directory</span> <a href="#FileType">FileType</a> = 1
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="M">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/services.go.html?s=441:470#L6">M</a>
+				<a class="permalink" href="#M">¶</a>
+				
+				
+			</h2>
+			<p>
+M is an alias for map[string]interface{}
+</p>
+
+			<pre>type M map[<a href="../../../../../builtin/#string">string</a>]interface{}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ModificationType">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/fileutils.go.html?s=1177:1205#L38">ModificationType</a>
+				<a class="permalink" href="#ModificationType">¶</a>
+				
+				
+			</h2>
+			<p>
+ModificationType custom type to indicate file modification type
+</p>
+
+			<pre>type ModificationType <a href="../../../../../builtin/#string">string</a></pre>
+
+			
+				
+				<pre>const (
+    <span class="comment">// UPDATE enum representing update operation on a file</span>
+    <span id="UPDATE">UPDATE</span> <a href="#ModificationType">ModificationType</a> = &#34;update&#34;
+    <span class="comment">// CREATE enum representing create operation for a file/folder</span>
+    <span id="CREATE">CREATE</span> <a href="#ModificationType">ModificationType</a> = &#34;create&#34;
+    <span class="comment">// DELETE enum representing delete operation for a file/folder</span>
+    <span id="DELETE">DELETE</span> <a href="#ModificationType">ModificationType</a> = &#34;delete&#34;
+    <span class="comment">// APPEND enum representing append operation on a file</span>
+    <span id="APPEND">APPEND</span> <a href="#ModificationType">ModificationType</a> = &#34;append&#34;
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PromptTest">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/testingutil/survey_ui.go.html?s=809:1072#L19">PromptTest</a>
+				<a class="permalink" href="#PromptTest">¶</a>
+				
+				
+			</h2>
+			<p>
+PromptTest encapsulates a survey prompt test
+</p>
+
+			<pre>type PromptTest struct {
+<span id="PromptTest.Name"></span>    <span class="comment">// Name of the test</span>
+    Name <a href="../../../../../builtin/#string">string</a>
+<span id="PromptTest.Prompt"></span>    <span class="comment">// Prompt to test</span>
+    Prompt survey.<a href="#Prompt">Prompt</a>
+<span id="PromptTest.Procedure"></span>    <span class="comment">// Procedure defines the list of interaction with the console simulating user actions</span>
+    Procedure func(*expect.<a href="#Console">Console</a>)
+<span id="PromptTest.Expected"></span>    <span class="comment">// Expected result</span>
+    Expected interface{}
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="filesystem/">filesystem</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

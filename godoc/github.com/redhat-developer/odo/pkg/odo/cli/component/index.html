@@ -1,0 +1,2956 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>component - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package component
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/component" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/component</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#AddComponentFlag">func AddComponentFlag(cmd *cobra.Command)</a></dd>
+			
+				
+				<dd><a href="#GatherName">func GatherName(devObj parser.DevfileObj, devfilePath string) (string, error)</a></dd>
+			
+				
+				<dd><a href="#HumanReadableOutput">func HumanReadableOutput(wr io.Writer, o component.CombinedComponentList)</a></dd>
+			
+				
+				<dd><a href="#HumanReadableOutputInPath">func HumanReadableOutputInPath(wr io.Writer, o component.CombinedComponentList)</a></dd>
+			
+				
+				<dd><a href="#NewCmdComponent">func NewCmdComponent(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdCreate">func NewCmdCreate(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdDelete">func NewCmdDelete(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdDescribe">func NewCmdDescribe(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdExec">func NewCmdExec(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdGet">func NewCmdGet(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdLink">func NewCmdLink(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdList">func NewCmdList(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdLog">func NewCmdLog(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdPush">func NewCmdPush(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdStatus">func NewCmdStatus(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdTest">func NewCmdTest(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdUnlink">func NewCmdUnlink(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdWatch">func NewCmdWatch(name, fullName string) *cobra.Command</a></dd>
+			
+			
+				
+				<dd><a href="#CommonPushOptions">type CommonPushOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewCommonPushOptions">func NewCommonPushOptions(prjClient project.Client, prefClient preference.Client) *CommonPushOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#CommonPushOptions.AddContextFlag">func (cpo *CommonPushOptions) AddContextFlag(cmd *cobra.Command)</a></dd>
+				
+					
+					<dd>    <a href="#CommonPushOptions.InitEnvInfoFromContext">func (cpo *CommonPushOptions) InitEnvInfoFromContext() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#CommonPushOptions.ResolveProject">func (cpo *CommonPushOptions) ResolveProject(prjName string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#CommonPushOptions.ResolveSrcAndConfigFlags">func (cpo *CommonPushOptions) ResolveSrcAndConfigFlags()</a></dd>
+				
+			
+				
+				<dd><a href="#ComponentOptions">type ComponentOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ComponentOptions.Complete">func (co *ComponentOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#CreateMethod">type CreateMethod</a></dd>
+				
+				
+			
+				
+				<dd><a href="#CreateOptions">type CreateOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewCreateOptions">func NewCreateOptions(prjClient project.Client, prefClient preference.Client) *CreateOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#CreateOptions.Complete">func (co *CreateOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#CreateOptions.DevfileJSON">func (co *CreateOptions) DevfileJSON() error</a></dd>
+				
+					
+					<dd>    <a href="#CreateOptions.Run">func (co *CreateOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#CreateOptions.Validate">func (co *CreateOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#DeleteOptions">type DeleteOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewDeleteOptions">func NewDeleteOptions() *DeleteOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#DeleteOptions.Complete">func (do *DeleteOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.DevfileComponentDelete">func (do *DeleteOptions) DevfileComponentDelete() error</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.DevfileUnDeploy">func (do *DeleteOptions) DevfileUnDeploy() error</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.Run">func (do *DeleteOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.Validate">func (do *DeleteOptions) Validate() error</a></dd>
+				
+			
+				
+				<dd><a href="#DescribeOptions">type DescribeOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewDescribeOptions">func NewDescribeOptions() *DescribeOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#DescribeOptions.Complete">func (do *DescribeOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DescribeOptions.Run">func (do *DescribeOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DescribeOptions.Validate">func (do *DescribeOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#DevfileExistsDevfileFlagError">type DevfileExistsDevfileFlagError</a></dd>
+				
+				
+					
+					<dd>    <a href="#DevfileExistsDevfileFlagError.Error">func (e *DevfileExistsDevfileFlagError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#DevfileExistsExtraArgsError">type DevfileExistsExtraArgsError</a></dd>
+				
+				
+					
+					<dd>    <a href="#DevfileExistsExtraArgsError.Error">func (e *DevfileExistsExtraArgsError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#DevfileFlagWithRegistryFlagError">type DevfileFlagWithRegistryFlagError</a></dd>
+				
+				
+					
+					<dd>    <a href="#DevfileFlagWithRegistryFlagError.Error">func (e *DevfileFlagWithRegistryFlagError) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#DevfileMetadata">type DevfileMetadata</a></dd>
+				
+				
+			
+				
+				<dd><a href="#DirectCreateMethod">type DirectCreateMethod</a></dd>
+				
+				
+					
+					<dd>    <a href="#DirectCreateMethod.CheckConflicts">func (dcm DirectCreateMethod) CheckConflicts(co *CreateOptions, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#DirectCreateMethod.FetchDevfileAndCreateComponent">func (dcm DirectCreateMethod) FetchDevfileAndCreateComponent(co *CreateOptions, cmdline cmdline.Cmdline, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#DirectCreateMethod.Rollback">func (dcm DirectCreateMethod) Rollback(devfile, componentContext string)</a></dd>
+				
+			
+				
+				<dd><a href="#ExecOptions">type ExecOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewExecOptions">func NewExecOptions() *ExecOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ExecOptions.Complete">func (eo *ExecOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ExecOptions.DevfileComponentExec">func (eo *ExecOptions) DevfileComponentExec(command []string) error</a></dd>
+				
+					
+					<dd>    <a href="#ExecOptions.Run">func (eo *ExecOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ExecOptions.Validate">func (eo *ExecOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#FileCreateMethod">type FileCreateMethod</a></dd>
+				
+				
+					
+					<dd>    <a href="#FileCreateMethod.CheckConflicts">func (fcm FileCreateMethod) CheckConflicts(co *CreateOptions, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#FileCreateMethod.FetchDevfileAndCreateComponent">func (fcm FileCreateMethod) FetchDevfileAndCreateComponent(co *CreateOptions, cmdline cmdline.Cmdline, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#FileCreateMethod.Rollback">func (fcm FileCreateMethod) Rollback(devfile, componentContext string)</a></dd>
+				
+			
+				
+				<dd><a href="#GetOptions">type GetOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewGetOptions">func NewGetOptions() *GetOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#GetOptions.Complete">func (gto *GetOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#GetOptions.Run">func (gto *GetOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#GetOptions.Validate">func (gto *GetOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#HTTPCreateMethod">type HTTPCreateMethod</a></dd>
+				
+				
+					
+					<dd>    <a href="#HTTPCreateMethod.CheckConflicts">func (hcm HTTPCreateMethod) CheckConflicts(co *CreateOptions, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#HTTPCreateMethod.FetchDevfileAndCreateComponent">func (hcm HTTPCreateMethod) FetchDevfileAndCreateComponent(co *CreateOptions, cmdline cmdline.Cmdline, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#HTTPCreateMethod.Rollback">func (hcm HTTPCreateMethod) Rollback(devfile, componentContext string)</a></dd>
+				
+			
+				
+				<dd><a href="#InteractiveCreateMethod">type InteractiveCreateMethod</a></dd>
+				
+				
+					
+					<dd>    <a href="#InteractiveCreateMethod.CheckConflicts">func (icm InteractiveCreateMethod) CheckConflicts(co *CreateOptions, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#InteractiveCreateMethod.FetchDevfileAndCreateComponent">func (icm InteractiveCreateMethod) FetchDevfileAndCreateComponent(co *CreateOptions, cmdline cmdline.Cmdline, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#InteractiveCreateMethod.Rollback">func (icm InteractiveCreateMethod) Rollback(devfile, componentContext string)</a></dd>
+				
+			
+				
+				<dd><a href="#LinkOptions">type LinkOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewLinkOptions">func NewLinkOptions() *LinkOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#LinkOptions.Complete">func (o *LinkOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#LinkOptions.Run">func (o *LinkOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#LinkOptions.Validate">func (o *LinkOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#ListOptions">type ListOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewListOptions">func NewListOptions() *ListOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ListOptions.Complete">func (lo *ListOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ListOptions.Run">func (lo *ListOptions) Run() error</a></dd>
+				
+					
+					<dd>    <a href="#ListOptions.Validate">func (lo *ListOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#LogOptions">type LogOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewLogOptions">func NewLogOptions() *LogOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#LogOptions.Complete">func (lo *LogOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#LogOptions.DevfileComponentLog">func (lo LogOptions) DevfileComponentLog() error</a></dd>
+				
+					
+					<dd>    <a href="#LogOptions.Run">func (lo *LogOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#LogOptions.Validate">func (lo *LogOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#PushOptions">type PushOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewPushOptions">func NewPushOptions(prjClient project.Client, prefClient preference.Client) *PushOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#PushOptions.Complete">func (po *PushOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#PushOptions.CompleteDevfilePath">func (po *PushOptions) CompleteDevfilePath()</a></dd>
+				
+					
+					<dd>    <a href="#PushOptions.DevfilePush">func (po *PushOptions) DevfilePush() error</a></dd>
+				
+					
+					<dd>    <a href="#PushOptions.GetComponentContext">func (po *PushOptions) GetComponentContext() string</a></dd>
+				
+					
+					<dd>    <a href="#PushOptions.Run">func (po *PushOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#PushOptions.Validate">func (po *PushOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#StatusOptions">type StatusOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewStatusOptions">func NewStatusOptions() *StatusOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#StatusOptions.Complete">func (so *StatusOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#StatusOptions.Run">func (so *StatusOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#StatusOptions.Validate">func (so *StatusOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#TestOptions">type TestOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewTestOptions">func NewTestOptions() *TestOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#TestOptions.Complete">func (to *TestOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#TestOptions.Run">func (to *TestOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#TestOptions.RunTestCommand">func (to *TestOptions) RunTestCommand() error</a></dd>
+				
+					
+					<dd>    <a href="#TestOptions.Validate">func (to *TestOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#UnlinkOptions">type UnlinkOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewUnlinkOptions">func NewUnlinkOptions() *UnlinkOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#UnlinkOptions.Complete">func (o *UnlinkOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#UnlinkOptions.Run">func (o *UnlinkOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#UnlinkOptions.Validate">func (o *UnlinkOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#UserCreatedDevfileMethod">type UserCreatedDevfileMethod</a></dd>
+				
+				
+					
+					<dd>    <a href="#UserCreatedDevfileMethod.CheckConflicts">func (ucdm UserCreatedDevfileMethod) CheckConflicts(co *CreateOptions, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#UserCreatedDevfileMethod.FetchDevfileAndCreateComponent">func (ucdm UserCreatedDevfileMethod) FetchDevfileAndCreateComponent(co *CreateOptions, cmdline cmdline.Cmdline, args []string) error</a></dd>
+				
+					
+					<dd>    <a href="#UserCreatedDevfileMethod.Rollback">func (ucdm UserCreatedDevfileMethod) Rollback(devfile, componentContext string)</a></dd>
+				
+			
+				
+				<dd><a href="#WatchOptions">type WatchOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewWatchOptions">func NewWatchOptions() *WatchOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#WatchOptions.Complete">func (wo *WatchOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#WatchOptions.Run">func (wo *WatchOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#WatchOptions.Validate">func (wo *WatchOptions) Validate() (err error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_link.go.html">common_link.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_push.go.html">common_push.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/component.go.html">component.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create.go.html">create.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_helpers.go.html">create_helpers.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html">create_methods.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/delete.go.html">delete.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/describe.go.html">describe.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/devfile.go.html">devfile.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/errors.go.html">errors.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/exec.go.html">exec.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/get.go.html">get.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/interactive_create.go.html">interactive_create.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/link.go.html">link.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/list.go.html">list.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/log.go.html">log.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/push.go.html">push.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/status.go.html">status.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/test.go.html">test.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/unlink.go.html">unlink.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/watch.go.html">watch.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+CreateRecommendedCommandName is the recommended watch command name
+</p>
+
+				<pre>const <span id="CreateRecommendedCommandName">CreateRecommendedCommandName</span> = &#34;create&#34;</pre>
+			
+				<p>
+DeleteRecommendedCommandName is the recommended delete command name
+</p>
+
+				<pre>const <span id="DeleteRecommendedCommandName">DeleteRecommendedCommandName</span> = &#34;delete&#34;</pre>
+			
+				<p>
+DescribeRecommendedCommandName is the recommended describe command name
+</p>
+
+				<pre>const <span id="DescribeRecommendedCommandName">DescribeRecommendedCommandName</span> = &#34;describe&#34;</pre>
+			
+				<p>
+ExecRecommendedCommandName is the recommended exec command name
+</p>
+
+				<pre>const <span id="ExecRecommendedCommandName">ExecRecommendedCommandName</span> = &#34;exec&#34;</pre>
+			
+				<p>
+GetRecommendedCommandName is the recommended get command name
+</p>
+
+				<pre>const <span id="GetRecommendedCommandName">GetRecommendedCommandName</span> = &#34;get&#34;</pre>
+			
+				<p>
+LinkRecommendedCommandName is the recommended link command name
+</p>
+
+				<pre>const <span id="LinkRecommendedCommandName">LinkRecommendedCommandName</span> = &#34;link&#34;</pre>
+			
+				<p>
+ListRecommendedCommandName is the recommended watch command name
+</p>
+
+				<pre>const <span id="ListRecommendedCommandName">ListRecommendedCommandName</span> = &#34;list&#34;</pre>
+			
+				<p>
+LocalDirectoryDefaultLocation is the default location of where --local files should always be..
+since the application will always be in the same directory as `.odo`, we will always set this as: ./
+</p>
+
+				<pre>const <span id="LocalDirectoryDefaultLocation">LocalDirectoryDefaultLocation</span> = &#34;./&#34;</pre>
+			
+				<p>
+LogRecommendedCommandName is the recommended watch command name
+</p>
+
+				<pre>const <span id="LogRecommendedCommandName">LogRecommendedCommandName</span> = &#34;log&#34;</pre>
+			
+				<p>
+PushRecommendedCommandName is the recommended push command name
+</p>
+
+				<pre>const <span id="PushRecommendedCommandName">PushRecommendedCommandName</span> = &#34;push&#34;</pre>
+			
+				<p>
+RecommendedCommandName is the recommended component command name
+</p>
+
+				<pre>const <span id="RecommendedCommandName">RecommendedCommandName</span> = &#34;component&#34;</pre>
+			
+				<p>
+StatusRecommendedCommandName is the recommended watch command name
+</p>
+
+				<pre>const <span id="StatusRecommendedCommandName">StatusRecommendedCommandName</span> = &#34;status&#34;</pre>
+			
+				<p>
+TestRecommendedCommandName is the recommended test command name
+</p>
+
+				<pre>const <span id="TestRecommendedCommandName">TestRecommendedCommandName</span> = &#34;test&#34;</pre>
+			
+				<p>
+UnlinkRecommendedCommandName is the recommended unlink command name
+</p>
+
+				<pre>const <span id="UnlinkRecommendedCommandName">UnlinkRecommendedCommandName</span> = &#34;unlink&#34;</pre>
+			
+				<p>
+WatchRecommendedCommandName is the recommended watch command name
+</p>
+
+				<pre>const <span id="WatchRecommendedCommandName">WatchRecommendedCommandName</span> = &#34;watch&#34;</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span id="EnvYAMLFilePath">EnvYAMLFilePath</span> = <a href="../../../../../../../path/filepath/">filepath</a>.<a href="../../../../../../../path/filepath/#Join">Join</a>(&#34;.odo&#34;, &#34;env&#34;, &#34;env.yaml&#34;)
+    <span id="EnvDirectory">EnvDirectory</span>    = <a href="../../../../../../../path/filepath/">filepath</a>.<a href="../../../../../../../path/filepath/#Join">Join</a>(&#34;.odo&#34;, &#34;env&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="AddComponentFlag">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/component.go.html?s=3713:3754#L73">AddComponentFlag</a>
+				<a class="permalink" href="#AddComponentFlag">¶</a>
+				
+				
+			</h2>
+			<pre>func AddComponentFlag(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>)</pre>
+			<p>
+AddComponentFlag adds a `component` flag to the given cobra command
+Also adds a completion handler to the flag
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GatherName">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_push.go.html?s=3764:3841#L116">GatherName</a>
+				<a class="permalink" href="#GatherName">¶</a>
+				
+				
+			</h2>
+			<pre>func GatherName(devObj <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, devfilePath <a href="../../../../../../../builtin/#string">string</a>) (<a href="../../../../../../../builtin/#string">string</a>, <a href="../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GatherName parses the Devfile and retrieves an appropriate name in two ways.
+1. If metadata.name exists, we use it
+2. If metadata.name does NOT exist, we use the folder name where the devfile.yaml is located
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HumanReadableOutput">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/list.go.html?s=8157:8230#L258">HumanReadableOutput</a>
+				<a class="permalink" href="#HumanReadableOutput">¶</a>
+				
+				
+			</h2>
+			<pre>func HumanReadableOutput(wr <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, o <a href="../../../../../../../github.com/redhat-developer/odo/pkg/component/">component</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/component/#CombinedComponentList">CombinedComponentList</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HumanReadableOutputInPath">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/list.go.html?s=7498:7577#L238">HumanReadableOutputInPath</a>
+				<a class="permalink" href="#HumanReadableOutputInPath">¶</a>
+				
+				
+			</h2>
+			<pre>func HumanReadableOutputInPath(wr <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, o <a href="../../../../../../../github.com/redhat-developer/odo/pkg/component/">component</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/component/#CombinedComponentList">CombinedComponentList</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdComponent">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/component.go.html?s=1127:1185#L31">NewCmdComponent</a>
+				<a class="permalink" href="#NewCmdComponent">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdComponent(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdComponent implements the component odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdCreate">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create.go.html?s=11701:11756#L336">NewCmdCreate</a>
+				<a class="permalink" href="#NewCmdCreate">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdCreate(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdCreate implements the create odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdDelete">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/delete.go.html?s=6432:6487#L211">NewCmdDelete</a>
+				<a class="permalink" href="#NewCmdDelete">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdDelete(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdDelete implements the delete odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdDescribe">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/describe.go.html?s=2385:2442#L81">NewCmdDescribe</a>
+				<a class="permalink" href="#NewCmdDescribe">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdDescribe(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdDescribe implements the describe odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdExec">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/exec.go.html?s=2076:2129#L62">NewCmdExec</a>
+				<a class="permalink" href="#NewCmdExec">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdExec(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdExec implements the exec odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdGet">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/get.go.html?s=1844:1896#L66">NewCmdGet</a>
+				<a class="permalink" href="#NewCmdGet">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdGet(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdGet implements odo component get command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdLink">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/link.go.html?s=3256:3309#L93">NewCmdLink</a>
+				<a class="permalink" href="#NewCmdLink">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdLink(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdLink implements the link odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdList">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/list.go.html?s=6297:6350#L209">NewCmdList</a>
+				<a class="permalink" href="#NewCmdList">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdList(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdList implements the list odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdLog">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/log.go.html?s=1570:1622#L51">NewCmdLog</a>
+				<a class="permalink" href="#NewCmdLog">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdLog(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdLog implements the log odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdPush">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/push.go.html?s=7437:7490#L222">NewCmdPush</a>
+				<a class="permalink" href="#NewCmdPush">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdPush(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdPush implements the push odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdStatus">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/status.go.html?s=2892:2947#L91">NewCmdStatus</a>
+				<a class="permalink" href="#NewCmdStatus">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdStatus(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdStatus implements the status odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdTest">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/test.go.html?s=2119:2172#L68">NewCmdTest</a>
+				<a class="permalink" href="#NewCmdTest">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdTest(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdTest implements the odo test command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdUnlink">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/unlink.go.html?s=2170:2225#L69">NewCmdUnlink</a>
+				<a class="permalink" href="#NewCmdUnlink">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdUnlink(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdUnlink implements the link odo command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdWatch">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/watch.go.html?s=5261:5315#L137">NewCmdWatch</a>
+				<a class="permalink" href="#NewCmdWatch">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdWatch(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdWatch implements the watch odo command
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CommonPushOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_push.go.html?s=630:963#L12">CommonPushOptions</a>
+				<a class="permalink" href="#CommonPushOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+CommonPushOptions has data needed for all pushes
+</p>
+
+			<pre>type CommonPushOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+
+<span id="CommonPushOptions.EnvSpecificInfo"></span>    EnvSpecificInfo *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/envinfo/">envinfo</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/envinfo/#EnvSpecificInfo">EnvSpecificInfo</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCommonPushOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_push.go.html?s=1029:1129#L31">NewCommonPushOptions</a>
+					<a class="permalink" href="#NewCommonPushOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewCommonPushOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>, prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#CommonPushOptions">CommonPushOptions</a></pre>
+				<p>
+NewCommonPushOptions instantiates a commonPushOptions object
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CommonPushOptions.AddContextFlag">func (*CommonPushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_push.go.html?s=1583:1647#L48">AddContextFlag</a>
+					<a class="permalink" href="#CommonPushOptions.AddContextFlag">¶</a>
+					
+					
+				</h3>
+				<pre>func (cpo *<a href="#CommonPushOptions">CommonPushOptions</a>) AddContextFlag(cmd *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a>)</pre>
+				<p>
+AddContextFlag adds the context flag to specified command storing value of flag in options.componentContext
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CommonPushOptions.InitEnvInfoFromContext">func (*CommonPushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_push.go.html?s=1279:1345#L39">InitEnvInfoFromContext</a>
+					<a class="permalink" href="#CommonPushOptions.InitEnvInfoFromContext">¶</a>
+					
+					
+				</h3>
+				<pre>func (cpo *<a href="#CommonPushOptions">CommonPushOptions</a>) InitEnvInfoFromContext() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+InitEnvInfoFromContext initializes envinfo from the context
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CommonPushOptions.ResolveProject">func (*CommonPushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_push.go.html?s=2071:2143#L62">ResolveProject</a>
+					<a class="permalink" href="#CommonPushOptions.ResolveProject">¶</a>
+					
+					
+				</h3>
+				<pre>func (cpo *<a href="#CommonPushOptions">CommonPushOptions</a>) ResolveProject(prjName <a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ResolveProject completes the push options as needed
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CommonPushOptions.ResolveSrcAndConfigFlags">func (*CommonPushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_push.go.html?s=1766:1822#L53">ResolveSrcAndConfigFlags</a>
+					<a class="permalink" href="#CommonPushOptions.ResolveSrcAndConfigFlags">¶</a>
+					
+					
+				</h3>
+				<pre>func (cpo *<a href="#CommonPushOptions">CommonPushOptions</a>) ResolveSrcAndConfigFlags()</pre>
+				<p>
+ResolveSrcAndConfigFlags sets all pushes if none is asked
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ComponentOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/component.go.html?s=509:591#L8">ComponentOptions</a>
+				<a class="permalink" href="#ComponentOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ComponentOptions encapsulates basic component options
+</p>
+
+			<pre>type ComponentOptions struct {
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ComponentOptions.Complete">func (*ComponentOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/component.go.html?s=633:721#L14">Complete</a>
+					<a class="permalink" href="#ComponentOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (co *<a href="#ComponentOptions">ComponentOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes component options
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CreateMethod">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=743:1362#L18">CreateMethod</a>
+				<a class="permalink" href="#CreateMethod">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type CreateMethod interface {
+    <span class="comment">// CheckConflicts checks for conflicts specific to a create method</span>
+    CheckConflicts(co *<a href="#CreateOptions">CreateOptions</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a>
+    <span class="comment">// FetchDevfileAndCreateComponent fetches devfile from registry, or a remote location, or a local file system, and creates a component</span>
+    <span class="comment">// This method also updates the CreateOptions structure with co.devfileMetadata</span>
+    FetchDevfileAndCreateComponent(co *<a href="#CreateOptions">CreateOptions</a>, cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a>
+    <span class="comment">// Rollback cleans the component context of any files that were created by odo (devfile.yaml, .odo e.g.)</span>
+    Rollback(devfile, componentContext <a href="../../../../../../../builtin/#string">string</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="CreateOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create.go.html?s=1286:1696#L27">CreateOptions</a>
+				<a class="permalink" href="#CreateOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+CreateOptions encapsulates create options
+</p>
+
+			<pre>type CreateOptions struct {
+    <span class="comment">// Push context</span>
+    *<a href="#PushOptions">PushOptions</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCreateOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create.go.html?s=3868:3960#L109">NewCreateOptions</a>
+					<a class="permalink" href="#NewCreateOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewCreateOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>, prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#CreateOptions">CreateOptions</a></pre>
+				<p>
+NewCreateOptions returns new instance of CreateOptions
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CreateOptions.Complete">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create.go.html?s=4047:4132#L115">Complete</a>
+					<a class="permalink" href="#CreateOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (co *<a href="#CreateOptions">CreateOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CreateOptions.DevfileJSON">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_helpers.go.html?s=1368:1412#L34">DevfileJSON</a>
+					<a class="permalink" href="#CreateOptions.DevfileJSON">¶</a>
+					
+					
+				</h3>
+				<pre>func (co *<a href="#CreateOptions">CreateOptions</a>) DevfileJSON() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+DevfileJSON creates the full json description of a devfile component is prints it
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CreateOptions.Run">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create.go.html?s=9144:9186#L250">Run</a>
+					<a class="permalink" href="#CreateOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (co *<a href="#CreateOptions">CreateOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CreateOptions.Validate">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create.go.html?s=8308:8355#L220">Validate</a>
+					<a class="permalink" href="#CreateOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (co *<a href="#CreateOptions">CreateOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DeleteOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/delete.go.html?s=1828:2019#L40">DeleteOptions</a>
+				<a class="permalink" href="#DeleteOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+DeleteOptions is a container to attach complete, validate and run pattern
+</p>
+
+			<pre>type DeleteOptions struct {
+    <span class="comment">// Component Context</span>
+    *<a href="#ComponentOptions">ComponentOptions</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDeleteOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/delete.go.html?s=2079:2117#L54">NewDeleteOptions</a>
+					<a class="permalink" href="#NewDeleteOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewDeleteOptions() *<a href="#DeleteOptions">DeleteOptions</a></pre>
+				<p>
+NewDeleteOptions returns new instance of DeleteOptions
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="DeleteOptions.Complete">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/delete.go.html?s=2222:2307#L61">Complete</a>
+					<a class="permalink" href="#DeleteOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (do *<a href="#DeleteOptions">DeleteOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes log args
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.DevfileComponentDelete">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/devfile.go.html?s=5297:5352#L181">DevfileComponentDelete</a>
+					<a class="permalink" href="#DeleteOptions.DevfileComponentDelete">¶</a>
+					
+					
+				</h3>
+				<pre>func (do *<a href="#DeleteOptions">DeleteOptions</a>) DevfileComponentDelete() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+DevfileComponentDelete deletes the devfile component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.DevfileUnDeploy">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/devfile.go.html?s=4762:4810#L160">DevfileUnDeploy</a>
+					<a class="permalink" href="#DeleteOptions.DevfileUnDeploy">¶</a>
+					
+					
+				</h3>
+				<pre>func (do *<a href="#DeleteOptions">DeleteOptions</a>) DevfileUnDeploy() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+DevfileUnDeploy undeploys the devfile kubernetes components
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.Run">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/delete.go.html?s=2615:2657#L72">Run</a>
+					<a class="permalink" href="#DeleteOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (do *<a href="#DeleteOptions">DeleteOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run has the logic to perform the required actions as part of command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.Validate">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/delete.go.html?s=2484:2525#L67">Validate</a>
+					<a class="permalink" href="#DeleteOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (do *<a href="#DeleteOptions">DeleteOptions</a>) Validate() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Validate validates the list parameters
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DescribeOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/describe.go.html?s=927:1030#L21">DescribeOptions</a>
+				<a class="permalink" href="#DescribeOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+DescribeOptions is a dummy container to attach complete, validate and run pattern
+</p>
+
+			<pre>type DescribeOptions struct {
+    <span class="comment">// Component context</span>
+    *<a href="#ComponentOptions">ComponentOptions</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDescribeOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/describe.go.html?s=1090:1132#L30">NewDescribeOptions</a>
+					<a class="permalink" href="#NewDescribeOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewDescribeOptions() *<a href="#DescribeOptions">DescribeOptions</a></pre>
+				<p>
+NewDescribeOptions returns new instance of ListOptions
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="DescribeOptions.Complete">func (*DescribeOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/describe.go.html?s=1244:1331#L37">Complete</a>
+					<a class="permalink" href="#DescribeOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (do *<a href="#DescribeOptions">DescribeOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes describe args
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DescribeOptions.Run">func (*DescribeOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/describe.go.html?s=1886:1930#L62">Run</a>
+					<a class="permalink" href="#DescribeOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (do *<a href="#DescribeOptions">DescribeOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run has the logic to perform the required actions as part of command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DescribeOptions.Validate">func (*DescribeOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/describe.go.html?s=1580:1629#L52">Validate</a>
+					<a class="permalink" href="#DescribeOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (do *<a href="#DescribeOptions">DescribeOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the describe parameters
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DevfileExistsDevfileFlagError">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/errors.go.html?s=33:76#L1">DevfileExistsDevfileFlagError</a>
+				<a class="permalink" href="#DevfileExistsDevfileFlagError">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type DevfileExistsDevfileFlagError struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DevfileExistsDevfileFlagError.Error">func (*DevfileExistsDevfileFlagError) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/errors.go.html?s=78:132#L1">Error</a>
+					<a class="permalink" href="#DevfileExistsDevfileFlagError.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="#DevfileExistsDevfileFlagError">DevfileExistsDevfileFlagError</a>) Error() <a href="../../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DevfileExistsExtraArgsError">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/errors.go.html?s=231:284#L1">DevfileExistsExtraArgsError</a>
+				<a class="permalink" href="#DevfileExistsExtraArgsError">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type DevfileExistsExtraArgsError struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DevfileExistsExtraArgsError.Error">func (*DevfileExistsExtraArgsError) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/errors.go.html?s=286:338#L5">Error</a>
+					<a class="permalink" href="#DevfileExistsExtraArgsError.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="#DevfileExistsExtraArgsError">DevfileExistsExtraArgsError</a>) Error() <a href="../../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DevfileFlagWithRegistryFlagError">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/errors.go.html?s=444:490#L9">DevfileFlagWithRegistryFlagError</a>
+				<a class="permalink" href="#DevfileFlagWithRegistryFlagError">¶</a>
+				
+				
+			</h2>
+			
+			<pre>type DevfileFlagWithRegistryFlagError struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DevfileFlagWithRegistryFlagError.Error">func (*DevfileFlagWithRegistryFlagError) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/errors.go.html?s=492:549#L11">Error</a>
+					<a class="permalink" href="#DevfileFlagWithRegistryFlagError.Error">¶</a>
+					
+					
+				</h3>
+				<pre>func (e *<a href="#DevfileFlagWithRegistryFlagError">DevfileFlagWithRegistryFlagError</a>) Error() <a href="../../../../../../../builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DevfileMetadata">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create.go.html?s=1890:2204#L55">DevfileMetadata</a>
+				<a class="permalink" href="#DevfileMetadata">¶</a>
+				
+				
+			</h2>
+			<p>
+DevfileMetadata includes devfile component metadata
+</p>
+
+			<pre>type DevfileMetadata struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DirectCreateMethod">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=3887:3919#L90">DirectCreateMethod</a>
+				<a class="permalink" href="#DirectCreateMethod">¶</a>
+				
+				
+			</h2>
+			<p>
+DirectCreateMethod is used with the basic odo create; `odo create nodejs mynode`
+</p>
+
+			<pre>type DirectCreateMethod struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="DirectCreateMethod.CheckConflicts">func (DirectCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=3921:4005#L92">CheckConflicts</a>
+					<a class="permalink" href="#DirectCreateMethod.CheckConflicts">¶</a>
+					
+					
+				</h3>
+				<pre>func (dcm <a href="#DirectCreateMethod">DirectCreateMethod</a>) CheckConflicts(co *<a href="#CreateOptions">CreateOptions</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DirectCreateMethod.FetchDevfileAndCreateComponent">func (DirectCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=4023:4148#L96">FetchDevfileAndCreateComponent</a>
+					<a class="permalink" href="#DirectCreateMethod.FetchDevfileAndCreateComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (dcm <a href="#DirectCreateMethod">DirectCreateMethod</a>) FetchDevfileAndCreateComponent(co *<a href="#CreateOptions">CreateOptions</a>, cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DirectCreateMethod.Rollback">func (DirectCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=5338:5410#L129">Rollback</a>
+					<a class="permalink" href="#DirectCreateMethod.Rollback">¶</a>
+					
+					
+				</h3>
+				<pre>func (dcm <a href="#DirectCreateMethod">DirectCreateMethod</a>) Rollback(devfile, componentContext <a href="../../../../../../../builtin/#string">string</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ExecOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/exec.go.html?s=722:872#L15">ExecOptions</a>
+				<a class="permalink" href="#ExecOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ExecOptions contains exec options
+</p>
+
+			<pre>type ExecOptions struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewExecOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/exec.go.html?s=928:962#L27">NewExecOptions</a>
+					<a class="permalink" href="#NewExecOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewExecOptions() *<a href="#ExecOptions">ExecOptions</a></pre>
+				<p>
+NewExecOptions returns new instance of ExecOptions
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ExecOptions.Complete">func (*ExecOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/exec.go.html?s=1066:1149#L34">Complete</a>
+					<a class="permalink" href="#ExecOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (eo *<a href="#ExecOptions">ExecOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes exec args
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ExecOptions.DevfileComponentExec">func (*ExecOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/devfile.go.html?s=6529:6596#L220">DevfileComponentExec</a>
+					<a class="permalink" href="#ExecOptions.DevfileComponentExec">¶</a>
+					
+					
+				</h3>
+				<pre>func (eo *<a href="#ExecOptions">ExecOptions</a>) DevfileComponentExec(command []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+DevfileComponentExec executes the given user command inside the component
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ExecOptions.Run">func (*ExecOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/exec.go.html?s=1940:1980#L57">Run</a>
+					<a class="permalink" href="#ExecOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (eo *<a href="#ExecOptions">ExecOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run has the logic to perform the required actions as part of command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ExecOptions.Validate">func (*ExecOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/exec.go.html?s=1809:1854#L52">Validate</a>
+					<a class="permalink" href="#ExecOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (eo *<a href="#ExecOptions">ExecOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the exec parameters
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FileCreateMethod">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=8365:8395#L203">FileCreateMethod</a>
+				<a class="permalink" href="#FileCreateMethod">¶</a>
+				
+				
+			</h2>
+			<p>
+FileCreateMethod is used when --devfile flag is used with a local file; `odo create --devfile /tmp/comp/devfile.yaml`
+</p>
+
+			<pre>type FileCreateMethod struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="FileCreateMethod.CheckConflicts">func (FileCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=8397:8479#L205">CheckConflicts</a>
+					<a class="permalink" href="#FileCreateMethod.CheckConflicts">¶</a>
+					
+					
+				</h3>
+				<pre>func (fcm <a href="#FileCreateMethod">FileCreateMethod</a>) CheckConflicts(co *<a href="#CreateOptions">CreateOptions</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FileCreateMethod.FetchDevfileAndCreateComponent">func (FileCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=8568:8691#L209">FetchDevfileAndCreateComponent</a>
+					<a class="permalink" href="#FileCreateMethod.FetchDevfileAndCreateComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (fcm <a href="#FileCreateMethod">FileCreateMethod</a>) FetchDevfileAndCreateComponent(co *<a href="#CreateOptions">CreateOptions</a>, cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="FileCreateMethod.Rollback">func (FileCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=9528:9598#L232">Rollback</a>
+					<a class="permalink" href="#FileCreateMethod.Rollback">¶</a>
+					
+					
+				</h3>
+				<pre>func (fcm <a href="#FileCreateMethod">FileCreateMethod</a>) Rollback(devfile, componentContext <a href="../../../../../../../builtin/#string">string</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GetOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/get.go.html?s=704:842#L15">GetOptions</a>
+				<a class="permalink" href="#GetOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+GetOptions encapsulates component get options
+</p>
+
+			<pre>type GetOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGetOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/get.go.html?s=896:928#L27">NewGetOptions</a>
+					<a class="permalink" href="#NewGetOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewGetOptions() *<a href="#GetOptions">GetOptions</a></pre>
+				<p>
+NewGetOptions returns new instance of GetOptions
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="GetOptions.Complete">func (*GetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/get.go.html?s=987:1070#L32">Complete</a>
+					<a class="permalink" href="#GetOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (gto *<a href="#GetOptions">GetOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes get args
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GetOptions.Run">func (*GetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/get.go.html?s=1479:1519#L50">Run</a>
+					<a class="permalink" href="#GetOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (gto *<a href="#GetOptions">GetOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run has the logic to perform the required actions as part of command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GetOptions.Validate">func (*GetOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/get.go.html?s=1348:1393#L45">Validate</a>
+					<a class="permalink" href="#GetOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (gto *<a href="#GetOptions">GetOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the get parameters
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="HTTPCreateMethod">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=6909:6939#L167">HTTPCreateMethod</a>
+				<a class="permalink" href="#HTTPCreateMethod">¶</a>
+				
+				
+			</h2>
+			<p>
+HTTPCreateMethod is used when --devfile flag is used with a remote file; `odo create --devfile <a href="https://example.com/devfile.yaml">https://example.com/devfile.yaml</a>`
+</p>
+
+			<pre>type HTTPCreateMethod struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="HTTPCreateMethod.CheckConflicts">func (HTTPCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=6941:7023#L169">CheckConflicts</a>
+					<a class="permalink" href="#HTTPCreateMethod.CheckConflicts">¶</a>
+					
+					
+				</h3>
+				<pre>func (hcm <a href="#HTTPCreateMethod">HTTPCreateMethod</a>) CheckConflicts(co *<a href="#CreateOptions">CreateOptions</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HTTPCreateMethod.FetchDevfileAndCreateComponent">func (HTTPCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=7112:7235#L173">FetchDevfileAndCreateComponent</a>
+					<a class="permalink" href="#HTTPCreateMethod.FetchDevfileAndCreateComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (hcm <a href="#HTTPCreateMethod">HTTPCreateMethod</a>) FetchDevfileAndCreateComponent(co *<a href="#CreateOptions">CreateOptions</a>, cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="HTTPCreateMethod.Rollback">func (HTTPCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=8112:8182#L197">Rollback</a>
+					<a class="permalink" href="#HTTPCreateMethod.Rollback">¶</a>
+					
+					
+				</h3>
+				<pre>func (hcm <a href="#HTTPCreateMethod">HTTPCreateMethod</a>) Rollback(devfile, componentContext <a href="../../../../../../../builtin/#string">string</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="InteractiveCreateMethod">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=1440:1477#L29">InteractiveCreateMethod</a>
+				<a class="permalink" href="#InteractiveCreateMethod">¶</a>
+				
+				
+			</h2>
+			<p>
+InteractiveCreateMethod is used while creating a component interactively
+</p>
+
+			<pre>type InteractiveCreateMethod struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="InteractiveCreateMethod.CheckConflicts">func (InteractiveCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=1479:1568#L31">CheckConflicts</a>
+					<a class="permalink" href="#InteractiveCreateMethod.CheckConflicts">¶</a>
+					
+					
+				</h3>
+				<pre>func (icm <a href="#InteractiveCreateMethod">InteractiveCreateMethod</a>) CheckConflicts(co *<a href="#CreateOptions">CreateOptions</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="InteractiveCreateMethod.FetchDevfileAndCreateComponent">func (InteractiveCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=1586:1716#L35">FetchDevfileAndCreateComponent</a>
+					<a class="permalink" href="#InteractiveCreateMethod.FetchDevfileAndCreateComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (icm <a href="#InteractiveCreateMethod">InteractiveCreateMethod</a>) FetchDevfileAndCreateComponent(co *<a href="#CreateOptions">CreateOptions</a>, cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="InteractiveCreateMethod.Rollback">func (InteractiveCreateMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=3664:3741#L84">Rollback</a>
+					<a class="permalink" href="#InteractiveCreateMethod.Rollback">¶</a>
+					
+					
+				</h3>
+				<pre>func (icm <a href="#InteractiveCreateMethod">InteractiveCreateMethod</a>) Rollback(devfile, componentContext <a href="../../../../../../../builtin/#string">string</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LinkOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/link.go.html?s=2209:2318#L51">LinkOptions</a>
+				<a class="permalink" href="#LinkOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+LinkOptions encapsulates the options for the odo link command
+</p>
+
+			<pre>type LinkOptions struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLinkOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/link.go.html?s=2373:2407#L60">NewLinkOptions</a>
+					<a class="permalink" href="#NewLinkOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewLinkOptions() *<a href="#LinkOptions">LinkOptions</a></pre>
+				<p>
+NewLinkOptions creates a new LinkOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="LinkOptions.Complete">func (*LinkOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/link.go.html?s=2646:2728#L68">Complete</a>
+					<a class="permalink" href="#LinkOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#LinkOptions">LinkOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes LinkOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="LinkOptions.Run">func (*LinkOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/link.go.html?s=3149:3188#L88">Run</a>
+					<a class="permalink" href="#LinkOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#LinkOptions">LinkOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the odo link command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="LinkOptions.Validate">func (*LinkOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/link.go.html?s=3027:3071#L83">Validate</a>
+					<a class="permalink" href="#LinkOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#LinkOptions">LinkOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the LinkOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ListOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/list.go.html?s=1230:1411#L30">ListOptions</a>
+				<a class="permalink" href="#ListOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ListOptions is a dummy container to attach complete, validate and run pattern
+</p>
+
+			<pre>type ListOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewListOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/list.go.html?s=1467:1501#L44">NewListOptions</a>
+					<a class="permalink" href="#NewListOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewListOptions() *<a href="#ListOptions">ListOptions</a></pre>
+				<p>
+NewListOptions returns new instance of ListOptions
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ListOptions.Complete">func (*ListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/list.go.html?s=1561:1644#L49">Complete</a>
+					<a class="permalink" href="#ListOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (lo *<a href="#ListOptions">ListOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes log args
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ListOptions.Run">func (*ListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/list.go.html?s=3318:3352#L111">Run</a>
+					<a class="permalink" href="#ListOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (lo *<a href="#ListOptions">ListOptions</a>) Run() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+Run has the logic to perform the required actions as part of command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ListOptions.Validate">func (*ListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/list.go.html?s=2475:2520#L82">Validate</a>
+					<a class="permalink" href="#ListOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (lo *<a href="#ListOptions">ListOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the list parameters
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LogOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/log.go.html?s=714:848#L16">LogOptions</a>
+				<a class="permalink" href="#LogOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+LogOptions contains log options
+</p>
+
+			<pre>type LogOptions struct {
+    <span class="comment">// Component context</span>
+    *<a href="#ComponentOptions">ComponentOptions</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLogOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/log.go.html?s=902:934#L27">NewLogOptions</a>
+					<a class="permalink" href="#NewLogOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewLogOptions() *<a href="#LogOptions">LogOptions</a></pre>
+				<p>
+NewLogOptions returns new instance of LogOptions
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="LogOptions.Complete">func (*LogOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/log.go.html?s=1036:1118#L34">Complete</a>
+					<a class="permalink" href="#LogOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (lo *<a href="#LogOptions">LogOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes log args
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="LogOptions.DevfileComponentLog">func (LogOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/devfile.go.html?s=3468:3516#L108">DevfileComponentLog</a>
+					<a class="permalink" href="#LogOptions.DevfileComponentLog">¶</a>
+					
+					
+				</h3>
+				<pre>func (lo <a href="#LogOptions">LogOptions</a>) DevfileComponentLog() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+DevfileComponentLog fetch and display log from devfile components
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="LogOptions.Run">func (*LogOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/log.go.html?s=1441:1480#L45">Run</a>
+					<a class="permalink" href="#LogOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (lo *<a href="#LogOptions">LogOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run has the logic to perform the required actions as part of command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="LogOptions.Validate">func (*LogOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/log.go.html?s=1311:1355#L40">Validate</a>
+					<a class="permalink" href="#LogOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (lo *<a href="#LogOptions">LogOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the log parameters
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PushOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/push.go.html?s=1679:2055#L42">PushOptions</a>
+				<a class="permalink" href="#PushOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+PushOptions encapsulates options that push command uses
+</p>
+
+			<pre>type PushOptions struct {
+    <span class="comment">// Push context</span>
+    *<a href="#CommonPushOptions">CommonPushOptions</a>
+
+    <span class="comment">// devfile path</span>
+<span id="PushOptions.DevfilePath"></span>    DevfilePath <a href="../../../../../../../builtin/#string">string</a>
+
+<span id="PushOptions.Devfile"></span>    <span class="comment">// Devfile content</span>
+    Devfile <a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPushOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/push.go.html?s=2185:2273#L68">NewPushOptions</a>
+					<a class="permalink" href="#NewPushOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewPushOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>, prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#PushOptions">PushOptions</a></pre>
+				<p>
+NewPushOptions returns new instance of PushOptions
+with &#34;default&#34; values for certain values, for example, show is &#34;false&#34;
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="PushOptions.Complete">func (*PushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/push.go.html?s=2873:2956#L89">Complete</a>
+					<a class="permalink" href="#PushOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (po *<a href="#PushOptions">PushOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes push args
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PushOptions.CompleteDevfilePath">func (*PushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/push.go.html?s=2433:2477#L75">CompleteDevfilePath</a>
+					<a class="permalink" href="#PushOptions.CompleteDevfilePath">¶</a>
+					
+					
+				</h3>
+				<pre>func (po *<a href="#PushOptions">PushOptions</a>) CompleteDevfilePath()</pre>
+				<p>
+CompleteDevfilePath completes the devfile path from context
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PushOptions.DevfilePush">func (*PushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/devfile.go.html?s=789:831#L15">DevfilePush</a>
+					<a class="permalink" href="#PushOptions.DevfilePush">¶</a>
+					
+					
+				</h3>
+				<pre>func (po *<a href="#PushOptions">PushOptions</a>) DevfilePush() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+DevfilePush has the logic to perform the required actions for a given devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PushOptions.GetComponentContext">func (*PushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/push.go.html?s=2756:2807#L84">GetComponentContext</a>
+					<a class="permalink" href="#PushOptions.GetComponentContext">¶</a>
+					
+					
+				</h3>
+				<pre>func (po *<a href="#PushOptions">PushOptions</a>) GetComponentContext() <a href="../../../../../../../builtin/#string">string</a></pre>
+				<p>
+GetComponentContext gets the component context
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PushOptions.Run">func (*PushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/push.go.html?s=7296:7336#L216">Run</a>
+					<a class="permalink" href="#PushOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (po *<a href="#PushOptions">PushOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run has the logic to perform the required actions as part of command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PushOptions.Validate">func (*PushOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/push.go.html?s=7161:7206#L211">Validate</a>
+					<a class="permalink" href="#PushOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (po *<a href="#PushOptions">PushOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the push parameters
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StatusOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/status.go.html?s=1110:1292#L25">StatusOptions</a>
+				<a class="permalink" href="#StatusOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+StatusOptions contains status options
+</p>
+
+			<pre>type StatusOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStatusOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/status.go.html?s=1352:1390#L39">NewStatusOptions</a>
+					<a class="permalink" href="#NewStatusOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewStatusOptions() *<a href="#StatusOptions">StatusOptions</a></pre>
+				<p>
+NewStatusOptions returns new instance of StatusOptions
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="StatusOptions.Complete">func (*StatusOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/status.go.html?s=1455:1540#L44">Complete</a>
+					<a class="permalink" href="#StatusOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (so *<a href="#StatusOptions">StatusOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes status args
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StatusOptions.Run">func (*StatusOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/status.go.html?s=2318:2360#L72">Run</a>
+					<a class="permalink" href="#StatusOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (so *<a href="#StatusOptions">StatusOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run has the logic to perform the required actions as part of command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StatusOptions.Validate">func (*StatusOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/status.go.html?s=2094:2141#L62">Validate</a>
+					<a class="permalink" href="#StatusOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (so *<a href="#StatusOptions">StatusOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the status parameters
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TestOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/test.go.html?s=786:988#L14">TestOptions</a>
+				<a class="permalink" href="#TestOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+TestOptions encapsulates the options for the odo command
+</p>
+
+			<pre>type TestOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTestOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/test.go.html?s=1195:1229#L37">NewTestOptions</a>
+					<a class="permalink" href="#NewTestOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewTestOptions() *<a href="#TestOptions">TestOptions</a></pre>
+				<p>
+NewTestOptions creates a new TestOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="TestOptions.Complete">func (*TestOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/test.go.html?s=1319:1402#L42">Complete</a>
+					<a class="permalink" href="#TestOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (to *<a href="#TestOptions">TestOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes TestOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="TestOptions.Run">func (*TestOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/test.go.html?s=1999:2039#L63">Run</a>
+					<a class="permalink" href="#TestOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (to *<a href="#TestOptions">TestOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the odo command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="TestOptions.RunTestCommand">func (*TestOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/devfile.go.html?s=5972:6017#L203">RunTestCommand</a>
+					<a class="permalink" href="#TestOptions.RunTestCommand">¶</a>
+					
+					
+				</h3>
+				<pre>func (to *<a href="#TestOptions">TestOptions</a>) RunTestCommand() <a href="../../../../../../../builtin/#error">error</a></pre>
+				<p>
+RunTestCommand runs the specific test command in devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="TestOptions.Validate">func (*TestOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/test.go.html?s=1597:1642#L48">Validate</a>
+					<a class="permalink" href="#TestOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (to *<a href="#TestOptions">TestOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the TestOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UnlinkOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/unlink.go.html?s=1250:1361#L30">UnlinkOptions</a>
+				<a class="permalink" href="#UnlinkOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+UnlinkOptions encapsulates the options for the odo link command
+</p>
+
+			<pre>type UnlinkOptions struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewUnlinkOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/unlink.go.html?s=1420:1458#L39">NewUnlinkOptions</a>
+					<a class="permalink" href="#NewUnlinkOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewUnlinkOptions() *<a href="#UnlinkOptions">UnlinkOptions</a></pre>
+				<p>
+NewUnlinkOptions creates a new UnlinkOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="UnlinkOptions.Complete">func (*UnlinkOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/unlink.go.html?s=1624:1708#L46">Complete</a>
+					<a class="permalink" href="#UnlinkOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#UnlinkOptions">UnlinkOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes UnlinkOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UnlinkOptions.Run">func (*UnlinkOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/unlink.go.html?s=2059:2100#L64">Run</a>
+					<a class="permalink" href="#UnlinkOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#UnlinkOptions">UnlinkOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the odo link command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UnlinkOptions.Validate">func (*UnlinkOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/unlink.go.html?s=1935:1981#L59">Validate</a>
+					<a class="permalink" href="#UnlinkOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#UnlinkOptions">UnlinkOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the UnlinkOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UserCreatedDevfileMethod">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=5559:5597#L135">UserCreatedDevfileMethod</a>
+				<a class="permalink" href="#UserCreatedDevfileMethod">¶</a>
+				
+				
+			</h2>
+			<p>
+UserCreatedDevfileMethod is used when a devfile is present in the context directory
+</p>
+
+			<pre>type UserCreatedDevfileMethod struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="UserCreatedDevfileMethod.CheckConflicts">func (UserCreatedDevfileMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=5599:5690#L137">CheckConflicts</a>
+					<a class="permalink" href="#UserCreatedDevfileMethod.CheckConflicts">¶</a>
+					
+					
+				</h3>
+				<pre>func (ucdm <a href="#UserCreatedDevfileMethod">UserCreatedDevfileMethod</a>) CheckConflicts(co *<a href="#CreateOptions">CreateOptions</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UserCreatedDevfileMethod.FetchDevfileAndCreateComponent">func (UserCreatedDevfileMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=6102:6234#L149">FetchDevfileAndCreateComponent</a>
+					<a class="permalink" href="#UserCreatedDevfileMethod.FetchDevfileAndCreateComponent">¶</a>
+					
+					
+				</h3>
+				<pre>func (ucdm <a href="#UserCreatedDevfileMethod">UserCreatedDevfileMethod</a>) FetchDevfileAndCreateComponent(co *<a href="#CreateOptions">CreateOptions</a>, cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UserCreatedDevfileMethod.Rollback">func (UserCreatedDevfileMethod) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/create_methods.go.html?s=6660:6739#L162">Rollback</a>
+					<a class="permalink" href="#UserCreatedDevfileMethod.Rollback">¶</a>
+					
+					
+				</h3>
+				<pre>func (ucdm <a href="#UserCreatedDevfileMethod">UserCreatedDevfileMethod</a>) Rollback(devfile, componentContext <a href="../../../../../../../builtin/#string">string</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="WatchOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/watch.go.html?s=1484:1981#L30">WatchOptions</a>
+				<a class="permalink" href="#WatchOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+WatchOptions contains attributes of the watch command
+</p>
+
+			<pre>type WatchOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewWatchOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/watch.go.html?s=2039:2075#L53">NewWatchOptions</a>
+					<a class="permalink" href="#NewWatchOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewWatchOptions() *<a href="#WatchOptions">WatchOptions</a></pre>
+				<p>
+NewWatchOptions returns new instance of WatchOptions
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="WatchOptions.Complete">func (*WatchOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/watch.go.html?s=2138:2222#L58">Complete</a>
+					<a class="permalink" href="#WatchOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (wo *<a href="#WatchOptions">WatchOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes watch args
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="WatchOptions.Run">func (*WatchOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/watch.go.html?s=4328:4369#L111">Run</a>
+					<a class="permalink" href="#WatchOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (wo *<a href="#WatchOptions">WatchOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run has the logic to perform the required actions as part of command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="WatchOptions.Validate">func (*WatchOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/watch.go.html?s=3270:3316#L86">Validate</a>
+					<a class="permalink" href="#WatchOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (wo *<a href="#WatchOptions">WatchOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the watch parameters
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tbody><tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="ui/">ui</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</tbody></table>
+	</div>
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

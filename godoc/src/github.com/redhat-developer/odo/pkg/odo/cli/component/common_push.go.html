@@ -1,0 +1,216 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>component - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo">odo</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli">cli</a>/<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component">component</a>/<span class="text-muted">common_push.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component">github.com/redhat-developer/odo/pkg/odo/cli/component</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package component
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;path/filepath&#34;
+<span id="L5" class="ln">     5  </span>	&#34;strings&#34;
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>	&#34;github.com/devfile/library/pkg/devfile/parser&#34;
+<span id="L8" class="ln">     8  </span>	&#34;github.com/pkg/errors&#34;
+<span id="L9" class="ln">     9  </span>	&#34;github.com/redhat-developer/odo/pkg/envinfo&#34;
+<span id="L10" class="ln">    10  </span>	&#34;github.com/redhat-developer/odo/pkg/kclient&#34;
+<span id="L11" class="ln">    11  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/cmdline&#34;
+<span id="L12" class="ln">    12  </span>	&#34;github.com/redhat-developer/odo/pkg/odo/genericclioptions&#34;
+<span id="L13" class="ln">    13  </span>	odoutil &#34;github.com/redhat-developer/odo/pkg/odo/util&#34;
+<span id="L14" class="ln">    14  </span>	&#34;github.com/redhat-developer/odo/pkg/preference&#34;
+<span id="L15" class="ln">    15  </span>	&#34;github.com/redhat-developer/odo/pkg/project&#34;
+<span id="L16" class="ln">    16  </span>	&#34;github.com/redhat-developer/odo/pkg/util&#34;
+<span id="L17" class="ln">    17  </span>	&#34;github.com/spf13/cobra&#34;
+<span id="L18" class="ln">    18  </span>	&#34;k8s.io/klog&#34;
+<span id="L19" class="ln">    19  </span>)
+<span id="L20" class="ln">    20  </span>
+<span id="L21" class="ln">    21  </span><span class="comment">// CommonPushOptions has data needed for all pushes</span>
+<span id="L22" class="ln">    22  </span>type CommonPushOptions struct {
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Context</span>
+<span id="L24" class="ln">    24  </span>	*genericclioptions.Context
+<span id="L25" class="ln">    25  </span>
+<span id="L26" class="ln">    26  </span>	<span class="comment">// Clients</span>
+<span id="L27" class="ln">    27  </span>	prjClient  project.Client
+<span id="L28" class="ln">    28  </span>	prefClient preference.Client
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span>	<span class="comment">//Flags</span>
+<span id="L31" class="ln">    31  </span>	<span class="comment">// TODO(feloy) Fixme</span>
+<span id="L32" class="ln">    32  </span>	showFlag         bool <span class="comment">//nolint:structcheck</span>
+<span id="L33" class="ln">    33  </span>	componentContext string
+<span id="L34" class="ln">    34  </span>	configFlag       bool
+<span id="L35" class="ln">    35  </span>	sourceFlag       bool
+<span id="L36" class="ln">    36  </span>
+<span id="L37" class="ln">    37  </span>	EnvSpecificInfo *envinfo.EnvSpecificInfo
+<span id="L38" class="ln">    38  </span>}
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span><span class="comment">// NewCommonPushOptions instantiates a commonPushOptions object</span>
+<span id="L41" class="ln">    41  </span>func NewCommonPushOptions(prjClient project.Client, prefClient preference.Client) *CommonPushOptions {
+<span id="L42" class="ln">    42  </span>	return &amp;CommonPushOptions{
+<span id="L43" class="ln">    43  </span>		prjClient:  prjClient,
+<span id="L44" class="ln">    44  </span>		prefClient: prefClient,
+<span id="L45" class="ln">    45  </span>	}
+<span id="L46" class="ln">    46  </span>}
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span><span class="comment">//InitEnvInfoFromContext initializes envinfo from the context</span>
+<span id="L49" class="ln">    49  </span>func (cpo *CommonPushOptions) InitEnvInfoFromContext() (err error) {
+<span id="L50" class="ln">    50  </span>	cpo.EnvSpecificInfo, err = envinfo.NewEnvSpecificInfo(cpo.componentContext)
+<span id="L51" class="ln">    51  </span>	if err != nil {
+<span id="L52" class="ln">    52  </span>		return err
+<span id="L53" class="ln">    53  </span>	}
+<span id="L54" class="ln">    54  </span>	return nil
+<span id="L55" class="ln">    55  </span>}
+<span id="L56" class="ln">    56  </span>
+<span id="L57" class="ln">    57  </span><span class="comment">//AddContextFlag adds the context flag to specified command storing value of flag in options.componentContext</span>
+<span id="L58" class="ln">    58  </span>func (cpo *CommonPushOptions) AddContextFlag(cmd *cobra.Command) {
+<span id="L59" class="ln">    59  </span>	odoutil.AddContextFlag(cmd, &amp;cpo.componentContext)
+<span id="L60" class="ln">    60  </span>}
+<span id="L61" class="ln">    61  </span>
+<span id="L62" class="ln">    62  </span><span class="comment">// ResolveSrcAndConfigFlags sets all pushes if none is asked</span>
+<span id="L63" class="ln">    63  </span>func (cpo *CommonPushOptions) ResolveSrcAndConfigFlags() {
+<span id="L64" class="ln">    64  </span>	<span class="comment">// If neither config nor source flag is passed, update both config and source to the component</span>
+<span id="L65" class="ln">    65  </span>	if !cpo.configFlag &amp;&amp; !cpo.sourceFlag {
+<span id="L66" class="ln">    66  </span>		cpo.configFlag = true
+<span id="L67" class="ln">    67  </span>		cpo.sourceFlag = true
+<span id="L68" class="ln">    68  </span>	}
+<span id="L69" class="ln">    69  </span>}
+<span id="L70" class="ln">    70  </span>
+<span id="L71" class="ln">    71  </span><span class="comment">// ResolveProject completes the push options as needed</span>
+<span id="L72" class="ln">    72  </span>func (cpo *CommonPushOptions) ResolveProject(prjName string) (err error) {
+<span id="L73" class="ln">    73  </span>
+<span id="L74" class="ln">    74  </span>	<span class="comment">// check if project exist</span>
+<span id="L75" class="ln">    75  </span>	isPrjExists, err := cpo.prjClient.Exists(prjName)
+<span id="L76" class="ln">    76  </span>	if err != nil {
+<span id="L77" class="ln">    77  </span>		return errors.Wrapf(err, &#34;failed to check if project with name %s exists&#34;, prjName)
+<span id="L78" class="ln">    78  </span>	}
+<span id="L79" class="ln">    79  </span>	if !isPrjExists {
+<span id="L80" class="ln">    80  </span>		err = cpo.prjClient.Create(prjName, true)
+<span id="L81" class="ln">    81  </span>		if err != nil {
+<span id="L82" class="ln">    82  </span>			return errors.Wrapf(
+<span id="L83" class="ln">    83  </span>				err,
+<span id="L84" class="ln">    84  </span>				&#34;project %s does not exist. Failed creating it. Please try after creating project using `odo project create &lt;project_name&gt;`&#34;,
+<span id="L85" class="ln">    85  </span>				prjName,
+<span id="L86" class="ln">    86  </span>			)
+<span id="L87" class="ln">    87  </span>		}
+<span id="L88" class="ln">    88  </span>	}
+<span id="L89" class="ln">    89  </span>	cpo.Context.KClient.SetNamespace(prjName)
+<span id="L90" class="ln">    90  </span>	return
+<span id="L91" class="ln">    91  </span>}
+<span id="L92" class="ln">    92  </span>
+<span id="L93" class="ln">    93  </span><span class="comment">// retrieveKubernetesDefaultNamespace tries to retrieve the current active namespace</span>
+<span id="L94" class="ln">    94  </span><span class="comment">// to set as a default namespace</span>
+<span id="L95" class="ln">    95  </span>func retrieveKubernetesDefaultNamespace() (string, error) {
+<span id="L96" class="ln">    96  </span>	<span class="comment">// Get current active namespace</span>
+<span id="L97" class="ln">    97  </span>	client, err := kclient.New()
+<span id="L98" class="ln">    98  </span>	if err != nil {
+<span id="L99" class="ln">    99  </span>		return &#34;&#34;, err
+<span id="L100" class="ln">   100  </span>	}
+<span id="L101" class="ln">   101  </span>	return client.Namespace, nil
+<span id="L102" class="ln">   102  </span>}
+<span id="L103" class="ln">   103  </span>
+<span id="L104" class="ln">   104  </span><span class="comment">// retrieveCmdNamespace retrieves the namespace from project flag, if unset</span>
+<span id="L105" class="ln">   105  </span><span class="comment">// we revert to the default namespace available from Kubernetes</span>
+<span id="L106" class="ln">   106  </span>func retrieveCmdNamespace(cmdline cmdline.Cmdline) (componentNamespace string, err error) {
+<span id="L107" class="ln">   107  </span>	<span class="comment">// For &#34;odo create&#34; check to see if --project has been passed.</span>
+<span id="L108" class="ln">   108  </span>	if cmdline.IsFlagSet(&#34;project&#34;) {
+<span id="L109" class="ln">   109  </span>		componentNamespace, err = cmdline.FlagValue(&#34;project&#34;)
+<span id="L110" class="ln">   110  </span>		if err != nil {
+<span id="L111" class="ln">   111  </span>			return &#34;&#34;, err
+<span id="L112" class="ln">   112  </span>		}
+<span id="L113" class="ln">   113  </span>	} else {
+<span id="L114" class="ln">   114  </span>		componentNamespace, err = retrieveKubernetesDefaultNamespace()
+<span id="L115" class="ln">   115  </span>		if err != nil {
+<span id="L116" class="ln">   116  </span>			return &#34;&#34;, err
+<span id="L117" class="ln">   117  </span>		}
+<span id="L118" class="ln">   118  </span>	}
+<span id="L119" class="ln">   119  </span>
+<span id="L120" class="ln">   120  </span>	return componentNamespace, nil
+<span id="L121" class="ln">   121  </span>}
+<span id="L122" class="ln">   122  </span>
+<span id="L123" class="ln">   123  </span><span class="comment">// GatherName parses the Devfile and retrieves an appropriate name in two ways.</span>
+<span id="L124" class="ln">   124  </span><span class="comment">// 1. If metadata.name exists, we use it</span>
+<span id="L125" class="ln">   125  </span><span class="comment">// 2. If metadata.name does NOT exist, we use the folder name where the devfile.yaml is located</span>
+<span id="L126" class="ln">   126  </span>func GatherName(devObj parser.DevfileObj, devfilePath string) (string, error) {
+<span id="L127" class="ln">   127  </span>
+<span id="L128" class="ln">   128  </span>	metadata := devObj.Data.GetMetadata()
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span>	klog.V(4).Infof(&#34;metadata.Name: %s&#34;, metadata.Name)
+<span id="L131" class="ln">   131  </span>
+<span id="L132" class="ln">   132  </span>	<span class="comment">// 1. Use metadata.name if it exists</span>
+<span id="L133" class="ln">   133  </span>	if metadata.Name != &#34;&#34; {
+<span id="L134" class="ln">   134  </span>
+<span id="L135" class="ln">   135  </span>		<span class="comment">// Remove any suffix&#39;s that end with `-`. This is because many Devfile&#39;s use the original v1 Devfile pattern of</span>
+<span id="L136" class="ln">   136  </span>		<span class="comment">// having names such as &#34;foo-bar-&#34; in order to prepend container names such as &#34;foo-bar-container1&#34;</span>
+<span id="L137" class="ln">   137  </span>		return strings.TrimSuffix(metadata.Name, &#34;-&#34;), nil
+<span id="L138" class="ln">   138  </span>	}
+<span id="L139" class="ln">   139  </span>
+<span id="L140" class="ln">   140  </span>	<span class="comment">// 2. Use the folder name as a last resort if nothing else exists</span>
+<span id="L141" class="ln">   141  </span>	sourcePath, err := util.GetAbsPath(devfilePath)
+<span id="L142" class="ln">   142  </span>	if err != nil {
+<span id="L143" class="ln">   143  </span>		return &#34;&#34;, errors.Wrap(err, &#34;unable to get source path&#34;)
+<span id="L144" class="ln">   144  </span>	}
+<span id="L145" class="ln">   145  </span>	klog.V(4).Infof(&#34;Source path: %s&#34;, sourcePath)
+<span id="L146" class="ln">   146  </span>	klog.V(4).Infof(&#34;devfile dir: %s&#34;, filepath.Dir(sourcePath))
+<span id="L147" class="ln">   147  </span>
+<span id="L148" class="ln">   148  </span>	return filepath.Base(filepath.Dir(sourcePath)), nil
+<span id="L149" class="ln">   149  </span>}
+<span id="L150" class="ln">   150  </span>
+</pre><p><a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/component/common_push.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

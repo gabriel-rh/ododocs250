@@ -1,0 +1,434 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>validation - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package validation
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/util/validation" target="_blank">github.com/redhat-developer/odo/pkg/odo/util/validation</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#IntegerValidator">func IntegerValidator(ans interface{}) error</a></dd>
+			
+				
+				<dd><a href="#KeyEqValFormatValidator">func KeyEqValFormatValidator(portsStr interface{}) error</a></dd>
+			
+				
+				<dd><a href="#NameValidator">func NameValidator(name interface{}) error</a></dd>
+			
+				
+				<dd><a href="#NilValidator">func NilValidator(interface{}) error</a></dd>
+			
+				
+				<dd><a href="#NonNegativeValidator">func NonNegativeValidator(arg interface{}) error</a></dd>
+			
+				
+				<dd><a href="#PathValidator">func PathValidator(path interface{}) error</a></dd>
+			
+				
+				<dd><a href="#PortsValidator">func PortsValidator(portsStr interface{}) error</a></dd>
+			
+				
+				<dd><a href="#ValidateHost">func ValidateHost(host string) error</a></dd>
+			
+				
+				<dd><a href="#ValidateName">func ValidateName(name string) error</a></dd>
+			
+			
+				
+				<dd><a href="#Validatable">type Validatable</a></dd>
+				
+				
+					
+					<dd>    <a href="#Validatable.AsValidatable">func (v Validatable) AsValidatable() Validatable</a></dd>
+				
+			
+				
+				<dd><a href="#Validator">type Validator</a></dd>
+				
+					
+					<dd>    <a href="#GetValidatorFor">func GetValidatorFor(prop Validatable) Validator</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validatable.go.html">validatable.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validation.go.html">validation.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html">validators.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="IntegerValidator">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html?s=722:766#L18">IntegerValidator</a>
+				<a class="permalink" href="#IntegerValidator">¶</a>
+				
+				
+			</h2>
+			<pre>func IntegerValidator(ans interface{}) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+IntegerValidator validates that the provided object can be properly converted to an int value
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="KeyEqValFormatValidator">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html?s=2313:2369#L79">KeyEqValFormatValidator</a>
+				<a class="permalink" href="#KeyEqValFormatValidator">¶</a>
+				
+				
+			</h2>
+			<pre>func KeyEqValFormatValidator(portsStr interface{}) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+KeyEqValFormatValidator ensures that all the parts of the input follow the key=value format
+examples of valid input are:
+NAME=JANE
+PORT=8080,PATH=/health
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NameValidator">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html?s=213:255#L3">NameValidator</a>
+				<a class="permalink" href="#NameValidator">¶</a>
+				
+				
+			</h2>
+			<pre>func NameValidator(name interface{}) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+NameValidator provides a Validator view of the ValidateName function.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NilValidator">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html?s=572:608#L15">NilValidator</a>
+				<a class="permalink" href="#NilValidator">¶</a>
+				
+				
+			</h2>
+			<pre>func NilValidator(interface{}) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+NilValidator always validates
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NonNegativeValidator">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html?s=1133:1181#L35">NonNegativeValidator</a>
+				<a class="permalink" href="#NonNegativeValidator">¶</a>
+				
+				
+			</h2>
+			<pre>func NonNegativeValidator(arg interface{}) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+NonNegativeValidator validates whether the given value is not negative or not
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PathValidator">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html?s=1404:1446#L45">PathValidator</a>
+				<a class="permalink" href="#PathValidator">¶</a>
+				
+				
+			</h2>
+			<pre>func PathValidator(path interface{}) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+PathValidator validates whether the given path exists on the file system
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PortsValidator">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html?s=1861:1908#L63">PortsValidator</a>
+				<a class="permalink" href="#PortsValidator">¶</a>
+				
+				
+			</h2>
+			<pre>func PortsValidator(portsStr interface{}) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+PortsValidator validates whether all the parts of the input are valid port declarations
+examples of valid input are:
+8080
+8080, 9090/udp
+8080/tcp, 9090/udp
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateHost">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validation.go.html?s=671:707#L14">ValidateHost</a>
+				<a class="permalink" href="#ValidateHost">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateHost(host <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+ValidateHost validates that the provided host is a valid subdomain according to DNS (RFC 1123) rules
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ValidateName">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validation.go.html?s=348:384#L2">ValidateName</a>
+				<a class="permalink" href="#ValidateName">¶</a>
+				
+				
+			</h2>
+			<pre>func ValidateName(name <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+ValidateName will do validation of application &amp; component names according to DNS (RFC 1123) rules
+Criteria for valid name in kubernetes: <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/identifiers.md">https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/identifiers.md</a>
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Validatable">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validatable.go.html?s=91:584#L1">Validatable</a>
+				<a class="permalink" href="#Validatable">¶</a>
+				
+				
+			</h2>
+			<p>
+Validatable represents a common ancestor for validatable parameters
+</p>
+
+			<pre>type Validatable struct {
+<span id="Validatable.Required"></span>    <span class="comment">// Required indicates whether this Validatable is a required value in the context it&#39;s supposed to be used</span>
+    Required <a href="../../../../../../../builtin/#bool">bool</a> `json:&#34;required,omitempty&#34;`
+<span id="Validatable.Type"></span>    <span class="comment">// Type specifies the type of values this Validatable accepts so that some validation can be performed based on it</span>
+    Type <a href="../../../../../../../builtin/#string">string</a> `json:&#34;type&#34;`
+<span id="Validatable.AdditionalValidators"></span>    <span class="comment">// AdditionalValidators allows users to specify validators (in addition to default ones) to validate this Validatable&#39;s value</span>
+    AdditionalValidators []<a href="#Validator">Validator</a> `json:&#34;-&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Validatable.AsValidatable">func (Validatable) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validatable.go.html?s=645:693#L4">AsValidatable</a>
+					<a class="permalink" href="#Validatable.AsValidatable">¶</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#Validatable">Validatable</a>) AsValidatable() <a href="#Validatable">Validatable</a></pre>
+				<p>
+AsValidatable allows avoiding type casts in client code
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Validator">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html?s=499:537#L12">Validator</a>
+				<a class="permalink" href="#Validator">¶</a>
+				
+				
+			</h2>
+			<p>
+Validator is a function that validates that the provided interface conforms to expectations or return an error
+</p>
+
+			<pre>type Validator func(interface{}) <a href="../../../../../../../builtin/#error">error</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetValidatorFor">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/util/validation/validators.go.html?s=3137:3185#L101">GetValidatorFor</a>
+					<a class="permalink" href="#GetValidatorFor">¶</a>
+					
+					
+				</h3>
+				<pre>func GetValidatorFor(prop <a href="#Validatable">Validatable</a>) <a href="#Validator">Validator</a></pre>
+				<p>
+GetValidatorFor retrieves a validator for the specified validatable, first validating its required state, then its value
+based on type then any additional validators in the order specified by Validatable.AdditionalValidators
+</p>
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

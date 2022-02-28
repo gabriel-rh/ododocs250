@@ -1,0 +1,210 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>auth - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/src">src</a>/<a href="../../../../../../src/github.com.html">github.com</a>/<a href="../../../../../../src/github.com/redhat-developer">redhat-developer</a>/<a href="../../../../../../src/github.com/redhat-developer/odo">odo</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg">pkg</a>/<a href="../../../../../../src/github.com/redhat-developer/odo/pkg/auth">auth</a>/<span class="text-muted">login.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="../../../../../../github.com/redhat-developer/odo/pkg/auth">github.com/redhat-developer/odo/pkg/auth</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+
+<pre><span id="L1" class="ln">     1  </span>package auth
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;bytes&#34;
+<span id="L5" class="ln">     5  </span>	&#34;fmt&#34;
+<span id="L6" class="ln">     6  </span>	&#34;io&#34;
+<span id="L7" class="ln">     7  </span>	&#34;os&#34;
+<span id="L8" class="ln">     8  </span>
+<span id="L9" class="ln">     9  </span>	&#34;github.com/openshift/oc/pkg/cli/login&#34;
+<span id="L10" class="ln">    10  </span>	odolog &#34;github.com/redhat-developer/odo/pkg/log&#34;
+<span id="L11" class="ln">    11  </span>	kapierrors &#34;k8s.io/apimachinery/pkg/api/errors&#34;
+<span id="L12" class="ln">    12  </span>	&#34;k8s.io/cli-runtime/pkg/genericclioptions&#34;
+<span id="L13" class="ln">    13  </span>	&#34;k8s.io/client-go/tools/clientcmd&#34;
+<span id="L14" class="ln">    14  </span>)
+<span id="L15" class="ln">    15  </span>
+<span id="L16" class="ln">    16  </span><span class="comment">// Login takes of authentication part and returns error if there any</span>
+<span id="L17" class="ln">    17  </span>func Login(server, username, password, token, caAuth string, skipTLS bool) error {
+<span id="L18" class="ln">    18  </span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Here we are grabbing the stdout output and then</span>
+<span id="L20" class="ln">    20  </span>	<span class="comment">// throwing it through &#34;copyAndFilter&#34; in order to get</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// a correctly filtered result from `odo login`</span>
+<span id="L22" class="ln">    22  </span>	filteredReader, filteredWriter := io.Pipe()
+<span id="L23" class="ln">    23  </span>	go func() {
+<span id="L24" class="ln">    24  </span>		defer filteredWriter.Close()
+<span id="L25" class="ln">    25  </span>		_, _ = copyAndFilter(odolog.GetStdout(), filteredReader)
+<span id="L26" class="ln">    26  </span>	}()
+<span id="L27" class="ln">    27  </span>
+<span id="L28" class="ln">    28  </span>	a := login.LoginOptions{
+<span id="L29" class="ln">    29  </span>		Server:         server,
+<span id="L30" class="ln">    30  </span>		CommandName:    &#34;odo&#34;,
+<span id="L31" class="ln">    31  </span>		CAFile:         caAuth,
+<span id="L32" class="ln">    32  </span>		InsecureTLS:    skipTLS,
+<span id="L33" class="ln">    33  </span>		Username:       username,
+<span id="L34" class="ln">    34  </span>		Password:       password,
+<span id="L35" class="ln">    35  </span>		Project:        &#34;&#34;,
+<span id="L36" class="ln">    36  </span>		Token:          token,
+<span id="L37" class="ln">    37  </span>		PathOptions:    &amp;clientcmd.PathOptions{GlobalFile: clientcmd.RecommendedHomeFile, EnvVar: clientcmd.RecommendedConfigPathEnvVar, ExplicitFileFlag: &#34;config&#34;, LoadingRules: &amp;clientcmd.ClientConfigLoadingRules{ExplicitPath: &#34;&#34;}},
+<span id="L38" class="ln">    38  </span>		RequestTimeout: 0,
+<span id="L39" class="ln">    39  </span>		IOStreams:      genericclioptions.IOStreams{Out: filteredWriter, In: os.Stdin, ErrOut: odolog.GetStderr()},
+<span id="L40" class="ln">    40  </span>	}
+<span id="L41" class="ln">    41  </span>
+<span id="L42" class="ln">    42  </span>	<span class="comment">// initialize client-go client and read starting kubeconfig file</span>
+<span id="L43" class="ln">    43  </span>
+<span id="L44" class="ln">    44  </span>	loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
+<span id="L45" class="ln">    45  </span>	configOverrides := &amp;clientcmd.ConfigOverrides{}
+<span id="L46" class="ln">    46  </span>	kubeConfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(loadingRules, configOverrides)
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span>	kubeconfig, _ := kubeConfig.RawConfig()
+<span id="L49" class="ln">    49  </span>
+<span id="L50" class="ln">    50  </span>	a.StartingKubeConfig = &amp;kubeconfig
+<span id="L51" class="ln">    51  </span>
+<span id="L52" class="ln">    52  </span>	<span class="comment">// if server URL is not given as argument, we will look for current context from kubeconfig file</span>
+<span id="L53" class="ln">    53  </span>	if len(a.Server) == 0 {
+<span id="L54" class="ln">    54  </span>		if defaultContext, defaultContextExists := a.StartingKubeConfig.Contexts[a.StartingKubeConfig.CurrentContext]; defaultContextExists {
+<span id="L55" class="ln">    55  </span>			if cluster, exists := a.StartingKubeConfig.Clusters[defaultContext.Cluster]; exists {
+<span id="L56" class="ln">    56  </span>				a.Server = cluster.Server
+<span id="L57" class="ln">    57  </span>			}
+<span id="L58" class="ln">    58  </span>		}
+<span id="L59" class="ln">    59  </span>	}
+<span id="L60" class="ln">    60  </span>
+<span id="L61" class="ln">    61  </span>	<span class="comment">// if defaultNamespace is not defined, we will look for current namespace from kubeconfig file if defined</span>
+<span id="L62" class="ln">    62  </span>	if len(a.DefaultNamespace) == 0 {
+<span id="L63" class="ln">    63  </span>		if defaultContext, defaultContextExists := a.StartingKubeConfig.Contexts[a.StartingKubeConfig.CurrentContext]; defaultContextExists {
+<span id="L64" class="ln">    64  </span>			if len(defaultContext.Namespace) &gt; 0 {
+<span id="L65" class="ln">    65  </span>				a.DefaultNamespace = defaultContext.Namespace
+<span id="L66" class="ln">    66  </span>			}
+<span id="L67" class="ln">    67  </span>		}
+<span id="L68" class="ln">    68  </span>	}
+<span id="L69" class="ln">    69  </span>
+<span id="L70" class="ln">    70  </span>	<span class="comment">// 1. Say we&#39;re connecting</span>
+<span id="L71" class="ln">    71  </span>	odolog.Info(&#34;Connecting to the OpenShift cluster\n&#34;)
+<span id="L72" class="ln">    72  </span>
+<span id="L73" class="ln">    73  </span>	<span class="comment">// 2. Handle the error messages here. This is copied over from:</span>
+<span id="L74" class="ln">    74  </span>	<span class="comment">// https://github.com/openshift/origin/blob/master/pkg/oc/cli/login/login.go#L60</span>
+<span id="L75" class="ln">    75  </span>	<span class="comment">// as unauthorized errors are handled MANUALLY by oc.</span>
+<span id="L76" class="ln">    76  </span>	if err := a.GatherInfo(); err != nil {
+<span id="L77" class="ln">    77  </span>		if kapierrors.IsUnauthorized(err) {
+<span id="L78" class="ln">    78  </span>			fmt.Println(&#34;Login failed (401 Unauthorized)&#34;)
+<span id="L79" class="ln">    79  </span>			fmt.Println(&#34;Verify you have provided correct credentials.&#34;)
+<span id="L80" class="ln">    80  </span>
+<span id="L81" class="ln">    81  </span>			if err, isStatusErr := err.(*kapierrors.StatusError); isStatusErr {
+<span id="L82" class="ln">    82  </span>				if details := err.Status().Details; details != nil {
+<span id="L83" class="ln">    83  </span>					for _, cause := range details.Causes {
+<span id="L84" class="ln">    84  </span>						fmt.Println(cause.Message)
+<span id="L85" class="ln">    85  </span>					}
+<span id="L86" class="ln">    86  </span>				}
+<span id="L87" class="ln">    87  </span>			}
+<span id="L88" class="ln">    88  </span>		}
+<span id="L89" class="ln">    89  </span>		return err
+<span id="L90" class="ln">    90  </span>	}
+<span id="L91" class="ln">    91  </span>
+<span id="L92" class="ln">    92  </span>	<span class="comment">// 3. Correctly save the configuration</span>
+<span id="L93" class="ln">    93  </span>	newFileCreated, err := a.SaveConfig()
+<span id="L94" class="ln">    94  </span>	if err != nil {
+<span id="L95" class="ln">    95  </span>		return err
+<span id="L96" class="ln">    96  </span>	}
+<span id="L97" class="ln">    97  </span>
+<span id="L98" class="ln">    98  </span>	<span class="comment">// If a new file has been created, we output what to do next (obviously odo help). This is taken from:</span>
+<span id="L99" class="ln">    99  </span>	<span class="comment">// https://github.com/openshift/origin/blob/4c293b86b111d9aaeba7bb1e72ee57410652ae9d/pkg/oc/cli/login/login.go#L184</span>
+<span id="L100" class="ln">   100  </span>	if newFileCreated {
+<span id="L101" class="ln">   101  </span>		odolog.Italicf(&#34;\nWelcome! See &#39;%s help&#39; to get started.&#34;, a.CommandName)
+<span id="L102" class="ln">   102  </span>	}
+<span id="L103" class="ln">   103  </span>
+<span id="L104" class="ln">   104  </span>	return nil
+<span id="L105" class="ln">   105  </span>}
+<span id="L106" class="ln">   106  </span>
+<span id="L107" class="ln">   107  </span><span class="comment">// copyAndFilter captures the output, filters it and then spits it back out to stdout.</span>
+<span id="L108" class="ln">   108  </span><span class="comment">// Kindly taken from https://stackoverflow.com/questions/54570268/filtering-the-output-of-a-terminal-output-using-golang</span>
+<span id="L109" class="ln">   109  </span>func copyAndFilter(w io.Writer, r io.Reader) ([]byte, error) {
+<span id="L110" class="ln">   110  </span>	var out []byte
+<span id="L111" class="ln">   111  </span>	buf := make([]byte, 1024)
+<span id="L112" class="ln">   112  </span>	for {
+<span id="L113" class="ln">   113  </span>		n, err := r.Read(buf[:])
+<span id="L114" class="ln">   114  </span>		if n &gt; 0 {
+<span id="L115" class="ln">   115  </span>			d := buf[:n]
+<span id="L116" class="ln">   116  </span>			out = append(out, d...)
+<span id="L117" class="ln">   117  </span>			if _, e := w.Write(filteredInformation(d)); e != nil {
+<span id="L118" class="ln">   118  </span>				return out, e
+<span id="L119" class="ln">   119  </span>			}
+<span id="L120" class="ln">   120  </span>		}
+<span id="L121" class="ln">   121  </span>		if err != nil {
+<span id="L122" class="ln">   122  </span>			<span class="comment">// Read returns io.EOF at the end of file, which is not an error for us</span>
+<span id="L123" class="ln">   123  </span>			if err == io.EOF {
+<span id="L124" class="ln">   124  </span>				err = nil
+<span id="L125" class="ln">   125  </span>			}
+<span id="L126" class="ln">   126  </span>			return out, err
+<span id="L127" class="ln">   127  </span>		}
+<span id="L128" class="ln">   128  </span>	}
+<span id="L129" class="ln">   129  </span>}
+<span id="L130" class="ln">   130  </span>
+<span id="L131" class="ln">   131  </span><span class="comment">// filteredInformation takes a list of strings ([]byte), replaces them and spits it back out</span>
+<span id="L132" class="ln">   132  </span><span class="comment">// This is used since we utilize `oc login` with odo and require certain strings to be filtered / changed</span>
+<span id="L133" class="ln">   133  </span><span class="comment">// to their odo equivalent</span>
+<span id="L134" class="ln">   134  </span>func filteredInformation(s []byte) []byte {
+<span id="L135" class="ln">   135  </span>
+<span id="L136" class="ln">   136  </span>	<span class="comment">// List of strings to correctly filter</span>
+<span id="L137" class="ln">   137  </span>	s = bytes.Replace(s, []byte(&#34;oc new-project&#34;), []byte(&#34;odo project create&#34;), -1)
+<span id="L138" class="ln">   138  </span>	s = bytes.Replace(s, []byte(&#34;&lt;projectname&gt;&#34;), []byte(&#34;&lt;project-name&gt;&#34;), -1)
+<span id="L139" class="ln">   139  </span>	s = bytes.Replace(s, []byte(&#34;project &lt;project-name&gt;&#34;), []byte(&#34;project set &lt;project-name&gt;&#34;), -1)
+<span id="L140" class="ln">   140  </span>	s = bytes.Replace(s, []byte(&#34;odo projects&#34;), []byte(&#34;odo project list&#34;), -1)
+<span id="L141" class="ln">   141  </span>
+<span id="L142" class="ln">   142  </span>	return s
+<span id="L143" class="ln">   143  </span>}
+<span id="L144" class="ln">   144  </span>
+</pre><p><a href="../../../../../../src/github.com/redhat-developer/odo/pkg/auth/login.go.html?m=text">View as plain text</a></p>
+
+<div id="footer"><a href="../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

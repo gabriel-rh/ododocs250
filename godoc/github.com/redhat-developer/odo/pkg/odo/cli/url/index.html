@@ -1,0 +1,577 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>url - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package url
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/url" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/url</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#HumanReadableOutput">func HumanReadableOutput(w io.Writer, urls url.URLList, componentName string) error</a></dd>
+			
+				
+				<dd><a href="#NewCmdURL">func NewCmdURL(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdURLCreate">func NewCmdURLCreate(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdURLDelete">func NewCmdURLDelete(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdURLList">func NewCmdURLList(name, fullName string) *cobra.Command</a></dd>
+			
+			
+				
+				<dd><a href="#CreateOptions">type CreateOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewURLCreateOptions">func NewURLCreateOptions(prjClient project.Client, prefClient preference.Client) *CreateOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#CreateOptions.Complete">func (o *CreateOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#CreateOptions.Run">func (o *CreateOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#CreateOptions.Validate">func (o *CreateOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#DeleteOptions">type DeleteOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewURLDeleteOptions">func NewURLDeleteOptions(prjClient project.Client, prefClient preference.Client) *DeleteOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#DeleteOptions.Complete">func (o *DeleteOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.Run">func (o *DeleteOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DeleteOptions.Validate">func (o *DeleteOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#ListOptions">type ListOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewURLListOptions">func NewURLListOptions() *ListOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#ListOptions.Complete">func (o *ListOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ListOptions.Run">func (o *ListOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#ListOptions.Validate">func (o *ListOptions) Validate() (err error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/create.go.html">create.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/delete.go.html">delete.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/list.go.html">list.go</a>
+			
+				<a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/url.go.html">url.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+RecommendedCommandName is the recommended url command name
+</p>
+
+				<pre>const <span id="RecommendedCommandName">RecommendedCommandName</span> = &#34;url&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="HumanReadableOutput">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/list.go.html?s=3168:3251#L108">HumanReadableOutput</a>
+				<a class="permalink" href="#HumanReadableOutput">¶</a>
+				
+				
+			</h2>
+			<pre>func HumanReadableOutput(w <a href="../../../../../../../io/">io</a>.<a href="../../../../../../../io/#Writer">Writer</a>, urls <a href="../../../../../../../github.com/redhat-developer/odo/pkg/url/">url</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/url/#URLList">URLList</a>, componentName <a href="../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../builtin/#error">error</a></pre>
+			<p>
+HumanReadableOutput outputs the list of projects in a human readable format
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdURL">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/url.go.html?s=579:631#L13">NewCmdURL</a>
+				<a class="permalink" href="#NewCmdURL">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdURL(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdURL returns the top-level url command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdURLCreate">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/create.go.html?s=5591:5649#L188">NewCmdURLCreate</a>
+				<a class="permalink" href="#NewCmdURLCreate">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdURLCreate(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdURLCreate implements the odo url create command.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdURLDelete">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/delete.go.html?s=3053:3111#L99">NewCmdURLDelete</a>
+				<a class="permalink" href="#NewCmdURLDelete">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdURLDelete(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdURLDelete implements the odo url delete command.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdURLList">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/list.go.html?s=2471:2527#L88">NewCmdURLList</a>
+				<a class="permalink" href="#NewCmdURLList">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdURLList(name, fullName <a href="../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdURLList implements the odo url list command.
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CreateOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/create.go.html?s=1944:2432#L49">CreateOptions</a>
+				<a class="permalink" href="#CreateOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+CreateOptions encapsulates the options for the odo url create command
+</p>
+
+			<pre>type CreateOptions struct {
+    <span class="comment">// Push context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component/">clicomponent</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component/#PushOptions">PushOptions</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewURLCreateOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/create.go.html?s=2494:2589#L71">NewURLCreateOptions</a>
+					<a class="permalink" href="#NewURLCreateOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURLCreateOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>, prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#CreateOptions">CreateOptions</a></pre>
+				<p>
+NewURLCreateOptions creates a new CreateOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CreateOptions.Complete">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/create.go.html?s=2746:2830#L76">Complete</a>
+					<a class="permalink" href="#CreateOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#CreateOptions">CreateOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes CreateOptions after they&#39;ve been Created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CreateOptions.Run">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/create.go.html?s=4708:4749#L155">Run</a>
+					<a class="permalink" href="#CreateOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#CreateOptions">CreateOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the odo url create command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CreateOptions.Validate">func (*CreateOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/create.go.html?s=3930:3976#L128">Validate</a>
+					<a class="permalink" href="#CreateOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#CreateOptions">CreateOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the CreateOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DeleteOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/delete.go.html?s=1005:1153#L21">DeleteOptions</a>
+				<a class="permalink" href="#DeleteOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+DeleteOptions encapsulates the options for the odo url delete command
+</p>
+
+			<pre>type DeleteOptions struct {
+    <span class="comment">// Push context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component/">clicomponent</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cli/component/#PushOptions">PushOptions</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewURLDeleteOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/delete.go.html?s=1215:1310#L34">NewURLDeleteOptions</a>
+					<a class="permalink" href="#NewURLDeleteOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURLDeleteOptions(prjClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/">project</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/project/#Client">Client</a>, prefClient <a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/">preference</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/preference/#Client">Client</a>) *<a href="#DeleteOptions">DeleteOptions</a></pre>
+				<p>
+NewURLDeleteOptions creates a new DeleteOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="DeleteOptions.Complete">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/delete.go.html?s=1467:1551#L39">Complete</a>
+					<a class="permalink" href="#DeleteOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DeleteOptions">DeleteOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes DeleteOptions after they&#39;ve been Deleted
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.Run">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/delete.go.html?s=2339:2380#L72">Run</a>
+					<a class="permalink" href="#DeleteOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DeleteOptions">DeleteOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the odo url delete command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DeleteOptions.Validate">func (*DeleteOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/delete.go.html?s=1987:2033#L60">Validate</a>
+					<a class="permalink" href="#DeleteOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DeleteOptions">DeleteOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the DeleteOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ListOptions">type <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/list.go.html?s=912:1042#L23">ListOptions</a>
+				<a class="permalink" href="#ListOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+ListOptions encapsulates the options for the odo url list command
+</p>
+
+			<pre>type ListOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewURLListOptions">func <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/list.go.html?s=1105:1142#L35">NewURLListOptions</a>
+					<a class="permalink" href="#NewURLListOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewURLListOptions() *<a href="#ListOptions">ListOptions</a></pre>
+				<p>
+NewURLListOptions creates a new URLCreateOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ListOptions.Complete">func (*ListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/list.go.html?s=1231:1313#L40">Complete</a>
+					<a class="permalink" href="#ListOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ListOptions">ListOptions</a>) Complete(cmdline <a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes ListOptions after they&#39;ve been Listed
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ListOptions.Run">func (*ListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/list.go.html?s=1979:2018#L65">Run</a>
+					<a class="permalink" href="#ListOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ListOptions">ListOptions</a>) Run() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the odo url list command
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ListOptions.Validate">func (*ListOptions) <a href="../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/url/list.go.html?s=1823:1867#L60">Validate</a>
+					<a class="permalink" href="#ListOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#ListOptions">ListOptions</a>) Validate() (err <a href="../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the ListOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

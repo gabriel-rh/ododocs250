@@ -1,0 +1,1228 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>localConfigProvider - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package localConfigProvider
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/localConfigProvider" target="_blank">github.com/redhat-developer/odo/pkg/localConfigProvider</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+Package localConfigProvider is a generated GoMock package.
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="#LocalConfigProvider">type LocalConfigProvider</a></dd>
+				
+				
+			
+				
+				<dd><a href="#LocalContainer">type LocalContainer</a></dd>
+				
+				
+			
+				
+				<dd><a href="#LocalStorage">type LocalStorage</a></dd>
+				
+				
+			
+				
+				<dd><a href="#LocalURL">type LocalURL</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MockLocalConfigProvider">type MockLocalConfigProvider</a></dd>
+				
+					
+					<dd>    <a href="#NewMockLocalConfigProvider">func NewMockLocalConfigProvider(ctrl *gomock.Controller) *MockLocalConfigProvider</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.CompleteStorage">func (m *MockLocalConfigProvider) CompleteStorage(storage *LocalStorage)</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.CompleteURL">func (m *MockLocalConfigProvider) CompleteURL(url *LocalURL) error</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.CreateStorage">func (m *MockLocalConfigProvider) CreateStorage(storage LocalStorage) error</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.CreateURL">func (m *MockLocalConfigProvider) CreateURL(url LocalURL) error</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.DeleteStorage">func (m *MockLocalConfigProvider) DeleteStorage(name string) error</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.DeleteURL">func (m *MockLocalConfigProvider) DeleteURL(name string) error</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.EXPECT">func (m *MockLocalConfigProvider) EXPECT() *MockLocalConfigProviderMockRecorder</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.Exists">func (m *MockLocalConfigProvider) Exists() bool</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetApplication">func (m *MockLocalConfigProvider) GetApplication() string</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetComponentPorts">func (m *MockLocalConfigProvider) GetComponentPorts() ([]string, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetContainerPorts">func (m *MockLocalConfigProvider) GetContainerPorts(container string) ([]string, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetContainers">func (m *MockLocalConfigProvider) GetContainers() ([]LocalContainer, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetDebugPort">func (m *MockLocalConfigProvider) GetDebugPort() int</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetName">func (m *MockLocalConfigProvider) GetName() string</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetNamespace">func (m *MockLocalConfigProvider) GetNamespace() string</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetStorage">func (m *MockLocalConfigProvider) GetStorage(name string) (*LocalStorage, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetStorageMountPath">func (m *MockLocalConfigProvider) GetStorageMountPath(storageName string) (string, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.GetURL">func (m *MockLocalConfigProvider) GetURL(name string) (*LocalURL, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.ListStorage">func (m *MockLocalConfigProvider) ListStorage() ([]LocalStorage, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.ListURLs">func (m *MockLocalConfigProvider) ListURLs() ([]LocalURL, error)</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.ValidateStorage">func (m *MockLocalConfigProvider) ValidateStorage(storage LocalStorage) error</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProvider.ValidateURL">func (m *MockLocalConfigProvider) ValidateURL(url LocalURL) error</a></dd>
+				
+			
+				
+				<dd><a href="#MockLocalConfigProviderMockRecorder">type MockLocalConfigProviderMockRecorder</a></dd>
+				
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.CompleteStorage">func (mr *MockLocalConfigProviderMockRecorder) CompleteStorage(storage interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.CompleteURL">func (mr *MockLocalConfigProviderMockRecorder) CompleteURL(url interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.CreateStorage">func (mr *MockLocalConfigProviderMockRecorder) CreateStorage(storage interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.CreateURL">func (mr *MockLocalConfigProviderMockRecorder) CreateURL(url interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.DeleteStorage">func (mr *MockLocalConfigProviderMockRecorder) DeleteStorage(name interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.DeleteURL">func (mr *MockLocalConfigProviderMockRecorder) DeleteURL(name interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.Exists">func (mr *MockLocalConfigProviderMockRecorder) Exists() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetApplication">func (mr *MockLocalConfigProviderMockRecorder) GetApplication() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetComponentPorts">func (mr *MockLocalConfigProviderMockRecorder) GetComponentPorts() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetContainerPorts">func (mr *MockLocalConfigProviderMockRecorder) GetContainerPorts(container interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetContainers">func (mr *MockLocalConfigProviderMockRecorder) GetContainers() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetDebugPort">func (mr *MockLocalConfigProviderMockRecorder) GetDebugPort() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetName">func (mr *MockLocalConfigProviderMockRecorder) GetName() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetNamespace">func (mr *MockLocalConfigProviderMockRecorder) GetNamespace() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetStorage">func (mr *MockLocalConfigProviderMockRecorder) GetStorage(name interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetStorageMountPath">func (mr *MockLocalConfigProviderMockRecorder) GetStorageMountPath(storageName interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.GetURL">func (mr *MockLocalConfigProviderMockRecorder) GetURL(name interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.ListStorage">func (mr *MockLocalConfigProviderMockRecorder) ListStorage() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.ListURLs">func (mr *MockLocalConfigProviderMockRecorder) ListURLs() *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.ValidateStorage">func (mr *MockLocalConfigProviderMockRecorder) ValidateStorage(storage interface{}) *gomock.Call</a></dd>
+				
+					
+					<dd>    <a href="#MockLocalConfigProviderMockRecorder.ValidateURL">func (mr *MockLocalConfigProviderMockRecorder) ValidateURL(url interface{}) *gomock.Call</a></dd>
+				
+			
+				
+				<dd><a href="#URLKind">type URLKind</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/localConfigProvider.go.html">localConfigProvider.go</a>
+			
+				<a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html">mock_localConfigProvider.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="LocalConfigProvider">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/localConfigProvider.go.html?s=2131:2916#L46">LocalConfigProvider</a>
+				<a class="permalink" href="#LocalConfigProvider">¶</a>
+				
+				
+			</h2>
+			<p>
+LocalConfigProvider is an interface which all local config providers need to implement
+currently implemented by EnvInfo
+</p>
+
+			<pre>type LocalConfigProvider interface {
+    GetApplication() <a href="../../../../../builtin/#string">string</a>
+    GetName() <a href="../../../../../builtin/#string">string</a>
+    GetNamespace() <a href="../../../../../builtin/#string">string</a>
+    GetDebugPort() <a href="../../../../../builtin/#int">int</a>
+    GetContainers() ([]<a href="#LocalContainer">LocalContainer</a>, <a href="../../../../../builtin/#error">error</a>)
+
+    GetURL(name <a href="../../../../../builtin/#string">string</a>) (*<a href="#LocalURL">LocalURL</a>, <a href="../../../../../builtin/#error">error</a>)
+    CompleteURL(url *<a href="#LocalURL">LocalURL</a>) <a href="../../../../../builtin/#error">error</a>
+    ValidateURL(url <a href="#LocalURL">LocalURL</a>) <a href="../../../../../builtin/#error">error</a>
+    CreateURL(url <a href="#LocalURL">LocalURL</a>) <a href="../../../../../builtin/#error">error</a>
+    DeleteURL(name <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a>
+    GetContainerPorts(container <a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)
+    GetComponentPorts() ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)
+    ListURLs() ([]<a href="#LocalURL">LocalURL</a>, <a href="../../../../../builtin/#error">error</a>)
+
+    GetStorage(name <a href="../../../../../builtin/#string">string</a>) (*<a href="#LocalStorage">LocalStorage</a>, <a href="../../../../../builtin/#error">error</a>)
+    CompleteStorage(storage *<a href="#LocalStorage">LocalStorage</a>)
+    ValidateStorage(storage <a href="#LocalStorage">LocalStorage</a>) <a href="../../../../../builtin/#error">error</a>
+    CreateStorage(storage <a href="#LocalStorage">LocalStorage</a>) <a href="../../../../../builtin/#error">error</a>
+    DeleteStorage(name <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a>
+    ListStorage() ([]<a href="#LocalStorage">LocalStorage</a>, <a href="../../../../../builtin/#error">error</a>)
+    GetStorageMountPath(storageName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)
+
+    Exists() <a href="../../../../../builtin/#bool">bool</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LocalContainer">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/localConfigProvider.go.html?s=1934:2003#L40">LocalContainer</a>
+				<a class="permalink" href="#LocalContainer">¶</a>
+				
+				
+			</h2>
+			<p>
+LocalContainer holds the container related information
+</p>
+
+			<pre>type LocalContainer struct {
+<span id="LocalContainer.Name"></span>    Name <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Name&#34; json:&#34;Name&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LocalStorage">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/localConfigProvider.go.html?s=1354:1874#L26">LocalStorage</a>
+				<a class="permalink" href="#LocalStorage">¶</a>
+				
+				
+			</h2>
+			<p>
+LocalStorage holds storage related information
+</p>
+
+			<pre>type LocalStorage struct {
+<span id="LocalStorage.Name"></span>    <span class="comment">// Name of the storage</span>
+    Name <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Name,omitempty&#34;`
+<span id="LocalStorage.Size"></span>    <span class="comment">// Size of the storage</span>
+    Size <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Size,omitempty&#34;`
+    <span class="comment">// Boolean indicating if the volume should be ephemeral. A nil pointer indicates to use the default behaviour</span>
+<span id="LocalStorage.Ephemeral"></span>    Ephemeral *<a href="../../../../../builtin/#bool">bool</a> `yaml:&#34;Ephemeral,omitempty&#34;`
+<span id="LocalStorage.Path"></span>    <span class="comment">// Path of the storage to which it will be mounted on the container</span>
+    Path <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Path,omitempty&#34;`
+<span id="LocalStorage.Container"></span>    <span class="comment">// Container is the container name on which this storage is mounted</span>
+    Container <a href="../../../../../builtin/#string">string</a> `yaml:&#34;-&#34; json:&#34;-&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LocalURL">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/localConfigProvider.go.html?s=231:1302#L2">LocalURL</a>
+				<a class="permalink" href="#LocalURL">¶</a>
+				
+				
+			</h2>
+			<p>
+LocalURL holds URL related information
+</p>
+
+			<pre>type LocalURL struct {
+<span id="LocalURL.Name"></span>    <span class="comment">// Name of the URL</span>
+    Name <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Name,omitempty&#34; json:&#34;name,omitempty&#34;`
+<span id="LocalURL.Port"></span>    <span class="comment">// Port number for the url of the component, required in case of components which expose more than one service port</span>
+    Port <a href="../../../../../builtin/#int">int</a> `yaml:&#34;Port,omitempty&#34; json:&#34;port,omitempty&#34;`
+    <span class="comment">// Indicates if the URL should be a secure https one</span>
+<span id="LocalURL.Secure"></span>    Secure <a href="../../../../../builtin/#bool">bool</a> `yaml:&#34;Secure,omitempty&#34; json:&#34;secure,omitempty&#34;`
+    <span class="comment">// Cluster host</span>
+<span id="LocalURL.Host"></span>    Host <a href="../../../../../builtin/#string">string</a> `yaml:&#34;Host,omitempty&#34; json:&#34;host,omitempty&#34;`
+    <span class="comment">// TLS secret name to create ingress to provide a secure URL</span>
+<span id="LocalURL.TLSSecret"></span>    TLSSecret <a href="../../../../../builtin/#string">string</a> `yaml:&#34;TLSSecret,omitempty&#34; json:&#34;tlsSecret,omitempty&#34;`
+    <span class="comment">// Exposed port number for docker container, required for local scenarios</span>
+<span id="LocalURL.ExposedPort"></span>    ExposedPort <a href="../../../../../builtin/#int">int</a> `yaml:&#34;ExposedPort,omitempty&#34; json:&#34;exposedPort,omitempty&#34;`
+<span id="LocalURL.Kind"></span>    <span class="comment">// Kind is the kind of the URL</span>
+    Kind <a href="#URLKind">URLKind</a> `yaml:&#34;Kind,omitempty&#34; json:&#34;kind,omitempty&#34;`
+<span id="LocalURL.Path"></span>    <span class="comment">// Path is the path of the URL</span>
+    Path <a href="../../../../../builtin/#string">string</a> `yaml:&#34;-&#34; json:&#34;-&#34;`
+<span id="LocalURL.Container"></span>    <span class="comment">// Container is the container of the URL</span>
+    Container <a href="../../../../../builtin/#string">string</a> `yaml:&#34;-&#34; json:&#34;-&#34;`
+<span id="LocalURL.Protocol"></span>    <span class="comment">// Protocol is the protocol of the URL</span>
+    Protocol <a href="../../../../../builtin/#string">string</a> `yaml:&#34;-&#34; json:&#34;-&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MockLocalConfigProvider">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=336:451#L4">MockLocalConfigProvider</a>
+				<a class="permalink" href="#MockLocalConfigProvider">¶</a>
+				
+				
+			</h2>
+			<p>
+MockLocalConfigProvider is a mock of LocalConfigProvider interface.
+</p>
+
+			<pre>type MockLocalConfigProvider struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMockLocalConfigProvider">func <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=685:766#L15">NewMockLocalConfigProvider</a>
+					<a class="permalink" href="#NewMockLocalConfigProvider">¶</a>
+					
+					
+				</h3>
+				<pre>func NewMockLocalConfigProvider(ctrl *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Controller">Controller</a>) *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a></pre>
+				<p>
+NewMockLocalConfigProvider creates a new mock instance.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MockLocalConfigProvider.CompleteStorage">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=1110:1182#L27">CompleteStorage</a>
+					<a class="permalink" href="#MockLocalConfigProvider.CompleteStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) CompleteStorage(storage *<a href="#LocalStorage">LocalStorage</a>)</pre>
+				<p>
+CompleteStorage mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.CompleteURL">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=1626:1692#L39">CompleteURL</a>
+					<a class="permalink" href="#MockLocalConfigProvider.CompleteURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) CompleteURL(url *<a href="#LocalURL">LocalURL</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+CompleteURL mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.CreateStorage">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=2149:2224#L53">CreateStorage</a>
+					<a class="permalink" href="#MockLocalConfigProvider.CreateStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) CreateStorage(storage <a href="#LocalStorage">LocalStorage</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+CreateStorage mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.CreateURL">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=2701:2764#L67">CreateURL</a>
+					<a class="permalink" href="#MockLocalConfigProvider.CreateURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) CreateURL(url <a href="#LocalURL">LocalURL</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+CreateURL mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.DeleteStorage">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=3209:3275#L81">DeleteStorage</a>
+					<a class="permalink" href="#MockLocalConfigProvider.DeleteStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) DeleteStorage(name <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+DeleteStorage mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.DeleteURL">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=3743:3805#L95">DeleteURL</a>
+					<a class="permalink" href="#MockLocalConfigProvider.DeleteURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) DeleteURL(name <a href="../../../../../builtin/#string">string</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+DeleteURL mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.EXPECT">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=968:1047#L22">EXPECT</a>
+					<a class="permalink" href="#MockLocalConfigProvider.EXPECT">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) EXPECT() *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a></pre>
+				<p>
+EXPECT returns an object that allows the caller to indicate expected use.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.Exists">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=4246:4293#L109">Exists</a>
+					<a class="permalink" href="#MockLocalConfigProvider.Exists">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) Exists() <a href="../../../../../builtin/#bool">bool</a></pre>
+				<p>
+Exists mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetApplication">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=4695:4752#L123">GetApplication</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetApplication">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetApplication() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetApplication mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetComponentPorts">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=5207:5278#L137">GetComponentPorts</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetComponentPorts">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetComponentPorts() ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetComponentPorts mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetContainerPorts">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=5786:5873#L152">GetContainerPorts</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetContainerPorts">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetContainerPorts(container <a href="../../../../../builtin/#string">string</a>) ([]<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetContainerPorts mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetContainers">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=6420:6495#L167">GetContainers</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetContainers">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetContainers() ([]<a href="#LocalContainer">LocalContainer</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetContainers mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetDebugPort">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=6982:7034#L182">GetDebugPort</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetDebugPort">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetDebugPort() <a href="../../../../../builtin/#int">int</a></pre>
+				<p>
+GetDebugPort mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetName">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=7464:7514#L196">GetName</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetName">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetName() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetName mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetNamespace">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=7922:7977#L210">GetNamespace</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetNamespace">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetNamespace() <a href="../../../../../builtin/#string">string</a></pre>
+				<p>
+GetNamespace mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetStorage">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=8413:8493#L224">GetStorage</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetStorage(name <a href="../../../../../builtin/#string">string</a>) (*<a href="#LocalStorage">LocalStorage</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetStorage mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetStorageMountPath">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=8994:9083#L239">GetStorageMountPath</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetStorageMountPath">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetStorageMountPath(storageName <a href="../../../../../builtin/#string">string</a>) (<a href="../../../../../builtin/#string">string</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetStorageMountPath mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.GetURL">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=9639:9711#L254">GetURL</a>
+					<a class="permalink" href="#MockLocalConfigProvider.GetURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) GetURL(name <a href="../../../../../builtin/#string">string</a>) (*<a href="#LocalURL">LocalURL</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+GetURL mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.ListStorage">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=10176:10247#L269">ListStorage</a>
+					<a class="permalink" href="#MockLocalConfigProvider.ListStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) ListStorage() ([]<a href="#LocalStorage">LocalStorage</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ListStorage mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.ListURLs">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=10716:10780#L284">ListURLs</a>
+					<a class="permalink" href="#MockLocalConfigProvider.ListURLs">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) ListURLs() ([]<a href="#LocalURL">LocalURL</a>, <a href="../../../../../builtin/#error">error</a>)</pre>
+				<p>
+ListURLs mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.ValidateStorage">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=11234:11311#L299">ValidateStorage</a>
+					<a class="permalink" href="#MockLocalConfigProvider.ValidateStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) ValidateStorage(storage <a href="#LocalStorage">LocalStorage</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+ValidateStorage mocks base method.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProvider.ValidateURL">func (*MockLocalConfigProvider) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=11802:11867#L313">ValidateURL</a>
+					<a class="permalink" href="#MockLocalConfigProvider.ValidateURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (m *<a href="#MockLocalConfigProvider">MockLocalConfigProvider</a>) ValidateURL(url <a href="#LocalURL">LocalURL</a>) <a href="../../../../../builtin/#error">error</a></pre>
+				<p>
+ValidateURL mocks base method.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MockLocalConfigProviderMockRecorder">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=542:624#L10">MockLocalConfigProviderMockRecorder</a>
+				<a class="permalink" href="#MockLocalConfigProviderMockRecorder">¶</a>
+				
+				
+			</h2>
+			<p>
+MockLocalConfigProviderMockRecorder is the mock recorder for MockLocalConfigProvider.
+</p>
+
+			<pre>type MockLocalConfigProviderMockRecorder struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.CompleteStorage">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=1317:1413#L33">CompleteStorage</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.CompleteStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) CompleteStorage(storage interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+CompleteStorage indicates an expected call of CompleteStorage.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.CompleteURL">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=1858:1946#L47">CompleteURL</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.CompleteURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) CompleteURL(url interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+CompleteURL indicates an expected call of CompleteURL.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.CreateStorage">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=2400:2494#L61">CreateStorage</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.CreateStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) CreateStorage(storage interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+CreateStorage indicates an expected call of CreateStorage.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.CreateURL">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=2924:3010#L75">CreateURL</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.CreateURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) CreateURL(url interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+CreateURL indicates an expected call of CreateURL.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.DeleteStorage">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=3448:3539#L89">DeleteStorage</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.DeleteStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) DeleteStorage(name interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+DeleteStorage indicates an expected call of DeleteStorage.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.DeleteURL">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=3966:4053#L103">DeleteURL</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.DeleteURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) DeleteURL(name interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+DeleteURL indicates an expected call of DeleteURL.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.Exists">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=4438:4506#L117">Exists</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.Exists">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) Exists() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+Exists indicates an expected call of Exists.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetApplication">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=4923:4999#L131">GetApplication</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetApplication">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetApplication() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetApplication indicates an expected call of GetApplication.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetComponentPorts">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=5493:5572#L146">GetComponentPorts</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetComponentPorts">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetComponentPorts() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetComponentPorts indicates an expected call of GetComponentPorts.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetContainerPorts">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=6099:6199#L161">GetContainerPorts</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetContainerPorts">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetContainerPorts(container interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetContainerPorts indicates an expected call of GetContainerPorts.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetContainers">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=6706:6781#L176">GetContainers</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetContainers">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetContainers() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetContainers indicates an expected call of GetContainers.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetDebugPort">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=7196:7270#L190">GetDebugPort</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetDebugPort">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetDebugPort() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetDebugPort indicates an expected call of GetDebugPort.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetName">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=7664:7733#L204">GetName</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetName">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetName() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetName indicates an expected call of GetName.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetNamespace">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=8142:8216#L218">GetNamespace</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetNamespace">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetNamespace() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetNamespace indicates an expected call of GetNamespace.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetStorage">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=8698:8786#L233">GetStorage</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetStorage(name interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetStorage indicates an expected call of GetStorage.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetStorageMountPath">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=9315:9419#L248">GetStorageMountPath</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetStorageMountPath">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetStorageMountPath(storageName interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetStorageMountPath indicates an expected call of GetStorageMountPath.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.GetURL">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=9900:9984#L263">GetURL</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.GetURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) GetURL(name interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+GetURL indicates an expected call of GetURL.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.ListStorage">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=10450:10523#L278">ListStorage</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.ListStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) ListStorage() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+ListStorage indicates an expected call of ListStorage.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.ListURLs">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=10970:11040#L293">ListURLs</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.ListURLs">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) ListURLs() *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+ListURLs indicates an expected call of ListURLs.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.ValidateStorage">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=11493:11589#L307">ValidateStorage</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.ValidateStorage">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) ValidateStorage(storage interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+ValidateStorage indicates an expected call of ValidateStorage.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MockLocalConfigProviderMockRecorder.ValidateURL">func (*MockLocalConfigProviderMockRecorder) <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/mock_localConfigProvider.go.html?s=12033:12121#L321">ValidateURL</a>
+					<a class="permalink" href="#MockLocalConfigProviderMockRecorder.ValidateURL">¶</a>
+					
+					
+				</h3>
+				<pre>func (mr *<a href="#MockLocalConfigProviderMockRecorder">MockLocalConfigProviderMockRecorder</a>) ValidateURL(url interface{}) *<a href="../../../../../github.com/golang/mock/gomock/">gomock</a>.<a href="../../../../../github.com/golang/mock/gomock/#Call">Call</a></pre>
+				<p>
+ValidateURL indicates an expected call of ValidateURL.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="URLKind">type <a href="../../../../../src/github.com/redhat-developer/odo/pkg/localConfigProvider/localConfigProvider.go.html?s=101:120#L1">URLKind</a>
+				<a class="permalink" href="#URLKind">¶</a>
+				
+				
+			</h2>
+			<p>
+URLKind is an enum to indicate the type of the URL i.e ingress/route
+</p>
+
+			<pre>type URLKind <a href="../../../../../builtin/#string">string</a></pre>
+
+			
+				
+				<pre>const (
+    <span id="INGRESS">INGRESS</span> <a href="#URLKind">URLKind</a> = &#34;ingress&#34;
+    <span id="ROUTE">ROUTE</span>   <a href="#URLKind">URLKind</a> = &#34;route&#34;
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

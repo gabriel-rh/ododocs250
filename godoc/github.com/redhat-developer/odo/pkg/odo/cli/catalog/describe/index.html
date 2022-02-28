@@ -1,0 +1,593 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>describe - Documentation</title>
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../../../../../../../../lib/style.css"/></head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../../../../../../../">Documentation</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../../../../../../../">Documentation</a></div>
+<!--<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>-->
+<div id="menu">
+<a href="../../../../../../../../" style="margin-right: 10px;">Package Index</a>
+</div>
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package describe
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import &#34;<a href="https://github.com/redhat-developer/odo/tree/master/pkg/odo/cli/catalog/describe" target="_blank">github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe</a>&#34;</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#GetDevfile">func GetDevfile(devfileComponent catalog.DevfileComponentType) (parser.DevfileObj, error)</a></dd>
+			
+				
+				<dd><a href="#HumanReadableCRListOutput">func HumanReadableCRListOutput(w io.Writer, crsList *service.OperatorBackedServiceCRList)</a></dd>
+			
+				
+				<dd><a href="#HumanReadableOutput">func HumanReadableOutput(w io.Writer, service service.OperatorBackedService)</a></dd>
+			
+				
+				<dd><a href="#NewCmdCatalogDescribe">func NewCmdCatalogDescribe(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdCatalogDescribeComponent">func NewCmdCatalogDescribeComponent(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewCmdCatalogDescribeService">func NewCmdCatalogDescribeService(name, fullName string) *cobra.Command</a></dd>
+			
+				
+				<dd><a href="#NewOperatorBackend">func NewOperatorBackend() *operatorBackend</a></dd>
+			
+			
+				
+				<dd><a href="#CatalogProviderBackend">type CatalogProviderBackend</a></dd>
+				
+				
+			
+				
+				<dd><a href="#DescribeComponentOptions">type DescribeComponentOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewDescribeComponentOptions">func NewDescribeComponentOptions() *DescribeComponentOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#DescribeComponentOptions.Complete">func (o *DescribeComponentOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DescribeComponentOptions.PrintDevfileStarterProjects">func (o *DescribeComponentOptions) PrintDevfileStarterProjects(w *tabwriter.Writer, projects []devfilev1.StarterProject, devObj parser.DevfileObj) error</a></dd>
+				
+					
+					<dd>    <a href="#DescribeComponentOptions.Run">func (o *DescribeComponentOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DescribeComponentOptions.Validate">func (o *DescribeComponentOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#DescribeServiceOptions">type DescribeServiceOptions</a></dd>
+				
+					
+					<dd>    <a href="#NewDescribeServiceOptions">func NewDescribeServiceOptions() *DescribeServiceOptions</a></dd>
+				
+				
+					
+					<dd>    <a href="#DescribeServiceOptions.Complete">func (o *DescribeServiceOptions) Complete(cmdline cmdline.Cmdline, args []string) (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DescribeServiceOptions.Run">func (o *DescribeServiceOptions) Run() (err error)</a></dd>
+				
+					
+					<dd>    <a href="#DescribeServiceOptions.Validate">func (o *DescribeServiceOptions) Validate() (err error)</a></dd>
+				
+			
+				
+				<dd><a href="#DevfileComponentDescription">type DevfileComponentDescription</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html">component.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/describe.go.html">describe.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/interface.go.html">interface.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/operator_backend.go.html">operator_backend.go</a>
+			
+				<a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/service.go.html">service.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+RecommendedCommandName is the recommended command name
+</p>
+
+				<pre>const <span id="RecommendedCommandName">RecommendedCommandName</span> = &#34;describe&#34;</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="GetDevfile">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html?s=5603:5692#L165">GetDevfile</a>
+				<a class="permalink" href="#GetDevfile">¶</a>
+				
+				
+			</h2>
+			<pre>func GetDevfile(devfileComponent <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/catalog/">catalog</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/catalog/#DevfileComponentType">DevfileComponentType</a>) (<a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>, <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+			<p>
+GetDevfile downloads the devfile in memory and return the devfile object
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="HumanReadableCRListOutput">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/operator_backend.go.html?s=4535:4624#L144">HumanReadableCRListOutput</a>
+				<a class="permalink" href="#HumanReadableCRListOutput">¶</a>
+				
+				
+			</h2>
+			<pre>func HumanReadableCRListOutput(w <a href="../../../../../../../../io/">io</a>.<a href="../../../../../../../../io/#Writer">Writer</a>, crsList *<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/service/">service</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/service/#OperatorBackedServiceCRList">OperatorBackedServiceCRList</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="HumanReadableOutput">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/operator_backend.go.html?s=4020:4096#L131">HumanReadableOutput</a>
+				<a class="permalink" href="#HumanReadableOutput">¶</a>
+				
+				
+			</h2>
+			<pre>func HumanReadableOutput(w <a href="../../../../../../../../io/">io</a>.<a href="../../../../../../../../io/#Writer">Writer</a>, service <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/service/">service</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/service/#OperatorBackedService">OperatorBackedService</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdCatalogDescribe">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/describe.go.html?s=282:346#L4">NewCmdCatalogDescribe</a>
+				<a class="permalink" href="#NewCmdCatalogDescribe">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdCatalogDescribe(name, fullName <a href="../../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdCatalogDescribe implements the odo catalog describe command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdCatalogDescribeComponent">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html?s=4528:4601#L136">NewCmdCatalogDescribeComponent</a>
+				<a class="permalink" href="#NewCmdCatalogDescribeComponent">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdCatalogDescribeComponent(name, fullName <a href="../../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdCatalogDescribeComponent implements the odo catalog describe component command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCmdCatalogDescribeService">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/service.go.html?s=2058:2129#L57">NewCmdCatalogDescribeService</a>
+				<a class="permalink" href="#NewCmdCatalogDescribeService">¶</a>
+				
+				
+			</h2>
+			<pre>func NewCmdCatalogDescribeService(name, fullName <a href="../../../../../../../../builtin/#string">string</a>) *<a href="../../../../../../../../github.com/spf13/cobra/">cobra</a>.<a href="../../../../../../../../github.com/spf13/cobra/#Command">Command</a></pre>
+			<p>
+NewCmdCatalogDescribeService implements the odo catalog describe service command
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewOperatorBackend">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/operator_backend.go.html?s=673:715#L23">NewOperatorBackend</a>
+				<a class="permalink" href="#NewOperatorBackend">¶</a>
+				
+				
+			</h2>
+			<pre>func NewOperatorBackend() *operatorBackend</pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CatalogProviderBackend">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/interface.go.html?s=149:468#L1">CatalogProviderBackend</a>
+				<a class="permalink" href="#CatalogProviderBackend">¶</a>
+				
+				
+			</h2>
+			<p>
+CatalogProviderBackend is implemented by the catalog backends supported by odo
+It is used in &#34;odo catalog describe service&#34;.
+</p>
+
+			<pre>type CatalogProviderBackend interface {
+    <span class="comment">// the second argument can be a list of anything that needs to be sent to populate internal</span>
+    <span class="comment">// structs</span>
+    CompleteDescribeService(*<a href="#DescribeServiceOptions">DescribeServiceOptions</a>, []<a href="../../../../../../../../builtin/#string">string</a>) <a href="../../../../../../../../builtin/#error">error</a>
+    ValidateDescribeService(*<a href="#DescribeServiceOptions">DescribeServiceOptions</a>) <a href="../../../../../../../../builtin/#error">error</a>
+    RunDescribeService(*<a href="#DescribeServiceOptions">DescribeServiceOptions</a>) <a href="../../../../../../../../builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DescribeComponentOptions">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html?s=1206:1435#L33">DescribeComponentOptions</a>
+				<a class="permalink" href="#DescribeComponentOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+DescribeComponentOptions encapsulates the options for the odo catalog describe component command
+</p>
+
+			<pre>type DescribeComponentOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDescribeComponentOptions">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html?s=1516:1576#L45">NewDescribeComponentOptions</a>
+					<a class="permalink" href="#NewDescribeComponentOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewDescribeComponentOptions() *<a href="#DescribeComponentOptions">DescribeComponentOptions</a></pre>
+				<p>
+NewDescribeComponentOptions creates a new DescribeComponentOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="DescribeComponentOptions.Complete">func (*DescribeComponentOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html?s=1692:1787#L50">Complete</a>
+					<a class="permalink" href="#DescribeComponentOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeComponentOptions">DescribeComponentOptions</a>) Complete(cmdline <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes DescribeComponentOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DescribeComponentOptions.PrintDevfileStarterProjects">func (*DescribeComponentOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html?s=6990:7142#L194">PrintDevfileStarterProjects</a>
+					<a class="permalink" href="#DescribeComponentOptions.PrintDevfileStarterProjects">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeComponentOptions">DescribeComponentOptions</a>) PrintDevfileStarterProjects(w *<a href="../../../../../../../../text/tabwriter/">tabwriter</a>.<a href="../../../../../../../../text/tabwriter/#Writer">Writer</a>, projects []<a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/">devfilev1</a>.<a href="../../../../../../../../github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2/#StarterProject">StarterProject</a>, devObj <a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/">parser</a>.<a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/#DevfileObj">DevfileObj</a>) <a href="../../../../../../../../builtin/#error">error</a></pre>
+				<p>
+PrintDevfileStarterProjects prints all the starter projects in a devfile
+If no starter projects exists in the devfile, it prints the whole devfile
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DescribeComponentOptions.Run">func (*DescribeComponentOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html?s=2988:3040#L87">Run</a>
+					<a class="permalink" href="#DescribeComponentOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeComponentOptions">DescribeComponentOptions</a>) Run() (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the command associated with DescribeComponentOptions
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DescribeComponentOptions.Validate">func (*DescribeComponentOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html?s=2408:2465#L71">Validate</a>
+					<a class="permalink" href="#DescribeComponentOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeComponentOptions">DescribeComponentOptions</a>) Validate() (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the DescribeComponentOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DescribeServiceOptions">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/service.go.html?s=772:932#L16">DescribeServiceOptions</a>
+				<a class="permalink" href="#DescribeServiceOptions">¶</a>
+				
+				
+			</h2>
+			<p>
+DescribeServiceOptions encapsulates the options for the odo catalog describe service command
+</p>
+
+			<pre>type DescribeServiceOptions struct {
+    <span class="comment">// Context</span>
+    *<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/">genericclioptions</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/genericclioptions/#Context">Context</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDescribeServiceOptions">func <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/service.go.html?s=1009:1065#L28">NewDescribeServiceOptions</a>
+					<a class="permalink" href="#NewDescribeServiceOptions">¶</a>
+					
+					
+				</h3>
+				<pre>func NewDescribeServiceOptions() *<a href="#DescribeServiceOptions">DescribeServiceOptions</a></pre>
+				<p>
+NewDescribeServiceOptions creates a new DescribeServiceOptions instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="DescribeServiceOptions.Complete">func (*DescribeServiceOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/service.go.html?s=1177:1270#L33">Complete</a>
+					<a class="permalink" href="#DescribeServiceOptions.Complete">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeServiceOptions">DescribeServiceOptions</a>) Complete(cmdline <a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/">cmdline</a>.<a href="../../../../../../../../github.com/redhat-developer/odo/pkg/odo/cmdline/#Cmdline">Cmdline</a>, args []<a href="../../../../../../../../builtin/#string">string</a>) (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Complete completes DescribeServiceOptions after they&#39;ve been created
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DescribeServiceOptions.Run">func (*DescribeServiceOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/service.go.html?s=1878:1928#L52">Run</a>
+					<a class="permalink" href="#DescribeServiceOptions.Run">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeServiceOptions">DescribeServiceOptions</a>) Run() (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Run contains the logic for the command associated with DescribeServiceOptions
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="DescribeServiceOptions.Validate">func (*DescribeServiceOptions) <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/service.go.html?s=1690:1745#L46">Validate</a>
+					<a class="permalink" href="#DescribeServiceOptions.Validate">¶</a>
+					
+					
+				</h3>
+				<pre>func (o *<a href="#DescribeServiceOptions">DescribeServiceOptions</a>) Validate() (err <a href="../../../../../../../../builtin/#error">error</a>)</pre>
+				<p>
+Validate validates the DescribeServiceOptions based on completed values
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DevfileComponentDescription">type <a href="../../../../../../../../src/github.com/redhat-developer/odo/pkg/odo/cli/catalog/describe/component.go.html?s=2759:2903#L81">DevfileComponentDescription</a>
+				<a class="permalink" href="#DevfileComponentDescription">¶</a>
+				
+				
+			</h2>
+			<p>
+DevfileComponentDescription represents the JSON output of Devfile component description
+used in odo catalog describe component &lt;name&gt; -o json
+</p>
+
+			<pre>type DevfileComponentDescription struct {
+<span id="DevfileComponentDescription.RegistryName"></span>    RegistryName <a href="../../../../../../../../builtin/#string">string</a>           `json:&#34;RegistryName&#34;`
+<span id="DevfileComponentDescription.Devfile"></span>    Devfile      <a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/">data</a>.<a href="../../../../../../../../github.com/devfile/library/pkg/devfile/parser/data/#DevfileData">DevfileData</a> `json:&#34;Devfile&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer"><a href="../../../../../../../../docs.zip">Download docs.zip</a> to browse offline - Generated by <a href="https://godoc.org/golang.org/x/tools/godoc" target="_blank">godoc</a> + <a href="https://gitlab.com/tslocum/godoc-static" target="_blank">godoc-static</a></div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>
