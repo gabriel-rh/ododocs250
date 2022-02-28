@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkodo_dev=self.webpackChunkodo_dev||[]).push([[4602],{1496:function(e){e.exports=JSON.parse('{"permalink":"/ododocs250/blog","page":1,"postsPerPage":5,"totalPages":1,"totalCount":4,"previousPage":null,"nextPage":null,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

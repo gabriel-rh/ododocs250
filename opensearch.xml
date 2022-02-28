@@ -4,8 +4,8 @@
   <ShortName>odo</ShortName>
   <Description>Search odo</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://odo.dev/img/favicon.ico</Image>
-  <Url type="text/html" method="get" template="https://odo.dev/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://odo.dev/opensearch.xml" />
-  <moz:SearchForm>https://odo.dev/</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://odo.dev/ododocs250/img/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://odo.dev/ododocs250/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://odo.dev/ododocs250/opensearch.xml" />
+  <moz:SearchForm>https://odo.dev/ododocs250/</moz:SearchForm>
 </OpenSearchDescription>

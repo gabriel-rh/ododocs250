@@ -9,28 +9,28 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[odo 2.4.3 Released]]></title>
-            <link>https://odo.dev/blog/odo-243-release</link>
+            <link>https://odo.dev/ododocs250/blog/odo-243-release</link>
             <guid>odo-243-release</guid>
             <pubDate>Tue, 14 Dec 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[2.4.3 of odo has been released!]]></description>
         </item>
         <item>
             <title><![CDATA[Breaking changes in odo 2.2]]></title>
-            <link>https://odo.dev/blog/breaking-changes-in-odo-2.2</link>
+            <link>https://odo.dev/ododocs250/blog/breaking-changes-in-odo-2.2</link>
             <guid>breaking-changes-in-odo-2.2</guid>
             <pubDate>Tue, 04 May 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[Breaking changes in odo 2.2]]></description>
         </item>
         <item>
             <title><![CDATA[odo 2.0.1 Release]]></title>
-            <link>https://odo.dev/blog/odo-201-release</link>
+            <link>https://odo.dev/ododocs250/blog/odo-201-release</link>
             <guid>odo-201-release</guid>
             <pubDate>Wed, 28 Oct 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[2.0.1 of odo has been released!]]></description>
         </item>
         <item>
             <title><![CDATA[odo 2.0.0 GA Release]]></title>
-            <link>https://odo.dev/blog/odo-200-release</link>
+            <link>https://odo.dev/ododocs250/blog/odo-200-release</link>
             <guid>odo-200-release</guid>
             <pubDate>Thu, 24 Sep 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[2.0.0 of odo has been released!]]></description>

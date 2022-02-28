@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkodo_dev=self.webpackChunkodo_dev||[]).push([[4710],{1742:function(e){e.exports=JSON.parse('{"release":{"allTagsPath":"/ododocs250/blog/tags","slug":"release","name":"release","count":4,"permalink":"/ododocs250/blog/tags/release"}}')}}]);
